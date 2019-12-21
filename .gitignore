@@ -1,0 +1,20 @@
+
+# IDEs
+.buildpath
+.project
+.settings
+
+# PHPStorm
+.idea/
+.nameencodings
+.xmlmisc
+.xmlmodules
+.xmlprojectCodeStyle
+.xmlvcs.xml
+*.imlworkspace
+.xml
+
+# Commentarius
+composer.phar
+vendor/*
+.phpunit.result.cache

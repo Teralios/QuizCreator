@@ -1,0 +1,15 @@
+filter:
+  paths: [src/*]
+checks:
+  php:
+    code_rating: true
+    duplication: true
+build:
+  environment:
+    php:
+      version: 7.3
+  nodes:
+    analysis:
+      tests:
+        override:
+          - php-scrutinizer-run

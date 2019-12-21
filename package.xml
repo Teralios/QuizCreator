@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/package.xsd" name="de.teralios.quizMaker">
+	<packageinformation>
+		<!-- de.teralios.quizMaker -->
+		<packagename>Teralios' Quiz Maker</packagename>
+		<packagedescription>Einfacher QuizMaker für das WSC.</packagedescription>
+		<version>1.0.0 Beta 1</version>
+		<date>2019-12-21</date>
+		<license>CC BY-SA 4.0</license>
+	</packageinformation>
+	<authorinformation>
+		<author>Karsten (Teralios) Achterrath</author>
+		<authorurl>https://www.teralios.de</authorurl>
+	</authorinformation>
+	<compatibility>
+		<api version="2019"/>
+	</compatibility>
+</package>

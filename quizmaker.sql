@@ -5,7 +5,7 @@ CREATE TABLE wcf1_quiz (
     title VARCHAR(80) NOT NULL DEFAULT '',
     description MEDIUMTEXT,
     quizType ENUM('fun', 'competition') DEFAULT 'fun',
-    image TINYINT(1) NOT NULL DEFAULT 0,
+    hasImage TINYINT(1) NOT NULL DEFAULT 0,
     KEY (quizType)
 );
 

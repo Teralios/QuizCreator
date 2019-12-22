@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace wcf\acp\form;
 
 // imports
+use wcf\data\quiz\QuizAction;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\RadioButtonFormField;
@@ -16,6 +17,8 @@ use wcf\system\language\LanguageFactory;
 
 class QuizAddForm extends AbstractFormBuilderForm
 {
+    public $objectActionName = QuizAction::class;
+
     public function createForm()
     {
         parent::createForm();
@@ -45,6 +48,7 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->label('wcf.quizMaker.form.image')
                 ->imageOnly()
                 ->allowSvgImage()
+                ->maximum(1)
                 ->maximumFilesize(2 * 1024 * 1024) // @todo set options
                 ->maximumImageHeight(128) // @todo set options
                 ->maximumImageWidth(512) // @todo set options

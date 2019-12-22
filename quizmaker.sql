@@ -1,10 +1,11 @@
 DROP TABLE IF EXISTS wcf1_quiz;
 CREATE TABLE wcf1_quiz (
     quizID INT(10) NOT NULL auto_increment PRIMARY KEY,
-    title VARCHAR(255) NOT NULL DEFAULT '',
+    languageID INT(10) NULL,
+    title VARCHAR(80) NOT NULL DEFAULT '',
     description MEDIUMTEXT,
     quizType ENUM('fun', 'competition') DEFAULT 'fun',
-    image VARCHAR(255),
+    image TINYINT(1) NOT NULL DEFAULT 0,
     KEY (quizType)
 );
 

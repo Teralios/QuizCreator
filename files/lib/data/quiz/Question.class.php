@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace WCF\Quizmaker\Data\Quiz;
+namespace wcf\data\quiz;
 
 // imports
-use WCF\Data\DatabaseObject;
+use wcf\data\DatabaseObject;
 
 class Question extends DatabaseObject
 {

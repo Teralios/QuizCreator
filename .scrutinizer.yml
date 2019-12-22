@@ -1,5 +1,8 @@
 filter:
-  paths: [files/lib/*]
+  excluded_paths:
+    - debug/
+  dependency_paths:
+    - wcf/
 checks:
   php:
     code_rating: true

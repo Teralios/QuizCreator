@@ -1,7 +1,9 @@
 language: php
 sudo: false
 php:
+  - 7.0
   - 7.3
+  - 7.4
 before_install:
   - export PATH="$PATH:$(composer global config bin-dir --absolute)"
   - composer global require "squizlabs/php_codesniffer=3.*"

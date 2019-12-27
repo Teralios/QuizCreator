@@ -1,8 +1,6 @@
 filter:
   excluded_paths:
     - debug/
-  dependency_paths:
-    - wcf/
 checks:
   php:
     code_rating: true
@@ -10,9 +8,11 @@ checks:
 build:
   environment:
     php:
-      version: 7.3
+      version: 7.0
+      version: 7.4
   nodes:
     analysis:
       tests:
         override:
           - php-scrutinizer-run
+          - phpcs-run --standard=debug/ruleset.xml debug/

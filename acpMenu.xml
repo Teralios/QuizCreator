@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/acpMenu.xsd">
+    <import>
+        <!-- Quizmaker Category -->
+        <acpmenuitem name="wcf.acp.menu.link.quizMaker">
+            <parent>wcf.acp.menu.link.content</parent>
+        </acpmenuitem>
+
+        <acpmenuitem name="wcf.acp.menu.link.quizMaker.quiz.list">
+            <parent>wcf.acp.menu.link.quizMaker</parent>
+            <controller>wcf\acp\page\QuizListPage</controller>
+            <permissions></permissions>
+        </acpmenuitem>
+        <acpmenuitem name="wcf.acp.menu.link.quizMaker.quiz.add">
+            <parent>wcf.acp.menu.link.quizMaker.quiz.list</parent>
+            <controller>wcf\acp\form\QuizAddForm</controller>
+            <icon>fa-plus</icon>
+            <permissions></permissions>
+        </acpmenuitem>
+    </import>
+</data>

@@ -53,5 +53,7 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->maximumImageHeight(128) // @todo set options
                 ->maximumImageWidth(512) // @todo set options
         ]);
+
+        $this->form->appendChild($container);
     }
 }

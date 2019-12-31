@@ -1,5 +1,4 @@
 <?php
-
 namespace wcf\data\Quiz;
 
 // imports
@@ -26,8 +25,17 @@ class Quiz extends DatabaseObject
     protected static $databaseTableName = 'quiz';
     protected static $databaseTableIndexName = 'quizID';
 
-    public function getImage()
+    public function getImage(bool $usePath = true): string
     {
-        return (!empty($this->image)) ? [WCF::getPath() . Quiz::IMAGE_DIR . $this->image] : []; // compatibility with UploadField from form builder.
+        if (empty($this->image)) {
+            return '';
+        }
+
+        return (($usePath) ? WCF::getPath() : WCF_DIR) . $this->image;
+    }
+
+    public function getImageUploadFileLocations(): array
+    {
+        return (!empty($this->getImage())) ? [$this->getImage(false)] : [];
     }
 }

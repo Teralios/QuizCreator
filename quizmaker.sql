@@ -5,7 +5,7 @@ CREATE TABLE wcf1_quiz (
     title VARCHAR(100) NOT NULL DEFAULT '',
     description MEDIUMTEXT,
     type ENUM('fun', 'competition') DEFAULT 'fun',
-    image VARCHAR(20) NOT NULL DEFAULT 0,
+    image VARCHAR(35) NOT NULL DEFAULT '',
     KEY (type),
     KEY (languageID),
     KEY (type, languageID)

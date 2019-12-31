@@ -8,6 +8,7 @@
 		<item name="wcf.acp.quizMaker.form.type.fun"><![CDATA[Spaß]]></item>
 		<item name="wcf.acp.quizMaker.form.type.competition"><![CDATA[Wettkampf]]></item>
 		<item name="wcf.acp.quizMaker.form.image"><![CDATA[Bild]]></item>
+		<item name="wcf.acp.quizMaker.edit"><![CDATA[Quiz bearbeiten]]></item>
 	</category>
 	<category name="wcf.acp.menu">
 		<item name="wcf.acp.menu.link.quizMaker"><![CDATA[Quiz Maker]]></item>

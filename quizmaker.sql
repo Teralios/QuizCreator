@@ -4,9 +4,11 @@ CREATE TABLE wcf1_quiz (
     languageID INT(10) NULL,
     title VARCHAR(100) NOT NULL DEFAULT '',
     description MEDIUMTEXT,
-    quizType ENUM('fun', 'competition') DEFAULT 'fun',
+    type ENUM('fun', 'competition') DEFAULT 'fun',
     hasImage TINYINT(1) NOT NULL DEFAULT 0,
-    KEY (quizType)
+    KEY (quizType),
+    KEY (languageID),
+    KEY (quizType, languageID)
 );
 
 DROP TABLE IF EXISTS wcf1_quiz_question;
@@ -20,6 +22,7 @@ CREATE TABLE wcf1_quiz_question (
     optionC VARCHAR(100),
     optionD VARCHAR(100),
     answer ENUM('A', 'B', 'C', 'D'),
+    KEY (quizID),
     KEY (orderNo)
 );
 
@@ -30,7 +33,7 @@ CREATE TABLE wcf1_quiz_stage (
     points SMALLINT(10) NOT NULL DEFAULT 0,
     title VARCHAR(100),
     description MEDIUMTEXT,
-    KEY (points)
+    KEY (quizID)
 );
 
 -- foreign keys

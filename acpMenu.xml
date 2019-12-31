@@ -6,13 +6,13 @@
             <parent>wcf.acp.menu.link.content</parent>
         </acpmenuitem>
 
-        <acpmenuitem name="wcf.acp.menu.link.quizMaker.quiz.list">
+        <acpmenuitem name="wcf.acp.menu.link.quizMaker.list">
             <parent>wcf.acp.menu.link.quizMaker</parent>
             <controller>wcf\acp\page\QuizListPage</controller>
             <permissions></permissions>
         </acpmenuitem>
-        <acpmenuitem name="wcf.acp.menu.link.quizMaker.quiz.add">
-            <parent>wcf.acp.menu.link.quizMaker.quiz.list</parent>
+        <acpmenuitem name="wcf.acp.menu.link.quizMaker.add">
+            <parent>wcf.acp.menu.link.quizMaker.list</parent>
             <controller>wcf\acp\form\QuizAddForm</controller>
             <icon>fa-plus</icon>
             <permissions></permissions>

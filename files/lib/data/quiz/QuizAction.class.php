@@ -48,7 +48,7 @@ class QuizAction extends AbstractDatabaseObjectAction
     protected function saveImage(UploadFile $image, int $quizID)
     {
         $newFileName = 'quiz_' . $quizID . '.' . ImageUtil::getExtensionByMimeType(FileUtil::getMimeType($image->getLocation()));
-        move_uploaded_file($image->getLocation(), WCF_DIR . Quiz::IMAGE_DIR . $newFileName);
+        rename($image->getLocation(), WCF_DIR . Quiz::IMAGE_DIR . $newFileName);
 
         // update sql
         $sql = "UPDATE " . Quiz::getDatabaseTableName() . ' SET image = ? WHERE quizID = ?';

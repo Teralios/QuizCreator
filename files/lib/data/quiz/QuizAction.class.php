@@ -13,9 +13,21 @@ use wcf\util\ImageUtil;
 
 class QuizAction extends AbstractDatabaseObjectAction
 {
+    /**
+     * @var string
+     */
     protected $className = QuizEditor::class;
+
+    /**
+     * @var array
+     */
     protected $permissionsCreate = [];
 
+    /**
+     * @return void|\wcf\data\DatabaseObject
+     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
+     */
     public function create()
     {
         $quiz = parent::create();
@@ -27,15 +39,20 @@ class QuizAction extends AbstractDatabaseObjectAction
         }
     }
 
-    protected function saveImage(UploadFile $image, $quizID)
+    /**
+     * @param UploadFile $image
+     * @param int $quizID
+     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
+     */
+    protected function saveImage(UploadFile $image, int $quizID)
     {
-        $newFileName = 'images/quizmaker/quiz_' . $quizID . '.' . ImageUtil::getExtensionByMimeType(FileUtil::getMimeType($image->getLocation()));
+        $newFileName = 'quiz_' . $quizID . '.' . ImageUtil::getExtensionByMimeType(FileUtil::getMimeType($image->getLocation()));
+        copy($image->getLocation(), WCF_DIR . Quiz::IMAGE_DIR . $newFileName);
 
-        // copy file
-        copy($image->getLocation(), WCF_DIR . $newFileName);
-
-        $sql = "UPDATE " . Quiz::getDatabaseTableName() . ' SET hasImage = ? WHERE quizID = ?';
+        // update sql
+        $sql = "UPDATE " . Quiz::getDatabaseTableName() . ' SET image = ? WHERE quizID = ?';
         $statement = WCF::getDB()->prepareStatement($sql);
-        $statement->execute([1, $quizID]);
+        $statement->execute([$newFileName, $quizID]);
     }
 }

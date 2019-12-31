@@ -5,10 +5,10 @@ CREATE TABLE wcf1_quiz (
     title VARCHAR(100) NOT NULL DEFAULT '',
     description MEDIUMTEXT,
     type ENUM('fun', 'competition') DEFAULT 'fun',
-    hasImage TINYINT(1) NOT NULL DEFAULT 0,
-    KEY (quizType),
+    image VARCHAR(20) NOT NULL DEFAULT 0,
+    KEY (type),
     KEY (languageID),
-    KEY (quizType, languageID)
+    KEY (type, languageID)
 );
 
 DROP TABLE IF EXISTS wcf1_quiz_question;

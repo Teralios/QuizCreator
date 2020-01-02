@@ -8,14 +8,13 @@ use wcf\system\exception\IllegalLinkException;
 class QuizEditForm extends QuizAddForm
 {
     public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
-    /*
-     * Documentation from WoltLab said this:
-     * $formAction is added and set to create as the form is used to create a new person. In the edit form,
-     * $formAction has not to be set explicitly as it is done automatically if a $formObject is set.
-     *
-     * But... where?
-     */
+
+    // Documentation on docs.woltlab.com is wrong. YOU MUST SET this variable!
     public $formAction = 'edit';
+
+    /**
+     * @throws IllegalLinkException
+     */
     public function readParameters()
     {
         parent::readParameters();

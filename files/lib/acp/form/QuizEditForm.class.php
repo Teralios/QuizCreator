@@ -8,6 +8,7 @@ use wcf\system\exception\IllegalLinkException;
 class QuizEditForm extends QuizAddForm
 {
     public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
+    public $neededPermissions = ['admin.content.quizMaker.canManage'];
 
     // Documentation on docs.woltlab.com is wrong. YOU MUST SET this variable!
     public $formAction = 'edit';

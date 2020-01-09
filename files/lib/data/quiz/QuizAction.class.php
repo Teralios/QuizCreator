@@ -21,7 +21,21 @@ class QuizAction extends AbstractDatabaseObjectAction
     /**
      * @var array
      */
-    protected $permissionsCreate = [];
+    protected $permissionsCreate = ['admin.content.quizMaker.canManage'];
+
+    /**
+     * @var array
+     */
+    protected $permissionsUpdate = ['admin.content.quizMaker.canManage'];
+
+    /**
+     * @var array
+     */
+    protected $permissionsDelete = ['admin.content.quizMaker.canManage'];
+
+    public function validateDelete()
+    {
+    }
 
     /**
      * @inheritDoc

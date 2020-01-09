@@ -7,7 +7,7 @@
 
     <nav class="contentHeaderNavigation">
         <ul>
-            <li><a href="{link controller='QuizList'}{/link}" class="button"><span class="icon icon16 fa-list"></span> <span>{lang}wcf.acp.menu.link.quizMaker.list{/lang}</span></a></li>
+            <li><a href="{link controller='QuizList'}{/link}" class="button"><span class="icon icon16 fa-list"></span> <span>{lang}wcf.quizMaker.list{/lang}</span></a></li>
 
             {event name='contentHeaderNavigation'}
         </ul>

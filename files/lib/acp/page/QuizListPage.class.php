@@ -1,8 +1,13 @@
 <?php
 namespace wcf\acp\page;
 
-use wcf\page\SortablePage;
+// imports
+use wcf\data\quiz\QuizList;
+use wcf\page\MultipleLinkPage;
 
-class QuizListPage extends SortablePage
+class QuizListPage extends MultipleLinkPage
 {
+    public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
+    public $objectListClassName = QuizList::class;
+    public $neededPermissions = ['admin.content.quizMaker.canManage'];
 }

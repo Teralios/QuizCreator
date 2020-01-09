@@ -4,18 +4,19 @@
         <!-- Quizmaker Category -->
         <acpmenuitem name="wcf.acp.menu.link.quizMaker">
             <parent>wcf.acp.menu.link.content</parent>
+            <permissions>admin.content.quizMaker.canManage</permissions>
         </acpmenuitem>
 
         <acpmenuitem name="wcf.acp.menu.link.quizMaker.list">
             <parent>wcf.acp.menu.link.quizMaker</parent>
             <controller>wcf\acp\page\QuizListPage</controller>
-            <permissions></permissions>
+            <permissions>admin.content.quizMaker.canManage</permissions>
         </acpmenuitem>
         <acpmenuitem name="wcf.acp.menu.link.quizMaker.add">
             <parent>wcf.acp.menu.link.quizMaker.list</parent>
             <controller>wcf\acp\form\QuizAddForm</controller>
             <icon>fa-plus</icon>
-            <permissions></permissions>
+            <permissions>admin.content.quizMaker.canManage</permissions>
         </acpmenuitem>
     </import>
 </data>

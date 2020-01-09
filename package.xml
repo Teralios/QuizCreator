@@ -22,9 +22,10 @@
 		<api version="2019"/>
 	</compatibility>
 	<instructions type="install">
-		<instruction type="acpMenu"/>
-		<instruction type="file" application="wcf"/>
-		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="sql" run="standalone">quizmaker.sql</instruction>
+		<instruction type="file" application="wcf"/>
+		<instruction type="acpMenu"/>
+		<instruction type="acpTemplate" application="wcf"/>
+		<instruction type="userGroupOption"/>
 	</instructions>
 </package>

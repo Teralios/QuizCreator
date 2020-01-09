@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/vortex/language.xsd" languagecode="de">
 	<category name="wcf.acp.quizMaker">
-		<item name="wcf.acp.quizMaker.add"><![CDATA[Quiz erstellen]]></item>
-		<item name="wcf.acp.quizMaker.form.description"><![CDATA[Beschreibung]]></item>
-		<item name="wcf.acp.quizMaker.form.title"><![CDATA[Titel]]></item>
-		<item name="wcf.acp.quizMaker.form.type"><![CDATA[Art]]></item>
-		<item name="wcf.acp.quizMaker.form.type.fun"><![CDATA[Spaß]]></item>
-		<item name="wcf.acp.quizMaker.form.type.competition"><![CDATA[Wettkampf]]></item>
-		<item name="wcf.acp.quizMaker.form.image"><![CDATA[Bild]]></item>
-		<item name="wcf.acp.quizMaker.edit"><![CDATA[Quiz bearbeiten]]></item>
+
 	</category>
 	<category name="wcf.acp.menu">
-		<item name="wcf.acp.menu.link.quizMaker"><![CDATA[Quiz Maker]]></item>
-		<item name="wcf.acp.menu.link.quizMaker.list"><![CDATA[Quiz]]></item>
-		<item name="wcf.acp.menu.link.quizMaker.add"><![CDATA[Quiz erstellen]]></item>
+
 	</category>
 </language>

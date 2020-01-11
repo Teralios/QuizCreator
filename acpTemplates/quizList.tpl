@@ -3,6 +3,7 @@
 <script data-relocate="true">
     $(function() {
         new WCF.Action.Delete('wcf\\data\\quiz\\QuizAction', '.jsQuizRow');
+        new WCF.Action.Toggle('wcf\\data\\quiz\\QuizAction', '.jsQuizRow');
     });
 </script>
 <header class="contentHeader">
@@ -36,6 +37,8 @@
                     <th class="columnTitle">{lang}wcf.global.title{/lang}</th>
                     <th class="columnText">{lang}wcf.quizMaker.form.type{/lang}</th>
                     <th class="columnText">{lang}wcf.global.language{/lang}</th>
+                    <th class="columnText">{lang}wcf.global.date{/lang}</th>
+                    {event name="columnsHead"}
                 </tr>
             </thead>
             <tbody>
@@ -45,6 +48,8 @@
                     {capture append=quizLink}{link controller="QuizEdit" id=$quiz->quizID}{/link}{/capture}
                     <tr class="jsQuizRow">
                         <td class="columnIcon">
+                            <span class="icon icon16 fa-{if $box->isActive}check-{/if}square-o jsToggleButton jsTooltip pointer" title="{lang}wcf.global.button.{if $box->isActive}disable{else}enable{/if}{/lang}" data-object-id="{@$quiz->quizID}"></span>
+
                             <a href="{$quizLink}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip">
                                 <span class="icon icon16 fa-pencil"></span>
                             </a>
@@ -55,6 +60,8 @@
                         <td class="columnTitle"><a href="{$quizLink}">{$quiz->title}</a></td>
                         <td class="columnText">{lang}wcf.acp.quizMaker.type.{@$quiz->type}{/lang}</td>
                         <td class="columnText"></td>
+                        <td class="columnText">{$quiz->creationDate|date}</td>
+                        {event name="columns"}
                     </tr>
                 {/foreach}
             </tbody>
@@ -78,7 +85,6 @@
             </ul>
         </nav>
     </footer>
-
 {else}
     <p class="info">{lang}wcf.global.noItems{/lang}</p>
 {/if}

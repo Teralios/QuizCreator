@@ -25,4 +25,9 @@ class QuizEditor extends DatabaseObjectEditor
     {
         return Quiz::IMAGE_DIR . 'quiz_' . $quizID . '.' . ImageUtil::getExtensionByMimeType(FileUtil::getMimeType($image->getLocation()));
     }
+
+    public function toggle()
+    {
+        $this->update(['isActive' => ($this->isActive) ? 0 : 1]);
+    }
 }

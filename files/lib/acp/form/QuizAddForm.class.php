@@ -30,7 +30,7 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->maximumLength(80)
                 ->required(),
             TextFormField::create('description')
-                ->label('wcf.acp.quizMaker.quiz.description')
+                ->label('wcf.global.description')
                 ->maximumLength(1000),
             SingleSelectionFormField::create('languageID')
                 ->label('wcf.acp.quizMaker.quiz.language')

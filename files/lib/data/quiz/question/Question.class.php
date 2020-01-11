@@ -1,5 +1,5 @@
 <?php
-namespace wcf\data\quiz;
+namespace wcf\data\quiz\question;
 
 // imports
 use wcf\data\DatabaseObject;

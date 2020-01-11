@@ -3,15 +3,11 @@ namespace wcf\data\quiz;
 
 // imports
 use wcf\data\AbstractDatabaseObjectAction;
-use wcf\data\DatabaseObject;
-use wcf\system\database\exception\DatabaseQueryExecutionException;
-use wcf\system\database\exception\DatabaseQueryException;
+use wcf\data\IToggleAction;
 use wcf\system\file\upload\UploadFile;
 use wcf\system\WCF;
-use wcf\util\FileUtil;
-use wcf\util\ImageUtil;
 
-class QuizAction extends AbstractDatabaseObjectAction
+class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 {
     /**
      * @var string
@@ -33,17 +29,18 @@ class QuizAction extends AbstractDatabaseObjectAction
      */
     protected $permissionsDelete = ['admin.content.quizMaker.canManage'];
 
-    public function validateDelete()
-    {
-    }
-
     /**
      * @inheritDoc
      */
     public function create()
     {
+        // set timestamp
+        $this->parameters['data']['creationDate'] = TIME_NOW;
+
+        // create database entry
         $quiz = parent::create();
 
+        // save image
         if (count($this->parameters['image']) > 0) {
             $image = $this->parameters['image'][0];
 
@@ -55,6 +52,8 @@ class QuizAction extends AbstractDatabaseObjectAction
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\database\exception\DatabaseQueryException | \wcf\system\database\exception\DatabaseQueryExecutionException
      */
     public function update()
     {
@@ -81,13 +80,17 @@ class QuizAction extends AbstractDatabaseObjectAction
         return $returnValue;
     }
 
+    public function toggle()
+    {
+        
+    }
+
     /**
      * @param UploadFile $image
      * @param int $quizID
      * @param bool $useCopy
      * @return string
-     * @throws DatabaseQueryException
-     * @throws DatabaseQueryExecutionException
+     * @throws \wcf\system\database\exception\DatabaseQueryException | \wcf\system\database\exception\DatabaseQueryExecutionException
      */
     protected function saveImage(UploadFile $image, int $quizID, bool $useCopy = false): string
     {
@@ -111,8 +114,7 @@ class QuizAction extends AbstractDatabaseObjectAction
     }
 
     /**
-     * @throws DatabaseQueryException
-     * @throws DatabaseQueryExecutionException
+     * @throws \wcf\system\database\exception\DatabaseQueryException | \wcf\system\database\exception\DatabaseQueryExecutionException
      */
     public function updateImages()
     {

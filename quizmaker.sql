@@ -2,9 +2,10 @@ DROP TABLE IF EXISTS wcf1_quiz;
 CREATE TABLE wcf1_quiz (
     quizID INT(10) NOT NULL auto_increment PRIMARY KEY,
     languageID INT(10) NULL,
+    creationDate INT(10) NOT NULL DEFAULT 0,
+    type ENUM('fun', 'competition') DEFAULT 'fun',
     title VARCHAR(100) NOT NULL DEFAULT '',
     description MEDIUMTEXT,
-    type ENUM('fun', 'competition') DEFAULT 'fun',
     image VARCHAR(35) NOT NULL DEFAULT '',
     isActive TINYINT(1) NOT NULL DEFAULT '',
     KEY (type),

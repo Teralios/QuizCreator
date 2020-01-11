@@ -24,10 +24,27 @@ use wcf\system\language\LanguageFactory;
  */
 class Quiz extends DatabaseObject
 {
+    /**
+     * Path for quiz images.
+     */
     const IMAGE_DIR = 'images/quizmaker/';
+
+    /**
+     * @var string
+     */
     protected static $databaseTableName = 'quiz';
+
+    /**
+     * @var string
+     */
     protected static $databaseTableIndexName = 'quizID';
 
+    /**
+     * Returns image with http path or location path.
+     *
+     * @param bool $usePath
+     * @return string
+     */
     public function getImage(bool $usePath = true): string
     {
         if (empty($this->image)) {
@@ -37,11 +54,22 @@ class Quiz extends DatabaseObject
         return (($usePath) ? WCF::getPath() : WCF_DIR) . $this->image;
     }
 
+    /**
+     * Returns image for form container.
+     *
+     * @return string[]
+     */
     public function getImageUploadFileLocations(): array
     {
         return (!empty($this->getImage())) ? [$this->getImage(false)] : [];
     }
 
+    /**
+     * Returns language code.
+     *
+     * @return string
+     * @throws \wcf\system\exception\SystemException
+     */
     public function getLanguage()
     {
         if (empty($this->languageID)) {

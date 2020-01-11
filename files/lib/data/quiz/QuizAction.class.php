@@ -7,6 +7,14 @@ use wcf\data\IToggleAction;
 use wcf\system\file\upload\UploadFile;
 use wcf\system\WCF;
 
+/**
+ * Class QuizAction
+ *
+ * @package   de.teralios.QuizMaker
+ * @author    Teralios
+ * @copyright ©2020 Teralios.de
+ * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ */
 class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 {
     /**
@@ -15,22 +23,39 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     protected $className = QuizEditor::class;
 
     /**
-     * @var array
+     * @var string[]
      */
     protected $permissionsCreate = ['admin.content.quizMaker.canManage'];
 
     /**
-     * @var array
+     * @var string[]
      */
     protected $permissionsUpdate = ['admin.content.quizMaker.canManage'];
 
     /**
-     * @var array
+     * @var string[]
      */
     protected $permissionsDelete = ['admin.content.quizMaker.canManage'];
 
     /**
+     * @var string[]
+     */
+    protected $permissionsToggle = ['admin.content.quizMaker.canManage'];
+
+    /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\PermissionDeniedException
+     */
+    public function validateToggle()
+    {
+        WCF::getSession()->checkPermissions($this->permissionsToggle);
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @throws \wcf\system\database\exception\DatabaseQueryException | \wcf\system\database\exception\DatabaseQueryExecutionException
      */
     public function create()
     {
@@ -80,9 +105,18 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         return $returnValue;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function toggle()
     {
-        
+        if (empty($this->objects)) {
+            $this->readObjects();
+        }
+
+        foreach ($this->objects as $quiz) {
+            $quiz->toggle();
+        }
     }
 
     /**

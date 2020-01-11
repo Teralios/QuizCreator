@@ -5,15 +5,33 @@ namespace wcf\acp\form;
 use wcf\data\quiz\Quiz;
 use wcf\system\exception\IllegalLinkException;
 
+/**
+ * Class QuizEditForm
+ *
+ * @package   de.teralios.QuizMaker
+ * @author    Teralios
+ * @copyright ©2020 Teralios.de
+ * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ */
 class QuizEditForm extends QuizAddForm
 {
+    /**
+     * @var string
+     */
     public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
+
+    /**
+     * @var array
+     */
     public $neededPermissions = ['admin.content.quizMaker.canManage'];
 
-    // Documentation on docs.woltlab.com is wrong. YOU MUST SET this variable!
+    /**
+     * @var string
+     */
     public $formAction = 'edit';
 
     /**
+     * @inheritDoc
      * @throws IllegalLinkException
      */
     public function readParameters()

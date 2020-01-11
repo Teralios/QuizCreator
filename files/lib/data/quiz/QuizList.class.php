@@ -7,5 +7,8 @@ use wcf\system\WCF;
 
 class QuizList extends DatabaseObjectList
 {
+    /**
+     * @var string
+     */
     public $className = Quiz::class;
 }

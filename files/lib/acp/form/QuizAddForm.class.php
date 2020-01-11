@@ -13,12 +13,35 @@ use wcf\system\form\builder\field\UploadFormField;
 use wcf\system\form\builder\field\BooleanFormField;
 use wcf\system\language\LanguageFactory;
 
+/**
+ * Class QuizAddForm
+ *
+ * @package   de.teralios.QuizMaker
+ * @author    Teralios
+ * @copyright ©2020 Teralios.de
+ * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ */
 class QuizAddForm extends AbstractFormBuilderForm
 {
+    /**
+     * @var string
+     */
     public $objectActionClass = QuizAction::class;
+
+    /**
+     * @var string
+     */
     public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.add';
+
+    /**
+     * @var array
+     */
     public $neededPermissions = ['admin.content.quizMaker.canManage'];
 
+    /**
+     * @inheritDoc
+     * @throws \wcf\system\exception\SystemException
+     */
     public function createForm()
     {
         parent::createForm();

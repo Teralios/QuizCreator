@@ -3,7 +3,10 @@ namespace wcf\data\Quiz;
 
 // imports
 use wcf\data\DatabaseObject;
+use wcf\data\ILinkableObject;
 use wcf\system\language\LanguageFactory;
+use wcf\system\request\IRouteController;
+use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
 
 /**
@@ -23,7 +26,7 @@ use wcf\system\WCF;
  * @property-read int $creationDate
  * @property-read int $isActive
  */
-class Quiz extends DatabaseObject
+class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
 {
     /**
      * Path for quiz images.
@@ -39,6 +42,29 @@ class Quiz extends DatabaseObject
      * @var string
      */
     protected static $databaseTableIndexName = 'quizID';
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @inheritDoc
+     * @throws \wcf\system\Exception\SystemException
+     */
+    public function getLink()
+    {
+        return LinkHandler::getInstance()->getLink(
+            '',
+            [
+                'object' => $this,
+                'forceFrontend' => true
+            ]
+        );
+    }
 
     /**
      * Returns image with http path or location path.

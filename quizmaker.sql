@@ -7,7 +7,7 @@ CREATE TABLE wcf1_quiz (
     title VARCHAR(100) NOT NULL DEFAULT '',
     description MEDIUMTEXT,
     image VARCHAR(35) NOT NULL DEFAULT '',
-    isActive TINYINT(1) NOT NULL DEFAULT '',
+    isActive TINYINT(1) NOT NULL DEFAULT 0,
     KEY (type),
     KEY (languageID),
     KEY (type, languageID)

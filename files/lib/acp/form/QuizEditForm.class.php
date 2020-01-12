@@ -26,6 +26,9 @@ class QuizEditForm extends QuizAddForm
     public $neededPermissions = ['admin.content.quizMaker.canManage'];
 
     /**
+     * WoltLab documentation is wrong!
+     * $formAction are not set automatically to "edit" you must do it manually.
+     *
      * @var string
      */
     public $formAction = 'edit';

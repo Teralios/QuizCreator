@@ -3,8 +3,9 @@ namespace wcf\data\Quiz;
 
 // imports
 use wcf\data\DatabaseObject;
-use wcf\system\WCF;
 use wcf\system\language\LanguageFactory;
+use wcf\system\WCF;
+
 /**
  * Class QuizData
  *
@@ -70,12 +71,30 @@ class Quiz extends DatabaseObject
      * @return string
      * @throws \wcf\system\exception\SystemException
      */
-    public function getLanguage()
+    public function getLanguageIcon(): string
     {
         if (empty($this->languageID)) {
             return '';
         }
 
-        return LanguageFactory::getInstance()->getLanguage($this->languageID)->languageCode;
+        $icon = 'icon/flag/';
+        $icon .= LanguageFactory::fixLanguageCode(LanguageFactory::getInstance()->getLanguage($this->languageID)->languageCode) . '.svg';
+
+        return (file_exists(WCF_DIR . $icon)) ? WCF::getPath() . $icon : '';
+    }
+
+    /**
+     * Returns name of language.
+     *
+     * @return string
+     * @throws \wcf\system\exception\SystemException
+     */
+    public function getLanguageName(): string
+    {
+        if (empty($this->languageID)) {
+            return '';
+        }
+
+        return LanguageFactory::getInstance()->getLanguage($this->languageID)->languageName;
     }
 }

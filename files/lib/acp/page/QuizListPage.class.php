@@ -4,6 +4,8 @@ namespace wcf\acp\page;
 // imports
 use wcf\data\quiz\QuizList;
 use wcf\page\MultipleLinkPage;
+use wcf\system\language\LanguageFactory;
+use wcf\system\WCF;
 
 /**
  * Class QuizListPage
@@ -29,4 +31,11 @@ class QuizListPage extends MultipleLinkPage
      * @var array
      */
     public $neededPermissions = ['admin.content.quizMaker.canManage'];
+
+    public function assignVariables()
+    {
+        parent::assignVariables();
+
+        WCF::getTPL()->assign('isMultiLingual', LanguageFactory::getInstance()->multilingualismEnabled());
+    }
 }

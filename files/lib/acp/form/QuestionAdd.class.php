@@ -11,6 +11,5 @@ class QuestionAdd extends AbstractFormBuilderForm
 
     public function readParameters()
     {
-
     }
 }

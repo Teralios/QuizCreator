@@ -17,11 +17,11 @@ use wcf\system\WCF;
  * @property-read int $quizID
  * @property-read int $languageID
  * @property-read string $title
- * @proberty-read string $description
+ * @property-read string $description
  * @property-read string $type
  * @property-read string $image
- * @property-read int creationDate
- * @proberty-read int isActive
+ * @property-read int $creationDate
+ * @property-read int $isActive
  */
 class Quiz extends DatabaseObject
 {

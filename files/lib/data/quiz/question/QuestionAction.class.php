@@ -3,9 +3,16 @@
 namespace wcf\data\quiz\question;
 
 // imports
-use \wcf\data\DatabaseObjectAction;
+use wcf\data\AbstractDatabaseObjectAction;
 
-class QuestionAction extends DatabaseObjectAction
+/**
+ * Class QuestionAction
+ *
+ * @package   de.teralios.QuizMaker
+ * @author    Teralios
+ * @copyright ©2020 Teralios.de
+ * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ */
+class QuestionAction extends AbstractDatabaseObjectAction
 {
-
 }

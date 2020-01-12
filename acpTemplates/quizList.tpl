@@ -69,7 +69,7 @@
         </table>
     </div>
 
-    <footer class="footerContent">
+    <footer class="contentFooter">
         {hascontent}
             <div class="paginationBottom">
                 {content}

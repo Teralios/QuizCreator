@@ -32,6 +32,10 @@ class QuizListPage extends MultipleLinkPage
      */
     public $neededPermissions = ['admin.content.quizMaker.canManage'];
 
+    /**
+     * @inheritDoc
+     * @throws \wcf\system\exception\SystemException
+     */
     public function assignVariables()
     {
         parent::assignVariables();

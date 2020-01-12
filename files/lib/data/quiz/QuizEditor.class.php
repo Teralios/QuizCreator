@@ -14,6 +14,16 @@ use wcf\util\ImageUtil;
  * @author    Teralios
  * @copyright ©2019 Teralios.de
  * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ *
+ * @method string getImage(bool $usePath)
+ * @property-read int $quizID
+ * @property-read int $languageID
+ * @property-read string $title
+ * @property-read string $description
+ * @property-read string $type
+ * @property-read string $image
+ * @property-read int $creationDate
+ * @property-read int $isActive
  */
 class QuizEditor extends DatabaseObjectEditor
 {

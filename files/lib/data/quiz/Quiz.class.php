@@ -25,6 +25,8 @@ use wcf\system\WCF;
  * @property-read string $image
  * @property-read int $creationDate
  * @property-read int $isActive
+ * @property-read int $questions
+ * @property-read int $stages
  */
 class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
 {

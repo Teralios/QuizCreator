@@ -17,29 +17,10 @@ use wcf\system\WCF;
  */
 class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 {
-    /**
-     * @var string
-     */
     protected $className = QuizEditor::class;
-
-    /**
-     * @var string[]
-     */
     protected $permissionsCreate = ['admin.content.quizMaker.canManage'];
-
-    /**
-     * @var string[]
-     */
     protected $permissionsUpdate = ['admin.content.quizMaker.canManage'];
-
-    /**
-     * @var string[]
-     */
     protected $permissionsDelete = ['admin.content.quizMaker.canManage'];
-
-    /**
-     * @var string[]
-     */
     protected $permissionsToggle = ['admin.content.quizMaker.canManage'];
 
     /**

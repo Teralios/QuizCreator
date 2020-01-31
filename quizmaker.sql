@@ -8,6 +8,8 @@ CREATE TABLE wcf1_quiz (
     description MEDIUMTEXT,
     image VARCHAR(35) NOT NULL DEFAULT '',
     isActive TINYINT(1) NOT NULL DEFAULT 0,
+    questions SMALLINT(3) NOT NULL DEFAULT 0,
+    stages SMALLINT(3) NOT NULL DEFAULT 0,
     KEY (type),
     KEY (languageID),
     KEY (type, languageID)

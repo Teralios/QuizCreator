@@ -15,4 +15,13 @@ use wcf\data\AbstractDatabaseObjectAction;
  */
 class QuestionAction extends AbstractDatabaseObjectAction
 {
+    protected $className = QuestionEditor::class;
+    protected $permissionsCreate = ['admin.content.quizMaker.canManage'];
+    protected $permissionsUpdate = ['admin.content.quizMaker.canManage'];
+    protected $permissionsDelete = ['admin.content.quizMaker.canManage'];
+
+    public function create()
+    {
+
+    }
 }

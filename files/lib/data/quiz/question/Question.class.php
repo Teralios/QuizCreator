@@ -11,16 +11,18 @@ use wcf\data\DatabaseObject;
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ * @property-read int $questionID
+ * @property-read int $quizID
+ * @property-read int $position
+ * @property-read string $question
+ * @property-read string $optionA
+ * @property-read string $optionB
+ * @property-read string $optionC
+ * @property-read string $optionD
+ * @property-read string $answer
  */
 class Question extends DatabaseObject
 {
-    /**
-     * @var string
-     */
     protected static $databaseTableName = 'quiz_question';
-
-    /**
-     * @var string
-     */
     protected static $databaseTableIndexName = 'questionID';
 }

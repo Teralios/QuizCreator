@@ -15,14 +15,7 @@ use wcf\system\exception\IllegalLinkException;
  */
 class QuizEditForm extends QuizAddForm
 {
-    /**
-     * @var string
-     */
     public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
-
-    /**
-     * @var array
-     */
     public $neededPermissions = ['admin.content.quizMaker.canManage'];
 
     /**

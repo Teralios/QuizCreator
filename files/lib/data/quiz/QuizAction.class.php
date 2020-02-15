@@ -25,7 +25,6 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
     /**
      * @inheritDoc
-     *
      * @throws \wcf\system\exception\PermissionDeniedException
      */
     public function validateToggle()
@@ -35,7 +34,6 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
     /**
      * @inheritDoc
-     *
      * @throws \wcf\system\database\exception\DatabaseQueryException | \wcf\system\database\exception\DatabaseQueryExecutionException
      */
     public function create()
@@ -58,7 +56,6 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
     /**
      * @inheritDoc
-     *
      * @throws \wcf\system\database\exception\DatabaseQueryException | \wcf\system\database\exception\DatabaseQueryExecutionException
      */
     public function update()
@@ -101,6 +98,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     }
 
     /**
+     * Save image.
      * @param UploadFile $image
      * @param int $quizID
      * @param bool $useCopy
@@ -129,6 +127,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     }
 
     /**
+     * Update image.
      * @throws \wcf\system\database\exception\DatabaseQueryException | \wcf\system\database\exception\DatabaseQueryExecutionException
      */
     public function updateImages()

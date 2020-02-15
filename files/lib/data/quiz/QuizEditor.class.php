@@ -24,13 +24,45 @@ use wcf\util\ImageUtil;
  * @property-read string $image
  * @property-read int $creationDate
  * @property-read int $isActive
+ * @property-read int $questions
+ * @property-read int $stages
  */
 class QuizEditor extends DatabaseObjectEditor
 {
-    /**
-     * @var string
-     */
     protected static $baseClass = Quiz::class;
+
+    /**
+     * Increment counters for quiz.
+     *
+     * @param bool $questions
+     */
+    public function incrementCounter(bool $questions = true)
+    {
+        $data = [];
+
+        if ($questions === true) {
+            $data['questions'] = $this->questions + 1;
+        } else {
+            $data['stages'] = $this->stages + 1;
+        }
+
+        $this->update($data);
+    }
+
+    /**
+     * Decrement counters for quiz.
+     * @param bool $questions
+     */
+    public function decrementCounter(bool $questions = true)
+    {
+        if ($questions === true) {
+            $data['questions'] = ($this->questions > 1) ? $this->questions - 1 : 0;
+        } else {
+            $data['stages'] = ($this->stages > 1) ? $this->stages - 1 : 0;
+        }
+
+        $this->update($data);
+    }
 
     /**
      * Activate or deactivate a quiz.
@@ -42,7 +74,6 @@ class QuizEditor extends DatabaseObjectEditor
 
     /**
      * Return name for quiz image.
-     *
      * @param int $quizID
      * @param UploadFile $image
      * @return string

@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS wcf1_quiz_question;
 CREATE TABLE wcf1_quiz_question (
     questionID INT(10) NOT NULL auto_increment PRIMARY KEY,
     quizID INT(10) NOT NULL,
-    orderNo SMALLINT(3),
+    position SMALLINT(3),
     question VARCHAR(100),
     optionA VARCHAR(100),
     optionB VARCHAR(100),
@@ -27,7 +27,7 @@ CREATE TABLE wcf1_quiz_question (
     optionD VARCHAR(100),
     answer ENUM('A', 'B', 'C', 'D'),
     KEY (quizID),
-    KEY (orderNo)
+    KEY (quizID, position)
 );
 
 DROP TABLE IF EXISTS wcf1_quiz_stage;

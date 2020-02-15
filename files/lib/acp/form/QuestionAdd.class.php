@@ -13,14 +13,27 @@ use wcf\system\form\builder\field\RadioButtonFormField;
 use wcf\system\form\builder\field\ShowOrderFormField;
 use wcf\system\form\builder\field\TextFormField;
 
+/**
+ * Class QuestionAdd
+ *
+ * @package   de.teralios.QuizMaker
+ * @author    Teralios
+ * @copyright ©2020 Teralios.de
+ * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ */
 class QuestionAdd extends AbstractFormBuilderForm
 {
+    public $formClassName = QuestionAction::class;
+
     /**
      * @var Quiz
      */
     public $quizObject = null;
-    public $formClassName = QuestionAction::class;
 
+    /**
+     * @inheritDoc
+     * @throws IllegalLinkException
+     */
     public function readParameters()
     {
         parent::readParameters();
@@ -35,6 +48,9 @@ class QuestionAdd extends AbstractFormBuilderForm
         }
     }
 
+    /**
+     * @inheritDoc
+     */
     public function buildForm()
     {
         parent::buildForm();
@@ -77,8 +93,8 @@ class QuestionAdd extends AbstractFormBuilderForm
                     'wcf.acp.quiz.optionC' => 'C',
                     'wcf.acp.quiz.optionD' => 'D'
                 ]),
-            ShowOrderFormField::create('orderNo')
-                ->label('wcf.acp.quiz.orderNo')
+            ShowOrderFormField::create('position')
+                ->label('wcf.acp.quiz.position')
                 ->options($orderOptions),
         ]);
 

@@ -17,19 +17,8 @@ use wcf\system\WCF;
  */
 class QuizListPage extends MultipleLinkPage
 {
-    /**
-     * @var string
-     */
     public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
-
-    /**
-     * @var string
-     */
     public $objectListClassName = QuizList::class;
-
-    /**
-     * @var array
-     */
     public $neededPermissions = ['admin.content.quizMaker.canManage'];
 
     /**

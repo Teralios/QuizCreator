@@ -23,19 +23,8 @@ use wcf\system\language\LanguageFactory;
  */
 class QuizAddForm extends AbstractFormBuilderForm
 {
-    /**
-     * @var string
-     */
     public $objectActionClass = QuizAction::class;
-
-    /**
-     * @var string
-     */
     public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.add';
-
-    /**
-     * @var array
-     */
     public $neededPermissions = ['admin.content.quizMaker.canManage'];
 
     /**

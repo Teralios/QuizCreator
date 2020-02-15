@@ -30,20 +30,13 @@ use wcf\system\WCF;
  */
 class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
 {
+    protected static $databaseTableName = 'quiz';
+    protected static $databaseTableIndexName = 'quizID';
+
     /**
      * Path for quiz images.
      */
     const IMAGE_DIR = 'images/quizmaker/';
-
-    /**
-     * @var string
-     */
-    protected static $databaseTableName = 'quiz';
-
-    /**
-     * @var string
-     */
-    protected static $databaseTableIndexName = 'quizID';
 
     /**
      * @inheritDoc

@@ -12,6 +12,7 @@ use wcf\system\form\builder\field\HiddenFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
 use wcf\system\form\builder\field\ShowOrderFormField;
 use wcf\system\form\builder\field\TextFormField;
+use wcf\system\WCF;
 
 /**
  * Class QuestionAdd
@@ -21,9 +22,9 @@ use wcf\system\form\builder\field\TextFormField;
  * @copyright ©2020 Teralios.de
  * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
  */
-class QuestionAdd extends AbstractFormBuilderForm
+class QuestionAddForm extends AbstractFormBuilderForm
 {
-    public $formClassName = QuestionAction::class;
+    public $objectActionClass = QuestionAction::class;
 
     /**
      * @var Quiz
@@ -51,9 +52,9 @@ class QuestionAdd extends AbstractFormBuilderForm
     /**
      * @inheritDoc
      */
-    public function buildForm()
+    public function createForm()
     {
-        parent::buildForm();
+        parent::createForm();
         $orderOptions = [];
         if ($this->quizObject->questions > 0) {
             for ($i = 1; $i <= $this->quizObject->questions; $i++) {
@@ -61,7 +62,7 @@ class QuestionAdd extends AbstractFormBuilderForm
             }
         }
 
-        $container = FormContainer::create('question');
+        $container = FormContainer::create('quizQuestion');
         $container->appendChildren([
             HiddenFormField::create('quizID')
                 ->value($this->quizObject->quizID),
@@ -88,16 +89,31 @@ class QuestionAdd extends AbstractFormBuilderForm
             RadioButtonFormField::create('answer')
                 ->label('wcf.acp.quiz.answer')
                 ->options([
-                    'wcf.acp.quiz.optionA' => 'A',
-                    'wcf.acp.quiz.optionB' => 'B',
-                    'wcf.acp.quiz.optionC' => 'C',
-                    'wcf.acp.quiz.optionD' => 'D'
+                    'A' => 'wcf.acp.quiz.optionA',
+                    'B' => 'wcf.acp.quiz.optionB',
+                    'C' => 'wcf.acp.quiz.optionC',
+                    'D' => 'wcf.acp.quiz.optionD'
                 ]),
+            TextFormField::create('explanation')
+                ->label('wcf.acp.quiz.explanation')
+                ->maximumLength(500),
             ShowOrderFormField::create('position')
                 ->label('wcf.acp.quiz.position')
-                ->options($orderOptions),
+                ->options($orderOptions)
         ]);
 
         $this->form->appendChild($container);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function assignVariables()
+    {
+        parent::assignVariables();
+
+        WCF::getTPL()->assign([
+            'quiz' => $this->quizObject
+        ]);
     }
 }

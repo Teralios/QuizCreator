@@ -1,0 +1,30 @@
+{include file='header' pageTitle='wcf.acp.quizMaker.question'|concat:$action}
+
+{capture assign="navigationButtons"}
+    {if !$quiz|is_null}
+        <li>
+            <a class="button" href="{link controller='QuizEdit' id=$quiz->quizID}{/link}">
+                <span class="icon icon16 fa-question-circle"></span> <span>{lang}wcf.quizMaker.back{/lang}</span>
+            </a>
+        </li>
+    {/if}
+
+    <li><a href="{link controller='QuizList'}{/link}" class="button"><span class="icon icon16 fa-list"></span> <span>{lang}wcf.quizMaker.list{/lang}</span></a></li>
+    {event name='navigationButtons'}
+{/capture}
+
+<header class="contentHeader">
+    <div class="contentHeaderTitle">
+        <h1 class="contentTitle">{if $action == 'add'}{lang}wcf.acp.quizMaker.add{/lang}{else}{lang}wcf.acp.quizMaker.edit{/lang}{/if}</h1>
+    </div>
+
+    <nav class="contentHeaderNavigation">
+        <ul>
+            {@$navigationButtons}
+        </ul>
+    </nav>
+</header>
+
+{@$form->getHtml()}
+
+{include file='footer'}

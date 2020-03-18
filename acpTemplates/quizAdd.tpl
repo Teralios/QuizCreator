@@ -3,7 +3,7 @@
 {capture assign="navigationButtons"}
     {if !$formObject|is_null}
         <li>
-            <a class="button">
+            <a class="button" href="{link controller='QuestionAdd' id=$formObject->quizID}{/link}">
                 <span class="icon icon16 fa-question-circle"></span> <span>{lang}wcf.quizMaker.question.add{/lang}</span>
             </a>
         </li>

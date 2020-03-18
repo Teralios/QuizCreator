@@ -5,7 +5,7 @@ CREATE TABLE wcf1_quiz (
     creationDate INT(10) NOT NULL DEFAULT 0,
     type ENUM('fun', 'competition') DEFAULT 'fun',
     title VARCHAR(100) NOT NULL DEFAULT '',
-    description MEDIUMTEXT,
+    description TEXT,
     image VARCHAR(35) NOT NULL DEFAULT '',
     isActive TINYINT(1) NOT NULL DEFAULT 0,
     questions SMALLINT(3) NOT NULL DEFAULT 0,
@@ -25,6 +25,7 @@ CREATE TABLE wcf1_quiz_question (
     optionB VARCHAR(100),
     optionC VARCHAR(100),
     optionD VARCHAR(100),
+    explanation TEXT,
     answer ENUM('A', 'B', 'C', 'D'),
     KEY (quizID),
     KEY (quizID, position)
@@ -36,7 +37,7 @@ CREATE TABLE wcf1_quiz_stage (
     quizID INT(10) NOT NULL,
     points SMALLINT(10) NOT NULL DEFAULT 0,
     title VARCHAR(100),
-    description MEDIUMTEXT,
+    description TEXT,
     KEY (quizID)
 );
 

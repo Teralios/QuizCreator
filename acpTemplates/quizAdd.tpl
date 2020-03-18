@@ -35,25 +35,29 @@
 
 {@$form->getHtml()}
 
-{if !$formObject|is_null}
+{if !$formObject|is_null && ($formObject->questions > 0 || $formObject->stages > 0)}
     <div class="section tabMenuContainer" data-active="{$activeTabMenuItem}" data-store="activeTabMenuItem" id="pageTabMenuContainer">
         <nav class="tabMenu">
             <ul>
-                <li><a href="{@$__wcf->getAnchor('questions')}">{lang}wcf.acp.quizMaker.question.list{/lang}</a></li>
-                {if $formObject->type == 'fun'}
-                    <li><a href="{@$__wcf->getAnchor('stages')}">{lang}wcf.acp.quizMaker.stages.list{/lang}</a></li>
+                {if $formObject->questions > 0}
+                    <li><a href="{@$__wcf->getAnchor('questions')}">{lang}wcf.acp.quizMaker.question.list{/lang}</a></li>
+                {/if}
+                {if $formObject->stages > 0 && $formObject->type == 'fun'}
+                    <li><a href="{@$__wcf->getAnchor('stages')}">{lang}wcf.acp.quizMaker.stage.list{/lang}</a></li>
                 {/if}
                 {event name='tabMenuTabs'}
             </ul>
         </nav>
 
-        <div id="questions" class="tabMenuContent">
-            <div class="section tabularBox">
-
+        {if $formObject->questions > 0}
+            <div id="questions" class="tabMenuContent">
+                <div class="section tabularBox">
+                    <pre>{$questionList|var_dump}</pre>
+                </div>
             </div>
-        </div>
+        {/if}
 
-        {if $formObject->type == 'fun'}
+        {if $formObject->stages > 0 && $formObject->type == 'fun'}
             <div id="stages" class="tabMenuContent">
                 <div class="section tabularBox">
 

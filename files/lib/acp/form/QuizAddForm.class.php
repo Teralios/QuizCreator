@@ -2,6 +2,7 @@
 namespace wcf\acp\form;
 
 // imports
+use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizAction;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\form\builder\container\FormContainer;
@@ -12,6 +13,8 @@ use wcf\system\form\builder\field\TitleFormField;
 use wcf\system\form\builder\field\UploadFormField;
 use wcf\system\form\builder\field\BooleanFormField;
 use wcf\system\language\LanguageFactory;
+use wcf\system\request\LinkHandler;
+use wcf\util\HeaderUtil;
 
 /**
  * Class QuizAddForm
@@ -72,5 +75,17 @@ class QuizAddForm extends AbstractFormBuilderForm
         ]);
 
         $this->form->appendChild($container);
+    }
+
+    public function saved()
+    {
+        parent::saved();
+
+        if ($this->formAction == 'create') {
+            $quiz = $this->objectAction->getReturnValues()['returnValues'];
+            if ($quiz instanceof Quiz) {
+                HeaderUtil::redirect(LinkHandler::getInstance()->getLink('QuizEdit', ['id' => $quiz->quizID]));
+            }
+        }
     }
 }

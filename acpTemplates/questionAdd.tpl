@@ -16,6 +16,7 @@
 <header class="contentHeader">
     <div class="contentHeaderTitle">
         <h1 class="contentTitle">{if $action == 'add'}{lang}wcf.acp.quizMaker.add{/lang}{else}{lang}wcf.acp.quizMaker.edit{/lang}{/if}</h1>
+        <p class="contentHeaderDescription">{$quiz->title}</p>
     </div>
 
     <nav class="contentHeaderNavigation">

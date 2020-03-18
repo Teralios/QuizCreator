@@ -2,8 +2,10 @@
 namespace wcf\acp\form;
 
 // imports
+use wcf\data\quiz\question\QuestionList;
 use wcf\data\quiz\Quiz;
 use wcf\system\exception\IllegalLinkException;
+use wcf\system\WCF;
 
 /**
  * Class QuizEditForm
@@ -26,6 +28,8 @@ class QuizEditForm extends QuizAddForm
      */
     public $formAction = 'edit';
 
+    public $questionList = null;
+
     /**
      * @inheritDoc
      * @throws IllegalLinkException
@@ -39,5 +43,22 @@ class QuizEditForm extends QuizAddForm
                 throw new IllegalLinkException();
             }
         }
+    }
+
+    public function readData()
+    {
+        parent::readData();
+
+        $this->questionList = new QuestionList($this->formObject);
+        $this->questionList->readObjects();
+    }
+
+    public function assignVariables()
+    {
+        parent::assignVariables();
+
+        WCF::getTPL()->assign([
+            'questionList' => $this->questionList
+        ]);
     }
 }

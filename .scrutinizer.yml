@@ -1,6 +1,3 @@
-filter:
-  excluded_paths:
-    - debug/
 checks:
   php:
     code_rating: true

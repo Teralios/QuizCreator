@@ -1,5 +1,11 @@
 {include file='header' pageTitle='wcf.acp.quizMaker.'|concat:$action}
 
+<script data-relocate="true">
+    $(function() {
+        new WCF.Action.Delete('wcf\\data\\quiz\\question\\QuestionAction', '.jsQuestionRow');
+    });
+</script>
+
 {capture assign="navigationButtons"}
     {if !$formObject|is_null}
         <li>
@@ -17,13 +23,13 @@
         {/if}
     {/if}
 
-    <li><a href="{link controller='QuizList'}{/link}" class="button"><span class="icon icon16 fa-list"></span> <span>{lang}wcf.quizMaker.list{/lang}</span></a></li>
+    <li><a href="{link controller='QuizList'}{/link}" class="button"><span class="icon icon16 fa-list"></span> <span>{lang}wcf.quizMaker.quiz.list{/lang}</span></a></li>
     {event name='navigationButtons'}
 {/capture}
 
 <header class="contentHeader">
     <div class="contentHeaderTitle">
-        <h1 class="contentTitle">{if $action == 'add'}{lang}wcf.acp.quizMaker.add{/lang}{else}{lang}wcf.acp.quizMaker.edit{/lang}{/if}</h1>
+        <h1 class="contentTitle">{if $action == 'add'}{lang}wcf.acp.quizMaker.quiz.add{/lang}{else}{lang}wcf.acp.quizMaker.quiz.edit{/lang}{/if}</h1>
     </div>
 
     <nav class="contentHeaderNavigation">
@@ -39,25 +45,55 @@
     <div class="section tabMenuContainer" data-active="{$activeTabMenuItem}" data-store="activeTabMenuItem" id="pageTabMenuContainer">
         <nav class="tabMenu">
             <ul>
-                {if $formObject->questions > 0}
+                {if $questionList|isset && $questionList|count > 0}
                     <li><a href="{@$__wcf->getAnchor('questions')}">{lang}wcf.acp.quizMaker.question.list{/lang}</a></li>
                 {/if}
-                {if $formObject->stages > 0 && $formObject->type == 'fun'}
+                {if $formObject->stages > 0}
                     <li><a href="{@$__wcf->getAnchor('stages')}">{lang}wcf.acp.quizMaker.stage.list{/lang}</a></li>
                 {/if}
                 {event name='tabMenuTabs'}
             </ul>
         </nav>
 
-        {if $formObject->questions > 0}
+        {if $questionList|isset && $questionList|count > 0}
             <div id="questions" class="tabMenuContent">
                 <div class="section tabularBox">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="columnQuestionID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
+                                <th class="columnTitle">{lang}wcf.acp.quizMaker.question{/lang}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach from=$questionList item=question}
+                                <tr class="jsQuestionRow">
+                                    {capture assign=questionLink}{link controller="QuestionEdit" id=$question->questionID}{/link}{/capture}
+                                    <td class="columnIcon">
+                                        <a href="{$questionLink}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip">
+                                            <span class="icon icon16 fa-pencil"></span>
+                                        </a>
+                                        {* We not need to check permission here, canManage is all. *}
+                                        <span class="icon icon16 fa-times jsDeleteButton jsTooltip pointer"
+                                              title="{lang}wcf.global.button.delete{/lang}"
+                                              data-object-id="{@$question->questionID}"
+                                              data-confirm-message-html="{lang __encode=true}wcf.acp.quizMaker.question.delete.confirmMessage{/lang}">
+                                        </span>
+                                    </td>
+                                    <td class="columnID columnQuestionID">{#$question->questionID}</td>
+                                    <td class="columnTitle">
+                                        <a href="{$questionLink}">{$question->question}</a>
+                                    </td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
                     <pre>{$questionList|var_dump}</pre>
                 </div>
             </div>
         {/if}
 
-        {if $formObject->stages > 0 && $formObject->type == 'fun'}
+        {if $formObject->stages > 0}
             <div id="stages" class="tabMenuContent">
                 <div class="section tabularBox">
 

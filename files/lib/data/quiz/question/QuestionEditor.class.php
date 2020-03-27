@@ -27,6 +27,15 @@ class QuestionEditor extends DatabaseObjectEditor
 {
     protected static $baseClass = Question::class;
 
+    public function update(array $parameters = [])
+    {
+        if ($this->position != $parameters['position']) {
+            $this->updatePositions((int) $parameters['position']);
+        }
+
+        parent::update($parameters);
+    }
+
     /**
      * @inheritDoc
      * @throws \wcf\system\database\exception\DatabaseQueryException
@@ -64,7 +73,7 @@ class QuestionEditor extends DatabaseObjectEditor
      * Update positions after deletion.
      * @param int $quizID
      * @throws \wcf\system\database\exception\DatabaseQueryException
-     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
+     * @throws DatabaseQueryExecutionException
      * @throws \wcf\system\exception\SystemException
      */
     public static function updatePositionAfterDelete(int $quizID)
@@ -90,6 +99,31 @@ class QuestionEditor extends DatabaseObjectEditor
             } catch (DatabaseQueryExecutionException $e) {
                 WCF::getDB()->rollBackTransaction();
             }
+        }
+    }
+
+    /**
+     * Update positions of other questions.
+     * @param int $newPosition
+     * @throws DatabaseQueryExecutionException
+     * @throws \wcf\system\database\exception\DatabaseQueryException
+     */
+    protected function updatePositions(int $newPosition)
+    {
+        if ($newPosition > $this->position) {
+            $sql = 'UPDATE ' . static::getDatabaseTableName() . '
+                    SET   position = position - 1
+                    WHERE position BETWEEN ? AND ?
+                        AND quizID = ?';
+            $statement = WCF::getDB()->prepareStatement($sql);
+            $statement->execute([$this->position, $newPosition, $this->quizID]);
+        } else {
+            $sql = 'UPDATE ' . static::getDatabaseTableName() . '
+                    SET   position = position + 1
+                    WHERE position BETWEEN ? AND ?
+                        AND quizID = ?';
+            $statement = WCF::getDB()->prepareStatement($sql);
+            $statement->execute([$newPosition, $this->position, $this->quizID]);
         }
     }
 }

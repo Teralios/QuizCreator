@@ -38,7 +38,7 @@ class QuizEditForm extends QuizAddForm
     {
         parent::readParameters();
         if (isset($_REQUEST['id'])) {
-            $this->formObject = new Quiz(intval($_REQUEST['id']));
+            $this->formObject = new Quiz((int) $_REQUEST['id']);
             if (!$this->formObject->quizID) {
                 throw new IllegalLinkException();
             }

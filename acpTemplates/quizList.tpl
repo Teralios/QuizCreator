@@ -37,7 +37,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th class="columnQuizID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
+                    <th class="columnID columnQuizID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
                     <th class="columnTitle">{lang}wcf.global.title{/lang}</th>
                     {if $isMultiLingual}<th class="columnText">{lang}wcf.global.language{/lang}</th>{/if}
                     <th class="columnText">{lang}wcf.global.date{/lang}</th>
@@ -60,8 +60,8 @@
                             {* We not need to check permission here, canManage is all. *}
                             <span class="icon icon16 fa-times jsDeleteButton jsTooltip pointer"
                                   title="{lang}wcf.global.button.delete{/lang}"
-                                  data-object-id="{@$quiz->quizID}"
-                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quiz.delete.confirmMessage{/lang}">
+                                  data-object-id="{#$quiz->quizID}"
+                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quizMaker.quiz.delete.confirmMessage{/lang}">
                             </span>
                         </td>
                         <td class="columnID columnQuizID">{@$quiz->quizID}</td>

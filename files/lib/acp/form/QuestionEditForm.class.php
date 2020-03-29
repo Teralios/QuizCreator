@@ -19,9 +19,9 @@ class QuestionEditForm extends QuestionAddForm
     {
         AbstractFormBuilderForm::readParameters();
 
-        $id = filter_input(INPUT_REQUEST, 'id', FILTER_VALIDATE_INT);
-        $this->formObject = ($id !== null && $id !== false) ? new Question((int) $id) : null;
-        if ($this->formObject === null || !$this->formObject->questionID) {
+        $id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : 0;
+        $this->formObject = new Question((int) $id);
+        if (!$this->formObject->questionID) {
             throw new IllegalLinkException();
         }
 

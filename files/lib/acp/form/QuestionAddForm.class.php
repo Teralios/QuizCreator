@@ -40,12 +40,12 @@ class QuestionAddForm extends AbstractFormBuilderForm
     {
         parent::readParameters();
 
-        $quizID = filter_input(INPUT_REQUEST, 'id', FILTER_VALIDATE_INT);
-        if ($quizID === null || $quizID === false) {
-            $quizID = filter_input(INPUT_REQUEST, 'quizID', FILTER_VALIDATE_INT);
+        $quizID = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : 0;
+        if ($quizID == 0) {
+            $quizID = (isset($_REQUEST['quizID'])) ? $_REQUEST['quizID'] : 0;
         }
 
-        $this->quizObject = ($quizID !== null && $quizID !== false) ? new Quiz($quizID) : null;
+        $this->quizObject = new Quiz((int) $quizID);
         if (!$this->quizObject->quizID) {
             throw new IllegalLinkException();
         }
@@ -57,10 +57,12 @@ class QuestionAddForm extends AbstractFormBuilderForm
     public function createForm()
     {
         parent::createForm();
+
+        // prepare positions
         $orderOptions = [];
-        $questions = $this->quizObject->questions + 1;
+        $questions = $this->quizObject->questions + (($this->formAction == 'create' && $this->quizObject->questions > 0) ? 1 : 0);
         for ($i = 1; $i <= $questions; $i++) {
-            $orderOptions[$i] = $i;
+            $orderOptions[] = $i;
         }
 
         $container = FormContainer::create('questionForm');

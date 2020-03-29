@@ -4,6 +4,7 @@ namespace wcf\data\Quiz;
 // imports
 use wcf\data\DatabaseObjectEditor;
 use wcf\system\file\upload\UploadFile;
+use wcf\system\WCF;
 use wcf\util\FileUtil;
 use wcf\util\ImageUtil;
 
@@ -50,21 +51,6 @@ class QuizEditor extends DatabaseObjectEditor
     }
 
     /**
-     * Decrement counters for quiz.
-     * @param bool $questions
-     */
-    public function decrementCounter(bool $questions = true)
-    {
-        if ($questions === true) {
-            $data['questions'] = ($this->questions > 1) ? $this->questions - 1 : 0;
-        } else {
-            $data['stages'] = ($this->stages > 1) ? $this->stages - 1 : 0;
-        }
-
-        $this->update($data);
-    }
-
-    /**
      * Activate or deactivate a quiz.
      */
     public function toggle()
@@ -81,5 +67,15 @@ class QuizEditor extends DatabaseObjectEditor
     public static function getImageFileName(int $quizID, UploadFile $image): string
     {
         return Quiz::IMAGE_DIR . 'quiz_' . $quizID . '.' . ImageUtil::getExtensionByMimeType(FileUtil::getMimeType($image->getLocation()));
+    }
+
+    public static function updateCounterAfterDelete(int $quizID, int $counter, bool $questions = true)
+    {
+        $field = ($questions === true) ? 'questions' : 'stages';
+        $sql = 'UPDATE  ' . static::getDatabaseTAbleNAme() . '
+                SET     ' . $field . ' = ' . $field . ' - ?
+                WHERE   quizID = ?';
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute([$counter, $quizID]);
     }
 }

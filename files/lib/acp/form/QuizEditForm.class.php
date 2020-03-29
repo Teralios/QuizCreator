@@ -41,14 +41,14 @@ class QuizEditForm extends QuizAddForm
         parent::readParameters();
 
         // read quiz
-        $id = filter_input(INPUT_REQUEST, 'id', FILTER_VALIDATE_INT);
-        $this->formObject = ($id !== null && $id !== false) ? new Quiz($id) : null;
-        if ($this->formObject === null || !$this->formObject->quizID) {
+        $id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : 0;
+        $this->formObject = new Quiz((int) $id);
+        if (!$this->formObject->quizID) {
             throw new IllegalLinkException();
         }
 
         // success message
-        $this->success = filter_input(INPUT_REQUEST, 'success', FILTER_VALIDATE_BOOLEAN);
+        $this->success = (isset($_REQUEST['success'])) ? filter_var($_REQUEST['success'], FILTER_VALIDATE_BOOLEAN) : false;
     }
 
     /**
@@ -61,11 +61,6 @@ class QuizEditForm extends QuizAddForm
         // read questions
         $this->questionList = new QuestionList($this->formObject);
         $this->questionList->readObjects();
-
-        // add success message
-        if ($this->success === true) {
-            $this->form->showSuccessMessage(true);
-        }
     }
 
     /**
@@ -77,6 +72,7 @@ class QuizEditForm extends QuizAddForm
 
         WCF::getTPL()->assign([
             'questionList' => $this->questionList,
+            'createSuccess' => $this->success
         ]);
     }
 }

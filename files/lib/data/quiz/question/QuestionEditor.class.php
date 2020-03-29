@@ -42,6 +42,10 @@ class QuestionEditor extends DatabaseObjectEditor
      */
     public static function create(array $parameters = [])
     {
+        if (isset($parameters['position']) && $parameters['position'] == 0) {
+            $parameters['position'] = 1;
+        }
+
         if (isset($parameters['quizID'])) {
             static::updatePositionsBeforeCreate($parameters['quizID'], $parameters['position']);
         }
@@ -87,17 +91,11 @@ class QuestionEditor extends DatabaseObjectEditor
         $questions = $statement->fetchObjects(Question::class);
 
         if (count($questions)) {
-            try {
-                WCF::getDB()->beginTransaction();
-                $newPosition = 1;
-                foreach ($questions as $question) {
-                    $editor = new QuestionEditor($question);
-                    $editor->update(['position' => $newPosition]);
-                    ++$newPosition;
-                }
-                WCF::getDB()->commitTransaction();
-            } catch (DatabaseQueryExecutionException $e) {
-                WCF::getDB()->rollBackTransaction();
+            $newPosition = 1;
+            foreach ($questions as $question) {
+                $editor = new QuestionEditor($question);
+                $editor->update(['position' => $newPosition]);
+                ++$newPosition;
             }
         }
     }

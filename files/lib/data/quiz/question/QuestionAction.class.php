@@ -5,6 +5,8 @@ namespace wcf\data\quiz\question;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizEditor;
+use wcf\system\database\exception\DatabaseTransactionException;
+use wcf\system\WCF;
 
 /**
  * Class QuestionAction
@@ -34,5 +36,30 @@ class QuestionAction extends AbstractDatabaseObjectAction
         $quizEditor->incrementCounter();
 
         return $question;
+    }
+
+    public function delete()
+    {
+        $returnValue = parent::delete();
+
+        // read quiz id
+        $quizIDs = [];
+        foreach ($this->objects as $question) {
+            $quizID = $question->quizID;
+
+            if (isset($quizIDs[$quizID])) {
+                $quizIDs[$quizID] += 1;
+            } else {
+                $quizIDs[$quizID] = 1;
+            }
+        }
+
+        // update position
+        foreach ($quizIDs as $quizID => $deleteQuestions) {
+            QuestionEditor::updatePositionAfterDelete($quizID);
+            QuizEditor::updateCounterAfterDelete($quizID, $deleteQuestions);
+        }
+
+        return $returnValue;
     }
 }

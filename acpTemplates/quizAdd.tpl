@@ -39,6 +39,8 @@
     </nav>
 </header>
 
+{if $createSuccess === true}<p class="success">{lang}wcf.acp.quizMaker.quiz.created{/lang}</p>{/if}
+
 {@$form->getHtml()}
 
 {if !$formObject|is_null && ($formObject->questions > 0 || $formObject->stages > 0)}
@@ -63,6 +65,7 @@
                             <tr>
                                 <th class="columnQuestionID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
                                 <th class="columnTitle">{lang}wcf.acp.quizMaker.question{/lang}</th>
+                                <th class="columnDigits">{lang}wcf.acp.quizMaker.question.order{/lang}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,11 +87,11 @@
                                     <td class="columnTitle">
                                         <a href="{$questionLink}">{$question->question}</a>
                                     </td>
+                                    <td class="columnDigits">{$question->position}</td>
                                 </tr>
                             {/foreach}
                         </tbody>
                     </table>
-                    <pre>{$questionList|var_dump}</pre>
                 </div>
             </div>
         {/if}

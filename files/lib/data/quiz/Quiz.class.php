@@ -30,6 +30,7 @@ use wcf\system\WCF;
  */
 class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
 {
+    // inherit vars
     protected static $databaseTableName = 'quiz';
     protected static $databaseTableIndexName = 'quizID';
 

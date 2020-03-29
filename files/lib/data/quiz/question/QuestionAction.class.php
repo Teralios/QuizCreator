@@ -5,8 +5,6 @@ namespace wcf\data\quiz\question;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizEditor;
-use wcf\system\database\exception\DatabaseTransactionException;
-use wcf\system\WCF;
 
 /**
  * Class QuestionAction
@@ -25,6 +23,7 @@ class QuestionAction extends AbstractDatabaseObjectAction
 
     /**
      * @inheritDoc
+     * @throws \wcf\system\exception\SystemException
      */
     public function create()
     {
@@ -38,6 +37,11 @@ class QuestionAction extends AbstractDatabaseObjectAction
         return $question;
     }
 
+    /**
+     * @inheritDoc
+     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws \wcf\system\exception\SystemException
+     */
     public function delete()
     {
         $returnValue = parent::delete();

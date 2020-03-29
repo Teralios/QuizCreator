@@ -3,7 +3,6 @@ namespace wcf\data\quiz\question;
 
 // imports
 use wcf\data\DatabaseObjectEditor;
-use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\WCF;
 
 /**
@@ -25,8 +24,13 @@ use wcf\system\WCF;
  */
 class QuestionEditor extends DatabaseObjectEditor
 {
+    // inherit vars
     protected static $baseClass = Question::class;
 
+    /**
+     * @param array $parameters
+     * @throws \wcf\system\database\exception\DatabaseQueryException
+     */
     public function update(array $parameters = [])
     {
         if ($this->position != $parameters['position']) {
@@ -77,7 +81,6 @@ class QuestionEditor extends DatabaseObjectEditor
      * Update positions after deletion.
      * @param int $quizID
      * @throws \wcf\system\database\exception\DatabaseQueryException
-     * @throws DatabaseQueryExecutionException
      * @throws \wcf\system\exception\SystemException
      */
     public static function updatePositionAfterDelete(int $quizID)
@@ -103,7 +106,6 @@ class QuestionEditor extends DatabaseObjectEditor
     /**
      * Update positions of other questions.
      * @param int $newPosition
-     * @throws DatabaseQueryExecutionException
      * @throws \wcf\system\database\exception\DatabaseQueryException
      */
     protected function updatePositions(int $newPosition)

@@ -17,6 +17,7 @@ use wcf\system\WCF;
  */
 class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 {
+    // inherit vars
     protected $className = QuizEditor::class;
     protected $permissionsCreate = ['admin.content.quizMaker.canManage'];
     protected $permissionsUpdate = ['admin.content.quizMaker.canManage'];

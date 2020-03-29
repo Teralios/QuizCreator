@@ -6,8 +6,16 @@ use wcf\data\quiz\Quiz;
 
 class QuestionList extends DatabaseObjectList
 {
+    /**
+     * @var Quiz
+     */
     protected $quiz = null;
 
+    /**
+     * QuestionList constructor.
+     * @param Quiz|null $quiz
+     * @throws \wcf\system\exception\SystemException
+     */
     public function __construct(Quiz $quiz = null)
     {
         parent::__construct();
@@ -21,6 +29,9 @@ class QuestionList extends DatabaseObjectList
         $this->sqlOrderBy = 'position ASC';
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function buildCondition()
     {
         $this->getConditionBuilder()->add('quizID = ?', [$this->quiz->quizID]);

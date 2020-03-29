@@ -69,6 +69,14 @@ class QuizEditor extends DatabaseObjectEditor
         return Quiz::IMAGE_DIR . 'quiz_' . $quizID . '.' . ImageUtil::getExtensionByMimeType(FileUtil::getMimeType($image->getLocation()));
     }
 
+    /**
+     * Update counter for quiz after deletion of questions or stages.
+     * @param int $quizID
+     * @param int $counter
+     * @param bool $questions
+     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
+     */
     public static function updateCounterAfterDelete(int $quizID, int $counter, bool $questions = true)
     {
         $field = ($questions === true) ? 'questions' : 'stages';

@@ -16,6 +16,9 @@ class QuestionList extends DatabaseObjectList
         if ($this->quiz !== null) {
             $this->buildCondition();
         }
+
+        // default order
+        $this->sqlOrderBy = 'position ASC';
     }
 
     protected function buildCondition()

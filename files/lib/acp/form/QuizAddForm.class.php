@@ -6,13 +6,12 @@ use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizAction;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\form\builder\container\FormContainer;
+use wcf\system\form\builder\field\language\ContentLanguageFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
-use wcf\system\form\builder\field\SingleSelectionFormField;
 use wcf\system\form\builder\field\TextFormField;
 use wcf\system\form\builder\field\TitleFormField;
 use wcf\system\form\builder\field\UploadFormField;
 use wcf\system\form\builder\field\BooleanFormField;
-use wcf\system\language\LanguageFactory;
 use wcf\system\request\LinkHandler;
 use wcf\util\HeaderUtil;
 
@@ -26,13 +25,13 @@ use wcf\util\HeaderUtil;
  */
 class QuizAddForm extends AbstractFormBuilderForm
 {
+    // inherit vars
     public $objectActionClass = QuizAction::class;
     public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.add';
     public $neededPermissions = ['admin.content.quizMaker.canManage'];
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\exception\SystemException
      */
     public function createForm()
     {
@@ -47,10 +46,7 @@ class QuizAddForm extends AbstractFormBuilderForm
             TextFormField::create('description')
                 ->label('wcf.global.description')
                 ->maximumLength(1000),
-            SingleSelectionFormField::create('languageID')
-                ->label('wcf.acp.quizMaker.quiz.language')
-                ->options(LanguageFactory::getInstance()->getContentLanguages())
-                ->available(LanguageFactory::getInstance()->multilingualismEnabled()),
+            ContentLanguageFormField::create('languageID'),
             RadioButtonFormField::create('type')
                 ->label('wcf.acp.quizMaker.quiz.type')
                 ->options([
@@ -58,7 +54,7 @@ class QuizAddForm extends AbstractFormBuilderForm
                     'competition' => 'wcf.acp.quizMaker.quiz.type.competition'
                 ])
                 ->value('fun'),
-            UploadFormField::create('image')
+            UploadFormField::create('image') // maybe replace with media manager?
                 ->label('wcf.acp.quizMaker.quiz.image')
                 ->imageOnly()
                 ->maximum(1)
@@ -77,6 +73,10 @@ class QuizAddForm extends AbstractFormBuilderForm
         $this->form->appendChild($container);
     }
 
+    /**
+     * @inheritDoc
+     * @throws \wcf\system\exception\SystemException
+     */
     public function saved()
     {
         parent::saved();
@@ -84,7 +84,8 @@ class QuizAddForm extends AbstractFormBuilderForm
         if ($this->formAction == 'create') {
             $quiz = $this->objectAction->getReturnValues()['returnValues'];
             if ($quiz instanceof Quiz) {
-                HeaderUtil::redirect(LinkHandler::getInstance()->getLink('QuizEdit', ['id' => $quiz->quizID]));
+                HeaderUtil::redirect(LinkHandler::getInstance()->getLink('QuizEdit', ['id' => $quiz->quizID, 'success' => 1]));
+                exit;
             }
         }
     }

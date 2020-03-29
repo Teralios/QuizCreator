@@ -84,7 +84,7 @@ class QuestionEditor extends DatabaseObjectEditor
                 ORDER BY    position';
         $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute([$quizID]);
-        $questions = $statement->fetchObjects(Questions::class);
+        $questions = $statement->fetchObjects(Question::class);
 
         if (count($questions)) {
             try {

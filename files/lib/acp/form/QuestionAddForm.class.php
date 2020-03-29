@@ -24,6 +24,7 @@ use wcf\system\WCF;
  */
 class QuestionAddForm extends AbstractFormBuilderForm
 {
+    // inherit vars
     public $objectActionClass = QuestionAction::class;
 
     /**
@@ -39,13 +40,14 @@ class QuestionAddForm extends AbstractFormBuilderForm
     {
         parent::readParameters();
 
-        $this->quizObject = (isset($_REQUEST['quizID'])) ? new Quiz((int) $_REQUEST['quizID']) : null;
-        if ($this->quizObject === null) {
-            $this->quizObject = (isset($_REQUEST['id'])) ? new Quiz((int) $_REQUEST['id']) : null;
+        $quizID = filter_input(INPUT_REQUEST, 'id', FILTER_VALIDATE_INT);
+        if ($quizID === null || $quizID === false) {
+            $quizID = filter_input(INPUT_REQUEST, 'quizID', FILTER_VALIDATE_INT);
+        }
 
-            if ($this->quizObject === null || !$this->quizObject->quizID) {
-                throw new IllegalLinkException();
-            }
+        $this->quizObject = ($quizID !== null && $quizID !== false) ? new Quiz($quizID) : null;
+        if (!$this->quizObject->quizID) {
+            throw new IllegalLinkException();
         }
     }
 

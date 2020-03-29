@@ -17,18 +17,20 @@ use wcf\system\WCF;
  */
 class QuizEditForm extends QuizAddForm
 {
+    // inherit vars
     public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
     public $neededPermissions = ['admin.content.quizMaker.canManage'];
-
-    /**
-     * WoltLab documentation is wrong!
-     * $formAction are not set automatically to "edit" you must do it manually.
-     *
-     * @var string
-     */
     public $formAction = 'edit';
 
+    /**
+     * @var QuestionList
+     */
     public $questionList = null;
+
+    /**
+     * @var bool
+     */
+    public $success = false;
 
     /**
      * @inheritDoc
@@ -37,28 +39,44 @@ class QuizEditForm extends QuizAddForm
     public function readParameters()
     {
         parent::readParameters();
-        if (isset($_REQUEST['id'])) {
-            $this->formObject = new Quiz((int) $_REQUEST['id']);
-            if (!$this->formObject->quizID) {
-                throw new IllegalLinkException();
-            }
+
+        // read quiz
+        $id = filter_input(INPUT_REQUEST, 'id', FILTER_VALIDATE_INT);
+        $this->formObject = ($id !== null && $id !== false) ? new Quiz($id) : null;
+        if ($this->formObject === null || !$this->formObject->quizID) {
+            throw new IllegalLinkException();
         }
+
+        // success message
+        $this->success = filter_input(INPUT_REQUEST, 'success', FILTER_VALIDATE_BOOLEAN);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function readData()
     {
         parent::readData();
 
+        // read questions
         $this->questionList = new QuestionList($this->formObject);
         $this->questionList->readObjects();
+
+        // add success message
+        if ($this->success === true) {
+            $this->form->showSuccessMessage(true);
+        }
     }
 
+    /**
+     * @inheritDoc
+     */
     public function assignVariables()
     {
         parent::assignVariables();
 
         WCF::getTPL()->assign([
-            'questionList' => $this->questionList
+            'questionList' => $this->questionList,
         ]);
     }
 }

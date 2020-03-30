@@ -42,7 +42,7 @@
                     {if $isMultiLingual}<th class="columnText">{lang}wcf.global.language{/lang}</th>{/if}
                     <th class="columnText">{lang}wcf.global.date{/lang}</th>
                     <th class="columnText">{lang}wcf.acp.quizMaker.quiz.questions{/lang}</th>
-                    <th class="columnText">{lang}wcf.acp.quizMaker.quiz.stages{/lang}</th>
+                    <th class="columnText">{lang}wcf.acp.quizMaker.quiz.goals{/lang}</th>
                 </tr>
             </thead>
             <tbody>
@@ -83,7 +83,7 @@
                         {/if}
                         <td class="columnText">{$quiz->creationDate|date}</td>
                         <td class="columnDigits">{#$quiz->questions}</td>
-                        <td class="columnDigits">{#$quiz->stages}</td>
+                        <td class="columnDigits">{#$quiz->goals}</td>
                     </tr>
                 {/foreach}
             </tbody>

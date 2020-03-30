@@ -3,16 +3,12 @@
 namespace wcf\acp\form;
 
 // imports
-use wcf\data\quiz\Quiz;
 use wcf\data\quiz\question\QuestionAction;
-use wcf\form\AbstractFormBuilderForm;
-use wcf\system\exception\IllegalLinkException;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\HiddenFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
 use wcf\system\form\builder\field\ShowOrderFormField;
 use wcf\system\form\builder\field\TextFormField;
-use wcf\system\WCF;
 
 /**
  * Class QuestionAdd
@@ -22,34 +18,10 @@ use wcf\system\WCF;
  * @copyright ©2020 Teralios.de
  * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
  */
-class QuestionAddForm extends AbstractFormBuilderForm
+class QuizQuestionAddForm extends BaseQuizForm
 {
     // inherit vars
     public $objectActionClass = QuestionAction::class;
-
-    /**
-     * @var Quiz
-     */
-    public $quizObject = null;
-
-    /**
-     * @inheritDoc
-     * @throws IllegalLinkException
-     */
-    public function readParameters()
-    {
-        parent::readParameters();
-
-        $quizID = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : 0;
-        if ($quizID == 0) {
-            $quizID = (isset($_REQUEST['quizID'])) ? $_REQUEST['quizID'] : 0;
-        }
-
-        $this->quizObject = new Quiz((int) $quizID);
-        if (!$this->quizObject->quizID) {
-            throw new IllegalLinkException();
-        }
-    }
 
     /**
      * @inheritDoc
@@ -106,17 +78,5 @@ class QuestionAddForm extends AbstractFormBuilderForm
         ]);
 
         $this->form->appendChild($container);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function assignVariables()
-    {
-        parent::assignVariables();
-
-        WCF::getTPL()->assign([
-            'quiz' => $this->quizObject
-        ]);
     }
 }

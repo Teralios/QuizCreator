@@ -1,4 +1,4 @@
-{include file='header' pageTitle='wcf.acp.quizMaker.question'|concat:$action}
+{include file='header' pageTitle=$formHeaderTitle}
 
 {capture assign="navigationButtons"}
     {if !$quiz|is_null}

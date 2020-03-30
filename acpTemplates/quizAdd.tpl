@@ -9,20 +9,16 @@
 {capture assign="navigationButtons"}
     {if !$formObject|is_null}
         <li>
-            <a class="button" href="{link controller='QuestionAdd' id=$formObject->quizID}{/link}">
+            <a class="button" href="{link controller='QuizQuestionAdd' id=$formObject->quizID}{/link}">
                 <span class="icon icon16 fa-question-circle"></span> <span>{lang}wcf.quizMaker.question.add{/lang}</span>
             </a>
         </li>
-
-        {if $formObject->type == "fun"}
-            <li>
-                <a class="button">
-                    <span class="icon icon16 fa-trophy"></span> <span>{lang}wcf.quizMaker.stage.add{/lang}</span>
-                </a>
-            </li>
-        {/if}
+        <li>
+            <a class="button" href="{link controller='QuizGoalAdd' id=$formObject->quizID}{/link}">
+                <span class="icon icon16 fa-trophy"></span> <span>{lang}wcf.quizMaker.goal.add{/lang}</span>
+            </a>
+        </li>
     {/if}
-
     <li><a href="{link controller='QuizList'}{/link}" class="button"><span class="icon icon16 fa-list"></span> <span>{lang}wcf.quizMaker.quiz.list{/lang}</span></a></li>
     {event name='navigationButtons'}
 {/capture}
@@ -51,7 +47,7 @@
                     <li><a href="{@$__wcf->getAnchor('questions')}">{lang}wcf.acp.quizMaker.question.list{/lang}</a></li>
                 {/if}
                 {if $formObject->stages > 0}
-                    <li><a href="{@$__wcf->getAnchor('stages')}">{lang}wcf.acp.quizMaker.stage.list{/lang}</a></li>
+                    <li><a href="{@$__wcf->getAnchor('goals')}">{lang}wcf.acp.quizMaker.goal.list{/lang}</a></li>
                 {/if}
                 {event name='tabMenuTabs'}
             </ul>
@@ -71,7 +67,7 @@
                         <tbody>
                             {foreach from=$questionList item=question}
                                 <tr class="jsQuestionRow">
-                                    {capture assign=questionLink}{link controller="QuestionEdit" id=$question->questionID}{/link}{/capture}
+                                    {capture assign=questionLink}{link controller="QuizQuestionEdit" id=$question->questionID}{/link}{/capture}
                                     <td class="columnIcon">
                                         <a href="{$questionLink}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip">
                                             <span class="icon icon16 fa-pencil"></span>
@@ -96,8 +92,8 @@
             </div>
         {/if}
 
-        {if $formObject->stages > 0}
-            <div id="stages" class="tabMenuContent">
+        {if $formObject->goals > 0}
+            <div id="goals" class="tabMenuContent">
                 <div class="section tabularBox">
 
                 </div>

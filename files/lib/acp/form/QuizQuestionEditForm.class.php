@@ -7,7 +7,7 @@ use wcf\data\quiz\Quiz;
 use wcf\form\AbstractFormbuilderForm;
 use wcf\system\exception\IllegalLinkException;
 
-class QuestionEditForm extends QuestionAddForm
+class QuizQuestionEditForm extends QuizQuestionAddForm
 {
     // inherit vars
     public $formAction = 'edit';

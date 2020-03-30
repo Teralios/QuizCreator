@@ -26,7 +26,7 @@ use wcf\util\ImageUtil;
  * @property-read int $creationDate
  * @property-read int $isActive
  * @property-read int $questions
- * @property-read int $stages
+ * @property-read int $goals
  */
 class QuizEditor extends DatabaseObjectEditor
 {
@@ -44,7 +44,7 @@ class QuizEditor extends DatabaseObjectEditor
         if ($questions === true) {
             $data['questions'] = $this->questions + 1;
         } else {
-            $data['stages'] = $this->stages + 1;
+            $data['goals'] = $this->stages + 1;
         }
 
         $this->update($data);
@@ -79,7 +79,7 @@ class QuizEditor extends DatabaseObjectEditor
      */
     public static function updateCounterAfterDelete(int $quizID, int $counter, bool $questions = true)
     {
-        $field = ($questions === true) ? 'questions' : 'stages';
+        $field = ($questions === true) ? 'questions' : 'goals';
         $sql = 'UPDATE  ' . static::getDatabaseTAbleNAme() . '
                 SET     ' . $field . ' = ' . $field . ' - ?
                 WHERE   quizID = ?';

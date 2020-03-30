@@ -26,13 +26,17 @@ use wcf\system\WCF;
  * @property-read int $creationDate
  * @property-read int $isActive
  * @property-read int $questions
- * @property-read int $stages
+ * @property-read int $goals
  */
 class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
 {
     // inherit vars
     protected static $databaseTableName = 'quiz';
     protected static $databaseTableIndexName = 'quizID';
+
+    // const
+    const COMPETITION = 'competition';
+    const FUN = 'fun';
 
     /**
      * Path for quiz images.

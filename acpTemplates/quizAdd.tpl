@@ -1,8 +1,9 @@
-{include file='header' pageTitle='wcf.acp.quizMaker.'|concat:$action}
+{include file='header' pageTitle='wcf.acp.quizMaker.quiz.'|concat:$action}
 
 <script data-relocate="true">
     $(function() {
         new WCF.Action.Delete('wcf\\data\\quiz\\question\\QuestionAction', '.jsQuestionRow');
+        new WCF.Action.Delete('wcf\\data\\quiz\\goal\\GoalAction', '.jsGoalRow');
     });
 </script>
 
@@ -10,16 +11,20 @@
     {if !$formObject|is_null}
         <li>
             <a class="button" href="{link controller='QuizQuestionAdd' id=$formObject->quizID}{/link}">
-                <span class="icon icon16 fa-question-circle"></span> <span>{lang}wcf.quizMaker.question.add{/lang}</span>
+                <span class="icon icon16 fa-question-circle"></span> <span>{lang}wcf.acp.quizMaker.question.add{/lang}</span>
             </a>
         </li>
         <li>
             <a class="button" href="{link controller='QuizGoalAdd' id=$formObject->quizID}{/link}">
-                <span class="icon icon16 fa-trophy"></span> <span>{lang}wcf.quizMaker.goal.add{/lang}</span>
+                <span class="icon icon16 fa-trophy"></span> <span>{lang}wcf.acp.quizMaker.goal.add{/lang}</span>
             </a>
         </li>
     {/if}
-    <li><a href="{link controller='QuizList'}{/link}" class="button"><span class="icon icon16 fa-list"></span> <span>{lang}wcf.quizMaker.quiz.list{/lang}</span></a></li>
+    <li>
+        <a href="{link controller='QuizList'}{/link}" class="button">
+            <span class="icon icon16 fa-list"></span> <span>{lang}wcf.acp.quizMaker.quiz.list{/lang}</span>
+        </a>
+    </li>
     {event name='navigationButtons'}
 {/capture}
 
@@ -35,7 +40,7 @@
     </nav>
 </header>
 
-{if $createSuccess === true}<p class="success">{lang}wcf.acp.quizMaker.quiz.created{/lang}</p>{/if}
+{if $createSuccess|isset && $createSuccess === true}<p class="success">{lang}wcf.acp.quizMaker.quiz.created{/lang}</p>{/if}
 
 {@$form->getHtml()}
 
@@ -46,7 +51,7 @@
                 {if $questionList|isset && $questionList|count > 0}
                     <li><a href="{@$__wcf->getAnchor('questions')}">{lang}wcf.acp.quizMaker.question.list{/lang}</a></li>
                 {/if}
-                {if $formObject->stages > 0}
+                {if $formObject->goals > 0}
                     <li><a href="{@$__wcf->getAnchor('goals')}">{lang}wcf.acp.quizMaker.goal.list{/lang}</a></li>
                 {/if}
                 {event name='tabMenuTabs'}
@@ -59,7 +64,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="columnQuestionID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
+                                <th class="columnID columnQuestionID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
                                 <th class="columnTitle">{lang}wcf.acp.quizMaker.question{/lang}</th>
                                 <th class="columnDigits">{lang}wcf.acp.quizMaker.question.order{/lang}</th>
                             </tr>
@@ -95,7 +100,35 @@
         {if $formObject->goals > 0}
             <div id="goals" class="tabMenuContent">
                 <div class="section tabularBox">
-
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="columnID columnGoalID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
+                                <th class="columnTitle">{lang}wcf.acp.quizMaker.goal.title{/lang}</th>
+                                <th class="columnDigits">{lang}wcf.acp.quizMaker.goal.points{/lang}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach from=$goalList item=goal}
+                                <tr class="jsGoalRow">
+                                    {capture assign=goalLink}{link controller="QuizGoalEdit" id=$goal->goalID}{/link}{/capture}
+                                    <td class="columnIcon">
+                                        <a href="{$goalLink}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip">
+                                            <span class="icon icon16 fa-pencil"></span>
+                                        </a>
+                                        <span class="icon ico16 fa-times jsDeleteButton jsTooltip pointer"
+                                              title="{lang}wcf.global.button.delete{/lang}"
+                                              data-object-id="{@$goal->goalID}"
+                                              data-confirm-message-html="{lang __encode=true}wcf.acp.quizMaker.goal.delete.confirmMessage{/lang}">
+                                        </span>
+                                    </td>
+                                    <td class="columnID columnGoalID">{#$goal->goalID}</td>
+                                    <td class="columnTitle"><a href="{$goalLink}">{$goal->title}</a></td>
+                                    <td class="columnDigits">{#$goal->points}</td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         {/if}

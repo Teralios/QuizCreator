@@ -2,6 +2,7 @@
 namespace wcf\acp\form;
 
 // imports
+use wcf\data\quiz\goal\GoalList;
 use wcf\data\quiz\question\QuestionList;
 use wcf\data\quiz\Quiz;
 use wcf\system\exception\IllegalLinkException;
@@ -26,6 +27,11 @@ class QuizEditForm extends QuizAddForm
      * @var QuestionList
      */
     public $questionList = null;
+
+    /**
+     * @var GoalList
+     */
+    public $goalList = null;
 
     /**
      * @var bool
@@ -61,6 +67,10 @@ class QuizEditForm extends QuizAddForm
         // read questions
         $this->questionList = new QuestionList($this->formObject);
         $this->questionList->readObjects();
+
+        // read goals
+        $this->goalList = new GoalList($this->formObject);
+        $this->goalList->readObjects();
     }
 
     /**
@@ -72,6 +82,7 @@ class QuizEditForm extends QuizAddForm
 
         WCF::getTPL()->assign([
             'questionList' => $this->questionList,
+            'goalList' => $this->goalList,
             'createSuccess' => $this->success
         ]);
     }

@@ -28,4 +28,33 @@ class GoalAction extends AbstractDatabaseObjectAction
 
         return $question;
     }
+
+    /**
+     * @inheritDoc
+     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws \wcf\system\exception\SystemException
+     */
+    public function delete()
+    {
+        $returnValue = parent::delete();
+
+        // read quiz id
+        $quizIDs = [];
+        foreach ($this->objects as $question) {
+            $quizID = $question->quizID;
+
+            if (isset($quizIDs[$quizID])) {
+                $quizIDs[$quizID] += 1;
+            } else {
+                $quizIDs[$quizID] = 1;
+            }
+        }
+
+        // update position
+        foreach ($quizIDs as $quizID => $deleteGoals) {
+            QuizEditor::updateCounterAfterDelete($quizID, $deleteGoals, false);
+        }
+
+        return $returnValue;
+    }
 }

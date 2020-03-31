@@ -15,7 +15,7 @@
             <ul>
                 <li>
                     <a href="{link controller="quizAdd"}{/link}" class="button">
-                        <span class="icon icon16 fa-plus"></span> <span>{lang}wcf.acp.quizMaker.add{/lang}</span>
+                        <span class="icon icon16 fa-plus"></span> <span>{lang}wcf.acp.quizMaker.quiz.add{/lang}</span>
                     </a>
                 </li>
 
@@ -103,7 +103,7 @@
             <ul>
                 <li>
                     <a href="{link controller='QuizAdd'}{/link}" class="button">
-                        <span class="icon icon16 fa-plus"></span> <span>{lang}wcf.acp.quizMaker.add{/lang}</span>
+                        <span class="icon icon16 fa-plus"></span> <span>{lang}wcf.acp.quizMaker.quiz.add{/lang}</span>
                     </a>
                 </li>
 

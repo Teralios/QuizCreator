@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/vortex/language.xsd" languagecode="de">
 	<category name="wcf.acp.quizMaker">
-
+		<item name="wcf.acp.quizMaker.quiz.questions"><![CDATA[Fragen]]></item>
+		<item name="wcf.acp.quizMaker.quiz.goals"><![CDATA[Ziele]]></item>
+		<item name="wcf.acp.quizMaker.quiz.add"><![CDATA[Quiz hinzufügen]]></item>
+		<item name="wcf.acp.quizMaker.quiz.type"><![CDATA[Art]]></item>
+		<item name="wcf.acp.quizMaker.quiz.type.fun"><![CDATA[Spaßquiz]]></item>
+		<item name="wcf.acp.quizMaker.quiz.type.competition"><![CDATA[Wettkampfquiz]]></item>
+		<item name="wcf.acp.quizMaker.quiz.image"><![CDATA[Bild]]></item>
+		<item name="wcf.acp.quizMaker.quiz.list"><![CDATA[Quiz]]></item>
+		<item name="wcf.acp.quizMaker.quiz.isActive"><![CDATA[Aktiviert]]></item>
+		<item name="wcf.acp.quizMaker.question.list"><![CDATA[Fragen]]></item>
+		<item name="wcf.acp.quizMaker.goal.list"><![CDATA[Ziele]]></item>
+		<item name="wcf.acp.quizMaker.question"><![CDATA[Frage]]></item>
+		<item name="wcf.acp.quizMaker.question.order"><![CDATA[Position]]></item>
+		<item name="wcf.acp.quizMaker.goal.title"><![CDATA[Name des Ziels]]></item>
+		<item name="wcf.acp.quizMaker.goal.points"><![CDATA[Min. Punkte]]></item>
+		<item name="wcf.acp.quizMaker.add"><![CDATA[Frage hinzufügen]]></item>
+		<item name="wcf.acp.quizMaker.question.optionA"><![CDATA[Antwort A]]></item>
+		<item name="wcf.acp.quizMaker.question.optionB"><![CDATA[Antwort B]]></item>
+		<item name="wcf.acp.quizMaker.question.optionC"><![CDATA[Antwort C]]></item>
+		<item name="wcf.acp.quizMaker.question.optionD"><![CDATA[Antwort D]]></item>
+		<item name="wcf.acp.quizMaker.question.answer"><![CDATA[Lösung]]></item>
+		<item name="wcf.acp.quizMaker.question.explanation"><![CDATA[Erklärung]]></item>
+		<item name="wcf.acp.quizMaker.question.position"><![CDATA[Position]]></item>
+		<item name="wcf.acp.quizMaker.quiz.edit"><![CDATA[Quiz bearbeiten]]></item>
+		<item name="wcf.acp.quizMaker.question.add"><![CDATA[Frage hinzufügen]]></item>
+		<item name="wcf.acp.quizMaker.goal.add"><![CDATA[Ziel hinzufügen]]></item>
+		<item name="wcf.acp.quizMaker.quiz.back"><![CDATA[Zurück zum Quiz]]></item>
+		<item name="wcf.acp.quizMaker.question.edit"><![CDATA[Frage bearbeiten]]></item>
+		<item name="wcf.acp.quizMaker.goal.edit"><![CDATA[Ziel bearbeiten]]></item>
+		<item name="wcf.acp.quizMaker.goal.points.exists"><![CDATA[Es gibt bereits ein Ziel, dass diese Anzahl an Punkten benötigt.]]></item>
+		<item name="wcf.acp.quizMaker.quiz.created"><![CDATA[Quiz wurde erfolgreich erstellt.]]></item>
 	</category>
 	<category name="wcf.acp.menu">
-
+		<item name="wcf.acp.menu.link.quiz.list"><![CDATA[Quiz]]></item>
+		<item name="wcf.acp.menu.link.quizMaker"><![CDATA[Quiz Maker]]></item>
+		<item name="wcf.acp.menu.link.quizMaker.list"><![CDATA[Quiz]]></item>
+		<item name="wcf.acp.menu.link.quizMaker.add"><![CDATA[Quiz hinzufügen]]></item>
 	</category>
 </language>

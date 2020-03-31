@@ -85,7 +85,6 @@ class QuizAddForm extends AbstractFormBuilderForm
             $quiz = $this->objectAction->getReturnValues()['returnValues'];
             if ($quiz instanceof Quiz) {
                 HeaderUtil::redirect(LinkHandler::getInstance()->getLink('QuizEdit', ['id' => $quiz->quizID, 'success' => 1]));
-                exit;
             }
         }
     }

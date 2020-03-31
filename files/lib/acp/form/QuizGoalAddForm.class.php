@@ -21,10 +21,15 @@ class QuizGoalAddForm extends BaseQuizForm
     {
         parent::createForm();
         $quizID = $this->quizObject->quizID;
+        $formObject = $this->formObject;
 
         // points validator
-        $pointsValidator = function (IntegerFormField $field) use ($quizID) {
+        $pointsValidator = function (IntegerFormField $field) use ($quizID, $formObject) {
             $data = $field->getSaveValue();
+
+            if ($formObject instanceof Goal && $formObject->points == $data) {
+                return;
+            }
 
             if (Goal::checkGoalPoints($quizID, $data)) {
                 $field->addValidationError(

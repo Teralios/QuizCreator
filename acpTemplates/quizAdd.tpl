@@ -48,6 +48,7 @@
     <div class="section tabMenuContainer" data-active="{$activeTabMenuItem}" data-store="activeTabMenuItem" id="pageTabMenuContainer">
         <nav class="tabMenu">
             <ul>
+                <li><a href="{@$__wcf->getAnchor('quizData')}">{lang}wcf.acp.quizMaker.quiz.data{/lang}</a></li>
                 {if $questionList|isset && $questionList|count > 0}
                     <li><a href="{@$__wcf->getAnchor('questions')}">{lang}wcf.acp.quizMaker.question.list{/lang}</a></li>
                 {/if}
@@ -57,7 +58,13 @@
                 {event name='tabMenuTabs'}
             </ul>
         </nav>
+        <div id="quizData" class="tabMenuContent">
+{/if}
 
+{@$form->getHtml()}
+
+{if !$formObject|is_null && ($formObject->questions > 0 || $formObject->stages > 0)}
+        </div>
         {if $questionList|isset && $questionList|count > 0}
             <div id="questions" class="tabMenuContent">
                 <div class="section tabularBox">

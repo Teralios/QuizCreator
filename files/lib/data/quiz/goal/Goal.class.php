@@ -7,7 +7,7 @@ use wcf\data\quiz\Quiz;
 use wcf\system\WCF;
 
 /**
- * Class Goal
+ * Class goal
  *
  * @package   de.teralios.QuizMaker
  * @author    Teralios

@@ -32,6 +32,7 @@
 		<item name="wcf.acp.quizMaker.goal.edit"><![CDATA[Ziel bearbeiten]]></item>
 		<item name="wcf.acp.quizMaker.goal.points.exists"><![CDATA[Es gibt bereits ein Ziel, dass diese Anzahl an Punkten benötigt.]]></item>
 		<item name="wcf.acp.quizMaker.quiz.created"><![CDATA[Quiz wurde erfolgreich erstellt.]]></item>
+		<item name="wcf.acp.quizMaker.quiz.data"><![CDATA[Quiz Daten]]></item>
 	</category>
 	<category name="wcf.acp.menu">
 		<item name="wcf.acp.menu.link.quiz.list"><![CDATA[Quiz]]></item>

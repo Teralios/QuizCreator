@@ -32,10 +32,11 @@ class AJAXQuiz extends Quiz
      * @param int $quizID
      * @param array|null $data
      * @param DatabaseObject|null $databaseObject
+     * @throws \wcf\system\exception\SystemException
      */
     public function __construct(int $quizID, array $data = null, DatabaseObject $databaseObject = null)
     {
-        parent::__construct($quizID, $data,$databaseObject);
+        parent::__construct($quizID, $data, $databaseObject);
 
         if ($this->quizID) {
             $this->initParts();
@@ -54,12 +55,12 @@ class AJAXQuiz extends Quiz
 
         $this->questionList->rewind();
         foreach ($this->questionList as $question) {
-            $data['questions'][$question->position] = $question;
+            $data['questions'][$question->position] = $question->getData();
         }
 
         $this->goalList->rewind();
         foreach ($this->goalList as $goal) {
-            $data['goals'][$goal->points] = $goal;
+            $data['goals'][$goal->points] = $goal->getData();
         }
 
         return $data;

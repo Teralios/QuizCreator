@@ -27,10 +27,10 @@ class GetQuizAction extends AbstractAjaxAction
     {
         parent::readParameters();
 
-        $this->quizID = (isset($_REQUEST['quizID'])) ? (int) $_REQUEST['quizID'] : 0;
+        $this->quizID = (isset($_REQUEST['id'])) ? (int) $_REQUEST['id'] : 0;
         $this->quiz = new AJAXQuiz($this->quizID);
 
-        if (!$this->quiz->quizID) {
+        if (!$this->quiz->quizID && !$this->quiz->isActive) {
             throw new IllegalLinkException();
         }
     }

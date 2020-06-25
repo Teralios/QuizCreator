@@ -42,8 +42,6 @@
 
 {if $createSuccess|isset && $createSuccess === true}<p class="success">{lang}wcf.acp.quizMaker.quiz.created{/lang}</p>{/if}
 
-{@$form->getHtml()}
-
 {if !$formObject|is_null && ($formObject->questions > 0 || $formObject->stages > 0)}
     <div class="section tabMenuContainer" data-active="{$activeTabMenuItem}" data-store="activeTabMenuItem" id="pageTabMenuContainer">
         <nav class="tabMenu">

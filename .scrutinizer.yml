@@ -7,9 +7,9 @@ build:
       dependencies:
         before:
           - git clone https://github.com/WoltLab/WCF.git wcf/
-      filter:
-        dependency_paths:
-          - wcf/
       tests:
         override:
           - php-scrutinizer-run
+  filter:
+    dependency_paths:
+      - wcf/

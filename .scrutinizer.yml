@@ -5,9 +5,11 @@ build:
   nodes:
     analysis:
       dependencies:
-        before: git clone https://github.com/WoltLab/WCF.git wcf/
+        before:
+          - git clone https://github.com/WoltLab/WCF.git wcf/
       filter:
-        dependency_paths: wcf/
+        dependency_paths:
+          - wcf/
       tests:
         override:
           - php-scrutinizer-run

@@ -2,12 +2,12 @@ build:
   environment:
     php:
       version: 7.4
-  filter:
-    dependency_paths: wcf/
   nodes:
     analysis:
       dependencies:
         before: git clone https://github.com/WoltLab/WCF.git wcf/
+      filter:
+        dependency_paths: wcf/
       tests:
         override:
           - php-scrutinizer-run

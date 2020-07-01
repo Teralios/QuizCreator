@@ -44,7 +44,7 @@ class QuizEditor extends DatabaseObjectEditor
         if ($questions === true) {
             $data['questions'] = $this->questions + 1;
         } else {
-            $data['goals'] = $this->stages + 1;
+            $data['goals'] = $this->goals + 1;
         }
 
         $this->update($data);

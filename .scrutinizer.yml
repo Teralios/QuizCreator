@@ -7,6 +7,7 @@ build:
             dependencies:
               before:
                 - git clone https://github.com/WoltLab/WCF.git wcf/
+                - git checkout 5.2
             tests:
               override:
                 - php-scrutinizer-run

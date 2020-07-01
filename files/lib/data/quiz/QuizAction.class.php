@@ -76,8 +76,9 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         // delete image files
         foreach ($this->objects as $quiz) {
             /** @var Quiz $quiz */
-            if (!empty($quiz->getImage(false))) {
-                @unlink($quiz->getImage(false));
+            $file = $quiz->getImage(false);
+            if (!empty($file)) {
+                /** @scrutinizer ignore-unhandled */@unlink($file);
             }
         }
 
@@ -139,7 +140,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
             foreach ($this->objects as $quiz) {
                 if ($quiz->getImage(false) == $image->getLocation()) {
-                    @unlink($image->getLocation());
+                    /** @scrutinizer ignore-unhandled */@unlink($image->getLocation());
                     $id = $quiz->getObjectID();
                     break;
                 }
@@ -162,7 +163,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
             }
 
             // delete tmp file
-            @unlink($image->getLocation());
+            /** @scrutinizer ignore-unhandled */@unlink($image->getLocation());
             $image->setProcessed($newFileLocation);
         }
     }

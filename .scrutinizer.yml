@@ -13,6 +13,7 @@ build:
             tests:
               override:
                 - php-scrutinizer-run
+                - js-scrutinizer-run
 filter:
   dependency_paths:
     - wcf/

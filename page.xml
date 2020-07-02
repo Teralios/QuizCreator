@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/page.xsd">
+	<import>
+		<!-- dynamic -->
+		<page identifier="de.teralios.quizMaker.QuizList">
+			<pageType>system</pageType>
+			<controller>wcf\page\QuizListPage</controller>
+			<name language="de">Quiz</name>
+			<name language="en">Quizzes</name>
+			<!--<options></options>
+			<permissions></permissions>-->
+			<allowSpidersToIndex>1</allowSpidersToIndex>
+			<content language="en">
+				<title>Quizzes</title>
+			</content>
+			<content language="de">
+				<title>Quiz</title>
+			</content>
+		</page>
+	</import>
+</data>

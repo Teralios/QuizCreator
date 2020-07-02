@@ -10,9 +10,10 @@ CREATE TABLE wcf1_quiz (
     isActive TINYINT(1) NOT NULL DEFAULT 0,
     questions SMALLINT(3) NOT NULL DEFAULT 0,
     goals SMALLINT(3) NOT NULL DEFAULT 0,
-    KEY (type),
+    KEY (title),
+    KEY (creationDate),
     KEY (languageID),
-    KEY (type, languageID)
+    KEY (languageID, isActive)
 );
 
 DROP TABLE IF EXISTS wcf1_quiz_question;

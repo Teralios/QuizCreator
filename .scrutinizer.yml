@@ -1,19 +1,20 @@
 build:
-        environment:
-          php:
-            version: 7.4
-        nodes:
-          analysis:
-            dependencies:
-              before:
-                - git clone https://github.com/WoltLab/WCF.git wcf/
-                - cd wcf/
-                - git checkout 5.2
-                - cd ..
-            tests:
-              override:
-                - php-scrutinizer-run
-                - js-scrutinizer-run
+  environment:
+    php:
+      version: 7.4
+  nodes:
+    analysis:
+      dependencies:
+        before:
+        - git clone https://github.com/WoltLab/WCF.git wcf/
+        - cd wcf/
+        - git checkout 5.2
+        - cd ..
+      tests:
+        override:
+          - php-scrutinizer-run
+          - js-scrutinizer-run
+          - scss-lint-run
 filter:
   dependency_paths:
     - wcf/

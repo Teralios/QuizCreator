@@ -6,32 +6,32 @@ There are two types of quizzes:
 * __Competition__ - where members compete against each other for the high score. The value of the correct answer drops from 10 points to 1 over time.
 * __Fun__ - Here it doesn't matter how long it takes, there is always 1 point, at the end you can present a funny evaluation via goals.
 
-# Todo
-## Beta 1
+## Todo
+### Beta 1
  -[ ] Implement Quiz in frontend
  -[ ] Implement base javascript for play
  -[ ] Implement base javascript for play on QuizList
 
-## Beta 2
- - [ ] Implement frontend for manage quiz
- - [ ] Implement player list for quiz
- - [ ] Implement additional content on QuizList and Quiz
-   - [ ] Last Player?
-   - [ ] average score?
+### Beta 2
+ -[ ] Implement frontend for manage quiz
+ -[ ] Implement player list for quiz
+ -[ ] Implement additional content on QuizList and Quiz
+   -[ ] Last Player?
+   -[ ] average score?
 
-## Beta 3
- - [ ] Implement more permissions
- - [ ] Implement "Quiz of the Day"-Box
- - [ ] Implement Quiz BBCode
+### Beta 3
+ -[ ] Implement more permissions
+ -[ ] Implement "Quiz of the Day"-Box
+ -[ ] Implement Quiz BBCode
 
-## Beta 4
- - [ ] Implement Tags for quiz
- - [ ] Implement reaction
- - [ ] Change image to media?
+### Beta 4
+ -[ ] Implement Tags for quiz
+ -[ ] Implement reaction
+ -[ ] Change image to media?
 
-## Beta 5
- - [ ] Implement trophies
- - [ ] ???
+### Beta 5
+ -[ ] Implement trophies
+ -[ ] ???
  
-## RC1
- - [ ] Fix issues
+### RC1
+ -[ ] Fix issues

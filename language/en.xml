@@ -16,7 +16,6 @@
 		<item name="wcf.acp.quizMaker.question.order"><![CDATA[Position]]></item>
 		<item name="wcf.acp.quizMaker.goal.title"><![CDATA[Name of goal]]></item>
 		<item name="wcf.acp.quizMaker.goal.points"><![CDATA[Min. points]]></item>
-		<item name="wcf.acp.quizMaker.add"><![CDATA[Add question]]></item>
 		<item name="wcf.acp.quizMaker.question.optionA"><![CDATA[Answer A]]></item>
 		<item name="wcf.acp.quizMaker.question.optionB"><![CDATA[Answer B]]></item>
 		<item name="wcf.acp.quizMaker.question.optionC"><![CDATA[Answer C]]></item>

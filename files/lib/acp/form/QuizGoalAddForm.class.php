@@ -24,6 +24,7 @@ use wcf\system\form\builder\field\validation\FormFieldValidationError;
 class QuizGoalAddForm extends BaseQuizForm
 {
     // inherit vars
+    public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
     public $objectActionClass = GoalAction::class;
 
     public function createForm()

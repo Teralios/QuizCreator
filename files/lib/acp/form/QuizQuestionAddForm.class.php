@@ -21,6 +21,7 @@ use wcf\system\form\builder\field\TextFormField;
 class QuizQuestionAddForm extends BaseQuizForm
 {
     // inherit vars
+    public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
     public $objectActionClass = QuestionAction::class;
 
     /**

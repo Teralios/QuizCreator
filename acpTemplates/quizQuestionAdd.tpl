@@ -1,5 +1,4 @@
-{capture assign="formTitle"}{if $action == 'add'}{lang}wcf.acp.quizMaker.question.add{/lang}{else}{lang}wcf.acp.quizMaker.question.edit{/lang}{/if}{/capture}
+{assign var="__formTitle" value='wcf.acp.quizMaker.question.'|concat:$action}
+{assign var="__formAnchor" value="#questions"}
 
-{assign var="formHeaderTitle" value='wcf.acp.quizMaker.question.'|concat:$action}
-
-{include file='quizBaseForm'}
+{include file='_quizFormBase'}

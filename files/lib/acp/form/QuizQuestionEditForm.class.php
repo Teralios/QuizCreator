@@ -1,4 +1,5 @@
 <?php
+
 namespace wcf\acp\form;
 
 // imports

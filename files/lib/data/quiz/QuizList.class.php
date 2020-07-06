@@ -1,6 +1,8 @@
 <?php
+
 namespace wcf\data\quiz;
 
+// imports
 use wcf\data\DatabaseObjectList;
 
 /**

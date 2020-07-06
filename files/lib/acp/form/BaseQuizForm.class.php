@@ -1,6 +1,8 @@
 <?php
+
 namespace wcf\acp\form;
 
+// imports
 use wcf\data\quiz\Quiz;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\exception\IllegalLinkException;

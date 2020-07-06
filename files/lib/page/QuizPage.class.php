@@ -6,8 +6,6 @@ namespace wcf\page;
 use wcf\data\Quiz\Quiz;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
-use wcf\system\exception\SystemException;
-use wcf\system\page\PageLocationManager;
 use wcf\system\WCF;
 
 /**
@@ -52,17 +50,6 @@ class QuizPage extends AbstractPage
             throw new PermissionDeniedException();
             // @todo implement user rights for see not active quizzes.
         }
-    }
-
-    /**
-     * @inheritDoc
-     * @throws SystemException
-     */
-    public function readData()
-    {
-        parent::readData();
-
-        //PageLocationManager::getInstance()->addParentLocation('de.teralios.quizMaker.QuizList');
     }
 
     /**

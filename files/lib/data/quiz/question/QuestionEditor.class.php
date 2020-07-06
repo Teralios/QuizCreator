@@ -1,8 +1,11 @@
 <?php
+
 namespace wcf\data\quiz\question;
 
 // imports
 use wcf\data\DatabaseObjectEditor;
+use wcf\system\database\exception\DatabaseQueryException;
+use wcf\system\exception\SystemException;
 use wcf\system\WCF;
 
 /**
@@ -30,7 +33,7 @@ class QuestionEditor extends DatabaseObjectEditor
 
     /**
      * @param array $parameters
-     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws DatabaseQueryException
      */
     public function update(array $parameters = [])
     {
@@ -43,7 +46,7 @@ class QuestionEditor extends DatabaseObjectEditor
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws DatabaseQueryException
      */
     public static function create(array $parameters = [])
     {
@@ -62,7 +65,7 @@ class QuestionEditor extends DatabaseObjectEditor
      * Update positions.
      * @param int $quizID
      * @param int $position
-     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws DatabaseQueryException
      */
     public static function updatePositionsBeforeCreate(int $quizID, int $position)
     {
@@ -81,8 +84,8 @@ class QuestionEditor extends DatabaseObjectEditor
     /**
      * Update positions after deletion.
      * @param int $quizID
-     * @throws \wcf\system\database\exception\DatabaseQueryException
-     * @throws \wcf\system\exception\SystemException
+     * @throws DatabaseQueryException
+     * @throws SystemException
      */
     public static function updatePositionAfterDelete(int $quizID)
     {
@@ -107,7 +110,7 @@ class QuestionEditor extends DatabaseObjectEditor
     /**
      * Update positions of other questions.
      * @param int $newPosition
-     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws DatabaseQueryException
      */
     protected function updatePositions(int $newPosition)
     {

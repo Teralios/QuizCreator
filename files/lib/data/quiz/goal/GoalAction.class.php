@@ -1,10 +1,13 @@
 <?php
+
 namespace wcf\data\quiz\goal;
 
 // imports
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\Quiz\Quiz;
 use wcf\data\Quiz\QuizEditor;
+use wcf\system\database\exception\DatabaseQueryException;
+use wcf\system\exception\SystemException;
 
 /**
  * Class GoalAction
@@ -23,7 +26,7 @@ class GoalAction extends AbstractDatabaseObjectAction
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\exception\SystemException
+     * @throws SystemException
      */
     public function create()
     {
@@ -39,8 +42,8 @@ class GoalAction extends AbstractDatabaseObjectAction
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\database\exception\DatabaseQueryException
-     * @throws \wcf\system\exception\SystemException
+     * @throws DatabaseQueryException
+     * @throws SystemException
      */
     public function delete()
     {

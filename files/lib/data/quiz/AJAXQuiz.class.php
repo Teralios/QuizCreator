@@ -6,6 +6,7 @@ namespace wcf\data\quiz;
 use wcf\data\DatabaseObject;
 use wcf\data\quiz\goal\GoalList;
 use wcf\data\quiz\question\QuestionList;
+use wcf\system\exception\SystemException;
 
 /**
  * Class AJAXQuiz
@@ -32,7 +33,7 @@ class AJAXQuiz extends Quiz
      * @param int $quizID
      * @param array|null $data
      * @param DatabaseObject|null $databaseObject
-     * @throws \wcf\system\exception\SystemException
+     * @throws SystemException
      */
     public function __construct(int $quizID, array $data = null, DatabaseObject $databaseObject = null)
     {
@@ -67,7 +68,7 @@ class AJAXQuiz extends Quiz
     }
 
     /**
-     * @throws \wcf\system\exception\SystemException
+     * @throws SystemException
      */
     protected function initParts()
     {

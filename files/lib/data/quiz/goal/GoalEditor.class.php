@@ -3,7 +3,6 @@ namespace wcf\data\quiz\goal;
 
 // imports
 use wcf\data\DatabaseObjectEditor;
-use wcf\system\WCF;
 
 /**
  * Class GoalEditor

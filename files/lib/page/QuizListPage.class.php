@@ -4,6 +4,7 @@ namespace wcf\page;
 
 // imports
 use wcf\data\quiz\QuizList;
+use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
 use wcf\system\WCF;
 
@@ -26,7 +27,7 @@ class QuizListPage extends SortablePage
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\exception\SystemException
+     * @throws SystemException
      */
     public function initObjectList()
     {

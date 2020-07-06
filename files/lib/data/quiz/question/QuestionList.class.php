@@ -1,8 +1,10 @@
 <?php
+
 namespace wcf\data\quiz\question;
 
 use wcf\data\DatabaseObjectList;
 use wcf\data\quiz\Quiz;
+use wcf\system\exception\SystemException;
 
 /**
  * Class QuestionList
@@ -22,7 +24,7 @@ class QuestionList extends DatabaseObjectList
     /**
      * QuestionList constructor.
      * @param Quiz|null $quiz
-     * @throws \wcf\system\exception\SystemException
+     * @throws SystemException
      */
     public function __construct(Quiz $quiz = null)
     {

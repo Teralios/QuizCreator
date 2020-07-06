@@ -1,9 +1,13 @@
 <?php
+
 namespace wcf\data\quiz;
 
 // imports
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\IToggleAction;
+use wcf\system\database\exception\DatabaseQueryException;
+use wcf\system\database\exception\DatabaseQueryExecutionException;
+use wcf\system\exception\PermissionDeniedException;
 use wcf\system\file\upload\UploadFile;
 use wcf\system\WCF;
 
@@ -26,7 +30,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\exception\PermissionDeniedException
+     * @throws PermissionDeniedException
      */
     public function validateToggle()
     {
@@ -35,7 +39,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\database\exception\DatabaseQueryException | \wcf\system\database\exception\DatabaseQueryExecutionException
+     * @throws DatabaseQueryException | DatabaseQueryExecutionException
      */
     public function create()
     {
@@ -57,7 +61,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\database\exception\DatabaseQueryException | \wcf\system\database\exception\DatabaseQueryExecutionException
+     * @throws DatabaseQueryException | DatabaseQueryExecutionException
      */
     public function update()
     {
@@ -105,7 +109,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
      * @param int $quizID
      * @param bool $useCopy
      * @return string
-     * @throws \wcf\system\database\exception\DatabaseQueryException | \wcf\system\database\exception\DatabaseQueryExecutionException
+     * @throws DatabaseQueryException | DatabaseQueryExecutionException
      */
     protected function saveImage(UploadFile $image, int $quizID, bool $useCopy = false): string
     {
@@ -130,7 +134,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
     /**
      * Update image.
-     * @throws \wcf\system\database\exception\DatabaseQueryException | \wcf\system\database\exception\DatabaseQueryExecutionException
+     * @throws DatabaseQueryException | DatabaseQueryExecutionException
      */
     public function updateImages()
     {

@@ -4,6 +4,7 @@ namespace wcf\data\quiz\goal;
 // imports
 use wcf\data\DatabaseObjectList;
 use wcf\data\quiz\Quiz;
+use wcf\system\exception\SystemException;
 
 /**
  * Class GoalList
@@ -26,7 +27,7 @@ class GoalList extends DatabaseObjectList
     /**
      * GoalList constructor.
      * @param Quiz|null $quiz
-     * @throws \wcf\system\exception\SystemException
+     * @throws SystemException
      */
     public function __construct(Quiz $quiz = null)
     {

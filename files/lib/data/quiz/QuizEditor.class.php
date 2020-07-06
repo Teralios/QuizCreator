@@ -1,8 +1,11 @@
 <?php
+
 namespace wcf\data\Quiz;
 
 // imports
 use wcf\data\DatabaseObjectEditor;
+use wcf\system\database\exception\DatabaseQueryException;
+use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\file\upload\UploadFile;
 use wcf\system\WCF;
 use wcf\util\FileUtil;
@@ -74,8 +77,8 @@ class QuizEditor extends DatabaseObjectEditor
      * @param int $quizID
      * @param int $counter
      * @param bool $questions
-     * @throws \wcf\system\database\exception\DatabaseQueryException
-     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
+     * @throws DatabaseQueryException
+     * @throws DatabaseQueryExecutionException
      */
     public static function updateCounterAfterDelete(int $quizID, int $counter, bool $questions = true)
     {

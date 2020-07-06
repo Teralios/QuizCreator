@@ -1,9 +1,11 @@
 <?php
+
 namespace wcf\acp\page;
 
 // imports
 use wcf\data\quiz\QuizList;
 use wcf\page\MultipleLinkPage;
+use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
 use wcf\system\WCF;
 
@@ -23,7 +25,7 @@ class QuizListPage extends MultipleLinkPage
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\exception\SystemException
+     * @throws SystemException
      */
     public function assignVariables()
     {

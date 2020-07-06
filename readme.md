@@ -4,7 +4,7 @@ Adds a simple quiz system to the [WoltLab® Suite Core(WSC)](https://www.woltlab
 
 There are two types of quizzes:
 * __Competition__ - where members compete against each other for the high score. The value of the correct answer drops from 10 points to 1 over time.
-* __Fun__ - Here it doesn't matter how long it takes a member, there is always 1 point, at the end you can present a funny evaluation via goals.
+* __Fun__ - Here it doesn't matter how long it takes, there is always 1 point, at the end you can present a funny evaluation via goals.
 
 # Todo
 ## Beta 1

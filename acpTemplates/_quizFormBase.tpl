@@ -44,7 +44,7 @@
     {include file='header' pageTitle=$__formTitle}
     {@$__contentHeader}
 {else}
-    {include file='header' contentHeader=$__contentHeader pageTitle=$__formTitle}
+    {include file='header' pageTitle=$__formTitle contentHeader=$__contentHeader}
 {/if}
 
 {@$form->getHtml()}

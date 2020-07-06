@@ -1,3 +1,4 @@
+{* sidebar *}
 {capture assign='sidebarRight'}
     <section class="box">
         <h2 class="boxTitle">{lang}wcf.quizMaker.quizList.box.bestPlayers.quiz{/lang}</h2>
@@ -18,8 +19,20 @@
     </section>
 {/capture}
 
-{include file='header' pageTitle=$quiz->getTitle()}
+{* variables *}
+{assign var="pageTitle" value=$quiz->getTitle()}
+{assign var="contentTitle" value=$quiz->getTitle()}
+{capture assign="contentDescription"}
+    <span
+        class="icon icon16 {if $quiz->type == 'competition'}fa-trophy{else}fa-child{/if} jsTooltip"
+        title="{lang}wcf.acp.quizMaker.quiz.type.{@$quiz->type}{/lang}">
+    </span>
+    {$quiz->description}
+{/capture}
 
-Quiz!
+{* template *}
+{include file='header'}
+
+
 
 {include file='footer'}

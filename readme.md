@@ -8,30 +8,30 @@ There are two types of quizzes:
 
 ## Todo
 ### Beta 1
- -[ ] Implement Quiz in frontend
- -[ ] Implement base javascript for play
- -[ ] Implement base javascript for play on QuizList
+ - [ ] Implement Quiz in frontend
+ - [ ] Implement base javascript for play
+ - [ ] Implement base javascript for play on QuizList
 
 ### Beta 2
- -[ ] Implement frontend for manage quiz
- -[ ] Implement player list for quiz
- -[ ] Implement additional content on QuizList and Quiz
-   -[ ] Last Player?
-   -[ ] average score?
+ - [ ] Implement frontend for manage quiz
+ - [ ] Implement player list for quiz
+ - [ ] Implement additional content on QuizList and Quiz
+   - [ ] Last Player?
+   - [ ] average score?
 
 ### Beta 3
- -[ ] Implement more permissions
- -[ ] Implement "Quiz of the Day"-Box
- -[ ] Implement Quiz BBCode
+ - [ ] Implement more permissions
+ - [ ] Implement "Quiz of the Day"-Box
+ - [ ] Implement Quiz BBCode
 
 ### Beta 4
- -[ ] Implement Tags for quiz
- -[ ] Implement reaction
- -[ ] Change image to media?
+ - [ ] Implement Tags for quiz
+ - [ ] Implement reaction
+ - [ ] Change image to media?
 
 ### Beta 5
- -[ ] Implement trophies
- -[ ] ???
+ - [ ] Implement trophies
+ - [ ] ???
  
 ### RC1
- -[ ] Fix issues
+ - [ ] Fix issues

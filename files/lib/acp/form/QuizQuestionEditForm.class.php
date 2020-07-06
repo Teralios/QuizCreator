@@ -7,6 +7,14 @@ use wcf\data\quiz\Quiz;
 use wcf\form\AbstractFormbuilderForm;
 use wcf\system\exception\IllegalLinkException;
 
+/**
+ * Class QuizQuestionEditForm
+ *
+ * @package   de.teralios.quizMaker
+ * @author    Teralios
+ * @copyright ©2020 Teralios.de
+ * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ */
 class QuizQuestionEditForm extends QuizQuestionAddForm
 {
     // inherit vars

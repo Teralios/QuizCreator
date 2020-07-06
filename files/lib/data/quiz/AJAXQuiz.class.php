@@ -10,7 +10,7 @@ use wcf\data\quiz\question\QuestionList;
 /**
  * Class AJAXQuiz
  *
- * @package   de.teralios.QuizMaker
+ * @package   de.teralios.quizMaker
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>

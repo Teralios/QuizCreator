@@ -9,7 +9,7 @@ use wcf\data\quiz\QuizEditor;
 /**
  * Class QuestionAction
  *
- * @package   de.teralios.QuizMaker
+ * @package   de.teralios.quizMaker
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>

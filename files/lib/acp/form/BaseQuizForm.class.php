@@ -6,6 +6,14 @@ use wcf\form\AbstractFormBuilderForm;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\WCF;
 
+/**
+ * Class BaseQuizForm
+ *
+ * @package   de.teralios.quizMaker
+ * @author    Teralios
+ * @copyright ©2020 Teralios.de
+ * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ */
 class BaseQuizForm extends AbstractFormBuilderForm
 {
     /**

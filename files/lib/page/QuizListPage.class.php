@@ -10,7 +10,7 @@ use wcf\system\WCF;
 /**
  * Class QuizListPage
  *
- * @package   de.teralios.QuizMaker
+ * @package   de.teralios.quizMaker
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
@@ -36,10 +36,17 @@ class QuizListPage extends SortablePage
             $languageIDs = WCF::getSession()->getLanguageIDs();
 
             $this->objectList->getConditionBuilder()->add('languageID IN (?' . str_repeat(', ?', count($languageIDs) - 1), $languageIDs);
-        } else {
-            $this->objectList->getConditionBuilder()->add('languageID = ?', [0]);
         }
 
         $this->objectList->getConditionBuilder()->add('isActive = ?', [1]);
+    }
+
+    public function assignVariables()
+    {
+        parent::assignVariables();
+
+        WCF::getTPL()->assign([
+            'validSortFields' => $this->validSortFields
+        ]);
     }
 }

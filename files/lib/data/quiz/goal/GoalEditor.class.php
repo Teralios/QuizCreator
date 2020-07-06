@@ -8,10 +8,11 @@ use wcf\system\WCF;
 /**
  * Class GoalEditor
  *
- * @package   de.teralios.QuizMaker
+ * @package   de.teralios.quizMaker
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ *
  * @property-read int $goalID
  * @property-read int $quizID
  * @property-read int $points

@@ -4,6 +4,14 @@ namespace wcf\data\quiz\question;
 use wcf\data\DatabaseObjectList;
 use wcf\data\quiz\Quiz;
 
+/**
+ * Class QuestionList
+ *
+ * @package   de.teralios.quizMaker
+ * @author    Teralios
+ * @copyright ©2020 Teralios.de
+ * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ */
 class QuestionList extends DatabaseObjectList
 {
     /**

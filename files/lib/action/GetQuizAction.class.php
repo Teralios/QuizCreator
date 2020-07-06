@@ -7,6 +7,14 @@ use wcf\data\quiz\AJAXQuiz;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 
+/**
+ * Class GetQuizAction
+ *
+ * @package   de.teralios.quizMaker
+ * @author    Teralios
+ * @copyright ©2020 Teralios.de
+ * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ */
 class GetQuizAction extends AbstractAjaxAction
 {
     /**

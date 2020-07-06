@@ -4,6 +4,7 @@ namespace wcf\data\Quiz;
 // imports
 use wcf\data\DatabaseObject;
 use wcf\data\ILinkableObject;
+use wcf\system\Exception\SystemException;
 use wcf\system\language\LanguageFactory;
 use wcf\system\request\IRouteController;
 use wcf\system\request\LinkHandler;
@@ -12,7 +13,7 @@ use wcf\system\WCF;
 /**
  * Class QuizData
  *
- * @package   de.teralios.QuizMaker
+ * @package   de.teralios.quizMaker
  * @author    Teralios
  * @copyright ©2019 Teralios.de
  * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
@@ -53,12 +54,12 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\Exception\SystemException
+     * @throws SystemException
      */
     public function getLink()
     {
         return LinkHandler::getInstance()->getLink(
-            '',
+            'Quiz',
             [
                 'object' => $this,
                 'forceFrontend' => true
@@ -95,7 +96,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
      * Returns language code.
      *
      * @return string
-     * @throws \wcf\system\exception\SystemException
+     * @throws SystemException
      */
     public function getLanguageIcon(): string
     {
@@ -113,7 +114,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
      * Returns name of language.
      *
      * @return string
-     * @throws \wcf\system\exception\SystemException
+     * @throws SystemException
      */
     public function getLanguageName(): string
     {

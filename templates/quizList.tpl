@@ -7,6 +7,26 @@
     {/if}
 {/capture}
 
+{capture assign='sidebarRight'}
+    <section class="box">
+        <h2 class="boxTitle">{lang}wcf.quizMaker.quizList.box.bestPlayers.overall{/lang}</h2>
+
+        <div class="boxContent">
+            PLACEHOLDER
+            {* @todo implement best players *}
+        </div>
+    </section>
+
+    <section class="box">
+        <h2 class="boxTitle">{lang}wcf.quizMaker.quizList.box.mostPlayed{/lang}</h2>
+
+        <div class="boxContent">
+            PLACEHOLDER
+            {* @todo implement most played *}
+        </div>
+    </section>
+{/capture}
+
 {include file='header'}
 
 {hascontent}
@@ -18,8 +38,7 @@
 {/hascontent}
 
 {if $objects|count}
-    <div class="section tabularBox">
-        <pre>{$objects|print_r}</pre>
+    <div class="section tabularBox messageGroupList">
         <ol class="tabularList">
             <li class="tabularListRow tabularListRowHead">
                 <ol class="tabularListColumns">
@@ -37,7 +56,7 @@
                                     <ul class="dropdownMenu">
                                         {foreach from=$validSortFields item=_sortField}
                                             <li{if $_sortField === $sortField} class="active"{/if}>
-                                                <a rel="nofollow" href="{link controller='QuizList'}pageNo={@$pageNo}&sortField={$_sortField}&sortOrder={if $sortField === $_sortField}{if $sortOrder === 'DESC'}ASC{else}DESC{/if}{else}{$sortOrder}{/if}">
+                                                <a rel="nofollow" href="{link controller='QuizList'}pageNo={@$pageNo}&sortField={$_sortField}&sortOrder={if $sortField === $_sortField}{if $sortOrder === 'DESC'}ASC{else}DESC{/if}{else}{$sortOrder}{/if}{/link}">
                                                     {if $_sortField == 'title'}{lang}wcf.global.title{/lang}{else}{lang}wcf.quizMaker.{$_sortField}{/lang}{/if}
                                                 </a>
                                             </li>
@@ -47,37 +66,40 @@
                             </li>
                         </ul>
                     </li>
-
-                    {foreach from=$objects item=quiz}
-                        <li class="tabularListRow">
-                            <ol class="tabularListColumns">
-                                <li class="columnIcon">
-
-                                </li>
-
-                                <li class="columnTitle">
-                                    <h3>{$quiz->title}</h3>
-                                </li>
-
-                                <li class="columnStats">
-                                    <dl class="plain statsDataList">
-                                        <dt>{lang}wcf.quizMaker.questions{/lang}</dt>
-                                        <dd>{@$quiz->questions|shortUnit}</dd>
-                                    </dl>
-                                    <dl class="plain statsDataList">
-                                        <dt>{lang}wcf.quizMaker.players{/lang}</dt>
-                                        <dd>{0|shortUnit}</dd>
-                                    </dl>
-
-                                    <div class="messageGroupListStatsSimple" aria-label="{lang}wcf.quizMaker.questions{/lang}">{@$quiz->questions|shortUnit}</div>
-                                </li>
-
-                                {event name='columns'}
-                            </ol>
-                        </li>
-                    {/foreach}
                 </ol>
             </li>
+
+            {foreach from=$objects item=quiz}
+                <li class="tabularListRow">
+                    <ol class="tabularListColumns">
+                        <li class="columnIcon">
+                            <span
+                                    class="icon icon32 {if $quiz->type == 'competition'}fa-trophy{else}fa-child{/if} jsTooltip"
+                                    title="{lang}wcf.acp.quizMaker.quiz.type.{@$quiz->type}{/lang}">
+                            </span>
+                        </li>
+
+                        <li class="columnSubject">
+                            <h3><a href="{$quiz->getLink()}">{$quiz->title}</a></h3>
+                        </li>
+
+                        <li class="columnStats">
+                            <dl class="plain statsDataList">
+                                <dt>{lang}wcf.quizMaker.questions{/lang}</dt>
+                                <dd>{@$quiz->questions|shortUnit}</dd>
+                            </dl>
+                            <dl class="plain statsDataList">
+                                <dt>{lang}wcf.quizMaker.players{/lang}</dt>
+                                <dd>{0|shortUnit}</dd>
+                            </dl>
+                            <div class="messageGroupListStatsSimple" aria-label="{lang}wcf.quizMaker.questions{/lang}">{@$quiz->questions|shortUnit}</div>
+                        </li>
+
+                        {* @TODO implent last player and higehst score *}
+                        {event name='columns'}
+                    </ol>
+                </li>
+            {/foreach}
         </ol>
     </div>
 {else}

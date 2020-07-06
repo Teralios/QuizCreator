@@ -5,7 +5,7 @@
 			<menu>com.woltlab.wcf.MainMenu</menu>
 			<title language="de">Quiz</title>
 			<title language="en">Quizzes</title>
-			<page>de.teralios.quizMaker.QuizList</page>
+			<page>de.teralios.quizMaker.quizList</page>
 		</item>
 	</import>
 </data>

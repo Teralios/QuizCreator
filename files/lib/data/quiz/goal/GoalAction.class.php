@@ -6,6 +6,14 @@ use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\Quiz\Quiz;
 use wcf\data\Quiz\QuizEditor;
 
+/**
+ * Class GoalAction
+ *
+ * @package   de.teralios.quizMaker
+ * @author    Teralios
+ * @copyright ©2020 Teralios.de
+ * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ */
 class GoalAction extends AbstractDatabaseObjectAction
 {
     protected $className = GoalEditor::class;

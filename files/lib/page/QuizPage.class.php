@@ -46,9 +46,8 @@ class QuizPage extends AbstractPage
             throw new IllegalLinkException();
         }
 
-        if ($this->quiz->isActive == 0) {
+        if ($this->quiz->isActive == 0 && !WCF::getSession()->getPermission('admin.content.quizMaker.canManage')) {
             throw new PermissionDeniedException();
-            // @todo implement user rights for see not active quizzes.
         }
     }
 

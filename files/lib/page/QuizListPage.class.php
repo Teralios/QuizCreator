@@ -39,9 +39,14 @@ class QuizListPage extends SortablePage
             $this->objectList->getConditionBuilder()->add('languageID IN (?' . str_repeat(', ?', count($languageIDs) - 1), $languageIDs);
         }
 
-        $this->objectList->getConditionBuilder()->add('isActive = ?', [1]);
+        if (!WCF::getSession()->getPermission('admin.content.quizMaker.canManage')) {
+            $this->objectList->getConditionBuilder()->add('isActive = ?', [1]);
+        }
     }
 
+    /**
+     * @inheritDoc
+     */
     public function assignVariables()
     {
         parent::assignVariables();

@@ -1,4 +1,4 @@
-[![license](https://img.shields.io/badge/license-CC--BY--SA%204.0-informational?style=flat-square)](https://creativecommons.org/licenses/by-sa/4.0/)[![Build Status](https://img.shields.io/travis/Teralios/QuizMaker.svg?style=flat-square)](https://travis-ci.org/Teralios/QuizMaker)[![Code Quality](https://img.shields.io/scrutinizer/g/Teralios/QuizMaker.svg?style=flat-square)](https://scrutinizer-ci.com/g/Teralios/QuizMaker/)
+[![GitHub](https://img.shields.io/github/license/Teralios/QuizMaker)](https://creativecommons.org/licenses/by-sa/4.0/)[![Build Status](https://img.shields.io/travis/Teralios/QuizMaker.svg?style=flat-square)](https://travis-ci.org/Teralios/QuizMaker)[![Code Quality](https://img.shields.io/scrutinizer/g/Teralios/QuizMaker.svg?style=flat-square)](https://scrutinizer-ci.com/g/Teralios/QuizMaker/)
 # Quiz Maker
 Adds a simple quiz system to the [WoltLab® Suite Core(WSC)](https://www.woltlab.com/features/) that allows the team to create quizzes for members of one community.
 

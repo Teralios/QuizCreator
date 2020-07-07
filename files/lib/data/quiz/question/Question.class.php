@@ -11,7 +11,7 @@ use wcf\data\DatabaseObject;
  * @package   de.teralios.quizMaker
  * @author    Teralios
  * @copyright ©2020 Teralios.de
- * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  *
  * @property-read int $questionID
  * @property-read int $quizID

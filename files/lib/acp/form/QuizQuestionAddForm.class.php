@@ -16,7 +16,7 @@ use wcf\system\form\builder\field\TextFormField;
  * @package   de.teralios.quizMaker
  * @author    Teralios
  * @copyright ©2020 Teralios.de
- * @license   CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0/>
+ * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
 class QuizQuestionAddForm extends BaseQuizForm
 {

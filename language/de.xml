@@ -34,9 +34,17 @@
 		<item name="wcf.acp.quizMaker.quiz.data"><![CDATA[Quiz Daten]]></item>
 	</category>
 	<category name="wcf.acp.menu">
-		<item name="wcf.acp.menu.link.quiz.list"><![CDATA[Quiz]]></item>
-		<item name="wcf.acp.menu.link.quizMaker"><![CDATA[Quiz Maker]]></item>
+		<item name="wcf.acp.menu.link.quizMaker"><![CDATA[Quiz]]></item>
 		<item name="wcf.acp.menu.link.quizMaker.list"><![CDATA[Quiz]]></item>
 		<item name="wcf.acp.menu.link.quizMaker.add"><![CDATA[Quiz hinzufügen]]></item>
+	</category>
+	<category name="wcf.quizMaker">
+		<item name="wcf.quizMaker.creationDate"><![CDATA[Datum]]></item>
+		<item name="wcf.quizMaker.quizList.box.bestPlayers.overall"><![CDATA[Beste Spieler]]></item>
+		<item name="wcf.quizMaker.quizList.box.mostPlayed"><![CDATA[Am meisten gespielt]]></item>
+		<item name="wcf.quizMaker.questions"><![CDATA[Fragen]]></item>
+		<item name="wcf.quizMaker.players"><![CDATA[Spieler]]></item>
+		<item name="wcf.quizMaker.quiz.box.bestPlayers"><![CDATA[Beste Spieler]]></item>
+		<item name="wcf.quizMaker.quiz.box.lastPlayers"><![CDATA[Letzte Spieler]]></item>
 	</category>
 </language>

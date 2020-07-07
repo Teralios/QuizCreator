@@ -57,7 +57,11 @@
                                         {foreach from=$validSortFields item=_sortField}
                                             <li{if $_sortField === $sortField} class="active"{/if}>
                                                 <a rel="nofollow" href="{link controller='QuizList'}pageNo={@$pageNo}&sortField={$_sortField}&sortOrder={if $sortField === $_sortField}{if $sortOrder === 'DESC'}ASC{else}DESC{/if}{else}{$sortOrder}{/if}{/link}">
-                                                    {if $_sortField == 'title'}{lang}wcf.global.title{/lang}{else}{lang}wcf.quizMaker.{$_sortField}{/lang}{/if}
+                                                    {if $_sortField == 'title'}
+                                                        {lang}wcf.global.title{/lang}
+                                                    {else}
+                                                        {lang}wcf.quizMaker.{$_sortField}{/lang}
+                                                    {/if}
                                                 </a>
                                             </li>
                                         {/foreach}
@@ -81,6 +85,7 @@
 
                         <li class="columnSubject">
                             <h3><a href="{$quiz->getLink()}">{$quiz->title}</a></h3>
+                            <small>{@$quiz->creationDate|time}</small>
                         </li>
 
                         <li class="columnStats">

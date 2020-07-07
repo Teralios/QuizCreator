@@ -1,7 +1,7 @@
 {* sidebar *}
 {capture assign='sidebarRight'}
     <section class="box">
-        <h2 class="boxTitle">{lang}wcf.quizMaker.quizList.box.bestPlayers.quiz{/lang}</h2>
+        <h2 class="boxTitle">{lang}wcf.quizMaker.quiz.box.bestPlayers{/lang}</h2>
 
         <div class="boxContent">
             PLACEHOLDER
@@ -10,7 +10,7 @@
     </section>
 
     <section class="box">
-        <h2 class="boxTitle">{lang}wcf.quizMaker.quizList.box.lastPlayers{/lang}</h2>
+        <h2 class="boxTitle">{lang}wcf.quizMaker.quiz.box.lastPlayers{/lang}</h2>
 
         <div class="boxContent">
             PLACEHOLDER

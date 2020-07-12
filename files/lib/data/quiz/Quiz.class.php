@@ -5,6 +5,8 @@ namespace wcf\data\Quiz;
 // imports
 use wcf\data\DatabaseObject;
 use wcf\data\ILinkableObject;
+use wcf\data\media\ViewableMedia;
+use wcf\data\media\ViewableMediaList;
 use wcf\system\bbcode\SimpleMessageParser;
 use wcf\system\Exception\SystemException;
 use wcf\system\language\LanguageFactory;
@@ -24,7 +26,7 @@ use wcf\system\request\LinkHandler;
  * @property-read string $title
  * @property-read string $description
  * @property-read string $type
- * @property-read string $image
+ * @property-read int $mediaID
  * @property-read int $creationDate
  * @property-read int $isActive
  * @property-read int $questions
@@ -39,6 +41,11 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
     // const
     const COMPETITION = 'competition';
     const FUN = 'fun';
+
+    /**
+     * @var ViewableMedia
+     */
+    public $mediaObject = null;
 
     /**
      * @inheritDoc
@@ -58,6 +65,28 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
     public function getDescription(bool $parsed = true): string
     {
         return ($parsed) ? SimpleMessageParser::getInstance()->parse($this->description) : $this->description;
+    }
+
+    public function getMedia() //: ?ViewableMedia
+    {
+        if (!$this->mediaID && $this->mediaObject === null) {
+            $mediaList = new ViewableMediaList();
+            $mediaList->getConditionBuilder()->add($mediaList->getDatabaseTableAlias() . '.mediaID = ?', [$this->mediaID]);
+            $mediaList->readObjects();
+
+            $this->mediaObject = $mediaList->search($this->mediaID);
+        }
+
+        return $this->mediaObject;
+    }
+
+    /**
+     * Set media object.
+     * @param ViewableMedia $media
+     */
+    public function setMedia(ViewableMedia $media) //: void
+    {
+        $this->mediaObject = $media;
     }
 
     /**

@@ -30,6 +30,9 @@ class QuizListPage extends SortablePage
      */
     public $languageID = 0;
 
+    /**
+     * @throws SystemException
+     */
     public function readParameters()
     {
         parent::readParameters();

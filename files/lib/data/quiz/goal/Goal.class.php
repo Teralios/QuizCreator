@@ -5,6 +5,8 @@ namespace wcf\data\quiz\goal;
 // imports
 use wcf\data\DatabaseOBject;
 use wcf\data\quiz\Quiz;
+use wcf\system\database\exception\DatabaseQueryException;
+use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\WCF;
 
 /**
@@ -35,6 +37,10 @@ class Goal extends DatabaseObject
     const TIME_L1 = 5;
     const TIME_L2 = 15;
 
+    /**
+     * @param Quiz $quiz
+     * @return float|int
+     */
     public static function calculateMaxPoints(Quiz $quiz)
     {
         if ($quiz->type == Quiz::FUN) {
@@ -44,6 +50,13 @@ class Goal extends DatabaseObject
         return $quiz->questions * static::POINTS_COMPETITION_L1;
     }
 
+    /**
+     * @param int $quizID
+     * @param int $points
+     * @return bool
+     * @throws DatabaseQueryException
+     * @throws DatabaseQueryExecutionException
+     */
     public static function checkGoalPoints(int $quizID, int $points): bool
     {
         $sql = 'SELECT count(quizID) as goal

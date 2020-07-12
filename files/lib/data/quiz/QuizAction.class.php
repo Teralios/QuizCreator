@@ -9,12 +9,9 @@ use wcf\data\IToggleAction;
 use wcf\data\quiz\goal\Goal;
 use wcf\data\quiz\goal\GoalList;
 use wcf\data\quiz\question\QuestionList;
-use wcf\system\database\exception\DatabaseQueryException;
-use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\UserInputException;
-use wcf\system\file\upload\UploadFile;
 use wcf\system\WCF;
 
 /**

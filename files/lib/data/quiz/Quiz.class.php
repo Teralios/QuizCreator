@@ -56,40 +56,6 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
     }
 
     /**
-     * Return description.
-     *
-     * @param bool $parsed
-     * @return string
-     * @throws SystemException
-     */
-    public function getDescription(bool $parsed = true): string
-    {
-        return ($parsed) ? SimpleMessageParser::getInstance()->/** @scrutinizer ignore-call */parse($this->description) : $this->description;
-    }
-
-    public function getMedia() //: ?ViewableMedia
-    {
-        if (!$this->mediaID && $this->mediaObject === null) {
-            $mediaList = new ViewableMediaList();
-            $mediaList->getConditionBuilder()->add($mediaList->getDatabaseTableAlias() . '.mediaID = ?', [$this->mediaID]);
-            $mediaList->readObjects();
-
-            $this->mediaObject = $mediaList->search($this->mediaID);
-        }
-
-        return $this->mediaObject;
-    }
-
-    /**
-     * Set media object.
-     * @param ViewableMedia $media
-     */
-    public function setMedia(ViewableMedia $media) //: void
-    {
-        $this->mediaObject = $media;
-    }
-
-    /**
      * @inheritDoc
      * @throws SystemException
      */
@@ -102,31 +68,5 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
                 'forceFrontend' => true
             ]
         );
-    }
-
-    /**
-     * Returns language code.
-     *
-     * @return string
-     * @throws SystemException
-     */
-    public function getLanguageIcon(): string
-    {
-        if (empty($this->languageID)) {
-            return '';
-        }
-
-        return LanguageFactory::getInstance()->/** @scrutinizer ignore-call */getLanguage($this->languageID)->getIconPath();
-    }
-
-    /**
-     * Returns language name.
-     *
-     * @return string
-     * @throws SystemException
-     */
-    public function getLanguageName(): string
-    {
-        return LanguageFactory::getInstance()->/** @scrutinizer ignore-call */getLanguage($this->languageID)->languageName;
     }
 }

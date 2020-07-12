@@ -37,7 +37,7 @@ class QuizListPage extends SortablePage
     {
         parent::readParameters();
 
-        if (LanguageFactory::getInstance()->multilingualismEnabled()) {
+        if (LanguageFactory::getInstance()->/** @scrutinizer ignore-call */multilingualismEnabled()) {
             $this->languageID = (isset($_REQUEST['languageID'])) ? (int)$_REQUEST['languageID'] : 0;
         }
     }

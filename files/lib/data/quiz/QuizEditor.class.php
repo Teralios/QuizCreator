@@ -62,17 +62,6 @@ class QuizEditor extends DatabaseObjectEditor
     }
 
     /**
-     * Return name for quiz image.
-     * @param int $quizID
-     * @param UploadFile $image
-     * @return string
-     */
-    public static function getImageFileName(int $quizID, UploadFile $image): string
-    {
-        return Quiz::IMAGE_DIR . 'quiz_' . $quizID . '.' . ImageUtil::getExtensionByMimeType(FileUtil::getMimeType($image->getLocation()));
-    }
-
-    /**
      * Update counter for quiz after deletion of questions or stages.
      * @param int $quizID
      * @param int $counter

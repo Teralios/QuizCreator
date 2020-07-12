@@ -6,6 +6,7 @@ namespace wcf\acp\form;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizAction;
 use wcf\form\AbstractFormBuilderForm;
+use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\language\ContentLanguageFormField;
 use wcf\system\form\builder\field\MultilineTextFormField;
@@ -68,7 +69,7 @@ class QuizAddForm extends AbstractFormBuilderForm
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\exception\SystemException
+     * @throws SystemException
      */
     public function saved()
     {
@@ -77,7 +78,7 @@ class QuizAddForm extends AbstractFormBuilderForm
         if ($this->formAction == 'create') {
             $quiz = $this->objectAction->getReturnValues()['returnValues'];
             if ($quiz instanceof Quiz) {
-                HeaderUtil::redirect(LinkHandler::getInstance()->getLink('QuizEdit', ['id' => $quiz->quizID, 'success' => 1]));
+                HeaderUtil::redirect(LinkHandler::getInstance()->/** @scrutinizer ignore-call */getLink('QuizEdit', ['id' => $quiz->quizID, 'success' => 1]));
             }
         }
     }

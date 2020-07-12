@@ -64,7 +64,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
      */
     public function getDescription(bool $parsed = true): string
     {
-        return ($parsed) ? SimpleMessageParser::getInstance()->parse($this->description) : $this->description;
+        return ($parsed) ? SimpleMessageParser::getInstance()->/** @scrutinizer ignore-call */parse($this->description) : $this->description;
     }
 
     public function getMedia() //: ?ViewableMedia
@@ -95,7 +95,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
      */
     public function getLink()
     {
-        return LinkHandler::getInstance()->getLink(
+        return LinkHandler::getInstance()->/** @scrutinizer ignore-call */getLink(
             'Quiz',
             [
                 'object' => $this,
@@ -116,7 +116,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
             return '';
         }
 
-        return LanguageFactory::getInstance()->getLanguage($this->languageID)->getIconPath();
+        return LanguageFactory::getInstance()->/** @scrutinizer ignore-call */getLanguage($this->languageID)->getIconPath();
     }
 
     /**
@@ -127,6 +127,6 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
      */
     public function getLanguageName(): string
     {
-        return LanguageFactory::getInstance()->getLanguage($this->languageID)->languageName;
+        return LanguageFactory::getInstance()->/** @scrutinizer ignore-call */getLanguage($this->languageID)->languageName;
     }
 }

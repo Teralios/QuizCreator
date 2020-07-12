@@ -4,10 +4,16 @@ namespace wcf\data\quiz;
 
 // imports
 use wcf\data\AbstractDatabaseObjectAction;
+use wcf\data\DatabaseObjectDecorator;
 use wcf\data\IToggleAction;
+use wcf\data\quiz\goal\Goal;
+use wcf\data\quiz\goal\GoalList;
+use wcf\data\quiz\question\QuestionList;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\PermissionDeniedException;
+use wcf\system\exception\SystemException;
+use wcf\system\exception\UserInputException;
 use wcf\system\file\upload\UploadFile;
 use wcf\system\WCF;
 
@@ -27,7 +33,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     protected $permissionsUpdate = ['admin.content.quizMaker.canManage'];
     protected $permissionsDelete = ['admin.content.quizMaker.canManage'];
     protected $permissionsToggle = ['admin.content.quizMaker.canManage'];
-    protected $allowGuestAccess = ['getQuizData'];
+    protected $allowGuestAccess = ['loadData'];
 
     /**
      * @var Quiz
@@ -67,5 +73,46 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         foreach ($this->objects as $quiz) {
             $quiz->toggle();
         }
+    }
+
+    /**
+     * Validate loadData method.
+     * @throws UserInputException
+     */
+    public function validateLoadData()
+    {
+        $this->quiz = $this->getSingleObject();
+
+        if ($this->quiz instanceof DatabaseObjectDecorator) {
+            $this->quiz = $this->quiz->getDecoratedObject();
+        }
+    }
+
+    /**
+     * @return array
+     * @throws SystemException
+     */
+    public function loadData()
+    {
+        $data = $this->quiz->getData();
+        $data['questionList'] = [];
+        $data['goalList'] = [];
+
+        // load questions
+        $questionList = new QuestionList($this->quiz);
+        $questionList->readObjects();
+        foreach ($questionList as $question) {
+            $data['questionList'][] = $question;
+        }
+
+        // load goals
+        $goalList = new GoalList($this->quiz);
+        $goalList->readObjects();
+        foreach ($goalList as $goal) {
+            /** @var $goal Goal */
+            $data['goalList'][$goal->points] = $goal;
+        }
+
+        return $data;
     }
 }

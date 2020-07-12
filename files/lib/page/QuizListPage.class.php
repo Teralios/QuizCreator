@@ -26,6 +26,20 @@ class QuizListPage extends SortablePage
     public $validSortFields = ['title', 'creationDate'];
 
     /**
+     * @var int
+     */
+    public $languageID = 0;
+
+    public function readParameters()
+    {
+        parent::readParameters();
+
+        if (LanguageFactory::getInstance()->multilingualismEnabled()) {
+            $this->languageID = (isset($_REQUEST['languageID'])) ? (int)$_REQUEST['languageID'] : 0;
+        }
+    }
+
+    /**
      * @inheritDoc
      * @throws SystemException
      */
@@ -34,9 +48,13 @@ class QuizListPage extends SortablePage
         parent::initObjectList();
 
         if (LanguageFactory::getInstance()->multilingualismEnabled()) {
-            $languageIDs = WCF::getSession()->getLanguageIDs();
+            if (empty($this->languageID)) {
+                $languageIDs = WCF::getSession()->getLanguageIDs();
 
-            $this->objectList->getConditionBuilder()->add('languageID IN (?' . str_repeat(', ?', count($languageIDs) - 1), $languageIDs);
+                $this->objectList->getConditionBuilder()->add('languageID IN (?' . str_repeat(', ?', count($languageIDs) - 1) . ')', $languageIDs);
+            } else {
+                $this->objectList->getConditionBuilder()->add('languageID = ?', [$this->languageID]);
+            }
         }
 
         if (!WCF::getSession()->getPermission('admin.content.quizMaker.canManage')) {
@@ -52,7 +70,8 @@ class QuizListPage extends SortablePage
         parent::assignVariables();
 
         WCF::getTPL()->assign([
-            'validSortFields' => $this->validSortFields
+            'validSortFields' => $this->validSortFields,
+            'languageID' => $this->languageID
         ]);
     }
 }

@@ -26,13 +26,14 @@
         </div>
     </section>
 {/capture}
+{capture assign='linkParameters'}&sortField={$sortField}&sortOrder={$sortOrder}{if !$languageID|empty}&languageID={$languageID}{/if}{/capture}
 
 {include file='header'}
 
 {hascontent}
     <div class="paginationTop">
         {content}
-        {pages print=true assign='pagesLinks' controller='QuizList' link="pageNo=%d"}
+            {pages print=true assign='pagesLinks' controller='QuizList' link='pageNo=%d&$linkParameters'}
         {/content}
     </div>
 {/hascontent}
@@ -56,7 +57,7 @@
                                     <ul class="dropdownMenu">
                                         {foreach from=$validSortFields item=_sortField}
                                             <li{if $_sortField === $sortField} class="active"{/if}>
-                                                <a rel="nofollow" href="{link controller='QuizList'}pageNo={@$pageNo}&sortField={$_sortField}&sortOrder={if $sortField === $_sortField}{if $sortOrder === 'DESC'}ASC{else}DESC{/if}{else}{$sortOrder}{/if}{/link}">
+                                                <a rel="nofollow" href="{link controller='QuizList'}pageNo={@$pageNo}{if !$languageID|empty}&languageID={$languageID}{/if}&sortField={$_sortField}&sortOrder={if $sortField === $_sortField}{if $sortOrder === 'DESC'}ASC{else}DESC{/if}{else}{$sortOrder}{/if}{/link}">
                                                     {if $_sortField == 'title'}
                                                         {lang}wcf.global.title{/lang}
                                                     {else}
@@ -99,6 +100,13 @@
                             </dl>
                             <div class="messageGroupListStatsSimple" aria-label="{lang}wcf.quizMaker.questions{/lang}">{@$quiz->questions|shortUnit}</div>
                         </li>
+                        {if !$quiz->languageID|empty}
+                            <li class="columnIcon">
+                                <a class="jsTooltip" href="{link controller='QuizList'}languageID={$quiz->languageID}{/link}" title="{lang}wcf.quizMaker.language{/lang}">
+                                    <img class="iconFlag" src="{$quiz->getLanguageIcon()}">
+                                </a>
+                            </li>
+                        {/if}
 
                         {* @TODO implent last player and higehst score *}
                         {event name='columns'}

@@ -27,7 +27,7 @@ There are two types of quizzes:
 ### Beta 4
   - [ ] Implement Tags for quiz
   - [ ] Implement reaction
-  - [ ] Change image to media?
+  - [x] Change image to media
 
 ### Beta 5
   - [ ] Implement trophies

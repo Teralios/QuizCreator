@@ -56,7 +56,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
      * @return string
      * @throws SystemException
      */
-    public function getDescription(bool $parsed = true)
+    public function getDescription(bool $parsed = true): string
     {
         return ($parsed) ? SimpleMessageParser::getInstance()->parse($this->description) : $this->description;
     }
@@ -88,24 +88,18 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
             return '';
         }
 
-        $icon = 'icon/flag/';
-        $icon .= LanguageFactory::fixLanguageCode(LanguageFactory::getInstance()->getLanguage($this->languageID)->languageCode) . '.svg';
-
-        return (file_exists(WCF_DIR . $icon)) ? WCF::getPath() . $icon : '';
+        return LanguageFactory::getInstance()->getLanguage($this->languageID)->getIconPath();
     }
 
     /**
-     * Returns name of language.
+     * Returns language name.
      *
      * @return string
      * @throws SystemException
      */
     public function getLanguageName(): string
     {
-        if (empty($this->languageID)) {
-            return '';
-        }
-
         return LanguageFactory::getInstance()->getLanguage($this->languageID)->languageName;
     }
+
 }

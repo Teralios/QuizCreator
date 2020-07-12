@@ -8,10 +8,10 @@ use wcf\data\quiz\QuizAction;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\language\ContentLanguageFormField;
+use wcf\system\form\builder\field\MultilineTextFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
-use wcf\system\form\builder\field\TextFormField;
 use wcf\system\form\builder\field\TitleFormField;
-use wcf\system\form\builder\field\UploadFormField;
+use wcf\system\form\builder\field\media\SingleMediaSelectionFormField;
 use wcf\system\form\builder\field\BooleanFormField;
 use wcf\system\request\LinkHandler;
 use wcf\util\HeaderUtil;
@@ -44,7 +44,7 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->label('wcf.global.title')
                 ->maximumLength(80)
                 ->required(),
-            TextFormField::create('description')
+            MultilineTextFormField::create('description')
                 ->label('wcf.global.description')
                 ->maximumLength(1000),
             ContentLanguageFormField::create('languageID'),
@@ -55,16 +55,8 @@ class QuizAddForm extends AbstractFormBuilderForm
                     'competition' => 'wcf.acp.quizMaker.quiz.type.competition'
                 ])
                 ->value('fun'),
-            UploadFormField::create('image') // maybe replace with media manager?
-                ->label('wcf.acp.quizMaker.quiz.image')
-                ->imageOnly()
-                ->maximum(1)
-                ->maximumFilesize(2 * 1024 * 1024) // @todo set options
-                /* @todo will be set when quiz design is finalized
-                ->minimumImageHeight(128)
-                ->maximumImageHeight(128)
-                ->minimumImageWidth(512)
-                ->maximumImageWidth(512)*/,
+            SingleMediaSelectionFormField::create('mediaID')
+                ->imageOnly(),
             BooleanFormField::create('isActive')
                 ->label('wcf.acp.quizMaker.quiz.isActive')
                 ->value(0)

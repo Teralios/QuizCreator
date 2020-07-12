@@ -3,10 +3,10 @@ CREATE TABLE wcf1_quiz (
     quizID INT(10) NOT NULL auto_increment PRIMARY KEY,
     languageID INT(10) NULL,
     creationDate INT(10) NOT NULL DEFAULT 0,
+    mediaID INT(10) NULL,
     type ENUM('fun', 'competition') DEFAULT 'fun',
     title VARCHAR(100) NOT NULL DEFAULT '',
     description TEXT,
-    image VARCHAR(35) NOT NULL DEFAULT '',
     isActive TINYINT(1) NOT NULL DEFAULT 0,
     questions SMALLINT(3) NOT NULL DEFAULT 0,
     goals SMALLINT(3) NOT NULL DEFAULT 0,
@@ -45,5 +45,6 @@ CREATE TABLE wcf1_quiz_goal (
 
 -- foreign keys
 ALTER TABLE wcf1_quiz ADD FOREIGN KEY (languageID) REFERENCES wcf1_language (languageID) ON DELETE SET NULL;
+ALTER TABLE wcf1_quiz ADD FOREIGN KEY (mediaID) REFERENCES wcf1_media(mediaID) ON DELETE SET NULL;
 ALTER TABLE wcf1_quiz_question ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (quizID) ON DELETE CASCADE;
 ALTER TABLE wcf1_quiz_goal ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (quizID) ON DELETE CASCADE;

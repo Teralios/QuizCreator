@@ -4,6 +4,8 @@ namespace wcf\data\quiz\question;
 
 // imports
 use wcf\data\DatabaseObject;
+use wcf\system\bbcode\SimpleMessageParser;
+use wcf\system\exception\SystemException;
 
 /**
  * Class Question
@@ -22,9 +24,21 @@ use wcf\data\DatabaseObject;
  * @property-read string $optionC
  * @property-read string $optionD
  * @property-read string $answer
+ * @property-read string explanation
  */
 class Question extends DatabaseObject
 {
     protected static $databaseTableName = 'quiz_question';
     protected static $databaseTableIndexName = 'questionID';
+
+    /**
+     * Returns parsed explanation
+     * @param bool $parsed
+     * @return string
+     * @throws SystemException
+     */
+    public function getExplanation(bool $parsed = true)
+    {
+        return ($parsed) ? SimpleMessageParser::getInstance()->parse($this->explanation) : $this->explanation;
+    }
 }

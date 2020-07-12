@@ -6,6 +6,7 @@ namespace wcf\acp\form;
 use wcf\data\quiz\question\QuestionAction;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\HiddenFormField;
+use wcf\system\form\builder\field\MultilineTextFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
 use wcf\system\form\builder\field\ShowOrderFormField;
 use wcf\system\form\builder\field\TextFormField;
@@ -70,7 +71,7 @@ class QuizQuestionAddForm extends BaseQuizForm
                     'C' => 'wcf.acp.quizMaker.question.optionC',
                     'D' => 'wcf.acp.quizMaker.question.optionD'
                 ]),
-            TextFormField::create('explanation')
+            MultilineTextFormField::create('explanation')
                 ->label('wcf.acp.quizMaker.question.explanation')
                 ->maximumLength(500),
             ShowOrderFormField::create('position')

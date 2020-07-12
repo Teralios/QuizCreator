@@ -5,6 +5,7 @@ namespace wcf\data\Quiz;
 // imports
 use wcf\data\DatabaseObject;
 use wcf\data\ILinkableObject;
+use wcf\system\bbcode\SimpleMessageParser;
 use wcf\system\Exception\SystemException;
 use wcf\system\language\LanguageFactory;
 use wcf\system\request\IRouteController;
@@ -41,16 +42,23 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
     const FUN = 'fun';
 
     /**
-     * Path for quiz images.
-     */
-    const IMAGE_DIR = 'images/quizmaker/';
-
-    /**
      * @inheritDoc
      */
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Return description.
+     *
+     * @param bool $parsed
+     * @return string
+     * @throws SystemException
+     */
+    public function getDescription(bool $parsed = true)
+    {
+        return ($parsed) ? SimpleMessageParser::getInstance()->parse($this->description) : $this->description;
     }
 
     /**
@@ -66,31 +74,6 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
                 'forceFrontend' => true
             ]
         );
-    }
-
-    /**
-     * Returns image with http path or location path.
-     *
-     * @param bool $usePath
-     * @return string
-     */
-    public function getImage(bool $usePath = true): string
-    {
-        if (empty($this->image)) {
-            return '';
-        }
-
-        return (($usePath) ? WCF::getPath() : WCF_DIR) . $this->image;
-    }
-
-    /**
-     * Returns image for form container.
-     *
-     * @return string[]
-     */
-    public function getImageUploadFileLocations(): array
-    {
-        return (!empty($this->getImage())) ? [$this->getImage(false)] : [];
     }
 
     /**

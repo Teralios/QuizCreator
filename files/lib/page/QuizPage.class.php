@@ -4,8 +4,10 @@ namespace wcf\page;
 
 // imports
 use wcf\data\Quiz\Quiz;
+use wcf\data\quiz\ViewableQuiz;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
+use wcf\system\exception\SystemException;
 use wcf\system\WCF;
 
 /**
@@ -32,6 +34,7 @@ class QuizPage extends AbstractPage
      * @inheritDoc
      * @throws IllegalLinkException
      * @throws PermissionDeniedException
+     * @throws SystemException
      */
     public function readParameters()
     {
@@ -41,14 +44,16 @@ class QuizPage extends AbstractPage
             $this->quizID = (int) $_REQUEST['id'];
         }
 
-        $this->quiz = new Quiz($this->quizID);
-        if (!$this->quiz->quizID) {
+        $quiz = new Quiz($this->quizID);
+        if (!$quiz->quizID) {
             throw new IllegalLinkException();
         }
 
-        if ($this->quiz->isActive == 0 && !WCF::getSession()->getPermission('admin.content.quizMaker.canManage')) {
+        if ($quiz->isActive == 0 && !WCF::getSession()->getPermission('admin.content.quizMaker.canManage')) {
             throw new PermissionDeniedException();
         }
+
+        $this->quiz = new ViewableQuiz($quiz);
     }
 
     /**

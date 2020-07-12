@@ -69,7 +69,7 @@ class ViewableQuiz extends DatabaseObjectDecorator
      * Set media object.
      * @param ViewableMedia $media
      */
-    public function setMedia(ViewableMedia $media) //: void
+    public function setMedia(/*?ViewableMedia*/ $media) //: void
     {
         $this->mediaObject = $media;
     }

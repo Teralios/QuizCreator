@@ -18,14 +18,14 @@
   }
 }
 
-#quizGame {
+.quizGame {
   border-top: $wcfContentBorderInner solid 1px;
 
   .borderTop {
     border-top: $wcfContentBorderInner solid 1px;
   }
 
-  #quizGameHeader {
+  .quizGameHeader {
     padding: 1em;
     display: grid;
     grid-template-columns: auto auto auto;
@@ -51,7 +51,7 @@
     }
   }
 
-  #quizGameContent {
+  .quizGameContent {
     text-align: center;
     padding: 1em;
 
@@ -85,8 +85,8 @@
     }
   }
 
-  #quizGameFooter {
-    border-top: $wcfContentBorderInner solid 1px;
+  .quizGameFooter {
+    visibilty: hidden;
     text-align: center;
     margin-top: 1em;
     padding: 1em;

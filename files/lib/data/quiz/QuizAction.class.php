@@ -76,7 +76,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
      * Validate loadData method.
      * @throws UserInputException
      */
-    public function validateLoadData()
+    public function validateLoadQuiz()
     {
         $this->quiz = $this->getSingleObject();
 
@@ -89,7 +89,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
      * @return array
      * @throws SystemException
      */
-    public function loadData()
+    public function loadQuiz()
     {
         $data = $this->quiz->getData();
         $data['questionList'] = [];

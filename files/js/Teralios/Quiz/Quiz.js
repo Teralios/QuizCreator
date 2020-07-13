@@ -4,38 +4,61 @@ define(['Ajax', 'Dom/Util', 'Language'], function (Ajax, Dom, Language) {
     var points = [10, 5, 1];
     var timeLimit = [5, 15, 0];
     var timeClasses = ['stage0', 'stage1', 'stage2'];
-    var currentTimeStage = 0;
-    var time = 0;
-    var type = 'competition';
-    var data = {};
-    var currentQuestion = 1;
 
-    return {
-        init: function () {
-            this.startButton = elById('quizStart');
-            this.startButton.addEventListener(WCF_CLICK_EVENT, this.startGame.bind(this));
+    /**
+     * @constructor
+     */
+    function Quiz(container, isCompetition = true)
+    {
+        this.init(container, isCompetition);
+    }
+
+    Quiz.prototype = {
+        init: function (quizContainer, isCompetition) {
+            // set base vars
+            this.quizID = elData(quizContainer, 'id');
+            this.currentStage = this.time = 0;
+            this.currentQuestion = 1;
+            this.currentScore = 0;
+            this.currentQuestionValue = points[this.currentStage];
+            this.isCompetition = isCompetition;
+
+            // select containers for game
+            this._container = quizContainer;
+            this._gameHeader = elBySel('.quizGameHeader', this._container);
+            this._gameContent = elBySel('.quizGameContent', this._container);
+            this._gameFooter = elBySel('.quizGameContent', this._container);
+
+            // set waiting overlay
+            this._loadingOverlay = elCreate('div');
+            this._loadingOverlay.className = 'quizLoadingOverlay';
+            this._loadingOverlay.innerHTML = '<span class="icon icon96 fa-spinner"></span>';
+            this._gameContent.classList.add('loading');
+            this._gameContent.appendChild(this._loadingOverlay);
+
+            // load data
+            Ajax.api(this);
         },
 
         startGame: function () {
-            // build quiz game header
+            // remove start button
+            elRemove(elBySel('.quizStart', this._gameContent));
+
+            // build data
             var headerHtml = '';
-            headerHtml += '<div id="questionCounter"><b>' + Language.get('wcf.quizMaker.play.question') + '</b>';
-            headerHtml += '<span id="currentQuestion"> ' + currentQuestion + '</span> / n</div>';
-            headerHtml += '<div id="questionTime"><b>' + Language.get('wcf.quizMaker.play.time') + '</b> <span id="secondsPlayed"></span></div>';
-            headerHtml += '<div id="questionPoints"></div>';
+            headerHtml += '<div class="questionCounter"><b>' + Language.get('wcf.quizMaker.play.question') + '</b>';
+            headerHtml += '<span class="currentQuestion"> ' + this.currentQuestion + '</span> / ' + this.questions + '</div>';
+            headerHtml += '<div class="questionTime"><b>' + Language.get('wcf.quizMaker.play.time') + '</b> <span class="secondsPlayed"></span></div>';
+            headerHtml += '<div class="questionPoints"></div>';
+            this._gameHeader.innerHTML = headerHtml;
 
-            // reset vars
-            time = currentQuestion = currentTimeStage = 0;
+            var footerHtml = '';
+            footerHtml += '<p><span class="score">' + this.currentScore + '</span> <b>' + Language.get('wcf.quizMaker.play.points') + '</b></p>';
+            this._gameFooter.innerHTML = footerHtml;
 
-            // remove start button and add game header
-            elRemove(elById('quizStart'));
-
-            var quizGameHeader = elById('quizGameHeader');
-            quizGameHeader.innerHTML = headerHtml;
-
-            this._gameContent = elById('quizGameContent');
+            //add border
             this._gameContent.classList.add('borderTop');
-
+            this._gameFooter.classList.add('borderTop');
 
             // updates counter;
             this._updatePoints(10);
@@ -44,48 +67,91 @@ define(['Ajax', 'Dom/Util', 'Language'], function (Ajax, Dom, Language) {
 
         startCycle: function () {
             this._updateTime();
-            elById('secondsPlayed').classList.add(timeClasses[currentTimeStage]);
-            elById('questionPoints').innerHTML = '+<b>' + points[currentTimeStage] + '</b> Punkte';
-            setInterval(this.timeWatch.bind(this), 1000);
+            this._updatePoints(points[this.currentStage]);
+            elBySel('.secondsPlayed', this._gameHeader).classList.add(timeClasses[this.currentStage]);
+            setInterval(this._timeWatch.bind(this), 1000);
         },
 
         stopCycle: function () {
-            clearInterval(this.timeWatch);
-            time = 0;
-            currentTimeStage = 0;
+            // remove interval and reset data
+            clearInterval(this._timeWatch);
+            this.time = this.currentStage = 0;
 
+            // update game information
             this._updateTime();
-            this._updatePoints(points[currentTimeStage])
+            this._updatePoints(points[this.currentStage])
         },
 
-        timeWatch: function () {
-            var timeBorder = timeLimit[currentTimeStage];
+        _timeWatch: function () {
+            var timeBorder = timeLimit[this.currentStage];
 
-            if (timeBorder > 0 && time >= timeBorder) {
-                currentTimeStage++;
-                elById('secondsPlayed').classList.remove(timeClasses[currentTimeStage - 1]);
-                elById('secondsPlayed').classList.add(timeClasses[currentTimeStage]);
-                this._updatePoints(points[currentTimeStage])
+            if (timeBorder > 0 && this.time >= timeBorder) {
+                this.currentStage++;
+
+                var secondsPlayed = elBySel('.secondsPlayed', this._gameHeader);
+                secondsPlayed.classList.remove(timeClasses[this.currentStage - 1]);
+                secondsPlayed.classList.add(timeClasses[this.currentStage]);
+                this._updatePoints(points[this.currentStage])
             }
 
             this._updateTime();
 
-            time++;
+            this.time++;
         },
 
         _updatePoints: function (points) {
-            elById('questionPoints').innerHTML = '+' + points + ' <b>' + Language.get('wcf.quizMaker.play.points') + '</b>';
+            this.currentQuestionValue = points;
+            elBySel('.questionPoints', this._gameHeader).innerHTML = '+' + points + ' <b>' + Language.get('wcf.quizMaker.play.points') + '</b>';
         },
 
         _updateTime: function () {
-            var seconds = String(time % 60);
-            var minutes = Math.floor(time / 60)
+            var seconds = String(this.time % 60);
+            var minutes = Math.floor(this.time / 60);
 
             if (seconds.length < 2) {
                 seconds = "0" + seconds;
             }
 
-            elById('secondsPlayed').innerHTML = minutes + ':' + seconds;
+            elBySel('.secondsPlayed', this._gameHeader).innerHTML = minutes + ':' + seconds;
         },
-    }
+
+        _ajaxSetup: function() {
+            return {
+                data: {
+                    actionName: "loadQuiz",
+                    className: "wcf\\data\\quiz\\QuizAction",
+                    objectIDs: [this.quizID]
+                }
+            }
+        },
+
+        _ajaxSuccess: function(data) {
+            // set data
+            this.quiz = data.returnValues;
+            this.questions = this.quiz.questions;
+            this.questionList = this.questionList;
+            this.goalList = this.goalList;
+
+            // remove overlay
+            this._gameContent.classList.remove('loading');
+            elRemove(this._loadingOverlay);
+
+            // create start button
+            var startButton = elCreate('button');
+            startButton.className = 'quizStart';
+            startButton.addEventListener(WCF_CLICK_EVENT, this.startGame.bind(this));
+            startButton.innerHTML = Language.get('wcf.quizMaker.play.start');
+            this._gameContent.appendChild(startButton);
+        },
+
+        _ajaxFailure: function() {
+            // remove overlay and add error
+            this._gameContent.classList.remove('loading');
+            elRemove(this._loadingOverlay);
+
+            this._gameContent.innerHTML = '<p class="error">Could not load game</p>';
+        },
+    };
+
+    return Quiz;
 });

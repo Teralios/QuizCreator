@@ -38,11 +38,9 @@
             {$quiz->getDescription()}
         </div>
     </div>
-    <div id="quizGame">
-        <div id="quizGameHeader"></div>
-        <div id="quizGameContent">
-            <button id="quizStart">{lang}wcf.quizMaker.quiz.start{/lang}</button>
-
+    <div class="quizGame" id="quiz{$quiz->quizID}" data-id="{$quiz->quizID}">
+        <div class="quizGameHeader"></div>
+        <div class="quizGameContent">
             {* <div class="question">Hier könnte ihre Frage stehen, na wie wäre es?</div>
             <ul class="answerList">
                 <li><button class="answerA" disabled>Antwort 1</button></li>
@@ -51,7 +49,7 @@
                 <li><button class="answerD wrongAnswer" disabled>Antwort 4 Test</button></li>
             </ul> *}
         </div>
-        <div id="quizGameFooter" class="invisible"><button class="nextQuestion">nächste Frage</button></div>
+        <div class="quizGameFooter"></div>
     </div>
 </div>
 
@@ -65,7 +63,8 @@
             'wcf.quizMaker.play.question': '{lang}wcf.quizMaker.play.question{/lang}'
         });
 
-        Quiz.init();
+        var quizId = 'quiz{$quiz->quizID}'
+        new Quiz(elById(quizId));
     });
 </script>
 

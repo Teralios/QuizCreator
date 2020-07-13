@@ -27,6 +27,7 @@ class QuizListPage extends MultipleLinkPage
     {
         parent::initObjectList();
 
+        /** @scrutinizer ignore-call */
         $this->objectList->loadMedia(false);
     }
     /**
@@ -37,6 +38,7 @@ class QuizListPage extends MultipleLinkPage
     {
         parent::assignVariables();
 
-        WCF::getTPL()->assign('isMultiLingual', LanguageFactory::getInstance()->/** @scrutinizer ignore-call */multilingualismEnabled());
+        /** @scrutinizer ignore-call */
+        WCF::getTPL()->assign('isMultiLingual', LanguageFactory::getInstance()->multilingualismEnabled());
     }
 }

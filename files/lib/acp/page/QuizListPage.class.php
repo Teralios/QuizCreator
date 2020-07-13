@@ -38,7 +38,6 @@ class QuizListPage extends MultipleLinkPage
     {
         parent::assignVariables();
 
-        /** @scrutinizer ignore-call */
-        WCF::getTPL()->assign('isMultiLingual', LanguageFactory::getInstance()->multilingualismEnabled());
+        WCF::getTPL()->assign('isMultiLingual', /** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled());
     }
 }

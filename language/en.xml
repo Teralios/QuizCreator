@@ -47,5 +47,8 @@
 		<item name="wcf.quizMaker.quiz.box.bestPlayers"><![CDATA[Best players]]></item>
 		<item name="wcf.quizMaker.quiz.box.lastPlayers"><![CDATA[Last players]]></item>
 		<item name="wcf.quizMaker.language"><![CDATA[Quiz with language &quot;{$quiz->getLanguageName()}&quot;]]></item>
+		<item name="wcf.quizMaker.play.question"><![CDATA[Question]]></item>
+		<item name="wcf.quizMaker.play.time"><![CDATA[Time]]></item>
+		<item name="wcf.quizMaker.play.points"><![CDATA[Point]]></item>
 	</category>
 </language>

@@ -50,7 +50,7 @@ class ViewableQuiz extends DatabaseObjectDecorator
      */
     public function getDescription(bool $parsed = true): string
     {
-        return ($parsed) ? SimpleMessageParser::getInstance()->/** @scrutinizer ignore-call */parse($this->description) : $this->description;
+        return ($parsed) ? /** @scrutinizer ignore-call */SimpleMessageParser::getInstance()->parse($this->description) : $this->description;
     }
 
     /**
@@ -100,7 +100,7 @@ class ViewableQuiz extends DatabaseObjectDecorator
             return '';
         }
 
-        return LanguageFactory::getInstance()->/** @scrutinizer ignore-call */getLanguage($this->languageID)->getIconPath();
+        return /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguage($this->languageID)->getIconPath();
     }
 
     /**
@@ -111,6 +111,6 @@ class ViewableQuiz extends DatabaseObjectDecorator
      */
     public function getLanguageName(): string
     {
-        return LanguageFactory::getInstance()->/** @scrutinizer ignore-call */getLanguage($this->languageID)->languageName;
+        return /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguage($this->languageID)->languageName;
     }
 }

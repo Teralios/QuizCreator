@@ -37,7 +37,7 @@ class QuizListPage extends SortablePage
     {
         parent::readParameters();
 
-        if (LanguageFactory::getInstance()->/** @scrutinizer ignore-call */multilingualismEnabled()) {
+        if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
             $this->languageID = (isset($_REQUEST['languageID'])) ? (int)$_REQUEST['languageID'] : 0;
         }
     }
@@ -50,7 +50,7 @@ class QuizListPage extends SortablePage
     {
         parent::initObjectList();
 
-        if (LanguageFactory::getInstance()->/** @scrutinizer ignore-call */multilingualismEnabled()) {
+        if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
             if (empty($this->languageID)) {
                 $languageIDs = WCF::getSession()->getLanguageIDs();
 

@@ -137,10 +137,9 @@ define(['Ajax', 'Dom/Util', 'Language'], function (Ajax, Dom, Language) {
             elRemove(this._loadingOverlay);
 
             // create start button
-            /** global: WCF_CLICK_EVENT */
             var startButton = elCreate('button');
             startButton.className = 'quizStart';
-            startButton.addEventListener(WCF_CLICK_EVENT, this.startGame.bind(this));
+            startButton.addEventListener(/** global: WCF_CLICK_EVENT */WCF_CLICK_EVENT, this.startGame.bind(this));
             startButton.innerHTML = Language.get('wcf.quizMaker.play.start');
             this._gameContent.appendChild(startButton);
         },

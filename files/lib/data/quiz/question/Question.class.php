@@ -39,6 +39,6 @@ class Question extends DatabaseObject
      */
     public function getExplanation(bool $parsed = true)
     {
-        return ($parsed) ? SimpleMessageParser::getInstance()->/** @scrutinizer ignore-call */parse($this->explanation) : $this->explanation;
+        return ($parsed) ? /** @scrutinizer ignore-call */SimpleMessageParser::getInstance()->parse($this->explanation) : $this->explanation;
     }
 }

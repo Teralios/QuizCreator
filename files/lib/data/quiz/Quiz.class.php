@@ -61,7 +61,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
      */
     public function getLink()
     {
-        return LinkHandler::getInstance()->/** @scrutinizer ignore-call */getLink(
+        return /** @scrutinizer ignore-call */LinkHandler::getInstance()->getLink(
             'Quiz',
             [
                 'object' => $this,

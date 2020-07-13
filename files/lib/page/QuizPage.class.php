@@ -21,7 +21,7 @@ use wcf\system\WCF;
 class QuizPage extends AbstractPage
 {
     /**
-     * @var Quiz
+     * @var ViewableQuiz
      */
     public $quiz;
 

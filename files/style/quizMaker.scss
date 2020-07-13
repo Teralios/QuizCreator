@@ -1,0 +1,79 @@
+.quizHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include screen-sm-down {
+    flex-direction: column;
+  }
+
+  @include screen-md-up {
+    flex-direction: row;
+  }
+
+  .quizImage {
+    min-width: auto;
+  }
+}
+
+.quizGame {
+  margin: 1em;
+  border-top: $wcfContentBorderInner solid 1px;
+
+  .quizGameHeader {
+    display: grid;
+    margin: 1em;
+    grid-template-columns: auto auto auto;
+
+    :last-child {
+      text-align: right;
+    }
+
+    :nth-child(2) {
+      text-align: center;
+    }
+  }
+
+  .quizGameContent {
+    border-top: $wcfContentBorderInner solid 1px;
+    text-align: center;
+    margin-top: 1em;
+    padding: 1em;
+
+    .question {
+      height: 1.2em;
+      font-weight: bold;
+    }
+
+    .answerList {
+      margin: 0.5em;
+
+      li {
+        padding: 0.2em;
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+
+    .correctAnswer:disabled {
+      opacity: 0.7;
+      background: #009900 !important;
+      color: #fff !important;
+    }
+
+    .wrongAnswer:disabled {
+      opacity: 0.7;
+      background: #990000 !important;
+      color: #fff !important;
+    }
+  }
+
+  .quizGameFooter {
+    border-top: $wcfContentBorderInner solid 1px;
+    text-align: center;
+    margin-top: 1em;
+    padding: 1em;
+  }
+}

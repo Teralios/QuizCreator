@@ -33,10 +33,15 @@ class ViewableQuizList extends QuizList
      * @param bool $loadMedia
      * @throws SystemException
      */
-    public function __construct(bool $loadMedia)
+    public function __construct(bool $loadMedia = true)
     {
         parent::__construct();
 
+        $this->loadMedia = $loadMedia;
+    }
+
+    public function loadMedia(bool $loadMedia)
+    {
         $this->loadMedia = $loadMedia;
     }
 

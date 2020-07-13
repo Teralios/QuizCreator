@@ -3,7 +3,7 @@
 namespace wcf\acp\page;
 
 // imports
-use wcf\data\quiz\QuizList;
+use wcf\data\quiz\ViewableQuizList;
 use wcf\page\MultipleLinkPage;
 use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
@@ -20,9 +20,15 @@ use wcf\system\WCF;
 class QuizListPage extends MultipleLinkPage
 {
     public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
-    public $objectListClassName = QuizList::class;
+    public $objectListClassName = ViewableQuizList::class;
     public $neededPermissions = ['admin.content.quizMaker.canManage'];
 
+    public function initObjectList()
+    {
+        parent::initObjectList();
+
+        $this->objectList->loadMedia(false);
+    }
     /**
      * @inheritDoc
      * @throws SystemException

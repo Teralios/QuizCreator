@@ -9,6 +9,7 @@ use wcf\data\media\ViewableMediaList;
 use wcf\system\bbcode\SimpleMessageParser;
 use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
+use wcf\util\StringUtil;
 
 /**
  * Class ViewableQuiz
@@ -52,11 +53,24 @@ class ViewableQuiz extends DatabaseObjectDecorator
         return ($parsed) ? SimpleMessageParser::getInstance()->/** @scrutinizer ignore-call */parse($this->description) : $this->description;
     }
 
+    /**
+     * @param int $length
+     * @return string
+     * @throws SystemException
+     */
+    public function getPreview(int $length = 150)
+    {
+        return StringUtil::truncateHTML($this->getDescription(), $length);
+    }
+
+    /**
+     * @return ViewableMedia|null
+     */
     public function getMedia() //: ?ViewableMedia
     {
-        if (!$this->mediaID && $this->mediaObject === null) {
+        if ($this->mediaID && $this->mediaObject === null) {
             $mediaList = new ViewableMediaList();
-            $mediaList->getConditionBuilder()->add($mediaList->getDatabaseTableAlias() . '.mediaID = ?', [$this->mediaID]);
+            $mediaList->setObjectIDs([$this->mediaID]);
             $mediaList->readObjects();
 
             $this->mediaObject = $mediaList->search($this->mediaID);

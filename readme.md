@@ -8,7 +8,7 @@ There are two types of quizzes:
 
 ## Todo
 ### Beta 1
-  - [ ] Implement Quiz in frontend
+  - [x] Implement Quiz in frontend
   - [ ] Implement base javascript for play
   - [ ] Implement base javascript for play on QuizList
 

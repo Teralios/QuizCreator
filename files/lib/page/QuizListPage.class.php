@@ -3,7 +3,7 @@
 namespace wcf\page;
 
 // imports
-use wcf\data\quiz\QuizList;
+use wcf\data\quiz\ViewableQuizList;
 use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
 use wcf\system\WCF;
@@ -21,7 +21,7 @@ class QuizListPage extends SortablePage
     // inherit variables
     public $activeMenuItem = 'de.teralios.quizMaker.quizList';
     public $itemsPerPage = 25; // current hard coded
-    public $objectListClassName = QuizList::class;
+    public $objectListClassName = ViewableQuizList::class;
     public $defaultSortField = 'creationDate';
     public $validSortFields = ['title', 'creationDate'];
 

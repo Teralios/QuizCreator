@@ -1,4 +1,4 @@
-define(['Ajax', 'Dom/Util', 'Language'], function (Ajax, Dom, Language) {
+define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language) {
     "use strict";
 
     var points = [10, 5, 1];
@@ -18,7 +18,7 @@ define(['Ajax', 'Dom/Util', 'Language'], function (Ajax, Dom, Language) {
             // set base vars
             this.quizID = elData(quizContainer, 'id');
             this.currentStage = this.time = 0;
-            this.currentQuestion = 1;
+            this.currentQuestionKey = 1;
             this.currentScore = 0;
             this.currentQuestionValue = points[this.currentStage];
             this.isCompetition = isCompetition;
@@ -27,7 +27,7 @@ define(['Ajax', 'Dom/Util', 'Language'], function (Ajax, Dom, Language) {
             this._container = quizContainer;
             this._gameHeader = elBySel('.quizGameHeader', this._container);
             this._gameContent = elBySel('.quizGameContent', this._container);
-            this._gameFooter = elBySel('.quizGameContent', this._container);
+            this._gameFooter = elBySel('.quizGameFooter', this._container);
 
             // set waiting overlay
             this._loadingOverlay = elCreate('div');
@@ -44,10 +44,10 @@ define(['Ajax', 'Dom/Util', 'Language'], function (Ajax, Dom, Language) {
             // remove start button
             elRemove(elBySel('.quizStart', this._gameContent));
 
-            // build data
+            // build header and footer
             var headerHtml = '';
             headerHtml += '<div class="questionCounter"><b>' + Language.get('wcf.quizMaker.play.question') + '</b>';
-            headerHtml += '<span class="currentQuestion"> ' + this.currentQuestion + '</span> / ' + this.questions + '</div>';
+            headerHtml += '<span class="currentQuestionKey"> ' + this.currentQuestionKey + '</span> / ' + StringUtil.escapeHTML(this.questions) + '</div>';
             headerHtml += '<div class="questionTime"><b>' + Language.get('wcf.quizMaker.play.time') + '</b> <span class="secondsPlayed"></span></div>';
             headerHtml += '<div class="questionPoints"></div>';
             this._gameHeader.innerHTML = headerHtml;
@@ -56,6 +56,37 @@ define(['Ajax', 'Dom/Util', 'Language'], function (Ajax, Dom, Language) {
             footerHtml += '<p><span class="score">' + this.currentScore + '</span> <b>' + Language.get('wcf.quizMaker.play.points') + '</b></p>';
             this._gameFooter.innerHTML = footerHtml;
 
+            // build content
+            var questionDiv = elCreate('div');
+            questionDiv.className = 'question';
+            this._buttonNext = elCreate('button');
+            this._buttonNext.innerHTML = Language.get('wcf.quizMaker.play.next');
+            this._buttonNext.addEventListener(WCF_CLICK_EVENT, this.nextQuestion.bind(this));
+
+            this._answerList = elCreate('ul');
+            this._answerList.className = 'answerList';
+
+            var buttons = ['A', 'B', 'C', 'D'];
+            this._buttons = {};
+            for (var i = 0; i < 4; i++) {
+                var key = buttons[i];
+                var button = elCreate('button');
+                button.className = 'answer';
+                elData(button, 'value', key);
+                button.addEventListener(WCF_CLICK_EVENT, this.answer.bind(this));
+
+                var buttonLi = elCreate('li');
+                buttonLi.appendChild(button);
+                this._answerList.appendChild(buttonLi);
+                this._buttons[key] = button;
+            }
+
+            elHide(this._answerList);
+            elHide(this._buttonNext);
+            this._gameContent.appendChild(questionDiv);
+            this._gameContent.appendChild(this._answerList);
+            this._gameContent.appendChild(this._buttonNext);
+
             //add border
             this._gameContent.classList.add('borderTop');
             this._gameFooter.classList.add('borderTop');
@@ -63,23 +94,86 @@ define(['Ajax', 'Dom/Util', 'Language'], function (Ajax, Dom, Language) {
             // updates counter;
             this._updatePoints(10);
             this._updateTime();
+
+            this.nextQuestion();
+        },
+
+        answer: function (event) {
+            this.stopCycle();
+
+            var button = event.target;
+            var answer = elData(button, 'value');
+            var question = this.currentQuestion;
+
+            if (question['answer'] === answer) {
+                button.classList.add('correctAnswer');
+
+                this.currentScore += this.currentQuestionValue;
+            } else {
+                button.classList.add('wrongAnswer');
+            }
+
+            this._buttons['A'].setAttribute('disabled', 'disabled');
+            this._buttons['B'].setAttribute('disabled', 'disabled');
+            this._buttons['C'].setAttribute('disabled', 'disabled');
+            this._buttons['D'].setAttribute('disabled', 'disabled');
+
+            this.currentQuestionKey++;
+
+            if (this.currentQuestionKey > this.questions) {
+                this.currentQuestionKey--;
+                this.updateGameInformation();
+                alert('Game finished');
+            } else {
+                elShow(this._buttonNext);
+            }
+        },
+
+        nextQuestion: function () {
+            elHide(this._buttonNext);
+            elHide(this._answerList);
+
+            var key = this.currentQuestionKey - 1;
+            if (key in this.questionList) {
+                this.updateGameInformation();
+                var question = this.questionList[key];
+
+                elBySel('.question', this._gameContent).innerHTML = StringUtil.escapeHTML(question['question']);
+                this._buttons['A'].innerHTML = StringUtil.escapeHTML(question['optionA']);
+                this._buttons['B'].innerHTML = StringUtil.escapeHTML(question['optionB']);
+                this._buttons['C'].innerHTML = StringUtil.escapeHTML(question['optionC']);
+                this._buttons['D'].innerHTML = StringUtil.escapeHTML(question['optionD']);
+
+                this._buttons['A'].removeAttribute('disabled');
+                this._buttons['B'].removeAttribute('disabled');
+                this._buttons['C'].removeAttribute('disabled');
+                this._buttons['D'].removeAttribute('disabled');
+
+                this._buttons['A'].classList.remove('correctAnswer', 'wrongAnswer');
+                this._buttons['B'].classList.remove('correctAnswer', 'wrongAnswer');
+                this._buttons['C'].classList.remove('correctAnswer', 'wrongAnswer');
+                this._buttons['D'].classList.remove('correctAnswer', 'wrongAnswer');
+
+                this.currentQuestion = question;
+
+                elShow(this._answerList);
+                this.startCycle();
+            } else {
+                this._gameContent.innerHTML = '<p class="error">Question not found.</p>';
+            }
         },
 
         startCycle: function () {
             this._updateTime();
             this._updatePoints(points[this.currentStage]);
             elBySel('.secondsPlayed', this._gameHeader).classList.add(timeClasses[this.currentStage]);
-            setInterval(this._timeWatch.bind(this), 1000);
+
+            this.intervalID = setInterval(this._timeWatch.bind(this), 1000);
         },
 
         stopCycle: function () {
-            // remove interval and reset data
-            clearInterval(this._timeWatch);
+            clearInterval(this.intervalID);
             this.time = this.currentStage = 0;
-
-            // update game information
-            this._updateTime();
-            this._updatePoints(points[this.currentStage])
         },
 
         _timeWatch: function () {
@@ -97,6 +191,11 @@ define(['Ajax', 'Dom/Util', 'Language'], function (Ajax, Dom, Language) {
             this._updateTime();
 
             this.time++;
+        },
+
+        updateGameInformation: function () {
+            elBySel('.currentQuestionKey', this._gameHeader).innerHTML = this.currentQuestionKey;
+            elBySel('.score', this._gameFooter).innerHTML = this.currentScore;
         },
 
         _updatePoints: function (points) {
@@ -129,8 +228,8 @@ define(['Ajax', 'Dom/Util', 'Language'], function (Ajax, Dom, Language) {
             // set data
             this.quiz = data.returnValues;
             this.questions = this.quiz.questions;
-            this.questionList = this.questionList;
-            this.goalList = this.goalList;
+            this.questionList = this.quiz.questionList;
+            this.goalList = this.quiz.goalList;
 
             // remove overlay
             this._gameContent.classList.remove('loading');
@@ -139,7 +238,7 @@ define(['Ajax', 'Dom/Util', 'Language'], function (Ajax, Dom, Language) {
             // create start button
             var startButton = elCreate('button');
             startButton.className = 'quizStart';
-            startButton.addEventListener(/** global: WCF_CLICK_EVENT */WCF_CLICK_EVENT, this.startGame.bind(this));
+            startButton.addEventListener(WCF_CLICK_EVENT, this.startGame.bind(this));
             startButton.innerHTML = Language.get('wcf.quizMaker.play.start');
             this._gameContent.appendChild(startButton);
         },

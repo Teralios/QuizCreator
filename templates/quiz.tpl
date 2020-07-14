@@ -43,10 +43,10 @@
         <div class="quizGameContent">
             {* <div class="question">Hier könnte ihre Frage stehen, na wie wäre es?</div>
             <ul class="answerList">
-                <li><button class="answerA" disabled>Antwort 1</button></li>
-                <li><button class="answerB" disabled>Antwort 2 Lange</button></li>
-                <li><button class="answerC correctAnswer" disabled>Antwort 3 noch Länger</button></li>
-                <li><button class="answerD wrongAnswer" disabled>Antwort 4 Test</button></li>
+                <li><button class="answer" disabled>Antwort 1</button></li>
+                <li><button class="answer" disabled>Antwort 2 Lange</button></li>
+                <li><button class="answer correctAnswer" disabled>Antwort 3 noch Länger</button></li>
+                <li><button class="answer wrongAnswer" disabled>Antwort 4 Test</button></li>
             </ul> *}
         </div>
         <div class="quizGameFooter"></div>

@@ -99,7 +99,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         $questionList = new QuestionList($this->quiz);
         $questionList->readObjects();
         foreach ($questionList as $question) {
-            $data['questionList'][] = $question;
+            $data['questionList'][] = $question->getData();
         }
 
         // load goals

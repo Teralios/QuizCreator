@@ -166,6 +166,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
         startCycle: function () {
             this._updateTime();
             this._updatePoints(points[this.currentStage]);
+            elBySel('.secondsPlayed', this._gameHeader).classList.remove('stage0', 'stage1', 'stage2');
             elBySel('.secondsPlayed', this._gameHeader).classList.add(timeClasses[this.currentStage]);
 
             this.intervalID = setInterval(this._timeWatch.bind(this), 1000);

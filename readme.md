@@ -9,7 +9,7 @@ There are two types of quizzes:
 ## Todo
 ### Beta 1
   - [x] Implement Quiz in frontend
-  - [ ] Implement base javascript for play
+  - [x] Implement base javascript for play
 
 ### Beta 2
   - [ ] Implement base javascript for play on QuizList
@@ -17,6 +17,8 @@ There are two types of quizzes:
     - [ ] Implement Teralios/Quiz/Quiz for QuizPage
     - [ ] Implement Teralios/Quiz/QuizList for QuizListPage
     - [ ] Implement Teralios/Quiz/QuizBox for boxes
+  - [ ] Implement result view for quiz
+  - [ ] Implement fun quiz support
   - [ ] Implement player list for quiz
   - [ ] Implement additional content on QuizList and Quiz
     - [ ] Last Player?

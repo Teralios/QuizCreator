@@ -45,6 +45,6 @@ CREATE TABLE wcf1_quiz_goal (
 
 -- foreign keys
 ALTER TABLE wcf1_quiz ADD FOREIGN KEY (languageID) REFERENCES wcf1_language (languageID) ON DELETE SET NULL;
-ALTER TABLE wcf1_quiz ADD FOREIGN KEY (mediaID) REFERENCES wcf1_media(mediaID) ON DELETE SET NULL;
+ALTER TABLE wcf1_quiz ADD FOREIGN KEY (mediaID) REFERENCES wcf1_media (mediaID) ON DELETE SET NULL;
 ALTER TABLE wcf1_quiz_question ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (quizID) ON DELETE CASCADE;
 ALTER TABLE wcf1_quiz_goal ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (quizID) ON DELETE CASCADE;

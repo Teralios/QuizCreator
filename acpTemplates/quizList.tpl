@@ -8,7 +8,7 @@
 </script>
 <header class="contentHeader">
     <div class="contentHeaderTitle">
-        <h1 class="contentTitle">{lang}wcf.acp.menu.link.quiz.list{/lang}</h1>
+        <h1 class="contentTitle">{lang}wcf.acp.quizMaker.quiz.list{/lang}</h1>
     </div>
 
     <nav class="contentHeaderNavigation">

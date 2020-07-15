@@ -123,7 +123,11 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             if (this.currentQuestionKey > this.questions) {
                 this.currentQuestionKey--;
                 this.updateGameInformation();
-                alert('Game finished');
+
+                elRemove(this._answerList);
+                elRemove(this._buttonNext);
+                this._gameContent.innerHTML = '<p>Game finshed</p>';
+
             } else {
                 elShow(this._buttonNext);
             }
@@ -178,6 +182,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
         },
 
         _timeWatch: function () {
+            this.time++;
             var timeBorder = timeLimit[this.currentStage];
 
             if (timeBorder > 0 && this.time >= timeBorder) {
@@ -190,8 +195,6 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             }
 
             this._updateTime();
-
-            this.time++;
         },
 
         updateGameInformation: function () {

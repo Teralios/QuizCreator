@@ -50,5 +50,9 @@
 		<item name="wcf.quizMaker.play.question"><![CDATA[Question]]></item>
 		<item name="wcf.quizMaker.play.time"><![CDATA[Time]]></item>
 		<item name="wcf.quizMaker.play.points"><![CDATA[Point]]></item>
+		<item name="wcf.quizMaker.play.next"><![CDATA[next question]]></item>
+		<item name="wcf.quizMaker.play.start"><![CDATA[Start quiz]]></item>
+		<item name="wcf.quizMaker.play.temp.finished"><![CDATA[Game finished]]></item>
+		<item name="wcf.quizMaker.play.loadError"><![CDATA[Data not found.]]></item>
 	</category>
 </language>

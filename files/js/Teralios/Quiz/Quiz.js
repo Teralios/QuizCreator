@@ -126,7 +126,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
 
                 elRemove(this._answerList);
                 elRemove(this._buttonNext);
-                this._gameContent.innerHTML = '<p>Game finshed</p>';
+                this._gameContent.innerHTML = '<p>' + Language.get('wcf.quizMaker.play.temp.finished') + '</p>';
 
             } else {
                 elShow(this._buttonNext);
@@ -163,7 +163,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
                 elShow(this._answerList);
                 this.startCycle();
             } else {
-                this._gameContent.innerHTML = '<p class="error">Question not found.</p>';
+                this._gameContent.innerHTML = '<p class="error">' + Language.get('wcf.quizMaker.play.loadError') + '</p>';
             }
         },
 
@@ -185,7 +185,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this.time++;
             var timeBorder = timeLimit[this.currentStage];
 
-            if (timeBorder > 0 && this.time >= timeBorder) {
+            if (timeBorder > 0 && this.time > timeBorder) {
                 this.currentStage++;
 
                 var secondsPlayed = elBySel('.secondsPlayed', this._gameHeader);
@@ -252,7 +252,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this._gameContent.classList.remove('loading');
             elRemove(this._loadingOverlay);
 
-            this._gameContent.innerHTML = '<p class="error">Could not load game</p>';
+            this._gameContent.innerHTML = '<p class="error">' + Language.get('wcf.quizMaker.play.loadError') + '</p>';
         },
     };
 

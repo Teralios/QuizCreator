@@ -40,15 +40,7 @@
     </div>
     <div class="quizGame" id="quiz{$quiz->quizID}" data-id="{$quiz->quizID}">
         <div class="quizGameHeader"></div>
-        <div class="quizGameContent">
-            {* <div class="question">Hier könnte ihre Frage stehen, na wie wäre es?</div>
-            <ul class="answerList">
-                <li><button class="answer" disabled>Antwort 1</button></li>
-                <li><button class="answer" disabled>Antwort 2 Lange</button></li>
-                <li><button class="answer correctAnswer" disabled>Antwort 3 noch Länger</button></li>
-                <li><button class="answer wrongAnswer" disabled>Antwort 4 Test</button></li>
-            </ul> *}
-        </div>
+        <div class="quizGameContent"></div>
         <div class="quizGameFooter"></div>
     </div>
 </div>
@@ -60,7 +52,9 @@
             'wcf.quizMaker.play.time': '{lang}wcf.quizMaker.play.time{/lang}',
             'wcf.quizMaker.play.start': '{lang}wcf.quizMaker.play.start{/lang}',
             'wcf.quizMaker.play.next': '{lang}wcf.quizMaker.play.next{/lang}',
-            'wcf.quizMaker.play.question': '{lang}wcf.quizMaker.play.question{/lang}'
+            'wcf.quizMaker.play.question': '{lang}wcf.quizMaker.play.question{/lang}',
+            'wcf.quizMaker.play.loadError': '{lang}wcf.quizMaker.play.loadError{/lang}',
+            'wcf.quizMaker.play.temp.finished': '{lang}wcf.quizMaker.play.temp.finished{/lang}'
         });
 
         var quizId = 'quiz{$quiz->quizID}'

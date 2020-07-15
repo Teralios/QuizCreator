@@ -30,7 +30,7 @@ class QuestionList extends DatabaseObjectList
     {
         parent::__construct();
 
-        if ($this->quiz !== null) {
+        if ($quiz !== null) {
             $this->quiz = $quiz;
             $this->defaultCommand();
         }

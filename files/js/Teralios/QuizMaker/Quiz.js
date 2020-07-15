@@ -8,7 +8,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
     /**
      * @constructor
      */
-    function Quiz(container, isCompetition = true)
+    function Quiz(container, isCompetition)
     {
         this.init(container, isCompetition);
     }

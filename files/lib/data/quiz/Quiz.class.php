@@ -62,7 +62,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
     public function getLink()
     {
         return /** @scrutinizer ignore-call */LinkHandler::getInstance()->getLink(
-            'Quiz',
+            'QuizMaker',
             [
                 'object' => $this,
                 'forceFrontend' => true

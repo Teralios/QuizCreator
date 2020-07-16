@@ -52,15 +52,12 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this._toggleButtons(false);
             this._stopClock();
 
-            var button = event.target;
-            var answer = elData(button, 'value');
-
-            if (answer === this._currentQuestion.answer) {
-                button.classList.add('correct');
+            if (elData(event.target, 'value') === this._currentQuestion.answer) {
+                event.target.classList.add('correct');
                 this._score = this._questionScoreValue;
                 this._updateScoreContainer();
             } else {
-                button.classList.add('wrong');
+                event.target.classList.add('wrong');
             }
 
             elShow(this._buttonNext);
@@ -251,6 +248,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             }
 
             this._toggleButtons(true);
+            this._questionCounterContainer.textContent = String(this._questionIndex + 1);
             this._startClock();
         },
 

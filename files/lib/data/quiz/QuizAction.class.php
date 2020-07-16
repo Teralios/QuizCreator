@@ -30,7 +30,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     protected $permissionsUpdate = ['admin.content.quizMaker.canManage'];
     protected $permissionsDelete = ['admin.content.quizMaker.canManage'];
     protected $permissionsToggle = ['admin.content.quizMaker.canManage'];
-    protected $allowGuestAccess = ['loadData'];
+    protected $allowGuestAccess = ['loadQuiz']; // allowed guest access
 
     /**
      * @var Quiz

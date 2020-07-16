@@ -50,7 +50,7 @@
                         var files = fs.readdirSync(folder);
                         for (var i = 0; i < files.length; i++) {
                             var filename = path.join(folder, files[i]).replace(/\\/g, '/');
-                            if (filename === 'Teralios/Core/Acp') continue;
+                            if (filename === 'Teralios/Acp') continue;
 
                             if (path.extname(filename) === '.js') {
                                 global.allModules.push(filename);

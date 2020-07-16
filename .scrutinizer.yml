@@ -15,5 +15,8 @@ build:
           - php-scrutinizer-run
           - js-scrutinizer-run
 filter:
+  excluded_paths:
+    - "*.build.js"
+    - "*.min.js"
   dependency_paths:
     - wcf/

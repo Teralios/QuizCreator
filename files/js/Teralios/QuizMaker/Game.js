@@ -10,7 +10,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
 
     /**
      * @param data
-     * @param container
+     * @param containerID
      * @constructor
      */
     function Game(data, containerID)
@@ -21,7 +21,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
     Game.prototype = {
         /**
          * @param data
-         * @param container
+         * @param containerID
          */
         init: function (data, containerID) {
             this._gameContainer = elById(containerID);
@@ -53,7 +53,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this._stopClock();
 
             var button = event.target;
-            var answer = elData('button', 'value');
+            var answer = elData(button, 'value');
 
             if (answer === this._currentQuestion.answer) {
                 button.classList.add('correct');
@@ -147,29 +147,23 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this._headerContainer.appendChild(questionCounterDiv);
 
             // time counter
-            var timeCounterRawHtml = '<b>' + Language.get('wcf.quizMaker.game.time') + '</b> ';
-            timeCounterRawHtml += '<span class="seconds"></span>';
-
             var timeCounterDiv = elCreate('div');
             timeCounterDiv.className = 'clock';
-            timeCounterDiv.innerHTML = timeCounterRawHtml;
+            timeCounterDiv.innerHTML = '<b>' + Language.get('wcf.quizMaker.game.time') + '</b> <span class="seconds"></span> ';
 
             this._timeContainer = elBySel('.seconds', timeCounterDiv);
             this._headerContainer.appendChild(timeCounterDiv);
 
             // point value of question
-            var pointValueRawHtml = '+ <span class="questionValue"></span> ' + Language.get('wcf.quizMaker.game.points');
-
             var pointValueDiv = elCreate('div');
             pointValueDiv.className = 'currentQuestionValue';
-            pointValueDiv.innerHTML = pointValueRawHtml;
+            pointValueDiv.innerHTML = '+ <span class="questionValue"></span> ' + Language.get('wcf.quizMaker.game.points');
 
             this._questionValueContainer = elBySel('.questionValue', pointValueDiv);
             this._headerContainer.appendChild(pointValueDiv);
 
             // game information footer
-            var footerRawHtml = '<p><span class="score"></span> ' + Language.get('wcf.quizMaker.game.score') + '</p>';
-            this._footerContainer.innerHTML = footerRawHtml;
+            this._footerContainer.innerHTML = '<p><span class="score"></span> ' + Language.get('wcf.quizMaker.game.score') + '</p>';;
             this._scoreContainer = elBySel('.score', this._footerContainer);
 
             // build game content
@@ -251,11 +245,9 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
 
             // update buttons.
             for (var i = 0; i < 4; i++) {
-                var button = this._buttons[i];
-                var option = elData(button, 'value');
-                var optionString = 'option' + option;
+                var optionString = 'option' + elData(this._buttons[i], 'value');
 
-                button.textContent = this._currentQuestion.getProperty(optionString);
+                this._buttons[i].textContent = this._currentQuestion.getProperty(optionString);
             }
 
             this._toggleButtons(true);
@@ -317,29 +309,23 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
 
         _updateClockContainer: function () {
             // update clock
-            var blink = this._time % 2;
             var seconds = String(this._time % 60);
             var minutes = Math.floor(this._time / 60);
+            var blinker = (this._time % 2 === 1) ? ' ' : ':';
 
             if (seconds.length < 2) {
                 seconds = "0" + seconds;
-            }
-
-            if (blink === 1) {
-                var blinker = ' ';
-            } else {
-                var blinker = ':'
             }
 
             this._timeContainer.textContent = minutes + blinker + seconds;
         },
 
         _updatePointContainer: function () {
-            this._questionValueContainer.textContent = this._questionScoreValue;
+            this._questionValueContainer.textContent = String(this._questionScoreValue);
         },
 
         _updateScoreContainer: function () {
-            this._scoreContainer.textContent = this._score;
+            this._scoreContainer.textContent = String(this._score);
         },
 
         _finishGame: function() {

@@ -1,15 +1,12 @@
 <?php
 
-namespace wcf\data\Quiz;
+namespace wcf\data\quiz;
 
 // imports
 use wcf\data\DatabaseObjectEditor;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
-use wcf\system\file\upload\UploadFile;
 use wcf\system\WCF;
-use wcf\util\FileUtil;
-use wcf\util\ImageUtil;
 
 /**
  * Class QuizEditor

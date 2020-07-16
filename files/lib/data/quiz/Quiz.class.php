@@ -1,15 +1,12 @@
 <?php
 
-namespace wcf\data\Quiz;
+namespace wcf\data\quiz;
 
 // imports
 use wcf\data\DatabaseObject;
 use wcf\data\ILinkableObject;
 use wcf\data\media\ViewableMedia;
-use wcf\data\media\ViewableMediaList;
-use wcf\system\bbcode\SimpleMessageParser;
 use wcf\system\Exception\SystemException;
-use wcf\system\language\LanguageFactory;
 use wcf\system\request\IRouteController;
 use wcf\system\request\LinkHandler;
 
@@ -62,7 +59,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
     public function getLink()
     {
         return /** @scrutinizer ignore-call */LinkHandler::getInstance()->getLink(
-            'QuizMaker',
+            'Quiz',
             [
                 'object' => $this,
                 'forceFrontend' => true

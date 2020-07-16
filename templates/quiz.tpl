@@ -46,7 +46,7 @@
 </div>
 
 <script data-relocate="true">
-    require(['Teralios/QuizMaker/QuizMaker', 'Language'], function (Quiz, Language) {
+    require(['Teralios/QuizMaker/Quiz', 'Language'], function (Quiz, Language) {
         Language.addObject({
             'wcf.quizMaker.play.points': '{lang}wcf.quizMaker.play.points{/lang}',
             'wcf.quizMaker.play.time': '{lang}wcf.quizMaker.play.time{/lang}',

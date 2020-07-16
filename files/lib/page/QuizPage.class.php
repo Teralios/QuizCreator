@@ -3,7 +3,7 @@
 namespace wcf\page;
 
 // imports
-use wcf\data\Quiz\Quiz;
+use wcf\data\quiz\Quiz;
 use wcf\data\quiz\ViewableQuiz;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;

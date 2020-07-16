@@ -4,9 +4,9 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
     // game vars
     var neededKeys = ['quizID', 'type', 'questions', 'questionList', 'goalList'];
     var answers = ['A', 'B', 'C', 'D'];
-    var watchClasses = ['stage0', 'stage1', 'stage2'];
-    var watchPoints = [10, 5, 1];
-    var watchTimeBorder = [5, 15, 0];
+    var clockClasses = 3;
+    var clockPoints = [10, 5, 1];
+    var clockBorders = [5, 15, 0];
 
     /**
      * @param data
@@ -18,7 +18,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
         this.init(data, containerID);
     }
 
-    Quiz.prototype = {
+    Game.prototype = {
         /**
          * @param data
          * @param container
@@ -32,21 +32,57 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             }
         },
 
+        /**
+         * Start game
+         */
         startGame: function () {
             elRemove(this._buttonStart);
             this._buildGameHTML();
-        },
 
-        nextQuestion: function () {
-
-        },
-
-        answer: function () {
-
+            this._questionIndex = 0;
+            this._score = 0;
+            this._showQuestion(true);
         },
 
         /**
-         * Checks data array
+         * Function behind answer click.
+         * @param event
+         */
+        answer: function (event) {
+            this._toggleButtons(false);
+            this._stopClock();
+
+            var button = event.target;
+            var answer = elData('button', 'value');
+
+            if (answer === this._currentQuestion.answer) {
+                button.classList.add('correct');
+                this._score = this._questionScoreValue;
+                this._updateScoreContainer();
+            } else {
+                button.classList.add('wrong');
+            }
+
+            elShow(this._buttonNext);
+        },
+
+        /**
+         * Function behind next button.
+         */
+        next: function () {
+            elHide(this._buttonNext);
+
+            this._questionIndex++;
+
+            if (this._questionIndex > this._data.questions) {
+                this._finishGame();
+            } else {
+                this._showQuestion(false);
+            }
+        },
+
+        /**
+         * Checks data array.
          * @private
          */
         _checkData: function () {
@@ -67,6 +103,10 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             return !error;
         },
 
+        /**
+         * Creates base html.
+         * @private
+         */
         _createBaseHTML: function () {
             // containers for quiz
             this._headerContainer = elCreate('div');
@@ -89,6 +129,10 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this._contentContainer.appendChild(this._buttonStart);
         },
 
+        /**
+         * Creates game html.
+         * @private
+         */
         _buildGameHTML: function () {
             // game information header
             // question counter
@@ -99,7 +143,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             questionCounterDiv.className = 'questionCounter';
             questionCounterDiv.innerHTML = questionCounterRawHtml;
 
-            this._questionCounter = elBySel('.currentQuestion', questionCounterDiv);
+            this._questionCounterContainer = elBySel('.currentQuestion', questionCounterDiv);
             this._headerContainer.appendChild(questionCounterDiv);
 
             // time counter
@@ -107,10 +151,10 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             timeCounterRawHtml += '<span class="seconds"></span>';
 
             var timeCounterDiv = elCreate('div');
-            timeCounterDiv.className = 'timeCounter';
+            timeCounterDiv.className = 'clock';
             timeCounterDiv.innerHTML = timeCounterRawHtml;
 
-            this._timeCounter = elBySel('.seconds', timeCounterDiv);
+            this._timeContainer = elBySel('.seconds', timeCounterDiv);
             this._headerContainer.appendChild(timeCounterDiv);
 
             // point value of question
@@ -120,25 +164,185 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             pointValueDiv.className = 'currentQuestionValue';
             pointValueDiv.innerHTML = pointValueRawHtml;
 
-            this._questionValue = elBySel('.questionValue', pointValueDiv);
+            this._questionValueContainer = elBySel('.questionValue', pointValueDiv);
             this._headerContainer.appendChild(pointValueDiv);
 
             // game information footer
-            var footerRawHtml = '<p><span class="score"></span> ' + Language.get('wcf.quizMaker.score') + '</p>';
+            var footerRawHtml = '<p><span class="score"></span> ' + Language.get('wcf.quizMaker.game.score') + '</p>';
             this._footerContainer.innerHTML = footerRawHtml;
-            this._playerScore = elBySel('.score', this._footerContainer);
+            this._scoreContainer = elBySel('.score', this._footerContainer);
 
             // build game content
+            this._questionText = elCreate('p');
+            this._questionText.className = 'question';
+            elHide(this._questionText);
+            this._gameContent.appendChild(this._questionText);
+
             this._answerList = this._buildQuestionField();
             elHide(this._answerList);
+            this._gameContent.appendChild(this._answerList);
 
             this._buttonNext = elCreate('button');
-
-
-
+            this._buttonNext.textContent = Language.get('wcf.quizMaker.game.next');
+            this._buttonNext.addEventListener(WCF_CLICK_EVENT, this.next.bind(this));
+            elHide(this._buttonNext);
+            this._gameContent.appendChild(this._buttonNext)
         },
 
+        /**
+         * Build question and answer field.
+         * @returns {Element}
+         * @private
+         */
         _buildQuestionField: function () {
+            // build container;
+            var list = elCreate('ul');
+            list.className = 'answerList';
+
+            // build buttons
+            shuffle(answers);
+            this._buttons = [];
+            for (var i = 0; i < 4; i++) {
+                var key = answers[i];
+                var button = elCreate('button');
+
+                button.className = 'answer';
+                elData(button, 'value', key);
+                button.addEventListener(WCF_CLICK_EVENT, this.answer.bind(this));
+
+                var liElement = elCreate('li');
+                liElement.appendChild(button);
+                list.appendChild(liElement);
+
+                this._buttons[i] = button;
+            }
+            return list;
+        },
+
+        /**
+         * Toggle answer buttons.
+         * @param enable
+         * @private
+         */
+        _toggleButtons: function (enable) {
+            for (var i = 0; i < 4; i++) {
+                if (enable === true) {
+                    this._buttons[i].removeAttr('disabled');
+                    this._buttons[i].classList.remove('wrong', 'correct');
+                } else {
+                    this._buttons[i].addAttr('disabled', 'disabled');
+                }
+            }
+        },
+
+        /**
+         * Prepare answer fields for new questions.
+         * @param startGame
+         * @private
+         */
+        _showQuestion: function (startGame) {
+            if (startGame === true) {
+                elShow(this._questionText);
+                elShow(this._answerList);
+            }
+
+            this._currentQuestion = this._data.questions[this._questionIndex];
+            this._questionText.textContent = this._currentQuestion.question;
+
+            // update buttons.
+            for (var i = 0; i < 4; i++) {
+                var button = this._buttons[i];
+                var option = elData(button, 'value');
+                var optionString = 'option' + option;
+
+                button.textContent = this._currentQuestion.getProperty(optionString);
+            }
+
+            this._toggleButtons(true);
+            this._startClock();
+        },
+
+        /**
+         * Starts clock.
+         * @private
+         */
+        _startClock: function () {
+            if (this._data.type === 'competition') {
+                // remove previous status classes
+                for (var i = 1; i <= clockClasses; i++) {
+                    this._timeContainer.classList.remove('status' + i);
+                }
+
+                // set status for game
+                this._clockStatus = 0;
+                this._timeContainer.classList.add('status' + this._clockStatus);
+                this._questionScoreValue = clockPoints[this._clockStatus];
+            } else {
+                this._questionScoreValue = 1;
+            }
+
+            this._time = 0;
+            this._updateClockContainer();
+            this._updatePointContainer();
+
+            this._clockID = setInterval(this._clockTick.bind(this), 1000);
+        },
+
+        /**
+         * Stops clock.
+         * @private
+         */
+        _stopClock: function () {
+            clearInterval(this._clockID);
+        },
+
+        _clockTick: function () {
+            this._time++;
+
+            if (this._data.type === 'competition') {
+                var timeBorder = clockBorders[this._clockStatus];
+
+                if (timeBorder > 0 && this._time < timeBorder) {
+                    this._timeContainer.classList.remove('status' + this._clockStatus);
+                    this._clockStatus++;
+                    this._timeContainer.classList.add('status' + this._clockStatus);
+                    this._questionScoreValue = clockPoints[this._clockStatus];
+
+                    this._updatePointContainer();
+                }
+            }
+
+            this._updateClockContainer();
+        },
+
+        _updateClockContainer: function () {
+            // update clock
+            var blink = this._time % 2;
+            var seconds = String(this._time % 60);
+            var minutes = Math.floor(this._time / 60);
+
+            if (seconds.length < 2) {
+                seconds = "0" + seconds;
+            }
+
+            if (blink === 1) {
+                var blinker = ' ';
+            } else {
+                var blinker = ':'
+            }
+
+            this._timeContainer.textContent = minutes + blinker + seconds;
+        },
+
+        _updatePointContainer: function () {
+            this._questionValueContainer.textContent = this._questionScoreValue;
+        },
+
+        _updateScoreContainer: function () {
+            this._scoreContainer.textContent = this._score;
+        },
+
+        _finishGame: function() {
 
         },
 
@@ -146,4 +350,6 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this._gameContainer.innerHTML = '<p class="error">' + errorMessage + '</p>';
         }
     }
+
+    return Game;
 });

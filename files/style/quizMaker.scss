@@ -38,16 +38,18 @@
       text-align: center;
     }
 
-    .stage0 {
-      color: green;
-    }
+    .clock {
+      .status1 {
+        color: green;
+      }
 
-    .stage1 {
-      color: darkorange;
-    }
+      .status2 {
+        color: darkorange;
+      }
 
-    .stage2 {
-      color: darkred;
+      .status3 {
+        color: darkred;
+      }
     }
   }
 

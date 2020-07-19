@@ -48,7 +48,8 @@ class QuizAddForm extends AbstractFormBuilderForm
             MultilineTextFormField::create('description')
                 ->label('wcf.global.description')
                 ->maximumLength(1000),
-            ContentLanguageFormField::create('languageID'),
+            ContentLanguageFormField::create('languageID')
+                ->isRequired(),
             RadioButtonFormField::create('type')
                 ->label('wcf.acp.quizMaker.quiz.type')
                 ->options([

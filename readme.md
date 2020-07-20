@@ -13,12 +13,12 @@ There are two types of quizzes:
 
 ### Beta 2
   - [ ] Implement base javascript for play on QuizList
-    - [ ] Overwork Teralios/Quiz/Quiz to Teralios/Quiz/BaseQuiz
-    - [ ] Implement Teralios/Quiz/Quiz for QuizPage
-    - [ ] Implement Teralios/Quiz/QuizList for QuizListPage
+    - [x] Overwork Teralios/Quiz/Quiz to Teralios/QuizMaker/Game
+    - [x] Implement Teralios/QuizMaker/Quiz for QuizPage
+    - [ ] Implement Teralios/QuizMaker/QuizList for QuizListPage
     - [ ] Implement Teralios/Quiz/QuizBox for boxes
   - [ ] Implement result view for quiz
-  - [ ] Implement fun quiz support
+  - [x] Implement fun quiz support
   - [ ] Implement player list for quiz
   - [ ] Implement additional content on QuizList and Quiz
     - [ ] Last Player?

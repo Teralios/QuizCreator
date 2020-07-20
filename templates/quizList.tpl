@@ -1,3 +1,4 @@
+{* content header *}
 {capture assign='headContent'}
     {if $pageNo < $pages}
         <link rel="next" href="{link controller='QuizList'}pageNo={@$pageNo+1}{/link}">
@@ -7,6 +8,7 @@
     {/if}
 {/capture}
 
+{* sidebar *}
 {capture assign='sidebarRight'}
     <section class="box">
         <h2 class="boxTitle">{lang}wcf.quizMaker.quizList.box.bestPlayers.overall{/lang}</h2>
@@ -26,8 +28,13 @@
         </div>
     </section>
 {/capture}
+
 {capture assign='linkParameters'}&sortField={$sortField}&sortOrder={$sortOrder}{if !$languageID|empty}&languageID={$languageID}{/if}{/capture}
 
+{* variables *}
+{assign var="showQuizMakerCopyright" value=true}
+
+{* template *}
 {include file='header'}
 
 {hascontent}

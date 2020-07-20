@@ -50,6 +50,8 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizMaker/Game'], function (
 
         prepareGame: function (data) {
             console.log(data);
+
+            new Game(data, this._gameContainer);
         },
 
         _printError: function (errorMessage) {

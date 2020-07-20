@@ -22,6 +22,7 @@
 {* variables *}
 {assign var="pageTitle" value=$quiz->getTitle()}
 {assign var="contentTitle" value=$quiz->getTitle()}
+{assign var="showQuizMakerCopyright" value=true}
 
 {* template *}
 {include file='header'}
@@ -42,7 +43,7 @@
 
 <script data-relocate="true">
     require(['Teralios/QuizMaker/Quiz', 'Language'], function (Quiz, Language) {
-        new Quiz({$quiz->quizID});
+        new Quiz(elById('quiz{$this->quizID}'));
     });
 </script>
 

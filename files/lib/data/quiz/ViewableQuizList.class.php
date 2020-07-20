@@ -2,7 +2,9 @@
 
 namespace wcf\data\quiz;
 
+// imports
 use wcf\data\media\ViewableMediaList;
+use wcf\data\quiz\game\Game;
 use wcf\system\exception\SystemException;
 
 /**
@@ -24,6 +26,11 @@ class ViewableQuizList extends QuizList
     protected $loadMedia = true;
 
     /**
+     * @var bool
+     */
+    protected $loadStatistic = true;
+
+    /**
      * @var ViewableMediaList
      */
     protected $mediaList;
@@ -31,18 +38,31 @@ class ViewableQuizList extends QuizList
     /**
      * ViewableQuizList constructor.
      * @param bool $loadMedia
+     * @param bool $loadStatistic
      * @throws SystemException
      */
-    public function __construct(bool $loadMedia = true)
+    public function __construct(bool $loadMedia = true, bool $loadStatistic = true)
     {
         parent::__construct();
 
         $this->loadMedia = $loadMedia;
+        $this->loadStatistic = $loadStatistic;
     }
 
+    /**
+     * @param bool $loadMedia
+     */
     public function loadMedia(bool $loadMedia)
     {
         $this->loadMedia = $loadMedia;
+    }
+
+    /**
+     * @param bool $loadStatistic
+     */
+    public function loadStatistic(bool $loadStatistic)
+    {
+        $this->loadStatistic = $loadStatistic;
     }
 
     /**
@@ -50,6 +70,11 @@ class ViewableQuizList extends QuizList
      */
     public function readObjects()
     {
+        // add sql commands for statistic
+        if ($this->loadStatistic === true) {
+            $this->prepareForStatistic();
+        }
+
         parent::readObjects();
 
         // read media IDs.
@@ -66,6 +91,19 @@ class ViewableQuizList extends QuizList
                 $this->readMedia($mediaIDs);
             }
         }
+    }
+
+    /**
+     * Add default statistic sql parameters
+     */
+    protected function prepareForStatistic()
+    {
+        $this->sqlSelects = $this->getDatabaseTableAlias() . '.*, COUNT(' . Game::getDatabaseTableAlias() . '.userID) AS players ';
+        $this->sqlSelects .= 'SUM(' . Game::getDatabaseTableAlias() . '.score) AS score';
+
+        $this->sqlJoins = 'LEFT JOIN ' . Game::getDatabaseTableAlias() . ' ' . Game::getDatabaseTAbleAlias() . ' ';
+        $this->sqlJoins = 'ON ' . $this->getDatabaseTableAlias() . '.quizID = ' . Game::getDatabaseTAbleAlias() . '.quizID';
+        $this->sqlOrderBy = 'GROUP BY quizID ' . $this->sqlOrderBy;
     }
 
     /**

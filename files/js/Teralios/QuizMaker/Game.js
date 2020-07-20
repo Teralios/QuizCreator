@@ -160,7 +160,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this._headerContainer.appendChild(pointValueDiv);
 
             // game information footer
-            this._footerContainer.innerHTML = '<p><span class="score"></span> ' + Language.get('wcf.quizMaker.game.score') + '</p>';;
+            this._footerContainer.innerHTML = '<p><span class="score"></span> ' + Language.get('wcf.quizMaker.game.score') + '</p>';
             this._scoreContainer = elBySel('.score', this._footerContainer);
 
             // build game content
@@ -238,13 +238,13 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             }
 
             this._currentQuestion = this._data.questions[this._questionIndex];
-            this._questionText.textContent = this._currentQuestion.question;
+            this._questionText.textContent = this.escapeHTML(this._currentQuestion.question);
 
             // update buttons.
             for (var i = 0; i < 4; i++) {
                 var optionString = 'option' + elData(this._buttons[i], 'value');
 
-                this._buttons[i].textContent = this._currentQuestion.getProperty(optionString);
+                this._buttons[i].textContent = StringUtil.escapeHTML(this._currentQuestion.getProperty(optionString));
             }
 
             this._toggleButtons(true);
@@ -333,7 +333,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
         _printError: function (errorMessage) {
             this._gameContainer.innerHTML = '<p class="error">' + errorMessage + '</p>';
         }
-    }
+    };
 
     return Game;
 });

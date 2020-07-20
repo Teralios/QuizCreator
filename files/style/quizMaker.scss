@@ -1,96 +1,95 @@
 .quiz {
   padding: 0 !important;
-}
-
-.quizHeader {
-  .quizImage {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-
-    img {
-      max-width: 100%;
-    }
-  }
-
-  .quizDescription {
-    padding: 0.5em;
-  }
-}
-
-.game {
-  border-top: $wcfContentBorderInner solid 1px;
-
-  .borderTop {
-    border-top: $wcfContentBorderInner solid 1px;
-  }
-
-  .gameHeader {
-    padding: 1em;
-    display: grid;
-    grid-template-columns: auto auto auto;
-
-    :last-child {
-      text-align: right;
-    }
-
-    :nth-child(2) {
+  .info {
+    .image {
+      margin: 0;
+      padding: 0;
       text-align: center;
+
+      img {
+        max-width: 100%;
+      }
     }
 
-    .clock {
-      .status1 {
-        color: green;
-      }
-
-      .status2 {
-        color: darkorange;
-      }
-
-      .status3 {
-        color: darkred;
-      }
+    .description {
+      padding: 0.5em;
     }
   }
 
-  .gameContent {
-    text-align: center;
-    padding: 1em;
+  .game {
+    border-top: $wcfContentBorderInner solid 1px;
 
-    .question {
-      height: 1.2em;
-      font-weight: bold;
+    .borderTop {
+      border-top: $wcfContentBorderInner solid 1px;
     }
 
-    .answerList {
-      margin: 0.5em;
+    .gameHeader {
+      padding: 1em;
+      display: grid;
+      grid-template-columns: auto auto auto;
 
-      li {
-        padding: 0.2em;
+      :last-child {
+        text-align: right;
+      }
 
-        button {
-          width: 100%;
+      :nth-child(2) {
+        text-align: center;
+      }
+
+      .clock {
+        .status1 {
+          color: green;
+        }
+
+        .status2 {
+          color: darkorange;
+        }
+
+        .status3 {
+          color: darkred;
         }
       }
     }
 
-    .correct:disabled {
-      opacity: 0.7;
-      background: #009900 !important;
-      color: #fff !important;
+    .gameContent {
+      text-align: center;
+      padding: 1em;
+
+      .question {
+        height: 1.2em;
+        font-weight: bold;
+      }
+
+      .answerList {
+        margin: 0.5em;
+
+        li {
+          padding: 0.2em;
+
+          button {
+            width: 100%;
+          }
+        }
+      }
+
+      .correct:disabled {
+        opacity: 0.7;
+        background: #009900 !important;
+        color: #fff !important;
+      }
+
+      .wrong:disabled {
+        opacity: 0.7;
+        background: #990000 !important;
+        color: #fff !important;
+      }
     }
 
-    .wrong:disabled {
-      opacity: 0.7;
-      background: #990000 !important;
-      color: #fff !important;
+    .gameFooter {
+      visibilty: hidden;
+      text-align: center;
+      margin-top: 1em;
+      padding: 1em;
     }
-  }
-
-  .gameFooter {
-    visibilty: hidden;
-    text-align: center;
-    margin-top: 1em;
-    padding: 1em;
   }
 }

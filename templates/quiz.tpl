@@ -26,39 +26,23 @@
 {* template *}
 {include file='header'}
 
-<div class="section quiz">
-    <div class="quizHeader">
+<div class="section quiz" id="quiz{$quiz->quizID}" data-id="{$quiz->quizID}">
+    <div class="info">
         {assign var="media" value=$quiz->getMedia()}
         {if !$media|is_null}
-            <div class="quizImage">
+            <div class="image">
                 {@$media}
             </div>
         {/if}
-        <div class="quizDescription">
-            {$quiz->getDescription()}
+        <div class="description">
+            {@$quiz->getDescription()}
         </div>
-    </div>
-    <div class="quizGame" id="quiz{$quiz->quizID}" data-id="{$quiz->quizID}">
-        <div class="quizGameHeader"></div>
-        <div class="quizGameContent"></div>
-        <div class="quizGameFooter"></div>
     </div>
 </div>
 
 <script data-relocate="true">
     require(['Teralios/QuizMaker/Quiz', 'Language'], function (Quiz, Language) {
-        Language.addObject({
-            'wcf.quizMaker.play.points': '{lang}wcf.quizMaker.play.points{/lang}',
-            'wcf.quizMaker.play.time': '{lang}wcf.quizMaker.play.time{/lang}',
-            'wcf.quizMaker.play.start': '{lang}wcf.quizMaker.play.start{/lang}',
-            'wcf.quizMaker.play.next': '{lang}wcf.quizMaker.play.next{/lang}',
-            'wcf.quizMaker.play.question': '{lang}wcf.quizMaker.play.question{/lang}',
-            'wcf.quizMaker.play.loadError': '{lang}wcf.quizMaker.play.loadError{/lang}',
-            'wcf.quizMaker.play.temp.finished': '{lang}wcf.quizMaker.play.temp.finished{/lang}'
-        });
-
-        var quizId = 'quiz{$quiz->quizID}'
-        new Quiz(elById(quizId));
+        new Quiz({$quiz->quizID});
     });
 </script>
 

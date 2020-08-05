@@ -16,7 +16,14 @@
     }
   }
 
+  .dummy {
+    visibility: hidden;
+  }
+
   .game {
+    display: table-cell;
+    vertical-align: middle;
+
     border-top: $wcfContentBorderInner solid 1px;
 
     .borderTop {

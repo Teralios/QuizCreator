@@ -39,6 +39,26 @@
             {@$quiz->getDescription()}
         </div>
     </div>
+    <div class="game dummy">
+        <div class="gameHeader">
+            <div class="questionCounter"><b>{lang}wcf.quizMaker.game.questions{/lang}</b></div>
+            <div class="clock"><b>{lang}wcf.quizMaker.game.time{/lang}</b></div>
+            <div class="currentQuestionValue">{lang}wcf.quizMaker.game.points{/lang}</div>
+        </div>
+        <div class="gameContent">
+            <ul class="answerList">
+                <li><button>Dummy 1</button></li>
+                <li><button>Dummy 2</button></li>
+                <li><button>Dummy 3</button></li>
+                <li><button>Dummy 4</button></li>
+            </ul>
+
+            <button>{lang}wcf.quizMaker.game.next{/lang}</button>
+        </div>
+        <div class="gameFooter">
+            <p>{lang}wcf.quizMaker.game.score{/lang}</p>
+        </div>
+    </div>
 </div>
 
 <script data-relocate="true">

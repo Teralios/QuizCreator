@@ -12,23 +12,19 @@ There are two types of quizzes:
   - [x] Implement base javascript for play
 
 ### Beta 2
-  - [ ] Implement base javascript for play on QuizList
+  - [x] Implement base javascript
     - [x] Overwork Teralios/Quiz/Quiz to Teralios/QuizMaker/Game
     - [x] Implement Teralios/QuizMaker/Quiz for QuizPage
-    - [ ] Implement Teralios/QuizMaker/QuizList for QuizListPage
-    - [ ] Implement Teralios/Quiz/QuizBox for boxes
   - [ ] Implement result view for quiz
   - [x] Implement fun quiz support
   - [ ] Implement player list for quiz
   - [ ] Implement additional content on QuizList and Quiz
     - [ ] Last Player?
-    - [ ] average score?
+    - [x] average score?
 
 ### Beta 3
   - [ ] Implement frontend editor for manage quiz
   - [ ] Implement more permissions
-  - [ ] Implement "Quiz of the Day"-Box
-  - [ ] Implement Quiz BBCode
 
 ### Beta 4
   - [ ] Implement Tags for quiz
@@ -41,3 +37,7 @@ There are two types of quizzes:
  
 ### RC1
   - [ ] Fix issues
+  
+### 1.1
+  - [ ] Implement playing on QuizList
+  - [ ] Implement Quiz-of-the-Day

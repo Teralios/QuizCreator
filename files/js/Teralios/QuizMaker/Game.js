@@ -61,6 +61,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             }
 
             this._buttonNext.style.visibility = 'visible';
+            this._updateClockContainer(false)
         },
 
         /**
@@ -86,7 +87,6 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             var error = false;
 
             var length = neededKeys.length;
-            alert(Object.keys(this._data));
             for (var i = 0; i < length; i++) {
                 if (this._data.hasOwnProperty(neededKeys[i]) === false) {
                     error = true;
@@ -238,6 +238,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
                 elShow(this._answerList);
                 this._contentContainer.classList.add('borderTop');
                 this._footerContainer.classList.add('borderTop');
+                this._updateScoreContainer();
             }
 
             this._currentQuestion = this._data.questionList[this._questionIndex];
@@ -295,7 +296,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             if (this._data.type === 'competition') {
                 var timeBorder = clockBorders[this._clockStatus];
 
-                if (timeBorder > 0 && this._time < timeBorder) {
+                if (timeBorder > 0 && this._time > timeBorder) {
                     this._timeContainer.classList.remove('status' + this._clockStatus);
                     this._clockStatus++;
                     this._timeContainer.classList.add('status' + this._clockStatus);
@@ -305,14 +306,18 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
                 }
             }
 
-            this._updateClockContainer();
+            this._updateClockContainer(true);
         },
 
-        _updateClockContainer: function () {
+        _updateClockContainer: function (blinking) {
             // update clock
             var seconds = String(this._time % 60);
             var minutes = Math.floor(this._time / 60);
-            var blinker = (this._time % 2 === 1) ? ' ' : ':';
+
+            var blinker = ':'
+            if (blinking === true) {
+                blinker = (this._time % 2 === 1) ? ' ' : ':';
+            }
 
             if (seconds.length < 2) {
                 seconds = "0" + seconds;

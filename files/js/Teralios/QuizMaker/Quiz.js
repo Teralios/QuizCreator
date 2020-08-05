@@ -50,8 +50,8 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizMaker/Game'], function (
                     failure: function () {
                         this._printError(Language.get('wcf.quizMaker.quiz.error.loading'));
                     }.bind(this)
-                },
-            );
+                }
+            )
         },
 
         prepareGame: function (data) {

@@ -21,7 +21,7 @@
                 if_return: true,
                 join_vars: true,
                 cascade: true,
-                /* this is basically the `--define` argument */
+                // this is basically the `--define` argument
                 global_defs: {
                     COMPILER_TARGET_DEFAULT: true
                 }

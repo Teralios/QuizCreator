@@ -65,9 +65,15 @@
 
 <script data-relocate="true">
     require(['Teralios/QuizMaker/Quiz', 'Language'], function (Quiz, Language) {
+        Language.add('wcf.quizMaker.game.next', '{lang}wcf.quizMaker.game.next{/lang}');
+        Language.add('wcf.quizMaker.game.points', '{lang}wcf.quizMaker.game.points{/lang}');
+        Language.add('wcf.quizMaker.game.questions', '{lang}wcf.quizMaker.game.questions{/lang}');
+        Language.add('wcf.quizMaker.game.score', '{lang}wcf.quizMaker.game.score{/lang}');
+        Language.add('wcf.quizMaker.game.start', '{lang}wcf.quizMaker.game.start{/lang}');
+        Language.add('wcf.quizMaker.game.time', '{lang}wcf.quizMaker.game.time{/lang}');
+
         new Quiz(elById('quiz{$quiz->quizID}'));
     });
 </script>
-
 
 {include file='footer'}

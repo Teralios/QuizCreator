@@ -28,6 +28,12 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this._data = data;
 
             if (this._checkData()) {
+                this._gameCanStart = true;
+            }
+        },
+
+        buildGame: function() {
+            if (this._gameCanStart === true) {
                 this._createBaseHTML();
             }
         },

@@ -105,10 +105,12 @@
                                 <dt>{lang}wcf.quizMaker.players{/lang}</dt>
                                 <dd>{@$quiz->players|shortUnit}</dd>
                             </dl>
-                            <dl class="plain statsDataList">
-                                <dt>{lang}wcf.quizMaker.averageScore{/lang}</dt>
-                                <dd>{($quiz->score / $quiz->players)|shortUnit}</dd>
-                            </dl>
+                            {if $quiz->playery > 0}
+                                <dl class="plain statsDataList">
+                                    <dt>{lang}wcf.quizMaker.averageScore{/lang}</dt>
+                                    <dd>{($quiz->score / $quiz->players)|shortUnit}</dd>
+                                </dl>
+                            {/if}
                             <div class="messageGroupListStatsSimple" aria-label="{lang}wcf.quizMaker.questions{/lang}"><span class="icon icon16 fa-question-circle"></span> {@$quiz->questions|shortUnit}</div>
                         </li>
                         {if !$quiz->languageID|empty}

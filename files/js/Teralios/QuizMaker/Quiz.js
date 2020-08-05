@@ -55,11 +55,17 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizMaker/Game'], function (
         },
 
         prepareGame: function (data) {
-            new Game(data.returnValues, this._gameContainer);
+            this._data = data.returnValues;
+            this._initGame();
         },
 
         _printError: function (errorMessage) {
             this._gameContainer.innerHTML = '<div class="gameContent"><p class="error">' + StringUtil.escapeHTML(errorMessage) + '</p></div>';
+        },
+
+        _initGame: function() {
+            this._game = new Game(this._data, this._gameContainer);
+            this._game.buildGame();
         }
     };
 

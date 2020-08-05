@@ -26,9 +26,9 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizMaker/Game'], function (
                 this._gameContainer.className = 'game';
                 this._quizContainer.appendChild(this._gameContainer);
             } else {
-                this._gameContainer.style.height = this._gameContainer.clientHeight;
+                this._gameContainer.style.height = this._gameContainer.offsetHeight + 'px';
                 this._gameContainer.innerHTML = '';
-                this._gameContainer.removeClass('dummy');
+                this._gameContainer.classList.remove('dummy');
             }
 
             if (!Number.isInteger(this.quizID)) {
@@ -44,9 +44,7 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizMaker/Game'], function (
                     data: {
                         actionName: "loadQuiz",
                         className: 'wcf\\data\\quiz\\QuizAction',
-                        parameters: {
-                            objectIDs: [this.quizID]
-                        }
+                        objectIDs: [this.quizID]
                     },
                     success: this.prepareGame.bind(this),
                     failure: function () {
@@ -57,13 +55,11 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizMaker/Game'], function (
         },
 
         prepareGame: function (data) {
-            console.log(data);
-
-            //new Game(data, this._gameContainer);
+            new Game(data.returnValues, this._gameContainer);
         },
 
         _printError: function (errorMessage) {
-            this._gameContainer.innerHTML = '<p>' + StringUtil.escapeHTML(errorMessage) + '</p>';
+            this._gameContainer.innerHTML = '<div class="gameContent"><p class="error">' + StringUtil.escapeHTML(errorMessage) + '</p></div>';
         }
     };
 

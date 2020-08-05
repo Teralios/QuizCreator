@@ -10,21 +10,21 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
 
     /**
      * @param data
-     * @param containerID
+     * @param gameContainer
      * @constructor
      */
-    function Game(data, containerID)
+    function Game(data, gameContainer)
     {
-        this.init(data, containerID);
+        this.init(data, gameContainer);
     }
 
     Game.prototype = {
         /**
          * @param data
-         * @param containerID
+         * @param gameContainer
          */
-        init: function (data, containerID) {
-            this._gameContainer = elById(containerID);
+        init: function (data, gameContainer) {
+            this._gameContainer = gameContainer;
             this._data = data;
 
             if (this._checkData()) {
@@ -54,24 +54,24 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
 
             if (elData(event.target, 'value') === this._currentQuestion.answer) {
                 event.target.classList.add('correct');
-                this._score = this._questionScoreValue;
+                this._score += this._questionScoreValue;
                 this._updateScoreContainer();
             } else {
                 event.target.classList.add('wrong');
             }
 
-            elShow(this._buttonNext);
+            this._buttonNext.style.visibility = 'visible';
         },
 
         /**
          * Function behind next button.
          */
         next: function () {
-            elHide(this._buttonNext);
+            this._buttonNext.style.visibility = 'hidden';
 
             this._questionIndex++;
 
-            if (this._questionIndex > this._data.questions) {
+            if (this._questionIndex >= this._data.questions) {
                 this._finishGame();
             } else {
                 this._showQuestion(false);
@@ -86,8 +86,9 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             var error = false;
 
             var length = neededKeys.length;
+            alert(Object.keys(this._data));
             for (var i = 0; i < length; i++) {
-                if (!this._data.hasOwnProperty(neededKeys[i])) {
+                if (this._data.hasOwnProperty(neededKeys[i]) === false) {
                     error = true;
                     break;
                 }
@@ -154,7 +155,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             // point value of question
             var pointValueDiv = elCreate('div');
             pointValueDiv.className = 'currentQuestionValue';
-            pointValueDiv.innerHTML = '+ <span class="questionValue"></span> ' + Language.get('wcf.quizMaker.game.points');
+            pointValueDiv.innerHTML = '+ <span class="questionValue"></span> <b>' + Language.get('wcf.quizMaker.game.points') + '</b>';
 
             this._questionValueContainer = elBySel('.questionValue', pointValueDiv);
             this._headerContainer.appendChild(pointValueDiv);
@@ -167,17 +168,17 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this._questionText = elCreate('p');
             this._questionText.className = 'question';
             elHide(this._questionText);
-            this._gameContent.appendChild(this._questionText);
+            this._contentContainer.appendChild(this._questionText);
 
             this._answerList = this._buildQuestionField();
             elHide(this._answerList);
-            this._gameContent.appendChild(this._answerList);
+            this._contentContainer.appendChild(this._answerList);
 
             this._buttonNext = elCreate('button');
             this._buttonNext.textContent = Language.get('wcf.quizMaker.game.next');
             this._buttonNext.addEventListener(WCF_CLICK_EVENT, this.next.bind(this));
-            elHide(this._buttonNext);
-            this._gameContent.appendChild(this._buttonNext)
+            this._buttonNext.style.visibility = 'hidden';
+            this._contentContainer.appendChild(this._buttonNext)
         },
 
         /**
@@ -218,10 +219,10 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
         _toggleButtons: function (enable) {
             for (var i = 0; i < 4; i++) {
                 if (enable === true) {
-                    this._buttons[i].removeAttr('disabled');
+                    this._buttons[i].removeAttribute('disabled');
                     this._buttons[i].classList.remove('wrong', 'correct');
                 } else {
-                    this._buttons[i].addAttr('disabled', 'disabled');
+                    this._buttons[i].setAttribute('disabled', 'disabled');
                 }
             }
         },
@@ -235,16 +236,18 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             if (startGame === true) {
                 elShow(this._questionText);
                 elShow(this._answerList);
+                this._contentContainer.classList.add('borderTop');
+                this._footerContainer.classList.add('borderTop');
             }
 
-            this._currentQuestion = this._data.questions[this._questionIndex];
-            this._questionText.textContent = this.escapeHTML(this._currentQuestion.question);
+            this._currentQuestion = this._data.questionList[this._questionIndex];
+            this._questionText.textContent = StringUtil.escapeHTML(this._currentQuestion.question);
 
             // update buttons.
             for (var i = 0; i < 4; i++) {
                 var optionString = 'option' + elData(this._buttons[i], 'value');
 
-                this._buttons[i].textContent = StringUtil.escapeHTML(this._currentQuestion.getProperty(optionString));
+                this._buttons[i].textContent = StringUtil.escapeHTML(this._currentQuestion[optionString]);
             }
 
             this._toggleButtons(true);
@@ -327,11 +330,11 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
         },
 
         _finishGame: function() {
-
+            // @ todo implement final page
         },
 
         _printError: function (errorMessage) {
-            this._gameContainer.innerHTML = '<p class="error">' + errorMessage + '</p>';
+            this._gameContainer.innerHTML = '<div class="gameContent"><p class="error">' + errorMessage + '</p></div>';
         }
     };
 

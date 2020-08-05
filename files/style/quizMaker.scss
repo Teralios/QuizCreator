@@ -1,6 +1,6 @@
 .quiz {
   padding: 0 !important;
-  .info {
+  .information {
     .image {
       margin: 0;
       padding: 0;
@@ -8,6 +8,7 @@
 
       img {
         max-width: 100%;
+        max-height: 25%;
       }
     }
 
@@ -21,9 +22,8 @@
   }
 
   .game {
-    display: table-cell;
-    vertical-align: middle;
-
+    //display: table-cell;
+    //vertical-align: middle;
     border-top: $wcfContentBorderInner solid 1px;
 
     .borderTop {
@@ -74,7 +74,7 @@
           padding: 0.2em;
 
           button {
-            width: 100%;
+            width: 80%;
           }
         }
       }

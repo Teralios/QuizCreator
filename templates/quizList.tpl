@@ -103,9 +103,13 @@
                             </dl>
                             <dl class="plain statsDataList">
                                 <dt>{lang}wcf.quizMaker.players{/lang}</dt>
-                                <dd>{0|shortUnit}</dd>
+                                <dd>{@$quiz->players|shortUnit}</dd>
                             </dl>
-                            <div class="messageGroupListStatsSimple" aria-label="{lang}wcf.quizMaker.questions{/lang}">{@$quiz->questions|shortUnit}</div>
+                            <dl class="plain statsDataList">
+                                <dt>{lang}wcf.quizMaker.averageScore{/lang}</dt>
+                                <dd>{($quiz->score / $quiz->players)|shortUnit}</dd>
+                            </dl>
+                            <div class="messageGroupListStatsSimple" aria-label="{lang}wcf.quizMaker.questions{/lang}"><span class="icon icon16 fa-question-circle"></span> {@$quiz->questions|shortUnit}</div>
                         </li>
                         {if !$quiz->languageID|empty}
                             <li class="columnIcon">

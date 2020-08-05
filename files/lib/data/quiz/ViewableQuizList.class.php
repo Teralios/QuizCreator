@@ -36,6 +36,22 @@ class ViewableQuizList extends QuizList
     protected $mediaList;
 
     /**
+     * @var string[]
+     */
+    public $sqlGroupByFields = [
+        'quizID',
+        'languageID',
+        'creationDate',
+        'mediaID',
+        'type',
+        'title',
+        'description',
+        'isActive',
+        'questions',
+        'goals'
+    ];
+
+    /**
      * ViewableQuizList constructor.
      * @param bool $loadMedia
      * @param bool $loadStatistic
@@ -72,7 +88,7 @@ class ViewableQuizList extends QuizList
     {
         // add sql commands for statistic
         if ($this->loadStatistic === true) {
-            $this->prepareForStatistic();
+            $this->buildStatisticSQL();
         }
 
         parent::readObjects();
@@ -96,14 +112,18 @@ class ViewableQuizList extends QuizList
     /**
      * Add default statistic sql parameters
      */
-    protected function prepareForStatistic()
+    protected function buildStatisticSQL()
     {
-        $this->sqlSelects = $this->getDatabaseTableAlias() . '.*, COUNT(' . Game::getDatabaseTableAlias() . '.userID) AS players ';
-        $this->sqlSelects .= 'SUM(' . Game::getDatabaseTableAlias() . '.score) AS score';
+        $this->sqlSelects = 'COUNT(' . Game::getDatabaseTableAlias() . '.userID) AS players ';
+        $this->sqlSelects .= ', SUM(' . Game::getDatabaseTableAlias() . '.score) AS score';
 
-        $this->sqlJoins = 'LEFT JOIN ' . Game::getDatabaseTableAlias() . ' ' . Game::getDatabaseTAbleAlias() . ' ';
-        $this->sqlJoins = 'ON ' . $this->getDatabaseTableAlias() . '.quizID = ' . Game::getDatabaseTAbleAlias() . '.quizID';
-        $this->sqlOrderBy = 'GROUP BY quizID ' . $this->sqlOrderBy;
+        $this->sqlJoins = 'LEFT JOIN ' . Game::getDatabaseTableName() . ' ' . Game::getDatabaseTableAlias() . ' ';
+        $this->sqlJoins .= 'ON ' . $this->getDatabaseTableAlias() . '.quizID = ' . Game::getDatabaseTAbleAlias() . '.quizID ';
+
+        // build group by
+        if (count($this->sqlGroupByFields)) {
+            $this->sqlJoins .= ' GROUP BY ' . implode(', ', $this->sqlGroupByFields);
+        }
     }
 
     /**

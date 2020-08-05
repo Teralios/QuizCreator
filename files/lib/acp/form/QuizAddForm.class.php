@@ -49,7 +49,7 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->label('wcf.global.description')
                 ->maximumLength(1000),
             ContentLanguageFormField::create('languageID')
-                ->isRequired(),
+                ->required(),
             RadioButtonFormField::create('type')
                 ->label('wcf.acp.quizMaker.quiz.type')
                 ->options([
@@ -62,7 +62,7 @@ class QuizAddForm extends AbstractFormBuilderForm
             BooleanFormField::create('isActive')
                 ->label('wcf.acp.quizMaker.quiz.isActive')
                 ->value(0)
-                ->available(($this->formAction == 'edit') ? true : false)
+                ->available($this->formAction == 'edit'),
         ]);
 
         $this->form->appendChild($container);

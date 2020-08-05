@@ -28,7 +28,7 @@
 {include file='header'}
 
 <div class="section quiz" id="quiz{$quiz->quizID}" data-id="{$quiz->quizID}">
-    <div class="info">
+    <div class="information">
         {assign var="media" value=$quiz->getMedia()}
         {if !$media|is_null}
             <div class="image">
@@ -46,14 +46,16 @@
             <div class="currentQuestionValue">{lang}wcf.quizMaker.game.points{/lang}</div>
         </div>
         <div class="gameContent">
-            <ul class="answerList">
-                <li><button>Dummy 1</button></li>
-                <li><button>Dummy 2</button></li>
-                <li><button>Dummy 3</button></li>
-                <li><button>Dummy 4</button></li>
-            </ul>
+                <p>Dummy Question</p>
 
-            <button>{lang}wcf.quizMaker.game.next{/lang}</button>
+                <ul class="answerList">
+                    <li><button>Dummy 1</button></li>
+                    <li><button>Dummy 2</button></li>
+                    <li><button>Dummy 3</button></li>
+                    <li><button>Dummy 4</button></li>
+                </ul>
+
+                <button>{lang}wcf.quizMaker.game.next{/lang}</button>
         </div>
         <div class="gameFooter">
             <p>{lang}wcf.quizMaker.game.score{/lang}</p>
@@ -63,7 +65,7 @@
 
 <script data-relocate="true">
     require(['Teralios/QuizMaker/Quiz', 'Language'], function (Quiz, Language) {
-        new Quiz(elById('quiz{$this->quizID}'));
+        new Quiz(elById('quiz{$quiz->quizID}'));
     });
 </script>
 

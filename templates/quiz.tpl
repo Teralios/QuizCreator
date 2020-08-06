@@ -28,17 +28,21 @@
 {include file='header'}
 
 <div class="section quiz" id="quiz{$quiz->quizID}" data-id="{$quiz->quizID}">
-    <div class="information">
-        {assign var="media" value=$quiz->getMedia()}
-        {if !$media|is_null}
-            <div class="image">
-                {@$media}
-            </div>
-        {/if}
-        <div class="description">
-            {@$quiz->getDescription()}
+    {assign var="media" value=$quiz->getMedia()}
+    {if !$media|is_null || !$quiz->description|empty}
+        <div class="information">
+            {if !$media|is_null}
+                <div class="image">
+                    {@$media}
+                </div>
+            {/if}
+            {if !$quiz->description|empty}
+                <div class="description">
+                    {@$quiz->getDescription()}
+                </div>
+            {/if}
         </div>
-    </div>
+    {/if}
     <div class="game dummy">
         <div class="gameHeader">
             <div class="questionCounter"><b>{lang}wcf.quizMaker.game.questions{/lang}</b></div>

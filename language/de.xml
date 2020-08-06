@@ -61,5 +61,6 @@
 		<item name="wcf.quizMaker.game.score"><![CDATA[Punkte]]></item>
 		<item name="wcf.quizMaker.game.start"><![CDATA[Quiz starten]]></item>
 		<item name="wcf.quizMaker.game.next"><![CDATA[Nächste Frage]]></item>
+		<item name="wcf.quizMaker.averageScore"><![CDATA[⌀ Punkte]]></item>
 	</category>
 </language>

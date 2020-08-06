@@ -50,10 +50,6 @@ class QuestionEditor extends DatabaseObjectEditor
      */
     public static function create(array $parameters = [])
     {
-        if (isset($parameters['position']) && $parameters['position'] == 0) {
-            $parameters['position'] = 1;
-        }
-
         if (isset($parameters['quizID'])) {
             static::updatePositionsBeforeCreate($parameters['quizID'], $parameters['position']);
         }

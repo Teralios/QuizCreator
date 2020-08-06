@@ -4,6 +4,7 @@ namespace wcf\acp\form;
 
 // imports
 use wcf\data\quiz\question\QuestionAction;
+use wcf\data\quiz\Quiz;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\HiddenFormField;
 use wcf\system\form\builder\field\MultilineTextFormField;
@@ -31,13 +32,6 @@ class QuizQuestionAddForm extends BaseQuizForm
     public function createForm()
     {
         parent::createForm();
-
-        // prepare positions
-        $orderOptions = [];
-        $questions = $this->quizObject->questions + (($this->formAction == 'create' && $this->quizObject->questions > 0) ? 1 : 0);
-        for ($i = 1; $i <= $questions; $i++) {
-            $orderOptions[] = $i;
-        }
 
         $container = FormContainer::create('questionForm');
         $container->appendChildren([
@@ -76,9 +70,24 @@ class QuizQuestionAddForm extends BaseQuizForm
                 ->maximumLength(500),
             ShowOrderFormField::create('position')
                 ->label('wcf.acp.quizMaker.question.position')
-                ->options($orderOptions)
         ]);
 
         $this->form->appendChild($container);
+
+        // set order options
+        $orderOptions = [];
+
+        // reload quiz object
+        $this->quizObject = new Quiz($this->quizObject->quizID);
+        $showOrderValue = $this->quizObject->questions;
+        $maxShowOrder = $showOrderValue + (($this->formAction == 'create' && $this->quizObject->questions > 0) ? 1 : 0);
+
+        for ($i = 2; $i <= $maxShowOrder; $i++) { // start here with 2.
+            $orderOptions[$i - 1] = $i;
+        }
+
+        /** @var ShowOrderFormField $showOrderField */
+        $showOrderField = $this->form->getNodeById('position');
+        $showOrderField->options($orderOptions)->value($showOrderValue);
     }
 }

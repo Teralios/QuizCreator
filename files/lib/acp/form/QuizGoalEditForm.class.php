@@ -27,8 +27,6 @@ class QuizGoalEditForm extends QuizGoalAddForm
      */
     public function readParameters()
     {
-        AbstractFormBuilderForm::readParameters();
-
         $id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : 0;
         $this->formObject = new Goal((int) $id);
         if (!$this->formObject->goalID) {
@@ -36,5 +34,7 @@ class QuizGoalEditForm extends QuizGoalAddForm
         }
 
         $this->quizObject = new Quiz($this->formObject->quizID);
+
+        parent::readParameters();
     }
 }

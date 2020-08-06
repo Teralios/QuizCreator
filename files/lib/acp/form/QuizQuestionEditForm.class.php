@@ -27,8 +27,6 @@ class QuizQuestionEditForm extends QuizQuestionAddForm
      */
     public function readParameters()
     {
-        AbstractFormBuilderForm::readParameters();
-
         $id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : 0;
         $this->formObject = new Question((int) $id);
         if (!$this->formObject->questionID) {
@@ -36,5 +34,7 @@ class QuizQuestionEditForm extends QuizQuestionAddForm
         }
 
         $this->quizObject = new Quiz($this->formObject->quizID);
+
+        parent::readParameters();
     }
 }

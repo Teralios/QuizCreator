@@ -31,12 +31,11 @@ class BaseQuizForm extends AbstractFormBuilderForm
     {
         parent::readParameters();
 
-        $quizID = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : 0;
-        if ($quizID == 0) {
+        if ($this->quizObject === null) {
             $quizID = (isset($_REQUEST['quizID'])) ? $_REQUEST['quizID'] : 0;
+            $this->quizObject = new Quiz((int)$quizID);
         }
 
-        $this->quizObject = new Quiz((int) $quizID);
         if (!$this->quizObject->quizID) {
             throw new IllegalLinkException();
         }

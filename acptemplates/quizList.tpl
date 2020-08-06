@@ -63,14 +63,14 @@
                                   data-object-id="{#$quiz->quizID}"
                                   data-confirm-message-html="{lang __encode=true}wcf.acp.quizMaker.quiz.delete.confirmMessage{/lang}">
                             </span>
+
+                            <span class="icon icon16 {if $quiz->type == 'competition'}fa-trophy{else}fa-child{/if} jsTooltip"
+                                    title="{lang}wcf.acp.quizMaker.quiz.type.{@$quiz->type}{/lang}">
+                            </span>
                         </td>
                         <td class="columnID columnQuizID">{@$quiz->quizID}</td>
                         <td class="columnTitle">
                             <a href="{$quizLink}">{$quiz->title}</a>
-                            <span
-                                    class="icon icon16 {if $quiz->type == 'competition'}fa-trophy{else}fa-child{/if} jsTooltip"
-                                    title="{lang}wcf.acp.quizMaker.quiz.type.{@$quiz->type}{/lang}">
-                            </span>
                         </td>
                         {if $isMultiLingual}
                             <td class="columnText">

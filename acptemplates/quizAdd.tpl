@@ -13,12 +13,12 @@
     {if !$formObject|empty && $quiz|empty}
         {assign var="__formTitleDescription" value=$formObject->getTitle()}
         <li>
-            <a class="button" href="{link controller='QuizQuestionAdd' id=$formObject->quizID}{/link}">
+            <a class="button" href="{link controller='QuizQuestionAdd' quizID=$formObject->quizID}{/link}">
                 <span class="icon icon16 fa-question-circle"></span> <span>{lang}wcf.acp.quizMaker.question.add{/lang}</span>
             </a>
         </li>
         <li>
-            <a class="button" href="{link controller='QuizGoalAdd' id=$formObject->quizID}{/link}">
+            <a class="button" href="{link controller='QuizGoalAdd' quizID=$formObject->quizID}{/link}">
                 <span class="icon icon16 fa-trophy"></span> <span>{lang}wcf.acp.quizMaker.goal.add{/lang}</span>
             </a>
         </li>

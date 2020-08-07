@@ -32,6 +32,12 @@ class QuizExportAction extends AbstractAction
 
     public function execute()
     {
+        // quiz data
+        $data = $this->quiz->getData();
+        unset($data['creationDate'], $data['isActive'], $data['mediaID']);
+
+        // read questions
+
         // header
         @header('Content-type: application/json');
         @header('Content-disposition: attachment; filename="quiz-' . $this->quiz->quizID . '.json"');

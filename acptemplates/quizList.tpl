@@ -64,6 +64,12 @@
                                   data-confirm-message-html="{lang __encode=true}wcf.acp.quizMaker.quiz.delete.confirmMessage{/lang}">
                             </span>
 
+                            <a href="{link controller="QuizExport" id=$quiz->quizID}{/link}">
+                                <span class="icon icon16 fa-download jsTooltip pointer"
+                                      title="{lang}wcf.acp.quizMaker.quiz.export{/lang}">
+                                </span>
+                            </a>
+
                             <span class="icon icon16 {if $quiz->type == 'competition'}fa-trophy{else}fa-child{/if} jsTooltip"
                                     title="{lang}wcf.acp.quizMaker.quiz.type.{@$quiz->type}{/lang}">
                             </span>

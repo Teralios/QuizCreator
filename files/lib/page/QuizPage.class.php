@@ -40,11 +40,10 @@ class QuizPage extends AbstractPage
     {
         parent::readParameters();
 
-        if (isset($_REQUEST['id'])) {
-            $this->quizID = (int) $_REQUEST['id'];
-        }
+        $this->quizID = $_REQUEST['id'] ?? 0;
 
-        $quiz = new Quiz($this->quizID);
+
+        $quiz = new Quiz((int) $this->quizID);
         if (!$quiz->quizID) {
             throw new IllegalLinkException();
         }

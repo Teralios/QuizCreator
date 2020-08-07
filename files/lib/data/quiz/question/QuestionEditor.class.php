@@ -50,9 +50,7 @@ class QuestionEditor extends DatabaseObjectEditor
      */
     public static function create(array $parameters = [])
     {
-        if (isset($parameters['quizID'])) {
-            static::updatePositionsBeforeCreate($parameters['quizID'], $parameters['position']);
-        }
+        static::updatePositionsBeforeCreate($parameters['quizID'], $parameters['position']);
 
         return parent::create($parameters);
     }
@@ -65,10 +63,6 @@ class QuestionEditor extends DatabaseObjectEditor
      */
     public static function updatePositionsBeforeCreate(int $quizID, int $position)
     {
-        if ($position <= 0) {
-            return;
-        }
-
         $sql = 'UPDATE  ' . self::getDatabaseTableName() . '
                 SET     position = position + 1
                 WHERE   quizID   = ?

@@ -112,4 +112,17 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
         return $data;
     }
+
+    /**
+     * @throws PermissionDeniedException
+     */
+    public function validateImport()
+    {
+        $this->validateCreate();
+    }
+
+    public function import()
+    {
+
+    }
 }

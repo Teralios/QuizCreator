@@ -18,19 +18,23 @@ There are two types of quizzes:
   - [x] Change image to media
   - [ ] Implement result view for quiz
   - [x] Implement fun quiz support
-  - [ ] Implement player list for quiz
-  - [ ] Implement Tags for quiz
   - [ ] Implement additional content on QuizList and Quiz
     - [ ] Last Player?
     - [x] average score?
+  - [ ] Import and Export quiz
+    - [ ] Import
+    - [ ] Export
+  - [ ] Icon support for goals
 
 ### Beta 3
-  - [ ] Implement frontend editor for manage quiz
   - [ ] Implement more permissions
   - [ ] Implement reaction
+  - [ ] Implement trophies
+  - [ ] Implement Tags for quiz
 
 ### Beta 4
-  - [ ] Implement trophies
+  - [ ] Implement frontend editor for manage quiz
+  - [ ] Implement player list for quiz
   - [ ] ???
  
 ### RC1
@@ -39,6 +43,7 @@ There are two types of quizzes:
 ### 1.1
   - [ ] Implement playing on QuizList
   - [ ] Implement Quiz-of-the-Day
+  - [ ] Prepare for extension "QuizMaker Community Edition"
 
 ### Beyond 1.1
   - [ ] Eye Candy

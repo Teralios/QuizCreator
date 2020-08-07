@@ -27,14 +27,14 @@ class QuizGoalEditForm extends QuizGoalAddForm
      */
     public function readParameters()
     {
-        $id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : 0;
+        AbstractFormBuilderForm::readParameters();
+
+        $id = $_REQUEST['id'] ?? 0;
         $this->formObject = new Goal((int) $id);
         if (!$this->formObject->goalID) {
             throw new IllegalLinkException();
         }
 
         $this->quizObject = new Quiz($this->formObject->quizID);
-
-        parent::readParameters();
     }
 }

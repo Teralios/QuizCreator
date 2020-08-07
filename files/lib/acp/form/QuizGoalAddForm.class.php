@@ -7,6 +7,7 @@ use wcf\data\quiz\goal\Goal;
 use wcf\data\quiz\goal\GoalAction;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\HiddenFormField;
+use wcf\system\form\builder\field\IconFormField;
 use wcf\system\form\builder\field\IntegerFormField;
 use wcf\system\form\builder\field\TextFormField;
 use wcf\system\form\builder\field\TitleFormField;
@@ -60,6 +61,8 @@ class QuizGoalAddForm extends BaseQuizForm
                 ->maximum(Goal::calculateMaxPoints($this->quizObject))
                 ->addValidator(new FormFieldValidator('pointsExist', $pointsValidator))
                 ->required(),
+            IconFormField::create('icon')
+                ->label('wcf.acp.quizMaker.goal.icon'),
             TextFormField::create('description')
                 ->label('wcf.acp.quizMaker.goal.description')
                 ->maximumLength(500),

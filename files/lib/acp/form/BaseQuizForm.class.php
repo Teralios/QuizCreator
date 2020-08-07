@@ -32,8 +32,8 @@ class BaseQuizForm extends AbstractFormBuilderForm
         parent::readParameters();
 
         if ($this->quizObject === null) {
-            $quizID = (isset($_REQUEST['quizID'])) ? $_REQUEST['quizID'] : 0;
-            $this->quizObject = new Quiz((int)$quizID);
+            $quizID = $_REQUEST['quizID'] ?? 0;
+            $this->quizObject = new Quiz((int) $quizID);
         }
 
         if (!$this->quizObject->quizID) {

@@ -123,6 +123,5 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
     public function import()
     {
-
     }
 }

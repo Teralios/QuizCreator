@@ -41,7 +41,7 @@ class QuizExportAction extends AbstractAction
      */
     public function readParameters()
     {
-       parent::readParameters();
+        parent::readParameters();
 
         if (!WCF::getSession()->getPermission('admin.content.quizMaker.canManage')) {
             throw new PermissionDeniedException();

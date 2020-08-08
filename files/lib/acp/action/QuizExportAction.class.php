@@ -71,7 +71,7 @@ class QuizExportAction extends AbstractAction
         }
 
         // remove unneeded data
-        unset($data['creationDate'], $data['isActive'], $data['mediaID'], $data['languageID']);
+        unset($data['quizID'], $data['creationDate'], $data['isActive'], $data['mediaID'], $data['languageID']);
 
 
         $data['questions'] = [];

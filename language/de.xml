@@ -32,7 +32,8 @@
 		<item name="wcf.acp.quizMaker.goal.points.exists"><![CDATA[Es gibt bereits ein Ziel, dass diese Anzahl an Punkten benötigt.]]></item>
 		<item name="wcf.acp.quizMaker.quiz.created"><![CDATA[Quiz wurde erfolgreich erstellt.]]></item>
 		<item name="wcf.acp.quizMaker.quiz.data"><![CDATA[Quiz Daten]]></item>
-		<item name="wcf.acp.quizMaker.quiz.delete.confirmMessage"><![CDATA[Möchten Sie das Quiz wirklich löschen?]]></item>
+		<item name="wcf.acp.quizMaker.quiz.delete.confirmMessage"><![CDATA[Möchten Sie das Quiz „{$quiz->title}“ wirklich löschen?]]></item>
+		<item name="wcf.acp.quizMaker.quiz.export"><![CDATA[Quiz exportieren]]></item>
 	</category>
 	<category name="wcf.acp.menu">
 		<item name="wcf.acp.menu.link.quizMaker"><![CDATA[Quiz]]></item>

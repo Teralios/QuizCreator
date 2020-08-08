@@ -23,7 +23,7 @@ There are two types of quizzes:
     - [x] average score?
   - [ ] Import and Export quiz
     - [ ] Import
-    - [ ] Export
+    - [x] Export
   - [ ] Icon support for goals
 
 ### Beta 3

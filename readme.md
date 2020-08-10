@@ -21,10 +21,10 @@ There are two types of quizzes:
   - [ ] Implement additional content on QuizList and Quiz
     - [ ] Last Player?
     - [x] average score?
-  - [ ] Import and Export quiz
-    - [ ] Import
+  - [x] Import and Export quiz
+    - [x] Import
     - [x] Export
-  - [ ] Icon support for goals
+  - [x] Icon support for goals
 
 ### Beta 3
   - [ ] Implement more permissions

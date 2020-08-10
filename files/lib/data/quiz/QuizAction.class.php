@@ -154,7 +154,6 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
                 $language = LanguageFactory::getInstance()->getLanguageByCode($data['languageCode']);
 
                 $quizData['languageID'] = ($language !== null) ? $language->languageID : LanguageFactory::getInstance()->getContentLanguageIDs()[0];
-
             }
         }
 

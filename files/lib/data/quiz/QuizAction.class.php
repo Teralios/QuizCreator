@@ -131,7 +131,6 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
      * Imports a quiz by given a json string or json file
      * @return IStorableObject
      * @throws SystemException
-     * @throws DatabaseQueryException
      */
     public function import()
     {
@@ -142,49 +141,6 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
             $data = ArrayUtil::trim(JSON::decode(file_get_contents($file->getLocation())));
         }
 
-        // import base information for quiz
-        $quizData['type'] = $data['type'] ?? 'fun';
-        $quizData['title'] = $data['title'] ?? WCF::getLanguage()->get('wcf.acp.quizCreator.import.defaultTitle');
-        $quizData['description'] = $data['description'] ?? '';
-        $quizData['creationDate'] = TIME_NOW;
-
-        // language information
-        if (isset($data['languageCode'])) {
-            if (LanguageFactory::getInstance()->multilingualismEnabled()) {
-                $language = LanguageFactory::getInstance()->getLanguageByCode($data['languageCode']);
-
-                $quizData['languageID'] = ($language !== null) ? $language->languageID : LanguageFactory::getInstance()->getContentLanguageIDs()[0];
-            }
-        }
-
-        // create quiz
-        $quiz = QuizEditor::create($quizData);
-
-        // import questions
-        $questions = $goals = 0;
-        if (isset($data['questions']) && count($data['questions'])) {
-            foreach ($data['questions'] as $question) {
-                $question['quizID'] = $quiz->getObjectID();
-
-                QuestionEditor::create($question);
-                $questions++;
-            }
-        }
-
-        // import goals
-        if (isset($data['goals']) && count($data['goals'])) {
-            foreach ($data['goals'] as $goal) {
-                $goal['quizID'] = $quiz->getObjectID();
-
-                GoalEditor::create($goal);
-                $goals++;
-            }
-        }
-
-        // update counters
-        $quizEditor = new QuizEditor($quiz);
-        $quizEditor->update(['questions' => $questions, 'goals' => $goals]);
-
-        return $quiz;
+        return QuizEditor::importQuiz($data);
     }
 }

@@ -4,6 +4,8 @@ namespace wcf\data\quiz;
 
 // imports
 use wcf\data\DatabaseObjectEditor;
+use wcf\data\quiz\goal\GoalEditor;
+use wcf\data\quiz\question\QuestionEditor;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\WCF;
@@ -74,5 +76,85 @@ class QuizEditor extends DatabaseObjectEditor
                 WHERE   quizID = ?';
         $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute([$counter, $quizID]);
+    }
+
+    /**
+     * Imports a quiz.
+     * @param array $data
+     * @return Quiz
+     * @throws \wcf\system\exception\SystemException
+     */
+    public static function importQuiz(array $data): Quiz
+    {
+        // import base information for quiz
+        $quizData['type'] = $data['type'] ?? 'fun';
+        $quizData['title'] = $data['title'] ?? WCF::getLanguage()->get('wcf.acp.quizCreator.import.defaultTitle');
+        $quizData['description'] = $data['description'] ?? '';
+        $quizData['creationDate'] = TIME_NOW;
+
+        // language information
+        if (isset($data['languageCode'])) {
+            if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
+                $language = /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguageByCode($data['languageCode']);
+
+                $quizData['languageID'] = ($language !== null) ? $language->languageID : /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getContentLanguageIDs()[0];
+            }
+        }
+
+        // create quiz
+        $quiz = QuizEditor::create($quizData);
+
+        $questions = static::importQuestions($data, $quiz->quizID);
+        $goals = static::importGoals($data, $quiz->quizID);
+
+        // update counters
+        $quizEditor = new QuizEditor($quiz);
+        $quizEditor->update(['questions' => $questions, 'goals' => $goals]);
+
+        return $quiz;
+    }
+
+    /**
+     * Imports questions.
+     * @param array $data
+     * @param int $quizID
+     * @return int
+     * @throws DatabaseQueryException
+     */
+    protected function importQuestions(array $data, int $quizID): int
+    {
+        $questions = 0;
+        if (isset($data['questions']) && count($data['questions'])) {
+            foreach ($data['questions'] as $question) {
+                $question['quizID'] = $quizID;
+
+                QuestionEditor::create($question);
+                $questions++;
+            }
+        }
+
+        return $questions;
+    }
+
+    /**
+     * Import goals.
+     * @param array $data
+     * @param int $quizID
+     * @return int
+     */
+    protected static function importGoals(array $data, int $quizID): int
+    {
+        $goals = 0;
+
+        if (isset($data['goals']) && count($data['goals'])) {
+            foreach ($data['goals'] as $goal) {
+                $goal['quizID'] = $quizID;
+
+                GoalEditor::create($goal);
+                $goals++;
+            }
+        }
+
+        return $goals;
     }
 }

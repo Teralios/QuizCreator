@@ -75,8 +75,9 @@ class QuizImportForm extends AbstractFormBuilderForm
 
             // checks language
             if (isset($jsonData['languageCode'])) {
-                if (LanguageFactory::getInstance()->multilingualismEnabled()) {
-                    $language = LanguageFactory::getInstance()->getLanguageByCode($jsonData['languageCode']);
+
+                if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
+                    $language = /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguageByCode($jsonData['languageCode']);
 
                     if ($language === null) {
                         return ['language', $jsonData['languageCode']];

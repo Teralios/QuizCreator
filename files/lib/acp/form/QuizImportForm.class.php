@@ -28,14 +28,36 @@ class QuizImportForm extends AbstractFormBuilderForm
     {
         parent::createForm();
 
-        // validators
-        // @todo think about to make a own class for json data validation
-        /**
-         * Validates json data.
-         * @param string $jsonString
-         * @return string[]|null
-         */
-        $jsonValidator = function (string $jsonString) {
+        // container
+        $container = FormContainer::create('importQuiz');
+        $container->appendChildren([
+            UploadformField::create('file')
+                ->label('wcf.acp.quizCreator.import.file')
+                ->description('wcf.acp.quizCreator.import.file.description')
+                ->maximum(1)
+                /*->setAcceptableFiles('json') // comes with 5.3 */
+                ->addValidator(new FormFieldValidator('quizFile', $this->getFileValidator())),
+            MultilineTextFormField::create('text')
+                ->label('wcf.acp.quizCreator.import.text')
+                ->description('wcf.acp.quizCreator.import.text.description')
+                ->addValidator(new FormFieldValidator('quizText', $this->getTextValidator()))
+        ]);
+
+        // dependency
+        $dependency = EmptyFormFieldDependency::create('textOrFile');
+        $dependency->field($container->getNodeById('text'));
+        $container->getNodeById('file')->addDependency($dependency);
+
+        $this->form->appendChild($container);
+    }
+
+    /**
+     * Returns json validator.
+     * @return \Closure
+     */
+    protected function getJsonValidator()
+    {
+        return function (string $jsonString) {
             // checks json syntax
             try {
                 $jsonData = JSON::decode($jsonString);
@@ -96,12 +118,17 @@ class QuizImportForm extends AbstractFormBuilderForm
 
             return null;
         };
+    }
 
-        /**
-         * Validates json file for import.
-         * @param UploadFormField $formField
-         */
-        $fileValidator = function (UploadFormField $formField) use ($jsonValidator) {
+    /**
+     * Returns file validator.
+     * @return \Closure
+     */
+    public function getFileValidator()
+    {
+        $jsonValidator = $this->getJsonValidator();
+
+        return function (UploadFormField $formField) use ($jsonValidator) {
             $file = $formField->getValue()[0];
 
             $name = $file->getFilename();
@@ -132,12 +159,17 @@ class QuizImportForm extends AbstractFormBuilderForm
                 }
             }
         };
+    }
 
-        /**
-         * Validate json text input.
-         * @param MultilineTextFormField $formField
-         */
-        $textValidator = function (MultilineTextFormField $formField) use ($jsonValidator) {
+    /**
+     * Returns text validator.
+     * @return \Closure
+     */
+    protected function getTextValidator()
+    {
+        $jsonValidator = $this->getJsonValidator();
+
+        return function (MultilineTextFormField $formField) use ($jsonValidator) {
             $jsonString = $formField->getSaveValue();
 
             // json test
@@ -152,27 +184,5 @@ class QuizImportForm extends AbstractFormBuilderForm
                 }
             }
         };
-
-        // container
-        $container = FormContainer::create('importQuiz');
-        $container->appendChildren([
-            UploadformField::create('file')
-                ->label('wcf.acp.quizCreator.import.file')
-                ->description('wcf.acp.quizCreator.import.file.description')
-                ->maximum(1)
-                /*->setAcceptableFiles('json') // comes with 5.3 */
-                ->addValidator(new FormFieldValidator('quizFile', $fileValidator)),
-            MultilineTextFormField::create('text')
-                ->label('wcf.acp.quizCreator.import.text')
-                ->description('wcf.acp.quizCreator.import.text.description')
-                ->addValidator(new FormFieldValidator('quizText', $textValidator))
-        ]);
-
-        // dependency
-        $dependency = EmptyFormFieldDependency::create('textOrFile');
-        $dependency->field($container->getNodeById('text'));
-        $container->getNodeById('file')->addDependency($dependency);
-
-        $this->form->appendChild($container);
     }
 }

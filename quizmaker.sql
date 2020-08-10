@@ -37,6 +37,7 @@ CREATE TABLE wcf1_quiz_goal (
     quizID INT(10) NOT NULL,
     points SMALLINT(10) NOT NULL DEFAULT 0,
     title VARCHAR(100),
+    icon VARCHAR(50) NOT NULL DEFAULT '',
     description TEXT,
     KEY (quizID),
     KEY (quizID, points)

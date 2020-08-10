@@ -100,7 +100,8 @@ class QuizEditor extends DatabaseObjectEditor
             if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
                 $language = /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguageByCode($data['languageCode']);
 
-                $quizData['languageID'] = ($language !== null) ? $language->languageID : /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getContentLanguageIDs()[0];
+                $quizData['languageID'] = ($language !== null) ? $language->languageID :
+                    /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getContentLanguageIDs()[0];
             }
         }
 

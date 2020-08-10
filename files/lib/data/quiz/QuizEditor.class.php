@@ -8,6 +8,8 @@ use wcf\data\quiz\goal\GoalEditor;
 use wcf\data\quiz\question\QuestionEditor;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
+use wcf\system\exception\SystemException;
+use wcf\system\language\LanguageFactory;
 use wcf\system\WCF;
 
 /**
@@ -82,11 +84,12 @@ class QuizEditor extends DatabaseObjectEditor
      * Imports a quiz.
      * @param array $data
      * @return Quiz
-     * @throws \wcf\system\exception\SystemException
+     * @throws SystemException
      */
     public static function importQuiz(array $data): Quiz
     {
         // import base information for quiz
+        $quizData = [];
         $quizData['type'] = $data['type'] ?? 'fun';
         $quizData['title'] = $data['title'] ?? WCF::getLanguage()->get('wcf.acp.quizCreator.import.defaultTitle');
         $quizData['description'] = $data['description'] ?? '';
@@ -119,9 +122,8 @@ class QuizEditor extends DatabaseObjectEditor
      * @param array $data
      * @param int $quizID
      * @return int
-     * @throws DatabaseQueryException
      */
-    protected function importQuestions(array $data, int $quizID): int
+    protected static function importQuestions(array $data, int $quizID): int
     {
         $questions = 0;
         if (isset($data['questions']) && count($data['questions'])) {

@@ -66,7 +66,7 @@ class QuizExportAction extends AbstractAction
 
         // language
         if ($data['languageID'] !== null) {
-            $language = LanguageFactory::getInstance()->getLanguage($data['languageID']);
+            $language = /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguage($data['languageID']);
             $data['languageCode'] = $language->getFixedLanguageCode();
         }
 
@@ -96,6 +96,7 @@ class QuizExportAction extends AbstractAction
         }
 
         // header
+        /** @scrutinizer ignore-unhandled */
         @header('Content-type: application/json');
         @header('Content-disposition: attachment; filename="quiz-' . $this->quiz->quizID . '.json"');
 

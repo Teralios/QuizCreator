@@ -4,17 +4,24 @@ namespace wcf\acp\form;
 
 // imports
 use wcf\data\quiz\QuizAction;
+use wcf\data\quiz\validator\QuizValidator;
 use wcf\form\AbstractFormBuilderForm;
-use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\dependency\EmptyFormFieldDependency;
 use wcf\system\form\builder\field\MultilineTextFormField;
 use wcf\system\form\builder\field\UploadFormField;
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
 use wcf\system\form\builder\field\validation\FormFieldValidator;
-use wcf\system\language\LanguageFactory;
-use wcf\util\JSON;
 
+/**
+ * Class QuizImportForm
+ *
+ * @package    de.teralios.QuizCreator
+ * @subpackage wcf\acp\form
+ * @author     Karsten (Teralios) Achterrath
+ * @copyright  ©2020 Teralios.de
+ * @license    GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ */
 class QuizImportForm extends AbstractFormBuilderForm
 {
     // inherit vars
@@ -53,67 +60,18 @@ class QuizImportForm extends AbstractFormBuilderForm
 
     /**
      * Returns json validator.
-     * @return \Closure
+     * @return callable
      */
-    protected function getJsonValidator()
+    protected function getJsonValidator(): callable
     {
         return function (string $jsonString) {
-            // checks json syntax
-            try {
-                $jsonData = JSON::decode($jsonString);
-            } catch (SystemException $e) {
-                return ['json'];
-            }
+            $validator = new QuizValidator();
+            $validator->setData($jsonString);
 
-            // checks basic data
-            $keys = array_keys($jsonData);
-            foreach ($keys as $key) {
-                if (!in_array($key, ['type', 'title', 'description', 'goals', 'questions'])) {
-                    return ['data', $key];
-                }
-            }
+            $error = $validator->validate();
 
-            // checks language
-            if (isset($jsonData['languageCode'])) {
-                if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
-                    $language = /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguageByCode($jsonData['languageCode']);
-
-                    if ($language === null) {
-                        return ['language', $jsonData['languageCode']];
-                    }
-                }
-            }
-
-            // checks questions
-            if (count($jsonData['questions'])) {
-                $i = 0;
-                foreach ($jsonData['questions'] as $question) {
-                    $keys = array_keys($question);
-
-                    foreach ($keys as $key) {
-                        if (!in_array($key, ['position', 'question', 'optionA', 'optionB', 'optionC', 'optionD', 'answer'])) {
-                            return ['question', $key, $i];
-                        }
-                    }
-
-                    $i++;
-                }
-            }
-
-            // checks goals
-            if (count($jsonData['goals'])) {
-                $i = 0;
-                foreach ($jsonData['goals'] as $goal) {
-                    $keys = array_keys($goal);
-
-                    foreach ($keys as $key) {
-                        if (!in_array($key, ['points', 'title', 'icon', 'description'])) {
-                            return ['goals', $key, $i];
-                        }
-                    }
-
-                    $i++;
-                }
+            if (!empty($error->getKey())) {
+                return $error;
             }
 
             return null;
@@ -122,9 +80,9 @@ class QuizImportForm extends AbstractFormBuilderForm
 
     /**
      * Returns file validator.
-     * @return \Closure
+     * @return callable
      */
-    public function getFileValidator()
+    public function getFileValidator(): callable
     {
         $jsonValidator = $this->getJsonValidator();
 
@@ -151,37 +109,27 @@ class QuizImportForm extends AbstractFormBuilderForm
             $jsonError = $jsonValidator(file_get_contents($file->getLocation()));
 
             if ($jsonError !== null) {
-                if ($jsonError[0] == 'json') {
-                    $formField->addValidationError(new FormFieldValidationError('brokenJson', 'wcf.acp.quizCreator.import.error.json'));
-                    return;
-                } else {
-                    $formField->addValidationError(new FormFieldValidationError('jsonData', 'wcf.acp.quizCreator.import.error.jsonData', $jsonError));
-                }
+                $formField->addValidationError(new FormFieldValidationError('json', 'wcf.acp.quizCreator.import.error.json', $jsonError));
             }
         };
     }
 
     /**
      * Returns text validator.
-     * @return \Closure
+     * @return callable
      */
-    protected function getTextValidator()
+    protected function getTextValidator(): callable
     {
         $jsonValidator = $this->getJsonValidator();
 
         return function (MultilineTextFormField $formField) use ($jsonValidator) {
             $jsonString = $formField->getSaveValue();
 
-            // json test
+            // test json string
             $jsonError = $jsonValidator($jsonString);
 
             if ($jsonError !== null) {
-                if ($jsonError[0] == 'json') {
-                    $formField->addValidationError(new FormFieldValidationError('brokenJson', 'wcf.acp.quizCreator.import.error.json'));
-                    return;
-                } else {
-                    $formField->addValidationError(new FormFieldValidationError('jsonData', 'wcf.acp.quizCreator.import.error.jsonData', $jsonError));
-                }
+                $formField->addValidationError(new FormFieldValidationError('json', 'wcf.acp.quizCreator.import.error.json', $jsonError));
             }
         };
     }

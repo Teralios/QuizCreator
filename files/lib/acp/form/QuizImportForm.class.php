@@ -131,7 +131,7 @@ class QuizImportForm extends AbstractFormBuilderForm
                     $formField->addValidationError(new FormFieldValidationError('jsonData', 'wcf.acp.quizCreator.import.error.jsonData', $jsonError));
                 }
             }
-        });
+        };
 
         /**
          * Validate json text input.
@@ -151,7 +151,7 @@ class QuizImportForm extends AbstractFormBuilderForm
                     $formField->addValidationError(new FormFieldValidationError('jsonData', 'wcf.acp.quizCreator.import.error.jsonData', $jsonError));
                 }
             }
-        });
+        };
 
         // container
         $container = FormContainer::create('importQuiz');

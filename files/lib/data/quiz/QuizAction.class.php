@@ -23,7 +23,7 @@ use wcf\util\JSON;
 /**
  * Class QuizAction
  *
- * @package   de.teralios.quizMaker
+ * @package   de.teralios.quizCreator
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
@@ -32,10 +32,10 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 {
     // inherit vars
     protected $className = QuizEditor::class;
-    protected $permissionsCreate = ['admin.content.quizMaker.canManage'];
-    protected $permissionsUpdate = ['admin.content.quizMaker.canManage'];
-    protected $permissionsDelete = ['admin.content.quizMaker.canManage'];
-    protected $permissionsToggle = ['admin.content.quizMaker.canManage'];
+    protected $permissionsCreate = ['admin.content.quizCreator.canManage'];
+    protected $permissionsUpdate = ['admin.content.quizCreator.canManage'];
+    protected $permissionsDelete = ['admin.content.quizCreator.canManage'];
+    protected $permissionsToggle = ['admin.content.quizCreator.canManage'];
     protected $allowGuestAccess = ['loadQuiz']; // allowed guest access
 
     /**
@@ -144,7 +144,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
         // import base information for quiz
         $quizData['type'] = $data['type'] ?? 'fun';
-        $quizData['title'] = $data['title'] ?? WCF::getLanguage()->get('wcf.acp.quizMaker.import.defaultTitle');
+        $quizData['title'] = $data['title'] ?? WCF::getLanguage()->get('wcf.acp.quizCreator.import.defaultTitle');
         $quizData['description'] = $data['description'] ?? '';
         $quizData['creationDate'] = TIME_NOW;
 

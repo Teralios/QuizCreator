@@ -20,7 +20,7 @@ use wcf\util\HeaderUtil;
 /**
  * Class QuizAddForm
  *
- * @package   de.teralios.quizMaker
+ * @package   de.teralios.quizCreator
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
@@ -29,8 +29,8 @@ class QuizAddForm extends AbstractFormBuilderForm
 {
     // inherit vars
     public $objectActionClass = QuizAction::class;
-    public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.add';
-    public $neededPermissions = ['admin.content.quizMaker.canManage'];
+    public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.add';
+    public $neededPermissions = ['admin.content.quizCreator.canManage'];
 
     /**
      * @inheritDoc
@@ -39,7 +39,7 @@ class QuizAddForm extends AbstractFormBuilderForm
     {
         parent::createForm();
 
-        $container = FormContainer::create('quizMakerGlobal');
+        $container = FormContainer::create('quizCreatorGlobal');
         $container->appendChildren([
             TitleFormField::create('title')
                 ->label('wcf.global.title')
@@ -51,16 +51,16 @@ class QuizAddForm extends AbstractFormBuilderForm
             ContentLanguageFormField::create('languageID')
                 ->required(),
             RadioButtonFormField::create('type')
-                ->label('wcf.acp.quizMaker.quiz.type')
+                ->label('wcf.acp.quizCreator.quiz.type')
                 ->options([
-                    'fun' => 'wcf.acp.quizMaker.quiz.type.fun',
-                    'competition' => 'wcf.acp.quizMaker.quiz.type.competition'
+                    'fun' => 'wcf.acp.quizCreator.quiz.type.fun',
+                    'competition' => 'wcf.acp.quizCreator.quiz.type.competition'
                 ])
                 ->value('fun'),
             SingleMediaSelectionFormField::create('mediaID')
                 ->imageOnly(),
             BooleanFormField::create('isActive')
-                ->label('wcf.acp.quizMaker.quiz.isActive')
+                ->label('wcf.acp.quizCreator.quiz.isActive')
                 ->value(0)
                 ->available($this->formAction == 'edit'),
         ]);

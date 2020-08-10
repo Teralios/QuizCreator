@@ -13,7 +13,7 @@ use wcf\system\WCF;
 /**
  * Class QuizPage
  *
- * @package   de.teralios.quizMaker
+ * @package   de.teralios.quizCreator
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
@@ -48,7 +48,7 @@ class QuizPage extends AbstractPage
             throw new IllegalLinkException();
         }
 
-        if ($quiz->isActive == 0 && !WCF::getSession()->getPermission('admin.content.quizMaker.canManage')) {
+        if ($quiz->isActive == 0 && !WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
             throw new PermissionDeniedException();
         }
 

@@ -11,7 +11,7 @@ use wcf\system\exception\IllegalLinkException;
 /**
  * Class QuizQuestionEditForm
  *
- * @package   de.teralios.quizMaker
+ * @package   de.teralios.quizCreator
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
@@ -19,7 +19,7 @@ use wcf\system\exception\IllegalLinkException;
 class QuizQuestionEditForm extends QuizQuestionAddForm
 {
     // inherit vars
-    public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
+    public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.list';
     public $formAction = 'edit';
 
     /**

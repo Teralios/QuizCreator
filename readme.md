@@ -1,5 +1,5 @@
-[![GitHub](https://img.shields.io/github/license/Teralios/QuizMaker?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0.txt)[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/teralios/QuizMaker?include_prereleases&style=flat-square)](https://github.com/Teralios/QuizMaker/releases)[![Build Status](https://img.shields.io/travis/Teralios/QuizMaker.svg?style=flat-square)](https://travis-ci.org/Teralios/QuizMaker)[![Code Quality](https://img.shields.io/scrutinizer/g/Teralios/QuizMaker.svg?style=flat-square)](https://scrutinizer-ci.com/g/Teralios/QuizMaker/)
-# Quiz Maker
+[![GitHub](https://img.shields.io/github/license/Teralios/quizCreator?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0.txt)[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/teralios/quizCreator?include_prereleases&style=flat-square)](https://github.com/Teralios/quizCreator/releases)[![Build Status](https://img.shields.io/travis/Teralios/quizCreator.svg?style=flat-square)](https://travis-ci.org/Teralios/quizCreator)[![Code Quality](https://img.shields.io/scrutinizer/g/Teralios/quizCreator.svg?style=flat-square)](https://scrutinizer-ci.com/g/Teralios/quizCreator/)
+# Quiz Creator
 Adds a simple quiz system to the [WoltLab® Suite Core(WSC)](https://www.woltlab.com/features/) that allows the team to create quizzes for members of one community.
 
 There are two types of quizzes:
@@ -13,8 +13,8 @@ There are two types of quizzes:
 
 ### Beta 2
   - [x] Implement base javascript
-    - [x] Overwork Teralios/Quiz/Quiz to Teralios/QuizMaker/Game
-    - [x] Implement Teralios/QuizMaker/Quiz for QuizPage
+    - [x] Overwork Teralios/Quiz/Quiz to Teralios/quizCreator/Game
+    - [x] Implement Teralios/quizCreator/Quiz for QuizPage
   - [x] Change image to media
   - [ ] Implement result view for quiz
   - [x] Implement fun quiz support
@@ -43,7 +43,7 @@ There are two types of quizzes:
 ### 1.1
   - [ ] Implement playing on QuizList
   - [ ] Implement Quiz-of-the-Day
-  - [ ] Prepare for extension "QuizMaker Community Edition"
+  - [ ] Prepare for extension "quizCreator Community Edition"
 
 ### Beyond 1.1
   - [ ] Eye Candy

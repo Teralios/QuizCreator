@@ -10,7 +10,7 @@ use wcf\system\exception\SystemException;
 /**
  * Class ViewableQuizList
  *
- * @package   de.teralios.quizMaker
+ * @package   de.teralios.quizCreator
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>

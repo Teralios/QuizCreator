@@ -1,4 +1,4 @@
-{include file='header' pageTitle='wcf.acp.quizMaker.quiz.list'}
+{include file='header' pageTitle='wcf.acp.quizCreator.quiz.list'}
 
 <script data-relocate="true">
     $(function() {
@@ -8,14 +8,14 @@
 </script>
 <header class="contentHeader">
     <div class="contentHeaderTitle">
-        <h1 class="contentTitle">{lang}wcf.acp.quizMaker.quiz.list{/lang}</h1>
+        <h1 class="contentTitle">{lang}wcf.acp.quizCreator.quiz.list{/lang}</h1>
     </div>
 
     <nav class="contentHeaderNavigation">
             <ul>
                 <li>
                     <a href="{link controller="quizAdd"}{/link}" class="button">
-                        <span class="icon icon16 fa-plus"></span> <span>{lang}wcf.acp.quizMaker.quiz.add{/lang}</span>
+                        <span class="icon icon16 fa-plus"></span> <span>{lang}wcf.acp.quizCreator.quiz.add{/lang}</span>
                     </a>
                 </li>
 
@@ -41,8 +41,8 @@
                     <th class="columnTitle">{lang}wcf.global.title{/lang}</th>
                     {if $isMultiLingual}<th class="columnText">{lang}wcf.global.language{/lang}</th>{/if}
                     <th class="columnText">{lang}wcf.global.date{/lang}</th>
-                    <th class="columnText">{lang}wcf.acp.quizMaker.quiz.questions{/lang}</th>
-                    <th class="columnText">{lang}wcf.acp.quizMaker.quiz.goals{/lang}</th>
+                    <th class="columnText">{lang}wcf.acp.quizCreator.quiz.questions{/lang}</th>
+                    <th class="columnText">{lang}wcf.acp.quizCreator.quiz.goals{/lang}</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,17 +61,17 @@
                             <span class="icon icon16 fa-times jsDeleteButton jsTooltip pointer"
                                   title="{lang}wcf.global.button.delete{/lang}"
                                   data-object-id="{#$quiz->quizID}"
-                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quizMaker.quiz.delete.confirmMessage{/lang}">
+                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.quiz.delete.confirmMessage{/lang}">
                             </span>
 
                             <a href="{link controller="QuizExport" id=$quiz->quizID}{/link}">
                                 <span class="icon icon16 fa-download jsTooltip pointer"
-                                      title="{lang}wcf.acp.quizMaker.quiz.export{/lang}">
+                                      title="{lang}wcf.acp.quizCreator.quiz.export{/lang}">
                                 </span>
                             </a>
 
                             <span class="icon icon16 {if $quiz->type == 'competition'}fa-trophy{else}fa-child{/if} jsTooltip"
-                                    title="{lang}wcf.acp.quizMaker.quiz.type.{@$quiz->type}{/lang}">
+                                    title="{lang}wcf.acp.quizCreator.quiz.type.{@$quiz->type}{/lang}">
                             </span>
                         </td>
                         <td class="columnID columnQuizID">{@$quiz->quizID}</td>
@@ -109,7 +109,7 @@
             <ul>
                 <li>
                     <a href="{link controller='QuizAdd'}{/link}" class="button">
-                        <span class="icon icon16 fa-plus"></span> <span>{lang}wcf.acp.quizMaker.quiz.add{/lang}</span>
+                        <span class="icon icon16 fa-plus"></span> <span>{lang}wcf.acp.quizCreator.quiz.add{/lang}</span>
                     </a>
                 </li>
 

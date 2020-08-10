@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/templatelistener.xsd">
     <import>
-        <templatelistener name="quizMakerCopyright">
+        <templatelistener name="quizCreatorCopyright">
             <environment>user</environment>
             <templatename>pageFooterCopyright</templatename>
             <eventname>copyright</eventname>
-            <templatecode><![CDATA[{include file='__quizMakerCopyright'}]]></templatecode>
+            <templatecode><![CDATA[{include file='__quizCreatorCopyright'}]]></templatecode>
         </templatelistener>
     </import>
 </data>

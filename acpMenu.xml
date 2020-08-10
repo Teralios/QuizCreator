@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/acpMenu.xsd">
     <import>
-        <!-- Quizmaker Category -->
-        <acpmenuitem name="wcf.acp.menu.link.quizMaker">
+        <!-- quizCreator Category -->
+        <acpmenuitem name="wcf.acp.menu.link.quizCreator">
             <parent>wcf.acp.menu.link.content</parent>
-            <permissions>admin.content.quizMaker.canManage</permissions>
+            <permissions>admin.content.quizCreator.canManage</permissions>
         </acpmenuitem>
 
-        <acpmenuitem name="wcf.acp.menu.link.quizMaker.list">
-            <parent>wcf.acp.menu.link.quizMaker</parent>
+        <acpmenuitem name="wcf.acp.menu.link.quizCreator.list">
+            <parent>wcf.acp.menu.link.quizCreator</parent>
             <controller>wcf\acp\page\QuizListPage</controller>
-            <permissions>admin.content.quizMaker.canManage</permissions>
+            <permissions>admin.content.quizCreator.canManage</permissions>
         </acpmenuitem>
-        <acpmenuitem name="wcf.acp.menu.link.quizMaker.add">
-            <parent>wcf.acp.menu.link.quizMaker.list</parent>
+        <acpmenuitem name="wcf.acp.menu.link.quizCreator.add">
+            <parent>wcf.acp.menu.link.quizCreator.list</parent>
             <controller>wcf\acp\form\QuizAddForm</controller>
             <icon>fa-plus</icon>
-            <permissions>admin.content.quizMaker.canManage</permissions>
+            <permissions>admin.content.quizCreator.canManage</permissions>
         </acpmenuitem>
     </import>
 </data>

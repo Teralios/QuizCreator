@@ -16,7 +16,7 @@ use wcf\system\WCF;
 /**
  * Class QuizExportAction
  *
- * @package    de.teralios.quizMaker
+ * @package    de.teralios.quizCreator
  * @subpackage wcf\acp\action
  * @author     Karsten (Teralios) Achterrath
  * @copyright  ©2020 Teralios.de
@@ -43,7 +43,7 @@ class QuizExportAction extends AbstractAction
     {
         parent::readParameters();
 
-        if (!WCF::getSession()->getPermission('admin.content.quizMaker.canManage')) {
+        if (!WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
             throw new PermissionDeniedException();
         }
 

@@ -15,7 +15,7 @@ use wcf\system\form\builder\field\TextFormField;
 /**
  * Class QuestionAdd
  *
- * @package   de.teralios.quizMaker
+ * @package   de.teralios.quizCreator
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
@@ -23,7 +23,7 @@ use wcf\system\form\builder\field\TextFormField;
 class QuizQuestionAddForm extends BaseQuizForm
 {
     // inherit vars
-    public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
+    public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.list';
     public $objectActionClass = QuestionAction::class;
 
     /**
@@ -38,38 +38,38 @@ class QuizQuestionAddForm extends BaseQuizForm
             HiddenFormField::create('quizID')
                 ->value($this->quizObject->quizID),
             TextFormField::create('question')
-                ->label('wcf.acp.quizMaker.question')
+                ->label('wcf.acp.quizCreator.question')
                 ->maximumLength(100)
                 ->required(),
             TextFormField::create('optionA')
-                ->label('wcf.acp.quizMaker.question.optionA')
+                ->label('wcf.acp.quizCreator.question.optionA')
                 ->maximumLength(100)
                 ->required(),
             TextFormField::create('optionB')
-                ->label('wcf.acp.quizMaker.question.optionB')
+                ->label('wcf.acp.quizCreator.question.optionB')
                 ->maximumLength(100)
                 ->required(),
             TextFormField::create('optionC')
-                ->label('wcf.acp.quizMaker.question.optionC')
+                ->label('wcf.acp.quizCreator.question.optionC')
                 ->maximumLength(100)
                 ->required(),
             TextFormField::create('optionD')
-                ->label('wcf.acp.quizMaker.question.optionD')
+                ->label('wcf.acp.quizCreator.question.optionD')
                 ->maximumLength(100)
                 ->required(),
             RadioButtonFormField::create('answer')
-                ->label('wcf.acp.quizMaker.question.answer')
+                ->label('wcf.acp.quizCreator.question.answer')
                 ->options([
-                    'A' => 'wcf.acp.quizMaker.question.optionA',
-                    'B' => 'wcf.acp.quizMaker.question.optionB',
-                    'C' => 'wcf.acp.quizMaker.question.optionC',
-                    'D' => 'wcf.acp.quizMaker.question.optionD'
+                    'A' => 'wcf.acp.quizCreator.question.optionA',
+                    'B' => 'wcf.acp.quizCreator.question.optionB',
+                    'C' => 'wcf.acp.quizCreator.question.optionC',
+                    'D' => 'wcf.acp.quizCreator.question.optionD'
                 ]),
             MultilineTextFormField::create('explanation')
-                ->label('wcf.acp.quizMaker.question.explanation')
+                ->label('wcf.acp.quizCreator.question.explanation')
                 ->maximumLength(500),
             ShowOrderFormField::create('position')
-                ->label('wcf.acp.quizMaker.question.position')
+                ->label('wcf.acp.quizCreator.question.position')
         ]);
 
         $this->form->appendChild($container);

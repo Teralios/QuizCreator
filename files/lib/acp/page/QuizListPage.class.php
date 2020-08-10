@@ -12,16 +12,16 @@ use wcf\system\WCF;
 /**
  * Class QuizListPage
  *
- * @package   de.teralios.quizMaker
+ * @package   de.teralios.quizCreator
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
 class QuizListPage extends MultipleLinkPage
 {
-    public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
+    public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.list';
     public $objectListClassName = ViewableQuizList::class;
-    public $neededPermissions = ['admin.content.quizMaker.canManage'];
+    public $neededPermissions = ['admin.content.quizCreator.canManage'];
 
     public function initObjectList()
     {

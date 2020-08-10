@@ -11,7 +11,7 @@ use wcf\system\WCF;
 /**
  * Class QuizListPage
  *
- * @package   de.teralios.quizMaker
+ * @package   de.teralios.quizCreator
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
@@ -19,7 +19,7 @@ use wcf\system\WCF;
 class QuizListPage extends SortablePage
 {
     // inherit variables
-    public $activeMenuItem = 'de.teralios.quizMaker.quizList';
+    public $activeMenuItem = 'de.teralios.quizCreator.quizList';
     public $itemsPerPage = 25; // current hard coded
     public $objectListClassName = ViewableQuizList::class;
     public $defaultSortField = 'creationDate';
@@ -60,7 +60,7 @@ class QuizListPage extends SortablePage
             }
         }
 
-        if (!WCF::getSession()->getPermission('admin.content.quizMaker.canManage')) {
+        if (!WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
             $this->objectList->getConditionBuilder()->add('isActive = ?', [1]);
         }
     }

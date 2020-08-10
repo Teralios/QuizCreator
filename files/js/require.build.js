@@ -3,7 +3,7 @@
     var config;
     config = {
         name: "Teralios/_Meta",
-        out: "Teralios.QuizMaker.min.js",
+        out: "Teralios.QuizCreator.min.js",
         useStrict: true,
         preserveLicenseComments: false,
         optimize: 'uglify2',

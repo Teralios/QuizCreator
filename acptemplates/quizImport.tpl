@@ -1,4 +1,4 @@
-{assign var="__formTitle" value='wcf.acp.quizMaker.quiz.import'}
+{assign var="__formTitle" value='wcf.acp.quizCreator.quiz.import'}
 
 {include file='header' pageTitle=$__formTitle}
 

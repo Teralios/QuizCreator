@@ -17,7 +17,7 @@ use wcf\system\form\builder\field\validation\FormFieldValidationError;
 /**
  * Class QuizGoalAddForm
  *
- * @package   de.teralios.quizMaker
+ * @package   de.teralios.quizCreator
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
@@ -25,7 +25,7 @@ use wcf\system\form\builder\field\validation\FormFieldValidationError;
 class QuizGoalAddForm extends BaseQuizForm
 {
     // inherit vars
-    public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
+    public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.list';
     public $objectActionClass = GoalAction::class;
 
     public function createForm()
@@ -44,7 +44,7 @@ class QuizGoalAddForm extends BaseQuizForm
 
             if (Goal::checkGoalPoints($quizID, $data)) {
                 $field->addValidationError(
-                    new FormFieldValidationError('invalid', 'wcf.acp.quizMaker.goal.points.exists')
+                    new FormFieldValidationError('invalid', 'wcf.acp.quizCreator.goal.points.exists')
                 );
             }
         };
@@ -56,15 +56,15 @@ class QuizGoalAddForm extends BaseQuizForm
                 ->maximumLength(255)
                 ->required(),
             IntegerFormField::create('points')
-                ->label('wcf.acp.quizMaker.goal.points')
+                ->label('wcf.acp.quizCreator.goal.points')
                 ->minimum(0)
                 ->maximum(Goal::calculateMaxPoints($this->quizObject))
                 ->addValidator(new FormFieldValidator('pointsExist', $pointsValidator))
                 ->required(),
             IconFormField::create('icon')
-                ->label('wcf.acp.quizMaker.goal.icon'),
+                ->label('wcf.acp.quizCreator.goal.icon'),
             TextFormField::create('description')
-                ->label('wcf.acp.quizMaker.goal.description')
+                ->label('wcf.acp.quizCreator.goal.description')
                 ->maximumLength(500),
             HiddenFormField::create('quizID')
                 ->value($quizID)

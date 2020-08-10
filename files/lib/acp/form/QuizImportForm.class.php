@@ -112,11 +112,11 @@ class QuizImportForm extends AbstractFormBuilderForm
                 $extension = substr($name, $lastDot + 1);
 
                 if ($extension !== 'json') {
-                    $formField->addValidationError(new FormFieldValidationError('fileExtension', 'wcf.acp.quizMaker.import.error.file'));
+                    $formField->addValidationError(new FormFieldValidationError('fileExtension', 'wcf.acp.quizCreator.import.error.file'));
                     return;
                 }
             } else {
-                $formField->addValidationError(new FormFieldValidationError('unknownExtension', 'wcf.acp.quizMaker.import.error.unknown'));
+                $formField->addValidationError(new FormFieldValidationError('unknownExtension', 'wcf.acp.quizCreator.import.error.unknown'));
                 return;
             }
 
@@ -125,10 +125,10 @@ class QuizImportForm extends AbstractFormBuilderForm
 
             if ($jsonError !== null) {
                 if ($jsonError[0] == 'json') {
-                    $formField->addValidationError(new FormFieldValidationError('brokenJson', 'wcf.acp.quizMaker.import.error.json'));
+                    $formField->addValidationError(new FormFieldValidationError('brokenJson', 'wcf.acp.quizCreator.import.error.json'));
                     return;
                 } else {
-                    $formField->addValidationError(new FormFieldValidationError('jsonData', 'wcf.acp.quizMaker.import.error.jsonData', $jsonError));
+                    $formField->addValidationError(new FormFieldValidationError('jsonData', 'wcf.acp.quizCreator.import.error.jsonData', $jsonError));
                 }
             }
         });
@@ -145,10 +145,10 @@ class QuizImportForm extends AbstractFormBuilderForm
 
             if ($jsonError !== null) {
                 if ($jsonError[0] == 'json') {
-                    $formField->addValidationError(new FormFieldValidationError('brokenJson', 'wcf.acp.quizMaker.import.error.json'));
+                    $formField->addValidationError(new FormFieldValidationError('brokenJson', 'wcf.acp.quizCreator.import.error.json'));
                     return;
                 } else {
-                    $formField->addValidationError(new FormFieldValidationError('jsonData', 'wcf.acp.quizMaker.import.error.jsonData', $jsonError));
+                    $formField->addValidationError(new FormFieldValidationError('jsonData', 'wcf.acp.quizCreator.import.error.jsonData', $jsonError));
                 }
             }
         });
@@ -157,14 +157,14 @@ class QuizImportForm extends AbstractFormBuilderForm
         $container = FormContainer::create('importQuiz');
         $container->appendChildren([
             UploadformField::create('file')
-                ->label('wcf.acp.quizMaker.import.file')
-                ->description('wcf.acp.quizMaker.import.file.description')
+                ->label('wcf.acp.quizCreator.import.file')
+                ->description('wcf.acp.quizCreator.import.file.description')
                 ->maximum(1)
                 /*->setAcceptableFiles('json') // comes with 5.3 */
                 ->addValidator(new FormFieldValidator('quizFile', $fileValidator)),
             MultilineTextFormField::create('text')
-                ->label('wcf.acp.quizMaker.import.text')
-                ->description('wcf.acp.quizMaker.import.text.description')
+                ->label('wcf.acp.quizCreator.import.text')
+                ->description('wcf.acp.quizCreator.import.text.description')
                 ->addValidator(new FormFieldValidator('quizText', $textValidator))
         ]);
 

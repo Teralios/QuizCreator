@@ -1,7 +1,7 @@
 {* sidebar *}
 {capture assign='sidebarRight'}
     <section class="box">
-        <h2 class="boxTitle">{lang}wcf.quizMaker.quiz.box.bestPlayers{/lang}</h2>
+        <h2 class="boxTitle">{lang}wcf.quizCreator.quiz.box.bestPlayers{/lang}</h2>
 
         <div class="boxContent">
             PLACEHOLDER
@@ -10,7 +10,7 @@
     </section>
 
     <section class="box">
-        <h2 class="boxTitle">{lang}wcf.quizMaker.quiz.box.lastPlayers{/lang}</h2>
+        <h2 class="boxTitle">{lang}wcf.quizCreator.quiz.box.lastPlayers{/lang}</h2>
 
         <div class="boxContent">
             PLACEHOLDER
@@ -22,7 +22,7 @@
 {* variables *}
 {assign var="pageTitle" value=$quiz->getTitle()}
 {assign var="contentTitle" value=$quiz->getTitle()}
-{assign var="showQuizMakerCopyright" value=true}
+{assign var="showquizCreatorCopyright" value=true}
 
 {* template *}
 {include file='header'}
@@ -45,9 +45,9 @@
     {/if}
     <div class="game dummy">
         <div class="gameHeader">
-            <div class="questionCounter"><b>{lang}wcf.quizMaker.game.questions{/lang}</b></div>
-            <div class="clock"><b>{lang}wcf.quizMaker.game.time{/lang}</b></div>
-            <div class="currentQuestionValue">{lang}wcf.quizMaker.game.points{/lang}</div>
+            <div class="questionCounter"><b>{lang}wcf.quizCreator.game.questions{/lang}</b></div>
+            <div class="clock"><b>{lang}wcf.quizCreator.game.time{/lang}</b></div>
+            <div class="currentQuestionValue">{lang}wcf.quizCreator.game.points{/lang}</div>
         </div>
         <div class="gameContent">
                 <p>Dummy Question</p>
@@ -59,22 +59,22 @@
                     <li><button>Dummy 4</button></li>
                 </ul>
 
-                <button>{lang}wcf.quizMaker.game.next{/lang}</button>
+                <button>{lang}wcf.quizCreator.game.next{/lang}</button>
         </div>
         <div class="gameFooter">
-            <p>{lang}wcf.quizMaker.game.score{/lang}</p>
+            <p>{lang}wcf.quizCreator.game.score{/lang}</p>
         </div>
     </div>
 </div>
 
 <script data-relocate="true">
-    require(['Teralios/QuizMaker/Quiz', 'Language'], function (Quiz, Language) {
-        Language.add('wcf.quizMaker.game.next', '{lang}wcf.quizMaker.game.next{/lang}');
-        Language.add('wcf.quizMaker.game.points', '{lang}wcf.quizMaker.game.points{/lang}');
-        Language.add('wcf.quizMaker.game.questions', '{lang}wcf.quizMaker.game.questions{/lang}');
-        Language.add('wcf.quizMaker.game.score', '{lang}wcf.quizMaker.game.score{/lang}');
-        Language.add('wcf.quizMaker.game.start', '{lang}wcf.quizMaker.game.start{/lang}');
-        Language.add('wcf.quizMaker.game.time', '{lang}wcf.quizMaker.game.time{/lang}');
+    require(['Teralios/quizCreator/Quiz', 'Language'], function (Quiz, Language) {
+        Language.add('wcf.quizCreator.game.next', '{lang}wcf.quizCreator.game.next{/lang}');
+        Language.add('wcf.quizCreator.game.points', '{lang}wcf.quizCreator.game.points{/lang}');
+        Language.add('wcf.quizCreator.game.questions', '{lang}wcf.quizCreator.game.questions{/lang}');
+        Language.add('wcf.quizCreator.game.score', '{lang}wcf.quizCreator.game.score{/lang}');
+        Language.add('wcf.quizCreator.game.start', '{lang}wcf.quizCreator.game.start{/lang}');
+        Language.add('wcf.quizCreator.game.time', '{lang}wcf.quizCreator.game.time{/lang}');
 
         new Quiz(elById('quiz{$quiz->quizID}'));
     });

@@ -2,7 +2,7 @@
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/page.xsd">
 	<import>
 		<!-- dynamic -->
-		<page identifier="de.teralios.quizMaker.QuizList">
+		<page identifier="de.teralios.quizCreator.QuizList">
 			<pageType>system</pageType>
 			<controller>wcf\page\QuizListPage</controller>
 			<name language="de">Quiz (Liste)</name>
@@ -18,10 +18,10 @@
 			</content>
 		</page>
 
-		<page identifier="de.teralios.quizMaker.Quiz">
+		<page identifier="de.teralios.quizCreator.Quiz">
 			<pageType>system</pageType>
 			<controller>wcf\page\QuizPage</controller>
-			<parent>de.teralios.quizMaker.QuizList</parent>
+			<parent>de.teralios.quizCreator.QuizList</parent>
 			<name language="de">Quiz</name>
 			<name language="en">Quiz</name>
 			<allowSpidersToIndex>1</allowSpidersToIndex>

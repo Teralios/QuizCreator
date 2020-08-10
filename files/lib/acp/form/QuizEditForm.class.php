@@ -12,7 +12,7 @@ use wcf\system\WCF;
 /**
  * Class QuizEditForm
  *
- * @package   de.teralios.quizMaker
+ * @package   de.teralios.quizCreator
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
@@ -20,8 +20,8 @@ use wcf\system\WCF;
 class QuizEditForm extends QuizAddForm
 {
     // inherit vars
-    public $activeMenuItem = 'wcf.acp.menu.link.quizMaker.list';
-    public $neededPermissions = ['admin.content.quizMaker.canManage'];
+    public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.list';
+    public $neededPermissions = ['admin.content.quizCreator.canManage'];
     public $formAction = 'edit';
 
     /**

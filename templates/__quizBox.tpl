@@ -4,7 +4,7 @@
         <h3>{$quiz->title}</h3>
         <small>{$quiz->description}</small>
         <div class="quizGameBlock">
-            <button class="quizStart">{lang}wcf.quizMaker.start{/lang}</button>
+            <button class="quizStart">{lang}wcf.quizCreator.start{/lang}</button>
         </div>
     </div>
 </div>

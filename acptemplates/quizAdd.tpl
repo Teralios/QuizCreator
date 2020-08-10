@@ -1,4 +1,4 @@
-{assign var="__formTitle" value='wcf.acp.quizMaker.quiz.'|concat:$action}
+{assign var="__formTitle" value='wcf.acp.quizCreator.quiz.'|concat:$action}
 
 {capture assign="__formJavaScript"}
     <script data-relocate="true">
@@ -14,19 +14,19 @@
         {assign var="__formTitleDescription" value=$formObject->getTitle()}
         <li>
             <a class="button" href="{link controller='QuizQuestionAdd' quizID=$formObject->quizID}{/link}">
-                <span class="icon icon16 fa-question-circle"></span> <span>{lang}wcf.acp.quizMaker.question.add{/lang}</span>
+                <span class="icon icon16 fa-question-circle"></span> <span>{lang}wcf.acp.quizCreator.question.add{/lang}</span>
             </a>
         </li>
         <li>
             <a class="button" href="{link controller='QuizGoalAdd' quizID=$formObject->quizID}{/link}">
-                <span class="icon icon16 fa-trophy"></span> <span>{lang}wcf.acp.quizMaker.goal.add{/lang}</span>
+                <span class="icon icon16 fa-trophy"></span> <span>{lang}wcf.acp.quizCreator.goal.add{/lang}</span>
             </a>
         </li>
     {/if}
 {/capture}
 
 {capture assign="__formSuccessMessage"}
-    {if $createSuccess|isset && $createSuccess === true}<p class="success">{lang}wcf.acp.quizMaker.quiz.created{/lang}</p>{/if}
+    {if $createSuccess|isset && $createSuccess === true}<p class="success">{lang}wcf.acp.quizCreator.quiz.created{/lang}</p>{/if}
 {/capture}
 
 {capture assign="__formContentHeader"}
@@ -34,12 +34,12 @@
         <div class="section tabMenuContainer" data-active="{$activeTabMenuItem}" data-store="activeTabMenuItem" id="pageTabMenuContainer">
             <nav class="tabMenu">
                 <ul>
-                    <li><a href="{@$__wcf->getAnchor('quizData')}">{lang}wcf.acp.quizMaker.quiz.data{/lang}</a></li>
+                    <li><a href="{@$__wcf->getAnchor('quizData')}">{lang}wcf.acp.quizCreator.quiz.data{/lang}</a></li>
                     {if $questionList|isset && $questionList|count > 0}
-                        <li><a href="{@$__wcf->getAnchor('questions')}">{lang}wcf.acp.quizMaker.question.list{/lang}</a></li>
+                        <li><a href="{@$__wcf->getAnchor('questions')}">{lang}wcf.acp.quizCreator.question.list{/lang}</a></li>
                     {/if}
                     {if $formObject->goals > 0}
-                        <li><a href="{@$__wcf->getAnchor('goals')}">{lang}wcf.acp.quizMaker.goal.list{/lang}</a></li>
+                        <li><a href="{@$__wcf->getAnchor('goals')}">{lang}wcf.acp.quizCreator.goal.list{/lang}</a></li>
                     {/if}
                     {event name='tabMenuTabs'}
                 </ul>
@@ -58,8 +58,8 @@
                             <thead>
                                 <tr>
                                     <th class="columnID columnQuestionID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
-                                    <th class="columnTitle">{lang}wcf.acp.quizMaker.question{/lang}</th>
-                                    <th class="columnDigits">{lang}wcf.acp.quizMaker.question.order{/lang}</th>
+                                    <th class="columnTitle">{lang}wcf.acp.quizCreator.question{/lang}</th>
+                                    <th class="columnDigits">{lang}wcf.acp.quizCreator.question.order{/lang}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,7 +74,7 @@
                                             <span class="icon icon16 fa-times jsDeleteButton jsTooltip pointer"
                                                   title="{lang}wcf.global.button.delete{/lang}"
                                                   data-object-id="{@$question->questionID}"
-                                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quizMaker.question.delete.confirmMessage{/lang}">
+                                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.question.delete.confirmMessage{/lang}">
                                             </span>
                                         </td>
                                         <td class="columnID columnQuestionID">{#$question->questionID}</td>
@@ -97,8 +97,8 @@
                             <thead>
                                 <tr>
                                     <th class="columnID columnGoalID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
-                                    <th class="columnTitle">{lang}wcf.acp.quizMaker.goal.title{/lang}</th>
-                                    <th class="columnDigits">{lang}wcf.acp.quizMaker.goal.points{/lang}</th>
+                                    <th class="columnTitle">{lang}wcf.acp.quizCreator.goal.title{/lang}</th>
+                                    <th class="columnDigits">{lang}wcf.acp.quizCreator.goal.points{/lang}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,7 +112,7 @@
                                             <span class="icon ico16 fa-times jsDeleteButton jsTooltip pointer"
                                                   title="{lang}wcf.global.button.delete{/lang}"
                                                   data-object-id="{@$goal->goalID}"
-                                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quizMaker.goal.delete.confirmMessage{/lang}">
+                                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.goal.delete.confirmMessage{/lang}">
                                             </span>
                                         </td>
                                         <td class="columnID columnGoalID">{#$goal->goalID}</td>

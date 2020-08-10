@@ -12,7 +12,7 @@ use wcf\system\exception\SystemException;
 /**
  * Class GoalAction
  *
- * @package   de.teralios.quizMaker
+ * @package   de.teralios.quizCreator
  * @author    Teralios
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
@@ -20,9 +20,9 @@ use wcf\system\exception\SystemException;
 class GoalAction extends AbstractDatabaseObjectAction
 {
     protected $className = GoalEditor::class;
-    protected $permissionsCreate = ['admin.content.quizMaker.canManage'];
-    protected $permissionsUpdate = ['admin.content.quizMaker.canManage'];
-    protected $permissionsDelete = ['admin.content.quizMaker.canManage'];
+    protected $permissionsCreate = ['admin.content.quizCreator.canManage'];
+    protected $permissionsUpdate = ['admin.content.quizCreator.canManage'];
+    protected $permissionsDelete = ['admin.content.quizCreator.canManage'];
 
     /**
      * @inheritDoc

@@ -96,13 +96,12 @@ class QuizExportAction extends AbstractAction
         }
 
         // header
-        /** @scrutinizer ignore-unhandled */
-        @header('Content-type: application/json');
-        @header('Content-disposition: attachment; filename="quiz-' . $this->quiz->quizID . '.json"');
+        /** @scrutinizer ignore-unhandled */@header('Content-type: application/json');
+        /** @scrutinizer ignore-unhandled */@header('Content-disposition: attachment; filename="quiz-' . $this->quiz->quizID . '.json"');
 
         // no cache headers
-        @header('Pragma: no-cache');
-        @header('Expires: 0');
+        /** @scrutinizer ignore-unhandled */@header('Pragma: no-cache');
+        /** @scrutinizer ignore-unhandled */@header('Expires: 0');
 
         echo json_encode($data, JSON_PRETTY_PRINT);
     }

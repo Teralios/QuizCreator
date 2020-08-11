@@ -101,4 +101,13 @@ class QuizValidatorResult
     {
         return new static($context, $key, $index, 'notAllowed');
     }
+
+
+    /**
+     * @return static
+     */
+    public static function emptyResult()
+    {
+        return new static('','',0, '');
+    }
 }

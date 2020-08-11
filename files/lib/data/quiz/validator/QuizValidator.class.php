@@ -44,21 +44,31 @@ class QuizValidator {
 
     public function validate(): QuizValidatorResult
     {
+        $functions = ['checkBaseData', 'checkQuestionData', 'checkGoalData'];
 
+        foreach ($functions as $function) {
+            $error = $this->{$function}();
+
+            if (!empty($error->getType())) {
+                return $error;
+            }
+        }
+
+        return QuizValidatorResult::emptyResult();
     }
 
     protected function checkBaseData(): QuizValidatorResult
     {
-
+        return QuizValidatorResult::emptyResult();
     }
 
     protected function checkQuestionData(): QuizValidatorResult
     {
-
+        return QuizValidatorResult::emptyResult();
     }
 
     protected function checkGoalData(): QuizValidatorResult
     {
-
+        return QuizValidatorResult::emptyResult();
     }
 }

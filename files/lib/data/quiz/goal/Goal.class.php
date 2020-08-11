@@ -22,6 +22,7 @@ use wcf\system\WCF;
  * @property-read int $points
  * @property-read string $title
  * @property-read string $description
+ * @property-read string $icon
  */
 class Goal extends DatabaseObject
 {

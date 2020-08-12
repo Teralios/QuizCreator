@@ -109,5 +109,35 @@
       margin-top: 1em;
       padding: 1em;
     }
+
+    // result
+    .result {
+      text-align: center;
+
+      .goal {
+        border-bottom: $wcfContentBorderInner solid 1px;
+        padding: 1em;
+
+        .name {
+          font-size: 2em;
+        }
+      }
+
+      .score {
+        padding: 1em;
+
+        .average {
+          margin: 0.5em;
+          font-size: $wcfFontSizeSmall;
+          p {
+            margin: 0;
+          }
+
+          :first-child {
+            font-size: 4em!important;
+          }
+        }
+      }
+    }
   }
 }

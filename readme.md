@@ -25,9 +25,9 @@ There are two types of quizzes:
     - [x] Import
     - [x] Export
   - [x] Icon support for goals
+  - [ ] German issue "Goal - Ziel": Find a better synonym.
 
 ### Beta 3
-  - [ ] German issue "Goal - Ziel": Find a better synonym.
   - [ ] Implement more permissions
   - [ ] Implement reaction
   - [ ] Implement trophies

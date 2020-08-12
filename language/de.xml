@@ -2,7 +2,6 @@
 <language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/vortex/language.xsd" languagecode="de">
 	<category name="wcf.acp.quizCreator">
 		<item name="wcf.acp.quizCreator.quiz.questions"><![CDATA[Fragen]]></item>
-		<item name="wcf.acp.quizCreator.quiz.goals"><![CDATA[Ziele]]></item>
 		<item name="wcf.acp.quizCreator.quiz.add"><![CDATA[Quiz hinzufügen]]></item>
 		<item name="wcf.acp.quizCreator.quiz.type"><![CDATA[Art]]></item>
 		<item name="wcf.acp.quizCreator.quiz.type.fun"><![CDATA[Spaßquiz]]></item>
@@ -11,10 +10,8 @@
 		<item name="wcf.acp.quizCreator.quiz.list"><![CDATA[Quiz]]></item>
 		<item name="wcf.acp.quizCreator.quiz.isActive"><![CDATA[Aktiviert]]></item>
 		<item name="wcf.acp.quizCreator.question.list"><![CDATA[Fragen]]></item>
-		<item name="wcf.acp.quizCreator.goal.list"><![CDATA[Ziele]]></item>
 		<item name="wcf.acp.quizCreator.question"><![CDATA[Frage]]></item>
 		<item name="wcf.acp.quizCreator.question.order"><![CDATA[Position]]></item>
-		<item name="wcf.acp.quizCreator.goal.title"><![CDATA[Name des Ziels]]></item>
 		<item name="wcf.acp.quizCreator.goal.points"><![CDATA[Min. Punkte]]></item>
 		<item name="wcf.acp.quizCreator.question.add"><![CDATA[Frage hinzufügen]]></item>
 		<item name="wcf.acp.quizCreator.question.optionA"><![CDATA[Antwort A]]></item>
@@ -25,10 +22,8 @@
 		<item name="wcf.acp.quizCreator.question.explanation"><![CDATA[Erklärung]]></item>
 		<item name="wcf.acp.quizCreator.question.position"><![CDATA[Position]]></item>
 		<item name="wcf.acp.quizCreator.quiz.edit"><![CDATA[Quiz bearbeiten]]></item>
-		<item name="wcf.acp.quizCreator.goal.add"><![CDATA[Ziel hinzufügen]]></item>
 		<item name="wcf.acp.quizCreator.quiz.back"><![CDATA[Zurück zum Quiz]]></item>
 		<item name="wcf.acp.quizCreator.question.edit"><![CDATA[Frage bearbeiten]]></item>
-		<item name="wcf.acp.quizCreator.goal.edit"><![CDATA[Ziel bearbeiten]]></item>
 		<item name="wcf.acp.quizCreator.goal.points.exists"><![CDATA[Es gibt bereits ein Ziel, dass diese Anzahl an Punkten benötigt.]]></item>
 		<item name="wcf.acp.quizCreator.quiz.created"><![CDATA[Quiz wurde erfolgreich erstellt.]]></item>
 		<item name="wcf.acp.quizCreator.quiz.data"><![CDATA[Quiz Daten]]></item>
@@ -62,7 +57,6 @@
 		<item name="wcf.quizCreator.play.points"><![CDATA[Punkte]]></item>
 		<item name="wcf.quizCreator.play.next"><![CDATA[nächste Frage]]></item>
 		<item name="wcf.quizCreator.play.start"><![CDATA[Quiz starten]]></item>
-		<item name="wcf.quizCreator.play.temp.finished"><![CDATA[Spiel beendet]]></item>
 		<item name="wcf.quizCreator.play.loadError"><![CDATA[Daten nicht gefunden.]]></item>
 		<item name="wcf.quizCreator.game.questions"><![CDATA[Frage]]></item>
 		<item name="wcf.quizCreator.game.time"><![CDATA[Zeit]]></item>

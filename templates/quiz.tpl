@@ -68,7 +68,8 @@
 </div>
 
 <script data-relocate="true">
-    require(['Teralios/quizCreator/Quiz', 'Language'], function (Quiz, Language) {
+    require(['Teralios/QuizCreator/Quiz', 'Language'], function (Quiz, Language) {
+        Language.add('wcf.quizCreator.game.finish', '{lang}wcf.quizCreator.game.finish{/lang}');
         Language.add('wcf.quizCreator.game.next', '{lang}wcf.quizCreator.game.next{/lang}');
         Language.add('wcf.quizCreator.game.points', '{lang}wcf.quizCreator.game.points{/lang}');
         Language.add('wcf.quizCreator.game.questions', '{lang}wcf.quizCreator.game.questions{/lang}');

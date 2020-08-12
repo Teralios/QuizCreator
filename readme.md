@@ -27,6 +27,7 @@ There are two types of quizzes:
   - [x] Icon support for goals
 
 ### Beta 3
+  - [ ] German issue "Goal - Ziel": Find a better synonym.
   - [ ] Implement more permissions
   - [ ] Implement reaction
   - [ ] Implement trophies

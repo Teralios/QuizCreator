@@ -3,15 +3,22 @@
 namespace wcf\acp\form;
 
 // imports
+use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizAction;
 use wcf\data\quiz\validator\QuizValidator;
 use wcf\form\AbstractFormBuilderForm;
+use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
+use wcf\system\form\builder\field\BooleanFormField;
 use wcf\system\form\builder\field\dependency\EmptyFormFieldDependency;
+use wcf\system\form\builder\field\dependency\NonEmptyFormFieldDependency;
+use wcf\system\form\builder\field\language\ContentLanguageFormField;
 use wcf\system\form\builder\field\MultilineTextFormField;
 use wcf\system\form\builder\field\UploadFormField;
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
 use wcf\system\form\builder\field\validation\FormFieldValidator;
+use wcf\system\request\LinkHandler;
+use wcf\util\HeaderUtil;
 
 /**
  * Class QuizImportForm
@@ -25,6 +32,7 @@ use wcf\system\form\builder\field\validation\FormFieldValidator;
 class QuizImportForm extends AbstractFormBuilderForm
 {
     // inherit vars
+    public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.import';
     public $objectActionClass = QuizAction::class;
     public $objectActionName = 'import';
 
@@ -47,7 +55,12 @@ class QuizImportForm extends AbstractFormBuilderForm
             MultilineTextFormField::create('text')
                 ->label('wcf.acp.quizCreator.import.text')
                 ->description('wcf.acp.quizCreator.import.text.description')
-                ->addValidator(new FormFieldValidator('quizText', $this->getTextValidator()))
+                ->addValidator(new FormFieldValidator('quizText', $this->getTextValidator())),
+            ContentLanguageFormField::create('languageID')
+                ->required(),
+            BooleanFormField::create('overrideLanguage')
+                ->label('wcf.acp.quizCreator.import.overrideLanguage')
+                ->description('wcf.acp.quizCreator.import.overrideLanguage.description'),
         ]);
 
         // dependency
@@ -55,7 +68,27 @@ class QuizImportForm extends AbstractFormBuilderForm
         $dependency->field($container->getNodeById('text'));
         $container->getNodeById('file')->addDependency($dependency);
 
+        $dependency = NonEmptyFormFieldDependency::create('languageOverride');
+        $dependency->field($container->getNodeById('languageID'));
+        $container->getNodeById('overrideLanguage')->addDependency($dependency);
+
+        // add to form
         $this->form->appendChild($container);
+    }
+
+    /**
+     * @inheritDoc
+     * @throws SystemException
+     */
+    public function saved()
+    {
+        $quiz = $this->objectAction->getReturnValues()['returnValues'];
+        if ($quiz instanceof Quiz) {
+            HeaderUtil::redirect(/** @scrutinizer ignore-call */LinkHandler::getInstance()->getLink(
+                'QuizEdit',
+                ['id' => $quiz->quizID, 'success' => 1]
+            ));
+        }
     }
 
     /**
@@ -70,7 +103,7 @@ class QuizImportForm extends AbstractFormBuilderForm
 
             $error = $validator->validate();
 
-            if (!empty($error->getKey())) {
+            if ($error !== null) {
                 return $error;
             }
 
@@ -109,7 +142,7 @@ class QuizImportForm extends AbstractFormBuilderForm
             $jsonError = $jsonValidator(file_get_contents($file->getLocation()));
 
             if ($jsonError !== null) {
-                $formField->addValidationError(new FormFieldValidationError('json', 'wcf.acp.quizCreator.import.error.json', $jsonError));
+                $formField->addValidationError(new FormFieldValidationError('json', 'wcf.acp.quizCreator.import.error.json', [$jsonError]));
             }
         };
     }
@@ -125,11 +158,13 @@ class QuizImportForm extends AbstractFormBuilderForm
         return function (MultilineTextFormField $formField) use ($jsonValidator) {
             $jsonString = $formField->getSaveValue();
 
-            // test json string
-            $jsonError = $jsonValidator($jsonString);
+            if (!empty($jsonString)) {
+                // test json string
+                $jsonError = $jsonValidator($jsonString);
 
-            if ($jsonError !== null) {
-                $formField->addValidationError(new FormFieldValidationError('json', 'wcf.acp.quizCreator.import.error.json', $jsonError));
+                if ($jsonError !== null) {
+                    $formField->addValidationError(new FormFieldValidationError('json', 'wcf.acp.quizCreator.import.error.json', [$jsonError]));
+                }
             }
         };
     }

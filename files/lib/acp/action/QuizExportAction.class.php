@@ -91,7 +91,7 @@ class QuizExportAction extends AbstractAction
         $goals->readObjects();
         foreach ($goals as $goal) {
             $tmp = $goal->getData();
-            unset($tmp['quizID']);
+            unset($tmp['quizID'], $tmp['goalID']);
             $data['goals'][] = $tmp;
         }
 

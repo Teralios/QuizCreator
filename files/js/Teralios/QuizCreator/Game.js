@@ -2,7 +2,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
     "use strict";
 
     // game vars
-    var neededKeys = ['quizID', 'type', 'questions', 'questionList', 'goalList'];
+    var neededKeys = ['quizID', 'type', 'questions', 'questionList', 'goalList', 'score', 'best', 'players'];
     var answers = ['A', 'B', 'C', 'D'];
     var clockClasses = 3;
     var clockPoints = [10, 5, 1];
@@ -66,6 +66,10 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
                 event.target.classList.add('wrong');
             }
 
+            if ((this._questionIndex + 1) >= this._data.questions) {
+                this._buttonNext.textContent = Language.get('wcf.quizCreator.game.finish');
+            }
+
             this._buttonNext.style.visibility = 'visible';
             this._updateClockContainer(false)
         },
@@ -101,7 +105,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             }
 
             if (error === true) {
-                this._printError(Language.get('wcf.quizMaker.game.missingData'));
+                this._printError(Language.get('wcf.quizCreator.game.missingData'));
             }
 
             return !error;
@@ -128,7 +132,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
 
             // build start button
             this._buttonStart = elCreate('button');
-            this._buttonStart.textContent = Language.get('wcf.quizMaker.game.start');
+            this._buttonStart.textContent = Language.get('wcf.quizCreator.game.start');
             this._buttonStart.addEventListener(WCF_CLICK_EVENT, this.startGame.bind(this));
             this._contentContainer.appendChild(this._buttonStart);
         },
@@ -140,7 +144,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
         _buildGameHTML: function () {
             // game information header
             // question counter
-            var questionCounterRawHtml = '<b>' + Language.get('wcf.quizMaker.game.questions') + '</b> ';
+            var questionCounterRawHtml = '<b>' + Language.get('wcf.quizCreator.game.questions') + '</b> ';
             questionCounterRawHtml += '<span class="currentQuestion"> ' + this._questionIndex + '</span> / ' + this._data.questions;
 
             var questionCounterDiv = elCreate('div');
@@ -153,7 +157,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             // time counter
             var timeCounterDiv = elCreate('div');
             timeCounterDiv.className = 'clock';
-            timeCounterDiv.innerHTML = '<b>' + Language.get('wcf.quizMaker.game.time') + '</b> <span class="seconds"></span> ';
+            timeCounterDiv.innerHTML = '<b>' + Language.get('wcf.quizCreator.game.time') + '</b> <span class="seconds"></span> ';
 
             this._timeContainer = elBySel('.seconds', timeCounterDiv);
             this._headerContainer.appendChild(timeCounterDiv);
@@ -161,13 +165,13 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             // point value of question
             var pointValueDiv = elCreate('div');
             pointValueDiv.className = 'currentQuestionValue';
-            pointValueDiv.innerHTML = '+ <span class="questionValue"></span> <b>' + Language.get('wcf.quizMaker.game.points') + '</b>';
+            pointValueDiv.innerHTML = '+ <span class="questionValue"></span> <b>' + Language.get('wcf.quizCreator.game.points') + '</b>';
 
             this._questionValueContainer = elBySel('.questionValue', pointValueDiv);
             this._headerContainer.appendChild(pointValueDiv);
 
             // game information footer
-            this._footerContainer.innerHTML = '<p><span class="score"></span> ' + Language.get('wcf.quizMaker.game.score') + '</p>';
+            this._footerContainer.innerHTML = '<p><span class="score"></span> ' + Language.get('wcf.quizCreator.game.score') + '</p>';
             this._scoreContainer = elBySel('.score', this._footerContainer);
 
             // build game content
@@ -181,7 +185,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this._contentContainer.appendChild(this._answerList);
 
             this._buttonNext = elCreate('button');
-            this._buttonNext.textContent = Language.get('wcf.quizMaker.game.next');
+            this._buttonNext.textContent = Language.get('wcf.quizCreator.game.next');
             this._buttonNext.addEventListener(WCF_CLICK_EVENT, this.next.bind(this));
             this._buttonNext.style.visibility = 'hidden';
             this._contentContainer.appendChild(this._buttonNext)

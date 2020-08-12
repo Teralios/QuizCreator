@@ -63,7 +63,7 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizCreator/Game'], function
             this._gameContainer.innerHTML = '<div class="gameContent"><p class="error">' + StringUtil.escapeHTML(errorMessage) + '</p></div>';
         },
 
-        _initGame: function() {
+        _initGame: function () {
             this._game = new Game(this._data, this._gameContainer);
             this._game.buildGame();
         }

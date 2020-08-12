@@ -7,6 +7,7 @@ use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\DatabaseObjectDecorator;
 use wcf\data\IStorableObject;
 use wcf\data\IToggleAction;
+use wcf\data\quiz\game\Game;
 use wcf\data\quiz\goal\Goal;
 use wcf\data\quiz\goal\GoalList;
 use wcf\data\quiz\question\QuestionEditor;
@@ -115,6 +116,9 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
             /** @var $goal Goal */
             $data['goalList'][$goal->points] = $goal;
         }
+
+        // load players, sum score and max score
+        $data = array_merge($data, Game::buildStatistic($this->quiz));
 
         return $data;
     }

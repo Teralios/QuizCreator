@@ -1,4 +1,4 @@
-define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language) {
+define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (StringUtil, Language, Result) {
     "use strict";
 
     // game vars
@@ -32,7 +32,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             }
         },
 
-        buildGame: function() {
+        buildGame: function () {
             if (this._gameCanStart === true) {
                 this._createBaseHTML();
             }
@@ -47,6 +47,7 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
 
             this._questionIndex = 0;
             this._score = 0;
+            this._gameResult = [];
             this._showQuestion(true);
         },
 
@@ -58,12 +59,18 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this._toggleButtons(false);
             this._stopClock();
 
-            if (elData(event.target, 'value') === this._currentQuestion.answer) {
+            var answer = elData(event.target, 'value');
+            if (answer === this._currentQuestion.answer) {
                 event.target.classList.add('correct');
                 this._score += this._questionScoreValue;
                 this._updateScoreContainer();
             } else {
                 event.target.classList.add('wrong');
+            }
+
+            this._gameResult[this._questionIndex] = {
+                'answer' : answer,
+                'time' : this._time
             }
 
             if ((this._questionIndex + 1) >= this._data.questions) {
@@ -95,8 +102,8 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
          */
         _checkData: function () {
             var error = false;
-
             var length = neededKeys.length;
+
             for (var i = 0; i < length; i++) {
                 if (this._data.hasOwnProperty(neededKeys[i]) === false) {
                     error = true;
@@ -344,8 +351,8 @@ define(['Ajax', 'StringUtil', 'Language'], function (Ajax, StringUtil, Language)
             this._scoreContainer.textContent = String(this._score);
         },
 
-        _finishGame: function() {
-            // @ todo implement final page
+        _finishGame: function () {
+            Result.init(this._gameResult, this._score, this._data, this._gameContainer);
         },
 
         _printError: function (errorMessage) {

@@ -16,23 +16,33 @@ use wcf\util\JSON;
  * @copyright  ©2020 Teralios.de
  * @license    GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
-class QuizValidator {
-    protected $neededBasicData = [];
-    protected $allowedBasicData = [];
-    protected $neededQuestionData = [];
-    protected $allowedQuestionData = [];
-    protected $neededGoalData = [];
-    protected $allowedGoalData = [];
+class QuizValidator
+{
+    protected $requiredQuizData = ['type', 'title', 'questions', 'goals'];
+    protected $allowedQuizData = ['languageCode', 'description'];
+    protected $requiredQuestionData = ['question', 'optionA', 'optionB', 'optionC', 'optionD', 'answer'];
+    protected $allowedQuestionData = ['position', 'explanation'];
+    protected $requiredGoalData = ['points', 'title', 'icon'];
+    protected $allowedGoalData = ['description'];
     protected $data = [];
 
+    /**
+     * QuizValidator constructor.
+     */
     public function __construct()
     {
-        $this->allowedBasicData = array_merge($this->allowedBasicData, $this->neededBasicData);
-        $this->allowedQuestionData = array_merge($this->allowedQuestionData, $this->neededQuestionData);
-        $this->allowedGoalData = array_merge($this->allowedGoalData, $this->neededGoalData);
+        $this->allowedQuizData = array_merge($this->allowedQuizData, $this->requiredQuizData);
+        $this->allowedQuestionData = array_merge($this->allowedQuestionData, $this->requiredQuestionData);
+        $this->allowedGoalData = array_merge($this->allowedGoalData, $this->requiredGoalData);
     }
 
-    public function setData(string $jsonString): bool {
+    /**
+     * Set data.
+     * @param string $jsonString
+     * @return bool
+     */
+    public function setData(string $jsonString): bool
+    {
         try {
             $this->data = JSON::decode($jsonString);
         } catch (SystemException $e) {
@@ -42,33 +52,133 @@ class QuizValidator {
         return true;
     }
 
-    public function validate(): QuizValidatorResult
+    /**
+     * Validate data map for quiz import.
+     * @return QuizValidatorError|null
+     */
+    public function validate()//: ?QuizValidatorResult
     {
-        $functions = ['checkBaseData', 'checkQuestionData', 'checkGoalData'];
+        $functions = ['checkQuizData', 'checkQuestionData', 'checkGoalData'];
 
         foreach ($functions as $function) {
             $error = $this->{$function}();
 
-            if (!empty($error->getType())) {
+            if ($error !== null) {
                 return $error;
             }
         }
 
-        return QuizValidatorResult::emptyResult();
+        return null;
     }
 
-    protected function checkBaseData(): QuizValidatorResult
+    /**
+     * Checks quiz data.
+     * @return QuizValidatorError|null
+     * @throws SystemException
+     */
+    protected function checkQuizData()//: ?QuizValidatorError
     {
-        return QuizValidatorResult::emptyResult();
+        // base check
+        if (($requiredKey = $this->requiredData($this->data, $this->requiredQuizData)) !== null) {
+            return QuizValidatorError::requiredKey('quiz', $requiredKey);
+        }
+
+        // allowed data
+        if (($allowedKey = $this->allowedData($this->data, $this->allowedQuizData)) !== null) {
+            return QuizValidatorError::notAllowedKey('quiz', $allowedKey);
+        }
+
+        // check language
+        $languageCode = $this->data['languageCode'] ?? null;
+        if ($languageCode !== null && /** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
+            $language = /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguageByCode($languageCode);
+
+            if ($language === null) {
+                return QuizValidatorError::requiredKey('language', $languageCode);
+            }
+        }
+
+        return null;
     }
 
-    protected function checkQuestionData(): QuizValidatorResult
+    /**
+     * Checks question data.
+     * @return QuizValidatorError|null
+     */
+    protected function checkQuestionData()//: ?QuizValidatorError
     {
-        return QuizValidatorResult::emptyResult();
+        return $this->checkDataMap('questions', $this->requiredQuestionData, $this->allowedQuestionData);
     }
 
-    protected function checkGoalData(): QuizValidatorResult
+    /**
+     * Checks goal data.
+     * @return QuizValidatorError|null
+     */
+    protected function checkGoalData()//: ?QuizValidatorError
     {
-        return QuizValidatorResult::emptyResult();
+        return $this->checkDataMap('goals', $this->requiredGoalData, $this->allowedGoalData);
+    }
+
+    /**
+     * Checks a complete data map.
+     * @param string $checkKey
+     * @param string[] $requiredKeys
+     * @param string[] $allowedKeys
+     * @return QuizValidatorError|null
+     */
+    protected function checkDataMap(string $checkKey, array $requiredKeys, array $allowedKeys) //: ?QuizValidatorError
+    {
+        $entries = $this->data[$checkKey];
+        $i = 0;
+
+        foreach ($entries as $entry) {
+            if (($requiredKey = $this->requiredData($entry, $requiredKeys)) !== null) {
+                return QuizValidatorError::requiredKey($checkKey, $requiredKey, $i);
+            }
+
+            if (($allowedKey = $this->allowedData($entry, $allowedKeys)) !== null) {
+                return QuizValidatorError::notAllowedKey($checkKey, $allowedKey, $i);
+            }
+
+            $i++;
+        }
+
+        return null;
+    }
+
+    /**
+     * Checks that a given data map has all required keys.
+     * @param array $data
+     * @param array $keys
+     * @return string|null
+     */
+    protected function requiredData(array $data, array $keys) //: ?string
+    {
+        foreach ($keys as $key) {
+            if (!isset($data[$key])) {
+                return (string) $key;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Checks that a given data map has only allowed keys.
+     * @param array $data
+     * @param array $keys
+     * @return string|null
+     */
+    protected function allowedData(array $data, array $keys) //: ?string
+    {
+        $dataKeys = array_keys($data);
+
+        foreach ($dataKeys as $key) {
+            if (!in_array($key, $keys)) {
+                return (string) $key;
+            }
+        }
+
+        return null;
     }
 }

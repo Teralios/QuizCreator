@@ -18,5 +18,10 @@
             <icon>fa-plus</icon>
             <permissions>admin.content.quizCreator.canManage</permissions>
         </acpmenuitem>
+        <acpmenuitem name="wcf.acp.menu.link.quizCreator.import">
+            <parent>wcf.acp.menu.link.quizCreator</parent>
+            <controller>wcf\acp\form\QuizImportForm</controller>
+            <permissions>admin.content.quizCreator.canManage</permissions>
+        </acpmenuitem>
     </import>
 </data>

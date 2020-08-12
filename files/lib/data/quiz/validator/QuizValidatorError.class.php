@@ -11,7 +11,7 @@ namespace wcf\data\quiz\validator;
  * @copyright  ©2020 Teralios.de
  * @license    GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
-class QuizValidatorResult
+class QuizValidatorError
 {
     /**
      * @var string
@@ -86,7 +86,7 @@ class QuizValidatorResult
      * @param int $index
      * @return static
      */
-    public static function missingKey(string $context, string $key, int $index = 0)
+    public static function requiredKey(string $context, string $key, int $index = 0)
     {
         return new static($context, $key, $index, 'missing');
     }
@@ -100,14 +100,5 @@ class QuizValidatorResult
     public static function notAllowedKey(string $context, string $key, int $index = 0)
     {
         return new static($context, $key, $index, 'notAllowed');
-    }
-
-
-    /**
-     * @return static
-     */
-    public static function emptyResult()
-    {
-        return new static('','',0, '');
     }
 }

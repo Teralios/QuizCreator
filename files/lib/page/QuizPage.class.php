@@ -31,6 +31,11 @@ class QuizPage extends AbstractPage
     public $quizID = 0;
 
     /**
+     * @var bool
+     */
+    public $showCopyright = true;
+
+    /**
      * @inheritDoc
      * @throws IllegalLinkException
      * @throws PermissionDeniedException
@@ -63,7 +68,8 @@ class QuizPage extends AbstractPage
         parent::assignVariables();
 
         WCF::getTPL()->assign([
-            'quiz' => $this->quiz
+            'quiz' => $this->quiz,
+            'showQuizMakerCopyright' => $this->showCopyright,
         ]);
     }
 }

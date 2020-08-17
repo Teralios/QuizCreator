@@ -26,6 +26,11 @@ class QuizListPage extends SortablePage
     public $validSortFields = ['title', 'creationDate'];
 
     /**
+     * @var bool
+     */
+    public $showCopyright = true;
+
+    /**
      * @var int
      */
     public $languageID = 0;
@@ -74,7 +79,8 @@ class QuizListPage extends SortablePage
 
         WCF::getTPL()->assign([
             'validSortFields' => $this->validSortFields,
-            'languageID' => $this->languageID
+            'languageID' => $this->languageID,
+            'showQuizMakerCopyright' => $this->showCopyright,
         ]);
     }
 }

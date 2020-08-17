@@ -22,7 +22,6 @@
 {* variables *}
 {assign var="pageTitle" value=$quiz->getTitle()}
 {assign var="contentTitle" value=$quiz->getTitle()}
-{assign var="showquizCreatorCopyright" value=true}
 
 {* template *}
 {include file='header'}

@@ -2,7 +2,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
     "use strict";
 
     // game vars
-    var neededKeys = ['quizID', 'type', 'questions', 'questionList', 'goalList', 'score', 'best', 'players'];
+    var neededKeys = ['quizID', 'type', 'questions', 'questionList', 'goalList'];
     var answers = ['A', 'B', 'C', 'D'];
     var clockClasses = 3;
     var clockPoints = [10, 5, 1];

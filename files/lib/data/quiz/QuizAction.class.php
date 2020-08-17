@@ -37,7 +37,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     protected $permissionsUpdate = ['admin.content.quizCreator.canManage'];
     protected $permissionsDelete = ['admin.content.quizCreator.canManage'];
     protected $permissionsToggle = ['admin.content.quizCreator.canManage'];
-    protected $allowGuestAccess = ['loadQuiz']; // allowed guest access
+    protected $allowGuestAccess = ['loadQuiz', 'finishGame']; // allowed guest access
 
     /**
      * @var Quiz
@@ -117,10 +117,21 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
             $data['goalList'][$goal->points] = $goal;
         }
 
-        // load players, sum score and max score
-        $data = array_merge($data, Game::buildStatistic($this->quiz));
-
         return $data;
+    }
+
+    public function validateFinishGame()
+    {
+
+    }
+
+    public function finishGame()
+    {
+        $this->quiz = $this->getSingleObject();
+
+        if ($this->quiz instanceof DatabaseObjectDecorator) {
+            $this->quiz = $this->quiz->getDecoratedObject();
+        }
     }
 
     /**

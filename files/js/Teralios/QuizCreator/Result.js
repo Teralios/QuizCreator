@@ -1,4 +1,4 @@
-define(['StringUtil', 'Language'], function (StringUtil, Language) {
+define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil) {
     "use strict";
 
     return {

@@ -29,10 +29,8 @@
     </section>
 {/capture}
 
+{* link *}
 {capture assign='linkParameters'}&sortField={$sortField}&sortOrder={$sortOrder}{if !$languageID|empty}&languageID={$languageID}{/if}{/capture}
-
-{* variables *}
-{assign var="showquizCreatorCopyright" value=true}
 
 {* template *}
 {include file='header'}

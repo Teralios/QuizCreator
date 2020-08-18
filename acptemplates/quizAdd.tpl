@@ -59,7 +59,7 @@
                                 <tr>
                                     <th class="columnID columnQuestionID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
                                     <th class="columnTitle">{lang}wcf.acp.quizCreator.question{/lang}</th>
-                                    <th class="columnDigits">{lang}wcf.acp.quizCreator.question.order{/lang}</th>
+                                    <th class="columnDigits">{lang}wcf.acp.quizCreator.question.position{/lang}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,7 +70,6 @@
                                             <a href="{$questionLink}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip">
                                                 <span class="icon icon16 fa-pencil"></span>
                                             </a>
-                                            {* We not need to check permission here, canManage is all. *}
                                             <span class="icon icon16 fa-times jsDeleteButton jsTooltip pointer"
                                                   title="{lang}wcf.global.button.delete{/lang}"
                                                   data-object-id="{@$question->questionID}"
@@ -97,7 +96,7 @@
                             <thead>
                                 <tr>
                                     <th class="columnID columnGoalID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
-                                    <th class="columnTitle">{lang}wcf.acp.quizCreator.goal.title{/lang}</th>
+                                    <th class="columnTitle">{lang}wcf.global.title{/lang}</th>
                                     <th class="columnDigits">{lang}wcf.acp.quizCreator.goal.points{/lang}</th>
                                 </tr>
                             </thead>

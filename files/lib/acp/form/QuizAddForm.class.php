@@ -8,8 +8,8 @@ use wcf\data\quiz\QuizAction;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
+use wcf\system\form\builder\field\DescriptionFormField;
 use wcf\system\form\builder\field\language\ContentLanguageFormField;
-use wcf\system\form\builder\field\MultilineTextFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
 use wcf\system\form\builder\field\TitleFormField;
 use wcf\system\form\builder\field\media\SingleMediaSelectionFormField;
@@ -43,21 +43,22 @@ class QuizAddForm extends AbstractFormBuilderForm
         $container->appendChildren([
             TitleFormField::create('title')
                 ->label('wcf.global.title')
-                ->maximumLength(80)
+                ->maximumLength(191)
                 ->required(),
-            MultilineTextFormField::create('description')
-                ->label('wcf.global.description')
+            DescriptionFormField::create('description')
                 ->maximumLength(1000),
             ContentLanguageFormField::create('languageID')
                 ->required(),
             RadioButtonFormField::create('type')
                 ->label('wcf.acp.quizCreator.quiz.type')
+                ->description('wcf.acp.quizCreator.quiz.type.description')
                 ->options([
                     'fun' => 'wcf.acp.quizCreator.quiz.type.fun',
                     'competition' => 'wcf.acp.quizCreator.quiz.type.competition'
                 ])
                 ->value('fun'),
             SingleMediaSelectionFormField::create('mediaID')
+                ->label('wcf.acp.quizCreator.quiz.image')
                 ->imageOnly(),
             BooleanFormField::create('isActive')
                 ->label('wcf.acp.quizCreator.quiz.isActive')

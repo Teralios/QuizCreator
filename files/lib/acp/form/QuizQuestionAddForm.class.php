@@ -39,23 +39,23 @@ class QuizQuestionAddForm extends BaseQuizForm
                 ->value($this->quizObject->quizID),
             TextFormField::create('question')
                 ->label('wcf.acp.quizCreator.question')
-                ->maximumLength(100)
+                ->maximumLength(150)
                 ->required(),
             TextFormField::create('optionA')
                 ->label('wcf.acp.quizCreator.question.optionA')
-                ->maximumLength(100)
+                ->maximumLength(150)
                 ->required(),
             TextFormField::create('optionB')
                 ->label('wcf.acp.quizCreator.question.optionB')
-                ->maximumLength(100)
+                ->maximumLength(150)
                 ->required(),
             TextFormField::create('optionC')
                 ->label('wcf.acp.quizCreator.question.optionC')
-                ->maximumLength(100)
+                ->maximumLength(150)
                 ->required(),
             TextFormField::create('optionD')
                 ->label('wcf.acp.quizCreator.question.optionD')
-                ->maximumLength(100)
+                ->maximumLength(150)
                 ->required(),
             RadioButtonFormField::create('answer')
                 ->label('wcf.acp.quizCreator.question.answer')
@@ -67,7 +67,7 @@ class QuizQuestionAddForm extends BaseQuizForm
                 ]),
             MultilineTextFormField::create('explanation')
                 ->label('wcf.acp.quizCreator.question.explanation')
-                ->maximumLength(500),
+                ->maximumLength(1000),
             ShowOrderFormField::create('position')
                 ->label('wcf.acp.quizCreator.question.position')
         ]);

@@ -6,6 +6,7 @@ namespace wcf\acp\form;
 use wcf\data\quiz\goal\Goal;
 use wcf\data\quiz\goal\GoalAction;
 use wcf\system\form\builder\container\FormContainer;
+use wcf\system\form\builder\field\DescriptionFormField;
 use wcf\system\form\builder\field\HiddenFormField;
 use wcf\system\form\builder\field\IconFormField;
 use wcf\system\form\builder\field\IntegerFormField;
@@ -53,7 +54,7 @@ class QuizGoalAddForm extends BaseQuizForm
         $goalContainer->appendChildren([
             TitleFormField::create('title')
                 ->label('wcf.global.title')
-                ->maximumLength(255)
+                ->maximumLength(150)
                 ->required(),
             IntegerFormField::create('points')
                 ->label('wcf.acp.quizCreator.goal.points')
@@ -63,9 +64,8 @@ class QuizGoalAddForm extends BaseQuizForm
                 ->required(),
             IconFormField::create('icon')
                 ->label('wcf.acp.quizCreator.goal.icon'),
-            TextFormField::create('description')
-                ->label('wcf.acp.quizCreator.goal.description')
-                ->maximumLength(500),
+            DescriptionFormField::create('description')
+                ->maximumLength(1000),
             HiddenFormField::create('quizID')
                 ->value($quizID)
         ]);

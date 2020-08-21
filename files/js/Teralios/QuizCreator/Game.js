@@ -314,6 +314,10 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             clearInterval(this._clockID);
         },
 
+        /**
+         * A clock tick every second.
+         * @private
+         */
         _clockTick: function () {
             this._time++;
 
@@ -333,6 +337,11 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             this._updateClockContainer(true);
         },
 
+        /**
+         * Updates clock view.
+         * @param blinking
+         * @private
+         */
         _updateClockContainer: function (blinking) {
             // update clock
             var seconds = String(this._time % 60);
@@ -350,19 +359,36 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             this._timeContainer.textContent = minutes + blinker + seconds;
         },
 
+        /**
+         * Update question value view.
+         * @private
+         */
         _updatePointContainer: function () {
             this._questionValueContainer.textContent = String(this._questionScoreValue);
         },
 
+        /**
+         * Update score view.
+         * @private
+         */
         _updateScoreContainer: function () {
             this._scoreContainer.textContent = String(this._score);
         },
 
+        /**
+         * Finish game.
+         * @private
+         */
         _finishGame: function () {
             Result.init(this._gameResult, this._score, this._timeTotal, this._data, this._gameContainer);
             Result.showResult();
         },
 
+        /**
+         * Prints error.
+         * @param errorMessage
+         * @private
+         */
         _printError: function (errorMessage) {
             this._gameContainer.innerHTML = '<div class="gameContent"><p class="error">' + errorMessage + '</p></div>';
         }

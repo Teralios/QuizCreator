@@ -6,7 +6,8 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizCreator/Game'], function
      * @param quizContainer
      * @constructor
      */
-    function Quiz(quizContainer) {
+    function Quiz(quizContainer)
+    {
         this.init(quizContainer);
     }
 
@@ -38,6 +39,10 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizCreator/Game'], function
             this._loadData();
         },
 
+        /**
+         * Load quiz data.
+         * @private
+         */
         _loadData: function () {
             Ajax.apiOnce(
                 {
@@ -54,15 +59,28 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizCreator/Game'], function
             )
         },
 
+        /**
+         * Prepare game container.
+         * @param data
+         */
         prepareGame: function (data) {
             this._data = data.returnValues;
             this._initGame();
         },
 
+        /**
+         * Print error.
+         * @param errorMessage
+         * @private
+         */
         _printError: function (errorMessage) {
             this._gameContainer.innerHTML = '<div class="gameContent"><p class="error">' + StringUtil.escapeHTML(errorMessage) + '</p></div>';
         },
 
+        /**
+         * Initialize game.
+         * @private
+         */
         _initGame: function () {
             this._game = new Game(this._data, this._gameContainer);
             this._game.buildGame();

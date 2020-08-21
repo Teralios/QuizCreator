@@ -123,6 +123,7 @@ class QuizEditor extends DatabaseObjectEditor
      * @param array $data
      * @param int $quizID
      * @return int
+     * @throws DatabaseQueryException
      */
     protected static function importQuestions(array $data, int $quizID): int
     {

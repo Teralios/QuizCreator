@@ -29,6 +29,9 @@ class QuizGoalAddForm extends BaseQuizForm
     public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.list';
     public $objectActionClass = GoalAction::class;
 
+    /**
+     * @inheritDoc
+     */
     public function createForm()
     {
         parent::createForm();

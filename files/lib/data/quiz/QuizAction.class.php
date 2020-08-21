@@ -9,15 +9,13 @@ use wcf\data\IStorableObject;
 use wcf\data\IToggleAction;
 use wcf\data\quiz\game\Game;
 use wcf\data\quiz\game\GameEditor;
-use wcf\data\quiz\goal\Goal;
 use wcf\data\quiz\goal\GoalList;
-use wcf\data\quiz\question\QuestionEditor;
 use wcf\data\quiz\question\QuestionList;
 use wcf\system\database\exception\DatabaseQueryException;
+use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\UserInputException;
-use wcf\system\language\LanguageFactory;
 use wcf\system\WCF;
 use wcf\util\ArrayUtil;
 use wcf\util\JSON;
@@ -120,6 +118,10 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         return $data;
     }
 
+    /**
+     * Validate finish game.
+     * @throws UserInputException
+     */
     public function validateFinishGame()
     {
         $this->quiz = $this->getSingleObject();
@@ -129,6 +131,13 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         }
     }
 
+    /**
+     * Finish game.
+     * @return array
+     * @throws SystemException
+     * @throws DatabaseQueryException
+     * @throws DatabaseQueryExecutionException
+     */
     public function finishGame()
     {
         // data
@@ -159,8 +168,9 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
                 ];
 
                 GameEditor::create($data);
-            } else {
-                // @todo get last game
+            } elseif (($game = Game::getGame($this->quiz, $userID)) !== null) {
+                $game = new GameEditor($game);
+                $game->update(['lastScore' => $score, 'lastPlayedTime' => TIME_NOW]);
             }
         }
 
@@ -168,6 +178,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     }
 
     /**
+     * Validates import action.
      * @throws PermissionDeniedException
      */
     public function validateImport()

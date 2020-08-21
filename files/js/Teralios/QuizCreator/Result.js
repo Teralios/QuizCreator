@@ -2,6 +2,14 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
     "use strict";
 
     return {
+        /**
+         * Init result view.
+         * @param result
+         * @param score
+         * @param timeTotal
+         * @param quizData
+         * @param gameContainer
+         */
         init: function (result, score, timeTotal, quizData, gameContainer) {
             this._result = result;
             this._score = score;
@@ -10,6 +18,9 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
             this._gameContainer = gameContainer;
         },
 
+        /**
+         * Show result for game.
+         */
         showResult: function () {
             if (this._quizData.type === 'competition') {
                 this._loadResult();
@@ -18,6 +29,10 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
             }
         },
 
+        /**
+         * Load statistic for quiz.
+         * @private
+         */
         _loadResult: function () {
             Ajax.api(
                 this,
@@ -32,25 +47,46 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
             );
         },
 
+        /**
+         * Render live result.
+         * @param data
+         * @private
+         */
         _renderResultLive: function (data) {
             this._renderBase();
             this._renderScore(data)
         },
 
+        /**
+         * Render offline result. (no ajax connection)
+         * @private
+         */
         _renderResultOffline: function () {
             this._renderBase();
         },
 
+        /**
+         * Build base container for result.
+         * @private
+         */
         _buildBaseContainer: function () {
             this._gameContainer.innerHTML = '<div class="result"></div>';
             this._resultContainer = elBySel('.result', this._gameContainer);
         },
 
+        /**
+         * Base rendering for result.
+         * @private
+         */
         _renderBase: function () {
             this._buildBaseContainer();
             this._renderGoal();
         },
 
+        /**
+         * Render goal.
+         * @private
+         */
         _renderGoal: function () {
             var goalList = this._quizData.goalList;
 
@@ -80,6 +116,11 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
             }
         },
 
+        /**
+         * render score.
+         * @param data
+         * @private
+         */
         _renderScore: function (data) {
             console.log(data);
 
@@ -104,6 +145,11 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
             this._resultContainer.appendChild(scoreContainer);
         },
 
+        /**
+         * Ajax setup.
+         * @returns {{data: {className: string, actionName: string}}}
+         * @private
+         */
         _ajaxSetup: function () {
             return {
                 data: {
@@ -113,10 +159,19 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
             }
         },
 
+        /**
+         * Ajax success.
+         * @param data
+         * @private
+         */
         _ajaxSuccess: function (data) {
             this._renderResultLive(data.returnValues);
         },
 
+        /**
+         * Ajax failure.
+         * @private
+         */
         _ajaxFailure: function () {
             this._renderResultOffline();
         }

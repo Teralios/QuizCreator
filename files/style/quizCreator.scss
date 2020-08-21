@@ -126,6 +126,11 @@
       .score {
         padding: 1em;
 
+        .player {
+          font-weight: bold;
+          font-size: 1.2em;
+        }
+
         .average {
           margin: 0.5em;
           font-size: $wcfFontSizeSmall;

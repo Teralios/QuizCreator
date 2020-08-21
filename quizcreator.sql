@@ -27,6 +27,8 @@ CREATE TABLE wcf1_quiz_game (
     timeTotal MEDIUMINT(5) NOT NULL,
     score SMALLINT(4) NOT NULL DEFAULT 0,
     scorePercent FLOAT NOT NULL DEFAULT 0.00,
+    lastScore SMALLINT(4) NOT NULL DEFAULT 0,
+    lastPlayedTime INT(10) NOT NULL DEFAULT 0,
     result TEXT,
     UNIQUE KEY (quizID, userID),
     KEY (quizID),

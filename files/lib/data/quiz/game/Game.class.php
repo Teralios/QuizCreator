@@ -5,14 +5,31 @@ namespace wcf\data\quiz\game;
 // imports
 use wcf\data\DatabaseObject;
 use wcf\data\quiz\Quiz;
+use wcf\system\database\exception\DatabaseQueryException;
+use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\WCF;
 
+/**
+ * Class        Game
+ * @package     QuizCreator
+ * @subpackage  wcf\data\quiz\game
+ * @author      Karsten (Teralios) Achterrath
+ * @copyright   ©2020 Teralios.de
+ * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ */
 class Game extends DatabaseObject
 {
     // inherit vars
     protected static $databaseTableName = 'quiz_game';
     protected static $databaseTableIndexName = 'gameID';
 
+    /**
+     * Builds statistic for game result.
+     * @param Quiz $quiz
+     * @return array
+     * @throws DatabaseQueryException
+     * @throws DatabaseQueryExecutionException
+     */
     public static function buildStatistic(Quiz $quiz): array
     {
         $sql = 'SELECT      COUNT(quizID) as players, SUM(score) as scoreSum, MAX(score) as best
@@ -32,6 +49,14 @@ class Game extends DatabaseObject
         return $statistic;
     }
 
+    /**
+     * Get players with a lower score as player.
+     * @param Quiz $quiz
+     * @param int $score
+     * @return int
+     * @throws DatabaseQueryException
+     * @throws DatabaseQueryExecutionException
+     */
     public static function getPlayersWorse(Quiz $quiz, int $score): int
     {
         $sql = 'SELECT      COUNT(userID) as players
@@ -45,6 +70,14 @@ class Game extends DatabaseObject
         return (int) $row['players'];
     }
 
+    /**
+     * Check user has played the game.
+     * @param Quiz $quiz
+     * @param int $userID
+     * @return bool
+     * @throws DatabaseQueryException
+     * @throws DatabaseQueryExecutionException
+     */
     public static function hasPlayed(Quiz $quiz, int $userID): bool
     {
         $sql = 'SELECT  COUNT(userID) as played
@@ -56,5 +89,25 @@ class Game extends DatabaseObject
         $row = $statement->fetchSingleRow();
 
         return ($row['played'] == 1);
+    }
+
+    /**
+     * Returns game from player for quiz.
+     * @param Quiz $quiz
+     * @param int $userID
+     * @return DatabaseObject|null
+     * @throws DatabaseQueryException
+     * @throws DatabaseQueryExecutionException
+     */
+    public static function getGame(Quiz $quiz, int $userID)
+    {
+        $sql = 'SELECT  *
+                FROM    ' . static::getDatabaseTableName() . '
+                WHERE   quizID = ?
+                        AND userID = ?';
+        $statement = WCF::getDB()->prepareStatement();
+        $statement->execute([$quiz->quizID, $userID]);
+
+        return $statement->fetchSingleObject(static::class);
     }
 }

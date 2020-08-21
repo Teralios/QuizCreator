@@ -18,12 +18,39 @@ use wcf\util\JSON;
  */
 class QuizValidator
 {
+    /**
+     * @var string[]
+     */
     protected $requiredQuizData = ['type', 'title', 'questions', 'goals'];
+
+    /**
+     * @var string[]
+     */
     protected $allowedQuizData = ['languageCode', 'description'];
+
+    /**
+     * @var string[]
+     */
     protected $requiredQuestionData = ['question', 'optionA', 'optionB', 'optionC', 'optionD', 'answer'];
+
+    /**
+     * @var string[]
+     */
     protected $allowedQuestionData = ['position', 'explanation'];
+
+    /**
+     * @var string[]
+     */
     protected $requiredGoalData = ['points', 'title', 'icon'];
+
+    /**
+     * @var string[]
+     */
     protected $allowedGoalData = ['description'];
+
+    /**
+     * @var array
+     */
     protected $data = [];
 
     /**

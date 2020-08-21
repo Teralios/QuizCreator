@@ -23,6 +23,10 @@ class QuizListPage extends MultipleLinkPage
     public $objectListClassName = ViewableQuizList::class;
     public $neededPermissions = ['admin.content.quizCreator.canManage'];
 
+    /**
+     * @inheritDoc
+     * @throws SystemException
+     */
     public function initObjectList()
     {
         parent::initObjectList();

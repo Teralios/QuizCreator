@@ -114,8 +114,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         $goalList = new GoalList($this->quiz);
         $goalList->readObjects();
         foreach ($goalList as $goal) {
-            /** @var $goal Goal */
-            $data['goalList'][$goal->points] = $goal;
+            $data['goalList'][] = $goal->getData();
         }
 
         return $data;

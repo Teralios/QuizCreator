@@ -63,7 +63,8 @@ class QuizGoalAddForm extends BaseQuizForm
                 ->addValidator(new FormFieldValidator('pointsExist', $pointsValidator))
                 ->required(),
             IconFormField::create('icon')
-                ->label('wcf.acp.quizCreator.goal.icon'),
+                ->label('wcf.acp.quizCreator.goal.icon')
+                ->required(),
             DescriptionFormField::create('description')
                 ->maximumLength(1000),
             HiddenFormField::create('quizID')

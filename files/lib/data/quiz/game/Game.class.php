@@ -15,7 +15,7 @@ class Game extends DatabaseObject
 
     public static function buildStatistic(Quiz $quiz): array
     {
-        $sql = 'SELECT      COUNT(quizID) as players, SUM(score) as score, MAX(score) as best
+        $sql = 'SELECT      COUNT(quizID) as players, SUM(score) as scoreSum, MAX(score) as best
                 FROM        ' . static::getDatabaseTableName() . '
                 WHERE       quizID = ?
                 GROUP BY    quizID, score';
@@ -26,7 +26,7 @@ class Game extends DatabaseObject
         // build statistic
         $statistic = [];
         $statistic['players'] = $row['players'] ?? 0;
-        $statistic['score'] = $row['score'] ?? 0;
+        $statistic['scoreSum'] = $row['scoreSum'] ?? 0;
         $statistic['best'] = $row['best'] ?? 0;
 
         return $statistic;

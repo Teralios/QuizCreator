@@ -63,21 +63,6 @@
         <div class="gameFooter">
             <p>{lang}wcf.quizCreator.game.score{/lang}</p>
         </div>
-        {* <div class="result">
-            <div class="goal">
-                <span class="icon icon128 fa-trophy"></span>
-                <h3 class="name">Traumtänzer</h3>
-                <p class="small">Du hast das aber ganz gut gemacht.</p>
-            </div>
-            <div class="score">
-                <p class="player">645 Punkte</p>
-                <div class="average">
-                    <p>⌀</p>
-                    <p>400 Punkte</p>
-                    <p>Du bist besser als 60% der Spieler</p>
-                </div>
-            </div>
-        </div> *}
     </div>
 </div>
 
@@ -90,6 +75,7 @@
         Language.add('wcf.quizCreator.game.score', '{lang}wcf.quizCreator.game.score{/lang}');
         Language.add('wcf.quizCreator.game.start', '{lang}wcf.quizCreator.game.start{/lang}');
         Language.add('wcf.quizCreator.game.time', '{lang}wcf.quizCreator.game.time{/lang}');
+        Language.add('wcf.quizCreator.game.lastPosition', '{lang}wcf.quizCreator.game.lastPosition{/lang}');
 
         new Quiz(elById('quiz{$quiz->quizID}'));
     });

@@ -48,6 +48,6 @@ class GoalList extends DatabaseObjectList
         $this->getConditionBuilder()->add('quizID = ?', [$this->quiz->quizID]);
 
         // default sort order
-        $this->sqlOrderBy = 'points DESC';
+        $this->sqlOrderBy = 'points ASC';
     }
 }

@@ -43,6 +43,7 @@
 		<item name="wcf.acp.quizCreator.quiz.export"><![CDATA[Export]]></item>
 		<item name="wcf.acp.quizCreator.quiz.questions"><![CDATA[Questions]]></item>
 		<item name="wcf.acp.quizCreator.quiz.goals"><![CDATA[Goals]]></item>
+		<item name="wcf.acp.quizCreator.goal.edit"><![CDATA[Edit Goal]]></item>
 	</category>
 	<category name="wcf.quizCreator">
 		<item name="wcf.quizCreator.creationDate"><![CDATA[Date]]></item>
@@ -52,5 +53,13 @@
 		<item name="wcf.quizCreator.quizList.box.mostPlayed"><![CDATA[Most played]]></item>
 		<item name="wcf.quizCreator.quiz.box.bestPlayers"><![CDATA[Best players]]></item>
 		<item name="wcf.quizCreator.quiz.box.lastPlayers"><![CDATA[Last players]]></item>
+		<item name="wcf.quizCreator.game.start"><![CDATA[Start quiz]]></item>
+		<item name="wcf.quizCreator.game.questions"><![CDATA[Question]]></item>
+		<item name="wcf.quizCreator.game.time"><![CDATA[Time]]></item>
+		<item name="wcf.quizCreator.game.points"><![CDATA[Points]]></item>
+		<item name="wcf.quizCreator.game.score"><![CDATA[Score]]></item>
+		<item name="wcf.quizCreator.game.lastPosition"><![CDATA[All other players are at least as good as you are.]]></item>
+		<item name="wcf.quizCreator.game.next"><![CDATA[next question]]></item>
+		<item name="wcf.quizCreator.game.finish"><![CDATA[finish quiz]]></item>
 	</category>
 </language>

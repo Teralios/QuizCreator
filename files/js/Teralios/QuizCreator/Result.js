@@ -3,18 +3,22 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
 
     return {
         init: function (result, score, timeTotal, quizData, gameContainer) {
-            this._gameContainer = gameContainer;
+            this._result = result;
             this._score = score;
             this._timeTotal = timeTotal;
             this._quizData = quizData;
-            this._result = result;
+            this._gameContainer = gameContainer;
         },
 
         showResult: function () {
-            this._getLoadResult();
+            if (this._quizData.type === 'competition') {
+                this._loadResult();
+            } else {
+                this._renderResultOffline();
+            }
         },
 
-        _getLoadResult: function () {
+        _loadResult: function () {
             Ajax.api(
                 this,
                 {
@@ -28,10 +32,76 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
             );
         },
 
-        _renderResultLive: function () {
+        _renderResultLive: function (data) {
+            this._renderBase();
+            this._renderScore(data)
         },
 
         _renderResultOffline: function () {
+            this._renderBase();
+        },
+
+        _buildBaseContainer: function () {
+            this._gameContainer.innerHTML = '<div class="result"></div>';
+            this._resultContainer = elBySel('.result', this._gameContainer);
+        },
+
+        _renderBase: function () {
+            this._buildBaseContainer();
+            this._renderGoal();
+        },
+
+        _renderGoal: function () {
+            var goalList = this._quizData.goalList;
+
+            if (goalList.length > 0) {
+                var goal = false;
+
+                for (var i = 0; i < goalList.length; i++) {
+                    if (Number(goalList[i].points) <= Number(this._score)) {
+                        goal = goalList[i];
+                    }
+                }
+
+                if (goal !== false) {
+                    var goalHtml = '<span class="icon icon96 ' + goal.icon + '"></span>';
+                    goalHtml += '<h3 class="name">' + StringUtil.escapeHTML(goal.title) + '</h3>';
+
+                    if (goal.description !== '') {
+                        goalHtml += '<p class="small">' + StringUtil.escapeHTML(goal.description) + '</p>';
+                    }
+
+                    var goalContainer = elCreate('div');
+                    goalContainer.classList.add('goal');
+                    goalContainer.innerHTML = goalHtml;
+
+                    this._resultContainer.appendChild(goalContainer);
+                }
+            }
+        },
+
+        _renderScore: function (data) {
+            console.log(data);
+
+            var scoreHtml = '<p class="player">' + this._score + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
+
+            if (data.players > 0) {
+                scoreHtml += '<div class="average"><p>⌀</p>';
+                scoreHtml += '<p> ' + StringUtil.formatNumeric((data.scoreSum / data.players)) + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
+            }
+
+            if (data.playerWorse === 0) {
+                scoreHtml += '<p>' + Language.get('wcf.quizCreator.game.lastPosition') + '</p>';
+            } else {
+                var playerWorse = StringUtil.formatNumeric((data.playerWorse * 100), 2);
+                scoreHtml += Language.get('wcf.quizCreator.game.otherPlayers', {percent: playerWorse})
+            }
+
+            var scoreContainer = elCreate('div');
+            scoreContainer.classList.add('score');
+            scoreContainer.innerHTML = scoreHtml;
+
+            this._resultContainer.appendChild(scoreContainer);
         },
 
         _ajaxSetup: function () {
@@ -43,10 +113,8 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
             }
         },
 
-        _ajaxSuccess: function (data, responseText, xhr, requestData) {
-            console.log(data);
-
-            this._renderResultLive();
+        _ajaxSuccess: function (data) {
+            this._renderResultLive(data.returnValues);
         },
 
         _ajaxFailure: function () {

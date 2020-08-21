@@ -16,7 +16,7 @@ There are two types of quizzes:
     - [x] Overwork Teralios/Quiz/Quiz to Teralios/quizCreator/Game
     - [x] Implement Teralios/quizCreator/Quiz for QuizPage
   - [x] Change image to media
-  - [ ] Implement result view for quiz
+  - [x] Implement result view for quiz
   - [x] Implement fun quiz support
   - [ ] Implement additional content on QuizList and Quiz
     - [ ] Last Player?
@@ -25,7 +25,7 @@ There are two types of quizzes:
     - [x] Import
     - [x] Export
   - [x] Icon support for goals
-  - [ ] Overwork language
+  - [x] Overwork language
 
 ### Beta 3
   - [ ] Implement more permissions

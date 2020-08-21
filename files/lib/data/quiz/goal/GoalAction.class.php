@@ -4,8 +4,8 @@ namespace wcf\data\quiz\goal;
 
 // imports
 use wcf\data\AbstractDatabaseObjectAction;
-use wcf\data\Quiz\Quiz;
-use wcf\data\Quiz\QuizEditor;
+use wcf\data\quiz\Quiz;
+use wcf\data\quiz\QuizEditor;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\exception\SystemException;
 

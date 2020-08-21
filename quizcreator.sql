@@ -1,3 +1,4 @@
+-- base quiz table
 DROP TABLE IF EXISTS wcf1_quiz;
 CREATE TABLE wcf1_quiz (
     quizID INT(10) NOT NULL auto_increment PRIMARY KEY,
@@ -16,6 +17,7 @@ CREATE TABLE wcf1_quiz (
     KEY (languageID, isActive)
 );
 
+-- player result table (game)
 DROP TABLE IF EXISTS wcf1_quiz_game;
 CREATE TABLE wcf1_quiz_game (
     gameID INT(10) NOT NULL auto_increment PRIMARY KEY,
@@ -23,14 +25,16 @@ CREATE TABLE wcf1_quiz_game (
     userID INT(10) NOT NULL,
     playedTime INT(10) NOT NULL,
     score SMALLINT(4) NOT NULL DEFAULT 0,
+    scorePercent FLOAT NOT NULL DEFAULT 0.00,
     result TEXT,
     UNIQUE KEY (quizID, userID),
     KEY (quizID),
-    KEY (score),
     KEY (userID),
-    KEY (playedTime)
+    KEY (playedTime),
+    KEY (scorePercent)
 );
 
+-- goals
 DROP TABLE IF EXISTS wcf1_quiz_goal;
 CREATE TABLE wcf1_quiz_goal (
     goalID INT(10) NOT NULL auto_increment PRIMARY KEY,
@@ -43,6 +47,7 @@ CREATE TABLE wcf1_quiz_goal (
     KEY (quizID, points)
 );
 
+-- questions
 DROP TABLE IF EXISTS wcf1_quiz_question;
 CREATE TABLE wcf1_quiz_question (
     questionID INT(10) NOT NULL auto_increment PRIMARY KEY,

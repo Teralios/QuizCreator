@@ -8,6 +8,7 @@ use wcf\data\DatabaseObjectDecorator;
 use wcf\data\IStorableObject;
 use wcf\data\IToggleAction;
 use wcf\data\quiz\game\Game;
+use wcf\data\quiz\game\GameEditor;
 use wcf\data\quiz\goal\Goal;
 use wcf\data\quiz\goal\GoalList;
 use wcf\data\quiz\question\QuestionEditor;
@@ -122,16 +123,49 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
     public function validateFinishGame()
     {
-
-    }
-
-    public function finishGame()
-    {
         $this->quiz = $this->getSingleObject();
 
         if ($this->quiz instanceof DatabaseObjectDecorator) {
             $this->quiz = $this->quiz->getDecoratedObject();
         }
+    }
+
+    public function finishGame()
+    {
+        // data
+        $userID = WCF::getUser()->getUserID();
+        $score = $this->parameters['score'];
+        $result = $this->parameters['result'];
+        $timeTotal = $this->parameters['timeTotal'];
+
+        // build statistic
+        $statistic = Game::buildStatistic($this->quiz);
+
+        if ($statistic['players'] > 0) {
+            $statistic['playerWorse'] = Game::getPlayersWorse($this->quiz, $score) / $statistic['players'];
+        }
+
+        // check user
+        if ($userID != 0) {
+            if (!Game::hasPlayed($this->quiz, $userID)) {
+                $scorePercent = $score / ($this->quiz->questions * Quiz::MAX_SCORE);
+                $data = [
+                    'userID' => $userID,
+                    'quizID' => $this->quiz->quizID,
+                    'score' => $score,
+                    'result' => JSON::encode($result),
+                    'scorePercent' => $scorePercent,
+                    'playedTime' => TIME_NOW,
+                    'timeTotal' => $timeTotal
+                ];
+
+                GameEditor::create($data);
+            } else {
+                // @todo get last game
+            }
+        }
+
+        return $statistic;
     }
 
     /**

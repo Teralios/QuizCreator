@@ -48,6 +48,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             this._questionIndex = 0;
             this._score = 0;
             this._gameResult = [];
+            this._timeTotal = 0;
             this._showQuestion(true);
         },
 
@@ -72,6 +73,8 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
                 'answer' : answer,
                 'time' : this._time
             }
+
+            this._timeTotal += this._time;
 
             if ((this._questionIndex + 1) >= this._data.questions) {
                 this._buttonNext.textContent = Language.get('wcf.quizCreator.game.finish');
@@ -352,7 +355,8 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
         },
 
         _finishGame: function () {
-            Result.init(this._gameResult, this._score, this._data, this._gameContainer);
+            Result.init(this._gameResult, this._score, this._timeTotal, this._data, this._gameContainer);
+            Result.showResult();
         },
 
         _printError: function (errorMessage) {

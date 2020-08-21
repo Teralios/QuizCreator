@@ -1,10 +1,11 @@
-define(['Ajax', 'Language', 'StringUtil', 'User'], function (Ajax, Language, StringUtil, User) {
+define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil) {
     "use strict";
 
     return {
-        init: function (result, score, quizData, gameContainer) {
+        init: function (result, score, timeTotal, quizData, gameContainer) {
             this._gameContainer = gameContainer;
             this._score = score;
+            this._timeTotal = timeTotal;
             this._quizData = quizData;
             this._result = result;
         },
@@ -19,9 +20,9 @@ define(['Ajax', 'Language', 'StringUtil', 'User'], function (Ajax, Language, Str
                 {
                     objectIDs: [this._quizData.quizID],
                     parameters: {
-                        userID: User.getProperty('userId'),
-                        score: this.score,
-                        result: this._result
+                        score: this._score,
+                        result: this._result,
+                        timeTotal: this._timeTotal
                     }
                 }
             );
@@ -43,11 +44,13 @@ define(['Ajax', 'Language', 'StringUtil', 'User'], function (Ajax, Language, Str
         },
 
         _ajaxSuccess: function (data, responseText, xhr, requestData) {
+            console.log(data);
 
+            this._renderResultLive();
         },
 
         _ajaxFailure: function () {
-
+            this._renderResultOffline();
         }
     };
 });

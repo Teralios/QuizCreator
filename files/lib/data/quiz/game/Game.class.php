@@ -31,4 +31,30 @@ class Game extends DatabaseObject
 
         return $statistic;
     }
+
+    public static function getPlayersWorse(Quiz $quiz, int $score): int
+    {
+        $sql = 'SELECT      COUNT(userID) as players
+                FROM        ' . static::getDatabaseTableName() . '
+                WHERE       quizID = ?
+                            AND score < ?';
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute([$quiz->quizID, $score]);
+        $row = $statement->fetchSingleRow();
+
+        return (int) $row['players'];
+    }
+
+    public static function hasPlayed(Quiz $quiz, int $userID): bool
+    {
+        $sql = 'SELECT  COUNT(userID) as played
+                FROM    ' . static::getDatabaseTAbleName() . '
+                WHERE   quizID = ?
+                        AND userID = ?';
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute([$quiz->quizID, $userID]);
+        $row = $statement->fetchSingleRow();
+
+        return ($row['played'] == 1);
+    }
 }

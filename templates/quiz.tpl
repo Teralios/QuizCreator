@@ -42,8 +42,8 @@
             {/if}
         </div>
     {/if}
-    <div class="game {* dummy *}">
-        {* <div class="gameHeader">
+    <div class="game dummy">
+        <div class="gameHeader">
             <div class="questionCounter"><b>{lang}wcf.quizCreator.game.questions{/lang}</b></div>
             <div class="clock"><b>{lang}wcf.quizCreator.game.time{/lang}</b></div>
             <div class="currentQuestionValue">{lang}wcf.quizCreator.game.points{/lang}</div>
@@ -62,8 +62,8 @@
         </div>
         <div class="gameFooter">
             <p>{lang}wcf.quizCreator.game.score{/lang}</p>
-        </div> *}
-        <div class="result">
+        </div>
+        {* <div class="result">
             <div class="goal">
                 <span class="icon icon128 fa-trophy"></span>
                 <h3 class="name">Traumtänzer</h3>
@@ -77,11 +77,11 @@
                     <p>Du bist besser als 60% der Spieler</p>
                 </div>
             </div>
-        </div>
+        </div> *}
     </div>
 </div>
 
-{*<script data-relocate="true">
+<script data-relocate="true">
     require(['Teralios/QuizCreator/Quiz', 'Language'], function (Quiz, Language) {
         Language.add('wcf.quizCreator.game.finish', '{lang}wcf.quizCreator.game.finish{/lang}');
         Language.add('wcf.quizCreator.game.next', '{lang}wcf.quizCreator.game.next{/lang}');
@@ -93,6 +93,6 @@
 
         new Quiz(elById('quiz{$quiz->quizID}'));
     });
-</script>*}
+</script>
 
 {include file='footer'}

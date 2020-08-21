@@ -36,8 +36,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
     protected static $databaseTableIndexName = 'quizID';
 
     // const
-    const COMPETITION = 'competition';
-    const FUN = 'fun';
+    const MAX_SCORE = 15;
 
     /**
      * @var ViewableMedia

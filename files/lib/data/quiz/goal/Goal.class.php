@@ -32,7 +32,7 @@ class Goal extends DatabaseObject
 
     // point stages
     const POINTS_FUN = 1;
-    const POINTS_COMPETITION_L1 = 10;
+    const POINTS_COMPETITION_L1 = Quiz::MAX_SCORE;
     const POINTS_COMPETITION_L2 = 5;
     const POINTS_COMPETITION_L3 = 1;
     const TIME_L1 = 5;
@@ -60,9 +60,9 @@ class Goal extends DatabaseObject
      */
     public static function checkGoalPoints(int $quizID, int $points): bool
     {
-        $sql = 'SELECT count(quizID) as goal
-                FROM  ' . static::getDatabaseTableName() . '
-                WHERE quizID = ?
+        $sql = 'SELECT  count(quizID) as goal
+                FROM    ' . static::getDatabaseTableName() . '
+                WHERE   quizID = ?
                         AND points = ?';
         $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute([$quizID, $points]);

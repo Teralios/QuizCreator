@@ -54,8 +54,8 @@
 		<item name="wcf.quizCreator.quiz.box.bestPlayers"><![CDATA[Besten Spieler]]></item>
 		<item name="wcf.quizCreator.quiz.box.lastPlayers"><![CDATA[Letzten Spieler]]></item>
 		<item name="wcf.quizCreator.game.start"><![CDATA[Quiz starten]]></item>
-		<item name="wcf.quizCreator.game.questions"><![CDATA[Frage]]></item>
-		<item name="wcf.quizCreator.game.time"><![CDATA[Zeit]]></item>
+		<item name="wcf.quizCreator.game.questions"><![CDATA[Frage:]]></item>
+		<item name="wcf.quizCreator.game.time"><![CDATA[Zeit:]]></item>
 		<item name="wcf.quizCreator.game.points"><![CDATA[Punkte]]></item>
 		<item name="wcf.quizCreator.game.score"><![CDATA[Punkte]]></item>
 		<item name="wcf.quizCreator.game.lastPosition"><![CDATA[Alle anderen Spieler sind mindestens genauso gut wie Sie.]]></item>

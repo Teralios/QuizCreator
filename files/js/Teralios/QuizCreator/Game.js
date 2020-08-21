@@ -114,6 +114,10 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
                 }
             }
 
+            if (this._data.questionList.length === 0) {
+                error = true;
+            }
+
             if (error === true) {
                 this._printError(Language.get('wcf.quizCreator.game.missingData'));
             }

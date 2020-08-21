@@ -105,7 +105,7 @@ class Game extends DatabaseObject
                 FROM    ' . static::getDatabaseTableName() . '
                 WHERE   quizID = ?
                         AND userID = ?';
-        $statement = WCF::getDB()->prepareStatement();
+        $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute([$quiz->quizID, $userID]);
 
         return $statement->fetchSingleObject(static::class);

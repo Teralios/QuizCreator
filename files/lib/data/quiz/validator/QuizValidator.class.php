@@ -5,6 +5,7 @@ namespace wcf\data\quiz\validator;
 // imports
 use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
+use wcf\util\ArrayUtil;
 use wcf\util\JSON;
 
 /**
@@ -71,7 +72,7 @@ class QuizValidator
     public function setData(string $jsonString): bool
     {
         try {
-            $this->data = JSON::decode($jsonString);
+            $this->data = ArrayUtil::trim(JSON::decode($jsonString));
         } catch (SystemException $e) {
             return false;
         }
@@ -182,7 +183,7 @@ class QuizValidator
     protected function requiredData(array $data, array $keys) //: ?string
     {
         foreach ($keys as $key) {
-            if (!isset($data[$key])) {
+            if (!isset($data[$key]) || empty($data[$key])) {
                 return (string) $key;
             }
         }

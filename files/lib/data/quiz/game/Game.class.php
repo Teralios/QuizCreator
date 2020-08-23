@@ -25,9 +25,14 @@ class Game extends DatabaseObject
     protected static $databaseTableIndexName = 'gameID';
 
     /**
-     * @var UserProfile
+     * @var UserProfile|null
      */
     protected $user = null;
+
+    /**
+     * @var Quiz|null
+     */
+    protected $quiz = null;
 
     /**
      * Sets user profile.
@@ -45,6 +50,24 @@ class Game extends DatabaseObject
     public function getUser() //: ?UserProfile
     {
         return $this->user;
+    }
+
+    /**
+     * Set quiz.
+     * @param Quiz $quiz
+     */
+    public function setQuiz(Quiz $quiz)
+    {
+        $this->quiz = $quiz;
+    }
+
+    /**
+     * Return quiz.
+     * @return Quiz|null
+     */
+    public function getQuiz() //: ?Quiz
+    {
+        return $this->quiz;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace wcf\page;
 
 // imports
+use wcf\data\quiz\game\GameList;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\ViewableQuiz;
 use wcf\system\exception\IllegalLinkException;
@@ -36,6 +37,16 @@ class QuizPage extends AbstractPage
     public $showCopyright = true;
 
     /**
+     * @var null|GameList
+     */
+    public $bestPlayers = null;
+
+    /**
+     * @var null|GameList
+     */
+    public $lastPlayers = null;
+
+    /**
      * @inheritDoc
      * @throws IllegalLinkException
      * @throws PermissionDeniedException
@@ -58,6 +69,17 @@ class QuizPage extends AbstractPage
         }
 
         $this->quiz = new ViewableQuiz($quiz);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function readData()
+    {
+        parent::readData();
+
+        $this->bestPlayers = GameList::bestPlayers($this->quiz)->withUser(true);
+        $this->lastPlayers = GameList::lastPlayers($this->quiz)->withUser(true);
     }
 
     /**

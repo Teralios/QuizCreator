@@ -3,6 +3,7 @@
 namespace wcf\page;
 
 // imports
+use wcf\data\quiz\game\GameList;
 use wcf\data\quiz\ViewableQuizList;
 use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
@@ -34,6 +35,16 @@ class QuizListPage extends SortablePage
      * @var int
      */
     public $languageID = 0;
+
+    /**
+     * @var GameList|null
+     */
+    public $lastPlayers = null;
+
+    /**
+     * @var GameList|null
+     */
+    public $bestPlayers = null;
 
     /**
      * @throws SystemException
@@ -68,6 +79,17 @@ class QuizListPage extends SortablePage
         if (!WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
             $this->objectList->getConditionBuilder()->add('isActive = ?', [1]);
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function readData()
+    {
+        parent::readData();
+
+        $this->bestPlayers = GameList::bestPlayers()->withQuiz(true)->withUser(true);
+        $this->lastPlayers = GameList::lastPlayers()->withQuiz(true)->withUser(true);
     }
 
     /**

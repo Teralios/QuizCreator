@@ -23,6 +23,21 @@ class GameList extends DatabaseObjectList
     protected $withUser = false;
 
     /**
+     * @var bool
+     */
+    protected $withQuiz = false;
+
+    /**
+     * @var int[]
+     */
+    protected $userIDs = [];
+
+    /**
+     * @var int[]
+     */
+    protected $quizIDs = [];
+
+    /**
      * @param bool $withUser
      * @return $this
      */
@@ -31,6 +46,49 @@ class GameList extends DatabaseObjectList
         $this->withUser = $withUser;
 
         return $this;
+    }
+
+    /**
+     * @param bool $withQuiz
+     * @return $this
+     */
+    public function withQuiz(bool $withQuiz) //: static
+    {
+        $this->withQuiz = $withQuiz;
+
+        return $this;
+    }
+
+    public function readObjects()
+    {
+        parent::readObjects();
+
+        if ($this->withQuiz || $this->withUser) {
+            $this->prepareRead();
+
+            if ($this->withUser) {
+                $this->readUsers();
+            }
+
+            if ($this->withQuiz) {
+                $this->readQuiz();
+            }
+        }
+    }
+
+    protected function prepareRead()
+    {
+
+    }
+
+    protected function readUsers()
+    {
+
+    }
+
+    protected function readQuiz()
+    {
+
     }
 
     /**
@@ -59,7 +117,7 @@ class GameList extends DatabaseObjectList
     }
 
     /**
-     * @param null $quiz
+     * @param Quiz|null $quiz
      * @return static
      * @throws SystemException
      */

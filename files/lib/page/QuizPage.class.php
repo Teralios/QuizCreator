@@ -73,13 +73,14 @@ class QuizPage extends AbstractPage
 
     /**
      * @inheritDoc
+     * @throws SystemException
      */
     public function readData()
     {
         parent::readData();
 
-        $this->bestPlayers = GameList::bestPlayers($this->quiz)->withUser(true);
-        $this->lastPlayers = GameList::lastPlayers($this->quiz)->withUser(true);
+        $this->bestPlayers = GameList::bestPlayers($this->quiz->getDecoratedObject())->withUser();
+        $this->lastPlayers = GameList::lastPlayers($this->quiz->getDecoratedObject())->withUser();
     }
 
     /**

@@ -83,13 +83,14 @@ class QuizListPage extends SortablePage
 
     /**
      * @inheritDoc
+     * @throws SystemException
      */
     public function readData()
     {
         parent::readData();
 
-        $this->bestPlayers = GameList::bestPlayers()->withQuiz(true)->withUser(true);
-        $this->lastPlayers = GameList::lastPlayers()->withQuiz(true)->withUser(true);
+        $this->bestPlayers = GameList::bestPlayers()->withQuiz()->withUser();
+        $this->lastPlayers = GameList::lastPlayers()->withQuiz()->withUser();
     }
 
     /**

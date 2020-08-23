@@ -50,23 +50,21 @@ class GameList extends DatabaseObjectList
     protected $quizList = null;
 
     /**
-     * @param bool $withUser
      * @return $this
      */
-    public function withUser(bool $withUser) //: static
+    public function withUser() //: static
     {
-        $this->withUser = $withUser;
+        $this->withUser = true;
 
         return $this;
     }
 
     /**
-     * @param bool $withQuiz
      * @return $this
      */
-    public function withQuiz(bool $withQuiz) //: static
+    public function withQuiz() //: static
     {
-        $this->withQuiz = $withQuiz;
+        $this->withQuiz = true;
 
         return $this;
     }
@@ -141,11 +139,11 @@ class GameList extends DatabaseObjectList
         /** @var Game $object */
         foreach ($this->objects as $object) {
             if (isset($users[$object->userID])) {
-                $object->setUser($users[$object->userID]);
+                /** @scrutinizer ignore-call */$object->setUser($users[$object->userID]);
             }
 
             if (isset($quizzes[$object->quizID])) {
-                $object->setQuiz($quizzes[$object->quizID]);
+                /** @scrutinizer ignore-call */$object->setQuiz($quizzes[$object->quizID]);
             }
         }
     }

@@ -5,6 +5,8 @@ namespace wcf\data\quiz\game;
 // imports
 use wcf\data\DatabaseObjectList;
 use wcf\data\quiz\Quiz;
+use wcf\data\quiz\QuizList;
+use wcf\data\user\UserProfileList;
 use wcf\system\exception\SystemException;
 
 /**
@@ -38,6 +40,16 @@ class GameList extends DatabaseObjectList
     protected $quizIDs = [];
 
     /**
+     * @var UserProfileList|null
+     */
+    protected $userList = null;
+
+    /**
+     * @var QuizList|null
+     */
+    protected $quizList = null;
+
+    /**
      * @param bool $withUser
      * @return $this
      */
@@ -59,6 +71,9 @@ class GameList extends DatabaseObjectList
         return $this;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function readObjects()
     {
         parent::readObjects();
@@ -73,27 +88,72 @@ class GameList extends DatabaseObjectList
             if ($this->withQuiz) {
                 $this->readQuiz();
             }
+
+            $this->setAdditionalData();
         }
     }
 
+    /**
+     * Prepare read for quizzes and users.
+     */
     protected function prepareRead()
     {
+        /** @var Game $object */
+        foreach ($this->objects as $object) {
+            if (!$object->userID) {
+                $this->userIDs[] = $object->userID;
+            }
 
+            if (!$object->quizID) {
+                $this->quizIDs[] = $object->quizID;
+            }
+        }
     }
 
+    /**
+     * Read users.
+     */
     protected function readUsers()
     {
-
+        $this->userList = new UserProfileList();
+        $this->userList->setObjectIDs($this->userIDs);
+        $this->userList->readObjects();
     }
 
+    /**
+     * Read quizzes.
+     */
     protected function readQuiz()
     {
+        $this->quizList = new QuizList();
+        $this->quizList->setObjectIDs($this->quizIDs);
+        $this->quizList->readObjects();
+    }
 
+    /**
+     * Added additional data do game.
+     */
+    protected function setAdditionalData()
+    {
+        $users = ($this->userList !== null) ? $this->userList->getObjects() : [];
+        $quizzes = ($this->quizList !== null) ? $this->quizList->getObjects() : [];
+
+        /** @var Game $object */
+        foreach ($this->objects as $object) {
+            if (isset($users[$object->userID])) {
+                $object->setUser($users[$object->userID]);
+            }
+
+            if (isset($quizzes[$object->quizID])) {
+                $object->setQuiz($quizzes[$object->quizID]);
+            }
+        }
     }
 
     /**
      * @param Quiz|null $quiz
      * @return static
+     * @throws SystemException
      */
     public static function bestPlayers(Quiz $quiz = null) //: static
     {
@@ -107,6 +167,7 @@ class GameList extends DatabaseObjectList
     /**
      * @param Quiz|null $quiz
      * @return static
+     * @throws SystemException
      */
     public static function lastPlayers(Quiz $quiz = null) //: static
     {

@@ -29,11 +29,12 @@ CREATE TABLE wcf1_quiz_game (
     scorePercent FLOAT NOT NULL DEFAULT 0.00,
     lastScore SMALLINT(4) NOT NULL DEFAULT 0,
     lastPlayedTime INT(10) NOT NULL DEFAULT 0,
+    lastTimeTotal MEDIUMINT(5) NOT NULL,
     result TEXT,
     UNIQUE KEY (quizID, userID),
     KEY (quizID),
-    KEY (quizID, score),
-    KEY (quizID, userID)
+    KEY (scorePercent, timeTotal),
+    KEY (playedTime)
 );
 
 -- goals

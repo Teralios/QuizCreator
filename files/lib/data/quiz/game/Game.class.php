@@ -5,6 +5,7 @@ namespace wcf\data\quiz\game;
 // imports
 use wcf\data\DatabaseObject;
 use wcf\data\quiz\Quiz;
+use wcf\data\user\UserProfile;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\WCF;
@@ -22,6 +23,29 @@ class Game extends DatabaseObject
     // inherit vars
     protected static $databaseTableName = 'quiz_game';
     protected static $databaseTableIndexName = 'gameID';
+
+    /**
+     * @var UserProfile
+     */
+    protected $user = null;
+
+    /**
+     * Sets user profile.
+     * @param UserProfile $user
+     */
+    public function setUser(UserProfile $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Returns user profile.
+     * @return UserProfile|null
+     */
+    public function getUser() //: ?UserProfile
+    {
+        return $this->user;
+    }
 
     /**
      * Builds statistic for game result.

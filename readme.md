@@ -18,8 +18,8 @@ There are two types of quizzes:
   - [x] Change image to media
   - [x] Implement result view for game (js)
   - [x] Implement fun quiz support
-  - [ ] Implement additional content on QuizList and Quiz
-    - [ ] Last Player?
+  - [x] Implement additional content on QuizList and Quiz
+    - [x] Last Player?
     - [x] average score?
   - [x] Import and Export quiz
     - [x] Import

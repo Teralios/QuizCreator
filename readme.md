@@ -26,10 +26,12 @@ There are two types of quizzes:
     - [x] Export
   - [x] Icon support for goals
   - [x] Overwork language
+  - [x] Implement more permissions
+  - [x] Implement module option
+  - [x] Implement options for show players
 
 ### Beta 3
   - [ ] Implement result view for quiz (tpl after play the game.)
-  - [ ] Implement more permissions
   - [ ] Implement reaction
   - [ ] Implement trophies
   - [ ] Implement tags for quiz

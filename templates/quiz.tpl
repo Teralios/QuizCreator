@@ -64,43 +64,47 @@
             {/if}
         </div>
     {/if}
-    <div class="game dummy">
-        <div class="gameHeader">
-            <div class="questionCounter"><b>{lang}wcf.quizCreator.game.questions{/lang}</b></div>
-            <div class="clock"><b>{lang}wcf.quizCreator.game.time{/lang}</b></div>
-            <div class="currentQuestionValue">{lang}wcf.quizCreator.game.points{/lang}</div>
-        </div>
-        <div class="gameContent">
-                <p>Dummy Question</p>
+    {if $__wcf->session->getPermission('user.quiz.canPlay')}
+        <div class="game dummy">
+            <div class="gameHeader">
+                <div class="questionCounter"><b>{lang}wcf.quizCreator.game.questions{/lang}</b></div>
+                <div class="clock"><b>{lang}wcf.quizCreator.game.time{/lang}</b></div>
+                <div class="currentQuestionValue">{lang}wcf.quizCreator.game.points{/lang}</div>
+            </div>
+            <div class="gameContent">
+                    <p>Dummy Question</p>
 
-                <ul class="answerList">
-                    <li><button>Dummy 1</button></li>
-                    <li><button>Dummy 2</button></li>
-                    <li><button>Dummy 3</button></li>
-                    <li><button>Dummy 4</button></li>
-                </ul>
+                    <ul class="answerList">
+                        <li><button>Dummy 1</button></li>
+                        <li><button>Dummy 2</button></li>
+                        <li><button>Dummy 3</button></li>
+                        <li><button>Dummy 4</button></li>
+                    </ul>
 
-                <button>{lang}wcf.quizCreator.game.next{/lang}</button>
+                    <button>{lang}wcf.quizCreator.game.next{/lang}</button>
+            </div>
+            <div class="gameFooter">
+                <p>{lang}wcf.quizCreator.game.score{/lang}</p>
+            </div>
         </div>
-        <div class="gameFooter">
-            <p>{lang}wcf.quizCreator.game.score{/lang}</p>
-        </div>
-    </div>
+    {/if}
 </div>
 
-<script data-relocate="true">
-    require(['Teralios/QuizCreator/Quiz', 'Language'], function (Quiz, Language) {
-        Language.add('wcf.quizCreator.game.finish', '{lang}wcf.quizCreator.game.finish{/lang}');
-        Language.add('wcf.quizCreator.game.next', '{lang}wcf.quizCreator.game.next{/lang}');
-        Language.add('wcf.quizCreator.game.points', '{lang}wcf.quizCreator.game.points{/lang}');
-        Language.add('wcf.quizCreator.game.questions', '{lang}wcf.quizCreator.game.questions{/lang}');
-        Language.add('wcf.quizCreator.game.score', '{lang}wcf.quizCreator.game.score{/lang}');
-        Language.add('wcf.quizCreator.game.start', '{lang}wcf.quizCreator.game.start{/lang}');
-        Language.add('wcf.quizCreator.game.time', '{lang}wcf.quizCreator.game.time{/lang}');
-        Language.add('wcf.quizCreator.game.lastPosition', '{lang}wcf.quizCreator.game.lastPosition{/lang}');
+{if $__wcf->session->getPermission('user.quiz.canPlay')}
+    <script data-relocate="true">
+        require(['Teralios/QuizCreator/Quiz', 'Language'], function (Quiz, Language) {
+            Language.add('wcf.quizCreator.game.finish', '{lang}wcf.quizCreator.game.finish{/lang}');
+            Language.add('wcf.quizCreator.game.next', '{lang}wcf.quizCreator.game.next{/lang}');
+            Language.add('wcf.quizCreator.game.points', '{lang}wcf.quizCreator.game.points{/lang}');
+            Language.add('wcf.quizCreator.game.questions', '{lang}wcf.quizCreator.game.questions{/lang}');
+            Language.add('wcf.quizCreator.game.score', '{lang}wcf.quizCreator.game.score{/lang}');
+            Language.add('wcf.quizCreator.game.start', '{lang}wcf.quizCreator.game.start{/lang}');
+            Language.add('wcf.quizCreator.game.time', '{lang}wcf.quizCreator.game.time{/lang}');
+            Language.add('wcf.quizCreator.game.lastPosition', '{lang}wcf.quizCreator.game.lastPosition{/lang}');
 
-        new Quiz(elById('quiz{$quiz->quizID}'));
-    });
-</script>
+            new Quiz(elById('quiz{$quiz->quizID}'));
+        });
+    </script>
+{/if}
 
 {include file='footer'}

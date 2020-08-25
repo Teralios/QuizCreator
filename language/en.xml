@@ -64,4 +64,21 @@
 		<item name="wcf.quizCreator.box.score.possible"><![CDATA[({#($player->scorePercent * 100)} % of score in quiz “<a href="{@$quiz->getLink()}">{$quiz->title}</a>”]]></item>
 		<item name="wcf.quizCreator.quiz.played"><![CDATA[Was played {#$quiz->played} times.]]></item>
 	</category>
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Can manage quizzes]]></item>
+		<item name="wcf.acp.group.option.category.user.quiz"><![CDATA[Quiz]]></item>
+		<item name="wcf.acp.group.option.user.quiz.canView"><![CDATA[Can view quizzes]]></item>
+		<item name="wcf.acp.group.option.user.quiz.canPlay"><![CDATA[Can play quizzes]]></item>
+	</category>
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.module_quiz_creator"><![CDATA[Teralios' QuizCreator]]></item>
+		<item name="wcf.acp.option.category.quizCreator"><![CDATA[Quiz Creator]]></item>
+		<item name="wcf.acp.option.category.quizCreator.quiz.page"><![CDATA[Quiz (Page)]]></item>
+		<item name="wcf.acp.option.category.quizCreator.quiz.list"><![CDATA[Quizzes (list)]]></item>
+		<item name="wcf.acp.option.quiz_last_players"><![CDATA[Show last players]]></item>
+		<item name="wcf.acp.option.quiz_best_players"><![CDATA[Show best players]]></item>
+		<item name="wcf.acp.option.quiz_list_last_players"><![CDATA[Show last players]]></item>
+		<item name="wcf.acp.option.quiz_list_best_players"><![CDATA[Show best players]]></item>
+		<item name="wcf.acp.option.quiz_list_most_played"><![CDATA[Show most played quizzes]]></item>
+	</category>
 </language>

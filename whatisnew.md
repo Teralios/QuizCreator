@@ -23,6 +23,12 @@ This file lists all changes like new features, improved functions and fixed bugs
   * Result (view)
     * Players can view their official result
     * Players can view their last result
+  * Implement rights
+    * can view quiz
+    * can play quiz
+  * Implement options
+    * MODULE Option for QuizCreator
+    * Options to show player stats for quiz list and quiz page.
     
 ### Improvements
   * Quiz View

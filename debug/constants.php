@@ -1,0 +1,7 @@
+<?php
+define('MODULE_QUIZ_CREATOR', 1);
+define('QUIZ_LIST_LAST_PLAYERS', 1);
+define('QUIZ_LIST_BEST_PLAYERS', 1);
+define('QUIZ_LIST_MOST_PLAYED', 1);
+define('QUIZ_LAST_PLAYERS', 1);
+define('QUIZ_BEST_PLAYERS', 1);

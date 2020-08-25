@@ -65,4 +65,21 @@
 		<item name="wcf.quizCreator.quiz.played"><![CDATA[Wurde {#$quiz->played} mal gespielt.]]></item>
 		<item name="wcf.quizCreator.user.played"><![CDATA[Spielte „<a href="{$quiz->getLink()}">{$quiz->title}</a>“ am {@$player->playedTime|time}]]></item>
 	</category>
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Kann Quizze verwalten]]></item>
+		<item name="wcf.acp.group.option.category.user.quiz"><![CDATA[Quiz]]></item>
+		<item name="wcf.acp.group.option.user.quiz.canView"><![CDATA[Kann Quizze sehen]]></item>
+		<item name="wcf.acp.group.option.user.quiz.canPlay"><![CDATA[Kann Quizze spielen]]></item>
+	</category>
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.module_quiz_creator"><![CDATA[Teralios QuizCreator]]></item>
+		<item name="wcf.acp.option.category.quizCreator"><![CDATA[Quiz Creator]]></item>
+		<item name="wcf.acp.option.category.quizCreator.quiz.page"><![CDATA[Quiz (Seite)]]></item>
+		<item name="wcf.acp.option.category.quizCreator.quiz.list"><![CDATA[Quizze (Liste)]]></item>
+		<item name="wcf.acp.option.quiz_last_players"><![CDATA[Zeige letzte Spieler an]]></item>
+		<item name="wcf.acp.option.quiz_best_players"><![CDATA[Zeige beste Spieler an]]></item>
+		<item name="wcf.acp.option.quiz_list_last_players"><![CDATA[Zeige letzte Spieler an]]></item>
+		<item name="wcf.acp.option.quiz_list_best_players"><![CDATA[Zeige beste Spieler]]></item>
+		<item name="wcf.acp.option.quiz_list_most_played"><![CDATA[Zeige meist gespielte Quizze]]></item>
+	</category>
 </language>

@@ -122,8 +122,6 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
          * @private
          */
         _renderScore: function (data) {
-            console.log(data);
-
             var scoreHtml = '<p class="player">' + this._score + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
 
             if (data.players > 0) {

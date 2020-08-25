@@ -7,8 +7,7 @@
 			<controller>wcf\page\QuizListPage</controller>
 			<name language="de">Quiz (Liste)</name>
 			<name language="en">Quizzes</name>
-			<!--<options></options>
-			<permissions></permissions>-->
+			<permissions>user.quiz.canView</permissions>
 			<allowSpidersToIndex>1</allowSpidersToIndex>
 			<content language="en">
 				<title>Quizzes</title>
@@ -17,13 +16,14 @@
 				<title>Quiz</title>
 			</content>
 		</page>
-
 		<page identifier="de.teralios.quizCreator.Quiz">
 			<pageType>system</pageType>
 			<controller>wcf\page\QuizPage</controller>
-			<parent>de.teralios.quizCreator.QuizList</parent>
 			<name language="de">Quiz</name>
 			<name language="en">Quiz</name>
+			<hasFixedParent>1</hasFixedParent>
+			<parent>de.teralios.quizCreator.QuizList</parent>
+			<permissions>user.quiz.canView</permissions>
 			<allowSpidersToIndex>1</allowSpidersToIndex>
 		</page>
 	</import>

@@ -25,6 +25,8 @@ class QuizListPage extends SortablePage
     public $objectListClassName = ViewableQuizList::class;
     public $defaultSortField = 'creationDate';
     public $validSortFields = ['title', 'creationDate'];
+    public $neededPermissions = ['user.quiz.canView'];
+    public $neededModules = ['MODULE_QUIZ_CREATOR'];
 
     /**
      * @var bool
@@ -94,14 +96,21 @@ class QuizListPage extends SortablePage
     {
         parent::readData();
 
-        $this->bestPlayers = GameList::bestPlayers()->withQuiz()->withUser();
-        $this->lastPlayers = GameList::lastPlayers()->withQuiz()->withUser();
-        $this->mostPlayed = new ViewableQuizList(true, false);
-        $this->mostPlayed->sqlOrderBy = $this->mostPlayed->getDatabaseTableAlias() . '.played DESC';
+        if (QUIZ_LIST_BEST_PLAYERS) {
+            $this->bestPlayers = GameList::bestPlayers()->withQuiz()->withUser();
+            $this->bestPlayers->readObjects();
+        }
 
-        $this->bestPlayers->readObjects();
-        $this->lastPlayers->readObjects();
-        $this->mostPlayed->readObjects();
+        if (QUIZ_LIST_LAST_PLAYERS) {
+            $this->lastPlayers = GameList::lastPlayers()->withQuiz()->withUser();
+            $this->lastPlayers->readObjects();
+        }
+
+        if (QUIZ_LIST_MOST_PLAYED) {
+            $this->mostPlayed = new ViewableQuizList(true, false);
+            $this->mostPlayed->sqlOrderBy = $this->mostPlayed->getDatabaseTableAlias() . '.played DESC';
+            $this->mostPlayed->readObjects();
+        }
     }
 
     /**

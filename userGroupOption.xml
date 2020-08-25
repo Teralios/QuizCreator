@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/userGroupOption.xsd">
 	<import>
+		<categories>
+			<category name="user.quiz">
+				<parent>user</parent>
+			</category>
+		</categories>
 		<options>
 			<option name="admin.content.quizCreator.canManage">
 				<categoryname>admin.content</categoryname>
@@ -8,6 +13,24 @@
 				<admindefaultvalue>1</admindefaultvalue>
 				<moddefaultvalue>0</moddefaultvalue>
 				<userdefaultvalue>0</userdefaultvalue>
+			</option>
+			<option name="user.quiz.canView">
+				<categoryname>user.quiz</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+				<enableoptions>user.quiz.canPlay</enableoptions>
+				<admindefaultvalue>1</admindefaultvalue>
+				<moddefaultvalue>1</moddefaultvalue>
+				<userdefaultvalue>1</userdefaultvalue>
+			</option>
+			<option name="user.quiz.canPlay">
+				<categoryname>user.quiz</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+				<permissions>user.quiz.canView</permissions>
+				<admindefaultvalue>1</admindefaultvalue>
+				<moddefaultvalue>1</moddefaultvalue>
+				<userdefaultvalue>1</userdefaultvalue>
 			</option>
 		</options>
 	</import>

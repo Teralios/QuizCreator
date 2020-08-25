@@ -36,6 +36,8 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     protected $permissionsUpdate = ['admin.content.quizCreator.canManage'];
     protected $permissionsDelete = ['admin.content.quizCreator.canManage'];
     protected $permissionsToggle = ['admin.content.quizCreator.canManage'];
+    protected $permissionsLoadQuiz = ['user.quiz.canView'];
+    protected $permissionFinishGame = ['user.quiz.canPlay'];
     protected $allowGuestAccess = ['loadQuiz', 'finishGame']; // allowed guest access
 
     /**
@@ -84,8 +86,11 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
      */
     public function validateLoadQuiz()
     {
-        $this->quiz = $this->getSingleObject();
+        // check permission
+        WCF::getSession()->checkPermissions($this->permissionsLoadQuiz);
 
+        // get quiz.
+        $this->quiz = $this->getSingleObject();
         if ($this->quiz instanceof DatabaseObjectDecorator) {
             $this->quiz = $this->quiz->getDecoratedObject();
         }
@@ -121,14 +126,12 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     /**
      * Validate finish game.
      * @throws UserInputException
+     * @throws PermissionDeniedException
      */
     public function validateFinishGame()
     {
-        $this->quiz = $this->getSingleObject();
-
-        if ($this->quiz instanceof DatabaseObjectDecorator) {
-            $this->quiz = $this->quiz->getDecoratedObject();
-        }
+        $this->validateLoadQuiz();
+        WCF::getSession()->checkPermissions($this->permissionFinishGame);
     }
 
     /**

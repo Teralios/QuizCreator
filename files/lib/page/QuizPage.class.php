@@ -21,6 +21,10 @@ use wcf\system\WCF;
  */
 class QuizPage extends AbstractPage
 {
+    // inherit vars
+    public $neededPermissions = ['user.quiz.canView'];
+    public $neededModules = ['MODULE_QUIZ_CREATOR'];
+
     /**
      * @var ViewableQuiz
      */
@@ -79,11 +83,15 @@ class QuizPage extends AbstractPage
     {
         parent::readData();
 
-        $this->bestPlayers = GameList::bestPlayers($this->quiz->getDecoratedObject())->withUser();
-        $this->lastPlayers = GameList::lastPlayers($this->quiz->getDecoratedObject())->withUser();
+        if (QUIZ_BEST_PLAYERS) {
+            $this->bestPlayers = GameList::bestPlayers($this->quiz->getDecoratedObject())->withUser();
+            $this->bestPlayers->readObjects();
+        }
 
-        $this->bestPlayers->readObjects();
-        $this->lastPlayers->readObjects();
+        if (QUIZ_LAST_PLAYERS) {
+            $this->lastPlayers = GameList::lastPlayers($this->quiz->getDecoratedObject())->withUser();
+            $this->lastPlayers->readObjects();
+        }
     }
 
     /**

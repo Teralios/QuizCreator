@@ -6,6 +6,7 @@
 		<packagedescription>Allows the team to create funny little quizzes for the website.</packagedescription>
 		<version>1.0.0 Beta 2</version>
 		<date>2020-08-13</date>
+		<license/>
 	</packageinformation>
 	<authorinformation>
 		<author>Karsten (Teralios) Achterrath</author>
@@ -28,5 +29,6 @@
 		<instruction type="menuItem"/>
 		<instruction type="userGroupOption"/>
 		<instruction type="language"/>
+		<instruction type="option"/>
 	</instructions>
 </package>

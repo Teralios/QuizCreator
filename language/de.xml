@@ -61,5 +61,8 @@
 		<item name="wcf.quizCreator.game.lastPosition"><![CDATA[Alle anderen Spieler sind mindestens genauso gut wie Sie.]]></item>
 		<item name="wcf.quizCreator.game.next"><![CDATA[nächste Frage]]></item>
 		<item name="wcf.quizCreator.game.finish"><![CDATA[Quiz beenden]]></item>
+		<item name="wcf.quizCreator.box.score.possible"><![CDATA[{#($player->scorePercent * 100)} % der Punkte im Quiz „<a href="{$quiz->getLink()}">{$quiz->title}</a>“]]></item>
+		<item name="wcf.quizCreator.quiz.played"><![CDATA[Wurde {#$quiz->played} mal gespielt.]]></item>
+		<item name="wcf.quizCreator.user.played"><![CDATA[Spielte „<a href="{$quiz->getLink()}">{$quiz->title}</a>“ am {@$player->playedTime|time}]]></item>
 	</category>
 </language>

@@ -11,9 +11,12 @@ CREATE TABLE wcf1_quiz (
     isActive TINYINT(1) NOT NULL DEFAULT 0,
     questions SMALLINT(3) NOT NULL DEFAULT 0,
     goals SMALLINT(3) NOT NULL DEFAULT 0,
+    played INT(10) NOT NULL DEFAULT 0,
     KEY (title),
     KEY (creationDate),
     KEY (languageID),
+    KEY (isActive),
+    KEY (played),
     KEY (languageID, isActive)
 );
 

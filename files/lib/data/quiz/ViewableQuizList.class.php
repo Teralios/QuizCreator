@@ -48,7 +48,8 @@ class ViewableQuizList extends QuizList
         'description',
         'isActive',
         'questions',
-        'goals'
+        'goals',
+        'played'
     ];
 
     /**

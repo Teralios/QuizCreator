@@ -131,15 +131,11 @@
           font-size: 1.2em;
         }
 
-        .average {
+        .others {
           margin: 0.5em;
           font-size: $wcfFontSizeSmall;
           p {
             margin: 0;
-          }
-
-          :first-child {
-            font-size: 4em!important;
           }
         }
       }

@@ -127,8 +127,8 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
             var scoreHtml = '<p class="player">' + this._score + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
 
             if (data.players > 0) {
-                scoreHtml += '<div class="average"><p>⌀</p>';
-                scoreHtml += '<p> ' + StringUtil.formatNumeric((data.scoreSum / data.players)) + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
+                scoreHtml += '<div class="others">';
+                scoreHtml += '<p>⌀ ' + StringUtil.formatNumeric((data.scoreSum / data.players)) + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
             }
 
             if (data.playerWorse === 0) {
@@ -137,6 +137,8 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
                 var playerWorse = StringUtil.formatNumeric((data.playerWorse * 100), 2);
                 scoreHtml += Language.get('wcf.quizCreator.game.otherPlayers', {percent: playerWorse})
             }
+
+            scoreHtml += '</div>';
 
             var scoreContainer = elCreate('div');
             scoreContainer.classList.add('score');

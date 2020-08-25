@@ -61,5 +61,7 @@
 		<item name="wcf.quizCreator.game.lastPosition"><![CDATA[All other players are at least as good as you are.]]></item>
 		<item name="wcf.quizCreator.game.next"><![CDATA[next question]]></item>
 		<item name="wcf.quizCreator.game.finish"><![CDATA[finish quiz]]></item>
+		<item name="wcf.quizCreator.box.score.possible"><![CDATA[({#($player->scorePercent * 100)} % of score in quiz “<a href="{@$quiz->getLink()}">{$quiz->title}</a>”]]></item>
+		<item name="wcf.quizCreator.quiz.played"><![CDATA[Was played {#$quiz->played} times.]]></item>
 	</category>
 </language>

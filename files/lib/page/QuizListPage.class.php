@@ -47,6 +47,11 @@ class QuizListPage extends SortablePage
     public $bestPlayers = null;
 
     /**
+     * @var ViewableQuizList|null;
+     */
+    public $mostPlayed = null;
+
+    /**
      * @throws SystemException
      */
     public function readParameters()
@@ -91,6 +96,12 @@ class QuizListPage extends SortablePage
 
         $this->bestPlayers = GameList::bestPlayers()->withQuiz()->withUser();
         $this->lastPlayers = GameList::lastPlayers()->withQuiz()->withUser();
+        $this->mostPlayed = new ViewableQuizList(true, false);
+        $this->mostPlayed->sqlOrderBy = $this->mostPlayed->getDatabaseTableAlias() . '.played DESC';
+
+        $this->bestPlayers->readObjects();
+        $this->lastPlayers->readObjects();
+        $this->mostPlayed->readObjects();
     }
 
     /**
@@ -103,6 +114,9 @@ class QuizListPage extends SortablePage
         WCF::getTPL()->assign([
             'validSortFields' => $this->validSortFields,
             'languageID' => $this->languageID,
+            'bestPlayers' => $this->bestPlayers,
+            'lastPlayers' => $this->lastPlayers,
+            'mostPlayed' => $this->mostPlayed,
             'showQuizMakerCopyright' => $this->showCopyright,
         ]);
     }

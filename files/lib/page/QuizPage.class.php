@@ -81,6 +81,9 @@ class QuizPage extends AbstractPage
 
         $this->bestPlayers = GameList::bestPlayers($this->quiz->getDecoratedObject())->withUser();
         $this->lastPlayers = GameList::lastPlayers($this->quiz->getDecoratedObject())->withUser();
+
+        $this->bestPlayers->readObjects();
+        $this->lastPlayers->readObjects();
     }
 
     /**
@@ -92,6 +95,8 @@ class QuizPage extends AbstractPage
 
         WCF::getTPL()->assign([
             'quiz' => $this->quiz,
+            'bestPlayers' => $this->bestPlayers,
+            'lastPlayers' => $this->lastPlayers,
             'showQuizMakerCopyright' => $this->showCopyright,
         ]);
     }

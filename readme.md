@@ -26,9 +26,9 @@ There are two types of quizzes:
     - [x] Export
   - [x] Icon support for goals
   - [x] Overwork language
-  - [ ] Implement result view for quiz (tpl after play the game.)
 
 ### Beta 3
+  - [ ] Implement result view for quiz (tpl after play the game.)
   - [ ] Implement more permissions
   - [ ] Implement reaction
   - [ ] Implement trophies

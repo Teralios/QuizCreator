@@ -98,13 +98,8 @@ class GameList extends DatabaseObjectList
     {
         /** @var Game $object */
         foreach ($this->objects as $object) {
-            if (!$object->userID) {
-                $this->userIDs[] = $object->userID;
-            }
-
-            if (!$object->quizID) {
-                $this->quizIDs[] = $object->quizID;
-            }
+            $this->userIDs[] = $object->userID;
+            $this->quizIDs[] = $object->quizID;
         }
     }
 
@@ -157,7 +152,7 @@ class GameList extends DatabaseObjectList
     {
         $gameList = static::getBaseList($quiz);
         $gameList->sqlOrderBy = Game::getDatabaseTableAlias() . '.scorePercent DESC';
-        $gameList->sqlOrderBy .= ', ' . Game::getDatabaseTableAlias() . ' .timeTotal ASC';
+        $gameList->sqlOrderBy .= ', ' . Game::getDatabaseTableAlias() . '.timeTotal ASC';
 
         return $gameList;
     }
@@ -170,7 +165,7 @@ class GameList extends DatabaseObjectList
     public static function lastPlayers(Quiz $quiz = null) //: static
     {
         $gameList = static::getBaseList($quiz);
-        $gameList->sqlOrderBy = Game::getDatabaseTableAlias() . 'playedTime DESC';
+        $gameList->sqlOrderBy = Game::getDatabaseTableAlias() . '.playedTime DESC';
 
         return $gameList;
     }

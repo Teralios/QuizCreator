@@ -31,6 +31,7 @@ use wcf\system\WCF;
  * @property-read int $isActive
  * @property-read int $questions
  * @property-read int $goals
+ * @property-read int $played
  */
 class QuizEditor extends DatabaseObjectEditor
 {
@@ -50,6 +51,14 @@ class QuizEditor extends DatabaseObjectEditor
         } else {
             $data['goals'] = $this->goals + 1;
         }
+
+        $this->update($data);
+    }
+
+    public function updatePlayed()
+    {
+        $data = [];
+        $data['played'] = $this->played + 1;
 
         $this->update($data);
     }

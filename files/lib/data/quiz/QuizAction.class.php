@@ -174,6 +174,10 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
             }
         }
 
+        // update quiz
+        $quizEditor = new QuizEditor($this->quiz);
+        $quizEditor->updatePlayed();
+
         return $statistic;
     }
 

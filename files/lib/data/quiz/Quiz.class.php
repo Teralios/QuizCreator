@@ -28,6 +28,7 @@ use wcf\system\request\LinkHandler;
  * @property-read int $isActive
  * @property-read int $questions
  * @property-read int $goals
+ * @property-read int $played
  */
 class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
 {

@@ -7,6 +7,7 @@ use wcf\data\quiz\goal\GoalList;
 use wcf\data\quiz\question\QuestionList;
 use wcf\data\quiz\Quiz;
 use wcf\system\exception\IllegalLinkException;
+use wcf\system\exception\SystemException;
 use wcf\system\WCF;
 
 /**
@@ -60,6 +61,7 @@ class QuizEditForm extends QuizAddForm
 
     /**
      * @inheritDoc
+     * @throws SystemException
      */
     public function readData()
     {

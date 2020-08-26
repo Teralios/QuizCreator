@@ -168,7 +168,6 @@
                             </li>
                         {/if}
 
-                        {* @TODO implent last player and higehst score *}
                         {event name='columns'}
                     </ol>
                 </li>

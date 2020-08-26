@@ -10,7 +10,6 @@ use wcf\system\form\builder\field\DescriptionFormField;
 use wcf\system\form\builder\field\HiddenFormField;
 use wcf\system\form\builder\field\IconFormField;
 use wcf\system\form\builder\field\IntegerFormField;
-use wcf\system\form\builder\field\TextFormField;
 use wcf\system\form\builder\field\TitleFormField;
 use wcf\system\form\builder\field\validation\FormFieldValidator;
 use wcf\system\form\builder\field\validation\FormFieldValidationError;

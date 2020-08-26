@@ -1,4 +1,4 @@
-define(['Ajax', 'Language', 'StringUtil', 'WoltLabSuite/Core/NumberUtil'], function (Ajax, Language, StringUtil, NumberUtil) {
+define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil) {
     "use strict";
 
     return {
@@ -129,8 +129,8 @@ define(['Ajax', 'Language', 'StringUtil', 'WoltLabSuite/Core/NumberUtil'], funct
                 scoreHtml += '<p>⌀ ' + StringUtil.escapeHTML(data.averageScore) + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
             }
 
-            if (data.betterThen !== '') {
-                scoreHtml += Language.get('wcf.quizCreator.game.otherPlayers', {percent: StringUtil.escapeHTML(data.betterThen)})
+            if (data.betterAs !== '') {
+                scoreHtml += Language.get('wcf.quizCreator.game.otherPlayers', {percent: StringUtil.escapeHTML(data.betterAs)})
             } else {
                 scoreHtml += '<p>' + Language.get('wcf.quizCreator.game.lastPosition') + '</p>';
             }

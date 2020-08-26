@@ -151,12 +151,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         $timeTotal = $this->parameters['timeTotal'];
 
         // build statistic
-        $statistic = Game::getRawStatistic($this->quiz);
-        if ($statistic['players'] > 0) {
-            $betterThen = (float) Game::getPlayersWorse($this->quiz, $score) / $statistic['players'] * 100;
-            $statistic['betterThen'] = ($betterThen > 0) ? StringUtil::formatDouble($betterThen) : '';
-            $statistic['averageScore'] = StringUtil::formatDouble((float) $statistic['scoreSum'] / $statistic['players']);
-        }
+        $statistic = Game::getStatistic($this->quiz, $score);
 
         // check user
         if ($userID != 0) {

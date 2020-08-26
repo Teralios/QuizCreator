@@ -5,6 +5,8 @@ namespace wcf\data\quiz;
 // imports
 use wcf\data\media\ViewableMediaList;
 use wcf\data\quiz\game\Game;
+use wcf\system\database\exception\DatabaseQueryException;
+use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\SystemException;
 use wcf\system\WCF;
 
@@ -122,19 +124,29 @@ class ViewableQuizList extends QuizList
 
         // read statistic for quiz ... only implement while WoltLab forgot GROUP BY support in DatabaseObjectList!
         if ($this->loadStatistic === true) {
-            $sql = 'SELECT      COUNT(userID) as players, SUM(score) as score, quizID
+            $this->loadStatisticTemp();
+        }
+    }
+
+    /**
+     * Replace old way with a tempporary way.
+     * @throws DatabaseQueryException
+     * @throws DatabaseQueryExecutionException
+     */
+    protected function loadStatisticTemp()
+    {
+        $sql = 'SELECT      COUNT(userID) as players, SUM(score) as score, quizID
                     FROM        ' . Game::getDatabaseTableName() . '
                     WHERE       quizID IN (? ' . str_repeat(', ?', (count($this->objectIDs) - 1)) . ')
                     GROUP BY    quizID';
-            $statement = WCF::getDB()->prepareStatement($sql);
-            $statement->execute($this->objectIDs);
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute($this->objectIDs);
 
-            while (($row = $statement->fetchArray()) !== false) {
-                if (isset($this->objects[$row['quizID']])) {
-                    /** @var $quiz ViewableQuiz */
-                    $quiz = $this->objects[$row['quizID']];
-                    $quiz->setStatistic($row['score'], $row['players']);
-                }
+        while (($row = $statement->fetchArray()) !== false) {
+            if (isset($this->objects[$row['quizID']])) {
+                /** @var $quiz ViewableQuiz */
+                $quiz = $this->objects[$row['quizID']];
+                $quiz->setStatistic($row['score'], $row['players']);
             }
         }
     }

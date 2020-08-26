@@ -152,10 +152,10 @@
                                 <dt>{lang}wcf.quizCreator.players{/lang}</dt>
                                 <dd>{@$quiz->players|shortUnit}</dd>
                             </dl>
-                            {if $quiz->playery > 0}
+                            {if $quiz->players > 0}
                                 <dl class="plain statsDataList">
                                     <dt>{lang}wcf.quizCreator.averageScore{/lang}</dt>
-                                    <dd>{($quiz->score / $quiz->players)|shortUnit}</dd>
+                                    <dd>{($quiz->scoreTotal / $quiz->players)|shortUnit}</dd>
                                 </dl>
                             {/if}
                             <div class="messageGroupListStatsSimple" aria-label="{lang}wcf.quizCreator.questions{/lang}"><span class="icon icon16 fa-question-circle"></span> {@$quiz->questions|shortUnit}</div>

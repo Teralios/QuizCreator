@@ -9,6 +9,7 @@ use wcf\data\user\UserProfile;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\WCF;
+use wcf\util\StringUtil;
 
 /**
  * Class        Game
@@ -85,19 +86,33 @@ class Game extends DatabaseObject
     /**
      * Builds statistic for game result.
      * @param Quiz $quiz
+     * @param int $score
      * @return array
      * @throws DatabaseQueryException
      * @throws DatabaseQueryExecutionException
      */
-    public static function getRawStatistic(Quiz $quiz): array
+    public static function getStatistic(Quiz $quiz, int $score = 0): array
     {
-        $sql = 'SELECT      COUNT(userID) as players, SUM(score) as scoreSum, MAX(score) as best
+        $sql = 'SELECT      COUNT(userID) as players, SUM(score) as scoreTotal, MAX(score) as bestScore
                 FROM        ' . static::getDatabaseTableName() . '
-                WHERE       quizID = ?
-                GROUP BY    quizID';
+                WHERE       quizID = ?';
         $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute([$quiz->quizID]);
-        return $statement->fetchSingleRow();
+        $statistic = $statement->fetchSingleRow();
+
+        if ($score > 0) {
+            $worsePlayers = static::getWorsePlayers($quiz, $score);
+        } else {
+            $worsePlayers = 0;
+        }
+
+        if ($statistic['players'] > 0) {
+            $betterAs = (float) $worsePlayers / $statistic['players'] * 100;
+            $statistic['betterAs'] = ($betterAs > 0) ? StringUtil::formatDouble($betterAs) : '';
+            $statistic['averageScore'] = StringUtil::formatDouble((float) $statistic['scoreTotal'] / $statistic['players']);
+        }
+
+        return $statistic;
     }
 
     /**
@@ -108,7 +123,7 @@ class Game extends DatabaseObject
      * @throws DatabaseQueryException
      * @throws DatabaseQueryExecutionException
      */
-    public static function getPlayersWorse(Quiz $quiz, int $score): int
+    public static function getWorsePlayers(Quiz $quiz, int $score): int
     {
         $sql = 'SELECT      COUNT(userID) as players
                 FROM        ' . static::getDatabaseTableName() . '

@@ -30,7 +30,7 @@ use wcf\util\StringUtil;
  * @property-read int $questions
  * @property-read int $goals
  * @property-read int $players
- * @property-read int $score
+ * @property-read int $scoreTotal
  */
 class ViewableQuiz extends DatabaseObjectDecorator
 {
@@ -97,7 +97,7 @@ class ViewableQuiz extends DatabaseObjectDecorator
      */
     public function setStatistic(int $score, int $players) //: void
     {
-        $this->data['score'] = $score;
+        $this->data['scoreTotal'] = $score;
         $this->data['players'] = $players;
     }
 

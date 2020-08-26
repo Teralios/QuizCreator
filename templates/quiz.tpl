@@ -31,7 +31,7 @@
                             <a href="{@$user->getLink()}">{@$user->getAvatar()->getImageTag(24)}</a>
                             <div class="sidebarItemTitle">
                                 <h3><a href="{@$user->getLink()}">{$user->username}</a></h3>
-                                <small>{$player->playedTime|date}</small>
+                                <small>{@$player->playedTime|time}</small>
                             </div>
                         </li>
                     {/foreach}

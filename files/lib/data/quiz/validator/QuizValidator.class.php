@@ -42,7 +42,7 @@ class QuizValidator
     /**
      * @var string[]
      */
-    protected $requiredGoalData = ['points', 'title', 'icon'];
+    protected $requiredGoalData = ['title', 'icon', 'points'];
 
     /**
      * @var string[]
@@ -53,6 +53,15 @@ class QuizValidator
      * @var array
      */
     protected $data = [];
+
+    /**
+     * Helper var for key 'points'
+     *
+     * Its needed to check a points: 0.
+     *
+     * @var int
+     */
+    protected $pointsCounter = 0;
 
     /**
      * QuizValidator constructor.
@@ -183,7 +192,13 @@ class QuizValidator
     protected function requiredData(array $data, array $keys) //: ?string
     {
         foreach ($keys as $key) {
-            if (!isset($data[$key]) || empty($data[$key])) {
+            if (!isset($data[$key])) {
+                // little work-a-round for points: 0 in json string.
+                if ($key == 'points' && $this->pointsCounter == 0) {
+                    $this->pointsCounter++;
+                    continue;
+                }
+
                 return (string) $key;
             }
         }

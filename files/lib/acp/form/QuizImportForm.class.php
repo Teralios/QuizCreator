@@ -6,6 +6,7 @@ namespace wcf\acp\form;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizAction;
 use wcf\data\quiz\validator\QuizValidator;
+use wcf\data\quiz\validator\QuizValidatorError;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
@@ -139,10 +140,17 @@ class QuizImportForm extends AbstractFormBuilderForm
             }
 
             // json test
+            /** @var QuizValidatorError $jsonError */
             $jsonError = $jsonValidator(file_get_contents($file->getLocation()));
 
             if ($jsonError !== null) {
-                $formField->addValidationError(new FormFieldValidationError('json', 'wcf.acp.quizCreator.import.error.json', [$jsonError]));
+                $information = [
+                    'context' => $jsonError->getContext(),
+                    'type' => $jsonError->getType(),
+                    'key' => $jsonError->getKey(),
+                    'index' => $jsonError->getIndex()
+                ];
+                $formField->addValidationError(new FormFieldValidationError('json', 'wcf.acp.quizCreator.import.error.json', $information));
             }
         };
     }

@@ -44,6 +44,10 @@
 		<item name="wcf.acp.quizCreator.quiz.questions"><![CDATA[Fragen]]></item>
 		<item name="wcf.acp.quizCreator.quiz.goals"><![CDATA[„Goals“]]></item>
 		<item name="wcf.acp.quizCreator.goal.edit"><![CDATA[„Goal“ bearbeiten]]></item>
+		<item name="wcf.acp.quizCreator.import.error.json"><![CDATA[<pre>{$error|print_r}</pre>]]></item>
+		<item name="wcf.acp.quizCreator.quiz.delete.confirmMessage"><![CDATA[Möchten Sie das Quiz „{$quiz->title}“ löschen?]]></item>
+		<item name="wcf.acp.quizCreator.question.delete.confirmMessage"><![CDATA[Möchten sie die Frage „{$question->question}“ wirklich löschen?]]></item>
+		<item name="wcf.acp.quizCreator.goal.delete.confirmMessage"><![CDATA[Möchten sie das „Goal“ „{$goal->title}“ wirklich löschen?]]></item>
 	</category>
 	<category name="wcf.quizCreator">
 		<item name="wcf.quizCreator.creationDate"><![CDATA[Datum]]></item>

@@ -136,9 +136,9 @@ class ViewableQuizList extends QuizList
     protected function loadStatisticTemp()
     {
         $sql = 'SELECT      COUNT(userID) as players, SUM(score) as score, quizID
-                    FROM        ' . Game::getDatabaseTableName() . '
-                    WHERE       quizID IN (? ' . str_repeat(', ?', (count($this->objectIDs) - 1)) . ')
-                    GROUP BY    quizID';
+                FROM        ' . Game::getDatabaseTableName() . '
+                WHERE       quizID IN (? ' . str_repeat(', ?', (count($this->objectIDs) - 1)) . ')
+                GROUP BY    quizID';
         $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute($this->objectIDs);
 

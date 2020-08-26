@@ -32,9 +32,9 @@ There are two types of quizzes:
 
 ### Beta 3
   - [ ] Implement result view for quiz (tpl after play the game.)
-  - [ ] Implement reaction
   - [ ] Implement trophies
   - [ ] Implement tags for quiz
+  - [ ] Implement cache handler for some lists.
 
 ### Beta 4
   - [ ] Implement frontend editor for manage quiz

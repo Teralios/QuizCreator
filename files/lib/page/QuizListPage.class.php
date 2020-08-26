@@ -98,19 +98,19 @@ class QuizListPage extends SortablePage
     {
         parent::readData();
 
-        if (QUIZ_LIST_BEST_PLAYERS) {
+        if (QUIZ_LIST_BEST_PLAYERS) { //@ todo implement an cache handler for this
             $this->bestPlayers = GameList::bestPlayers()->withQuiz()->withUser();
             $this->bestPlayers->sqlLimit = 10;
             $this->bestPlayers->readObjects();
         }
 
-        if (QUIZ_LIST_LAST_PLAYERS) {
+        if (QUIZ_LIST_LAST_PLAYERS) { //@ todo implement an cache handler for this
             $this->lastPlayers = GameList::lastPlayers()->withQuiz()->withUser();
             $this->lastPlayers->sqlLimit = 10;
             $this->lastPlayers->readObjects();
         }
 
-        if (QUIZ_LIST_MOST_PLAYED) {
+        if (QUIZ_LIST_MOST_PLAYED) { //@ todo implement an cache handler for this
             $this->mostPlayed = new ViewableQuizList(true, false);
             $this->mostPlayed->getConditionBuilder()->add('type = ?', ['competition']);
             $this->mostPlayed->sqlOrderBy = $this->mostPlayed->getDatabaseTableAlias() . '.played DESC';

@@ -77,14 +77,16 @@ class QuizListPage extends SortablePage
             if (empty($this->languageID)) {
                 $languageIDs = WCF::getSession()->getLanguageIDs();
 
-                $this->objectList->getConditionBuilder()->add('languageID IN (?' . str_repeat(', ?', count($languageIDs) - 1) . ')', $languageIDs);
+                $this->objectList->getConditionBuilder()->add(
+                    $this->objectList->getDatabaseTableAlias() . 'languageID IN (?' . str_repeat(', ?', count($languageIDs) - 1) . ')',
+                    $languageIDs
+                );
             } else {
-                $this->objectList->getConditionBuilder()->add('languageID = ?', [$this->languageID]);
+                $this->objectList->getConditionBuilder()->add(
+                    $this->objectList->getDatabaseTableAlias() . 'languageID = ?',
+                    [$this->languageID]
+                );
             }
-        }
-
-        if (!WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
-            $this->objectList->getConditionBuilder()->add('isActive = ?', [1]);
         }
     }
 
@@ -98,17 +100,21 @@ class QuizListPage extends SortablePage
 
         if (QUIZ_LIST_BEST_PLAYERS) {
             $this->bestPlayers = GameList::bestPlayers()->withQuiz()->withUser();
+            $this->bestPlayers->sqlLimit = 10;
             $this->bestPlayers->readObjects();
         }
 
         if (QUIZ_LIST_LAST_PLAYERS) {
             $this->lastPlayers = GameList::lastPlayers()->withQuiz()->withUser();
+            $this->lastPlayers->sqlLimit = 10;
             $this->lastPlayers->readObjects();
         }
 
         if (QUIZ_LIST_MOST_PLAYED) {
             $this->mostPlayed = new ViewableQuizList(true, false);
+            $this->mostPlayed->getConditionBuilder()->add('type = ?', ['competition']);
             $this->mostPlayed->sqlOrderBy = $this->mostPlayed->getDatabaseTableAlias() . '.played DESC';
+            $this->mostPlayed->sqlLimit = 10;
             $this->mostPlayed->readObjects();
         }
     }

@@ -61,7 +61,7 @@
                         <li class="box24">
                             <a href="{@$quiz->getLink()}">
                                 {if $media !== null}
-                                    {$media->getElementTag(24)}
+                                    {@$media->getElementTag(24)}
                                 {else}
                                     <span class="icon icon24 fa-question-circle"></span>
                                 {/if}

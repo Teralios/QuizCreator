@@ -6,6 +6,7 @@ namespace wcf\data\quiz;
 use wcf\data\media\ViewableMediaList;
 use wcf\data\quiz\game\Game;
 use wcf\system\exception\SystemException;
+use wcf\system\WCF;
 
 /**
  * Class ViewableQuizList
@@ -53,6 +54,11 @@ class ViewableQuizList extends QuizList
     ];
 
     /**
+     * @var string
+     */
+    public $sqlGroupBy = '';
+
+    /**
      * ViewableQuizList constructor.
      * @param bool $loadMedia
      * @param bool $loadStatistic
@@ -64,6 +70,11 @@ class ViewableQuizList extends QuizList
 
         $this->loadMedia = $loadMedia;
         $this->loadStatistic = $loadStatistic;
+
+        // base condition: isActive
+        if (!WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
+            $this->getConditionBuilder()->add($this->getDatabaseTableAlias() . '.isActive = ?', [1]);
+        }
     }
 
     /**
@@ -87,10 +98,10 @@ class ViewableQuizList extends QuizList
      */
     public function readObjects()
     {
-        // add sql commands for statistic
-        if ($this->loadStatistic === true) {
+        // add sql commands for statistic DO NOT WORK HERE! THANKS WOLTLAB!
+        /* if ($this->loadStatistic === true) {
             $this->buildStatisticSQL();
-        }
+        } */
 
         parent::readObjects();
 
@@ -108,11 +119,29 @@ class ViewableQuizList extends QuizList
                 $this->readMedia($mediaIDs);
             }
         }
+
+        // read statistic for quiz ... only implement while WoltLab forgot GROUP BY support in DatabaseObjectList!
+        if ($this->loadStatistic === true) {
+            $sql = 'SELECT      COUNT(userID) as players, SUM(score) as score, quizID
+                    FROM        ' . Game::getDatabaseTableName() . '
+                    WHERE       quizID IN (? ' . str_repeat(', ?', (count($this->objectIDs) - 1)) . ')
+                    GROUP BY    quizID';
+            $statement = WCF::getDB()->prepareStatement($sql);
+            $statement->execute($this->objectIDs);
+
+            while (($row = $statement->fetchArray()) !== false) {
+                if (isset($this->objects[$row['quizID']])) {
+                    /** @var $quiz ViewableQuiz */
+                    $quiz = $this->objects[$row['quizID']];
+                    $quiz->setStatistic($row['score'], $row['players']);
+                }
+            }
+        }
     }
 
     /**
      * Add default statistic sql parameters
-     */
+     *//*
     protected function buildStatisticSQL()
     {
         $this->sqlSelects = 'COUNT(' . Game::getDatabaseTableAlias() . '.userID) AS players ';
@@ -123,9 +152,9 @@ class ViewableQuizList extends QuizList
 
         // build group by
         if (count($this->sqlGroupByFields)) {
-            $this->sqlJoins .= ' GROUP BY ' . implode(', ', $this->sqlGroupByFields);
+            $this->sqlGroupBy .= ' GROUP BY ' . implode(', ', $this->sqlGroupByFields);
         }
-    }
+    }*/
 
     /**
      * Read media.

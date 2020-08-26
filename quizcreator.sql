@@ -17,7 +17,10 @@ CREATE TABLE wcf1_quiz (
     KEY (languageID),
     KEY (isActive),
     KEY (played),
-    KEY (languageID, isActive)
+    KEY (type),
+    KEY (isActive, languageID),
+    KEY (isActive, type),
+    KEY (isActive, languageID, type)
 );
 
 -- player result table (game)
@@ -33,7 +36,7 @@ CREATE TABLE wcf1_quiz_game (
     result TEXT,
     lastScore SMALLINT(4) NOT NULL DEFAULT 0,
     lastPlayedTime INT(10) NOT NULL DEFAULT 0,
-    lastTimeTotal MEDIUMINT(5) NOT NULL,
+    lastTimeTotal MEDIUMINT(5) NOT NULL DEFAULT 0,
     UNIQUE KEY (quizID, userID),
     KEY (quizID),
     KEY (scorePercent, timeTotal),

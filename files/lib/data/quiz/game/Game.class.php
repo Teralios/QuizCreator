@@ -89,23 +89,15 @@ class Game extends DatabaseObject
      * @throws DatabaseQueryException
      * @throws DatabaseQueryExecutionException
      */
-    public static function buildStatistic(Quiz $quiz): array
+    public static function getRawStatistic(Quiz $quiz): array
     {
-        $sql = 'SELECT      COUNT(quizID) as players, SUM(score) as scoreSum, MAX(score) as best
+        $sql = 'SELECT      COUNT(userID) as players, SUM(score) as scoreSum, MAX(score) as best
                 FROM        ' . static::getDatabaseTableName() . '
                 WHERE       quizID = ?
-                GROUP BY    quizID, score';
+                GROUP BY    quizID';
         $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute([$quiz->quizID]);
-        $row = $statement->fetchSingleRow();
-
-        // build statistic
-        $statistic = [];
-        $statistic['players'] = $row['players'] ?? 0;
-        $statistic['scoreSum'] = $row['scoreSum'] ?? 0;
-        $statistic['best'] = $row['best'] ?? 0;
-
-        return $statistic;
+        return $statement->fetchSingleRow();
     }
 
     /**

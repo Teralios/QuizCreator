@@ -19,6 +19,7 @@ use wcf\system\exception\UserInputException;
 use wcf\system\WCF;
 use wcf\util\ArrayUtil;
 use wcf\util\JSON;
+use wcf\util\StringUtil;
 
 /**
  * Class QuizAction
@@ -150,10 +151,11 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         $timeTotal = $this->parameters['timeTotal'];
 
         // build statistic
-        $statistic = Game::buildStatistic($this->quiz);
-
+        $statistic = Game::getRawStatistic($this->quiz);
         if ($statistic['players'] > 0) {
-            $statistic['playerWorse'] = Game::getPlayersWorse($this->quiz, $score) / $statistic['players'];
+            $betterThen = (float) Game::getPlayersWorse($this->quiz, $score) / $statistic['players'] * 100;
+            $statistic['betterThen'] = ($betterThen > 0) ? StringUtil::formatDouble($betterThen) : '';
+            $statistic['averageScore'] = StringUtil::formatDouble((float) $statistic['scoreSum'] / $statistic['players']);
         }
 
         // check user

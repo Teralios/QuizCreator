@@ -1,4 +1,4 @@
-define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil) {
+define(['Ajax', 'Language', 'StringUtil', 'WoltLabSuite/Core/NumberUtil'], function (Ajax, Language, StringUtil, NumberUtil) {
     "use strict";
 
     return {
@@ -126,14 +126,13 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
 
             if (data.players > 0) {
                 scoreHtml += '<div class="others">';
-                scoreHtml += '<p>⌀ ' + StringUtil.formatNumeric((data.scoreSum / data.players)) + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
+                scoreHtml += '<p>⌀ ' + StringUtil.escapeHTML(data.averageScore) + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
             }
 
-            if (data.playerWorse === 0) {
-                scoreHtml += '<p>' + Language.get('wcf.quizCreator.game.lastPosition') + '</p>';
+            if (data.betterThen !== '') {
+                scoreHtml += Language.get('wcf.quizCreator.game.otherPlayers', {percent: StringUtil.escapeHTML(data.betterThen)})
             } else {
-                var playerWorse = StringUtil.formatNumeric((data.playerWorse * 100), 2);
-                scoreHtml += Language.get('wcf.quizCreator.game.otherPlayers', {percent: playerWorse})
+                scoreHtml += '<p>' + Language.get('wcf.quizCreator.game.lastPosition') + '</p>';
             }
 
             scoreHtml += '</div>';

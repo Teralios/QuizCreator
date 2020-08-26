@@ -29,6 +29,8 @@ use wcf\util\StringUtil;
  * @property-read int $isActive
  * @property-read int $questions
  * @property-read int $goals
+ * @property-read int $players
+ * @property-read int $score
  */
 class ViewableQuiz extends DatabaseObjectDecorator
 {
@@ -86,6 +88,17 @@ class ViewableQuiz extends DatabaseObjectDecorator
     public function setMedia(/*?ViewableMedia*/ $media) //: void
     {
         $this->mediaObject = $media;
+    }
+
+    /**
+     * Only needed while WoltLab forgot to support group by command in DatabaseObjectList
+     * @param int $score
+     * @param int $players
+     */
+    public function setStatistic(int $score, int $players) //: void
+    {
+        $this->data['score'] = $score;
+        $this->data['players'] = $players;
     }
 
     /**

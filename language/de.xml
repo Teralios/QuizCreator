@@ -64,6 +64,7 @@
 		<item name="wcf.quizCreator.box.score.possible"><![CDATA[{#($player->scorePercent * 100)} % der Punkte im Quiz „<a href="{$quiz->getLink()}">{$quiz->title}</a>“]]></item>
 		<item name="wcf.quizCreator.quiz.played"><![CDATA[Wurde {#$quiz->played} mal gespielt.]]></item>
 		<item name="wcf.quizCreator.user.played"><![CDATA[Spielte „<a href="{$quiz->getLink()}">{$quiz->title}</a>“ am {@$player->playedTime|time}]]></item>
+		<item name="wcf.quizCreator.game.otherPlayers"><![CDATA[Du bist besser als {literal}{$percent}{/literal} % der Spieler]]></item>
 	</category>
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Kann Quizze verwalten]]></item>

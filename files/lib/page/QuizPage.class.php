@@ -85,11 +85,13 @@ class QuizPage extends AbstractPage
 
         if (QUIZ_BEST_PLAYERS) {
             $this->bestPlayers = GameList::bestPlayers($this->quiz->getDecoratedObject())->withUser();
+            $this->bestPlayers->sqlLimit = 10;
             $this->bestPlayers->readObjects();
         }
 
         if (QUIZ_LAST_PLAYERS) {
             $this->lastPlayers = GameList::lastPlayers($this->quiz->getDecoratedObject())->withUser();
+            $this->bestPlayers->sqlLimit = 10;
             $this->lastPlayers->readObjects();
         }
     }

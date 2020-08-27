@@ -20,10 +20,10 @@ class QuizGameCacheBuilder extends AbstractCacheBuilder
         $list = null;
         switch ($context) {
             case 'last':
-                $list = GameList::lastPlayers();
+                $list = GameList::lastPlayers($quizID);
                 break;
             default:
-                $list = GameList::bestPlayers();
+                $list = GameList::bestPlayers($quizID);
         }
 
         if ($withQuiz) {
@@ -34,7 +34,7 @@ class QuizGameCacheBuilder extends AbstractCacheBuilder
             $list->withUser();
         }
 
-        $list->sqlLimit = 10;
+        $list->sqlLimit = $limit;
         $list->readObjects();
 
         $games = [];

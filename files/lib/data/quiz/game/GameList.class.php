@@ -144,13 +144,13 @@ class GameList extends DatabaseObjectList
     }
 
     /**
-     * @param Quiz|null $quiz
+     * @param int $quizID
      * @return static
      * @throws SystemException
      */
-    public static function bestPlayers(Quiz $quiz = null) //: static
+    public static function bestPlayers(int $quizID = 0) //: static
     {
-        $gameList = static::getBaseList($quiz);
+        $gameList = static::getBaseList($quizID);
         $gameList->sqlOrderBy = Game::getDatabaseTableAlias() . '.scorePercent DESC';
         $gameList->sqlOrderBy .= ', ' . Game::getDatabaseTableAlias() . '.timeTotal ASC';
 
@@ -158,31 +158,31 @@ class GameList extends DatabaseObjectList
     }
 
     /**
-     * @param Quiz|null $quiz
+     * @param int $quizID
      * @return static
      * @throws SystemException
      */
-    public static function lastPlayers(Quiz $quiz = null) //: static
+    public static function lastPlayers(int $quizID = 0) //: static
     {
-        $gameList = static::getBaseList($quiz);
+        $gameList = static::getBaseList($quizID);
         $gameList->sqlOrderBy = Game::getDatabaseTableAlias() . '.playedTime DESC';
 
         return $gameList;
     }
 
     /**
-     * @param Quiz|null $quiz
+     * @param int $quizID
      * @return static
      * @throws SystemException
      */
-    protected static function getBaseList($quiz = null) //: static
+    protected static function getBaseList(int $quizID = 0) //: static
     {
         $gameList = new static();
 
-        if ($quiz !== null) {
+        if ($quizID != 0) {
             $gameList->getConditionBuilder()->add(
                 Game::getDatabaseTableAlias() . '.quizID = ?',
-                [$quiz->getObjectID()]
+                [$quizID]
             );
         }
 

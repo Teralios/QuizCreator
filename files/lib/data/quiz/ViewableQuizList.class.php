@@ -26,12 +26,12 @@ class ViewableQuizList extends QuizList
     /**
      * @var bool
      */
-    protected $loadMedia = true;
+    protected $loadMedia = false;
 
     /**
      * @var bool
      */
-    protected $loadStatistic = true;
+    protected $loadStatistic = false;
 
     /**
      * @var ViewableMediaList
@@ -61,33 +61,19 @@ class ViewableQuizList extends QuizList
     public $sqlGroupBy = '';
 
     /**
-     * ViewableQuizList constructor.
-     * @param bool $loadMedia
-     * @param bool $loadStatistic
-     * @throws SystemException
+     * Load media data for quizzes.
      */
-    public function __construct(bool $loadMedia = true, bool $loadStatistic = true)
+    public function withMedia()
     {
-        parent::__construct();
-
-        $this->loadMedia = $loadMedia;
-        $this->loadStatistic = $loadStatistic;
+        $this->loadMedia = true;
     }
 
     /**
-     * @param bool $loadMedia
+     * Loads statistic for quizzes.
      */
-    public function loadMedia(bool $loadMedia)
+    public function withStatistic()
     {
-        $this->loadMedia = $loadMedia;
-    }
-
-    /**
-     * @param bool $loadStatistic
-     */
-    public function loadStatistic(bool $loadStatistic)
-    {
-        $this->loadStatistic = $loadStatistic;
+        $this->loadStatistic = true;
     }
 
     /**

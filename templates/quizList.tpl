@@ -10,6 +10,32 @@
 
 {* sidebar *}
 {capture assign='sidebarRight'}
+    {if $mostPlayed !== null && $mostPlayed|count > 0}
+        <section class="box">
+            <h2 class="boxTitle">{lang}wcf.quizCreator.quizList.box.mostPlayed{/lang}</h2>
+            <div class="boxContent">
+                <ul class="sidebarItemList">
+                    {foreach from=$mostPlayed item=$quiz}
+                        {assign var="media" value=$quiz->getMedia()}
+                        <li class="box24">
+                            <a href="{@$quiz->getLink()}">
+                                {if $media !== null}
+                                    {@$media->getElementTag(24)}
+                                {else}
+                                    <span class="icon icon24 fa-question-circle"></span>
+                                {/if}
+                            </a>
+                            <div class="sidebarItemTitle">
+                                <h3><a href="{@$quiz->getLink()}">{$quiz->title}</a></h3>
+                                <small>{lang}wcf.quizCreator.quiz.played{/lang}</small>
+                            </div>
+                        </li>
+                    {/foreach}
+                </ul>
+            </div>
+        </section>
+    {/if}
+
     {if $bestPlayers !== null && $bestPlayers|count > 0}
         <section class="box">
             <h2 class="boxTitle">{lang}wcf.quizCreator.quiz.box.bestPlayers{/lang}</h2>
@@ -43,32 +69,6 @@
                             <div class="sidebarItemTitle">
                                 <h3><a href="{@$user->getLink()}">{$user->username}</a></h3>
                                 <small>{lang}wcf.quizCreator.user.played{/lang}</small>
-                            </div>
-                        </li>
-                    {/foreach}
-                </ul>
-            </div>
-        </section>
-    {/if}
-
-    {if $mostPlayed !== null && $mostPlayed|count > 0}
-        <section class="box">
-            <h2 class="boxTitle">{lang}wcf.quizCreator.quizList.box.mostPlayed{/lang}</h2>
-            <div class="boxContent">
-                <ul class="sidebarItemList">
-                    {foreach from=$mostPlayed item=$quiz}
-                        {assign var="media" value=$quiz->getMedia()}
-                        <li class="box24">
-                            <a href="{@$quiz->getLink()}">
-                                {if $media !== null}
-                                    {@$media->getElementTag(24)}
-                                {else}
-                                    <span class="icon icon24 fa-question-circle"></span>
-                                {/if}
-                            </a>
-                            <div class="sidebarItemTitle">
-                                <h3><a href="{@$quiz->getLink()}">{$quiz->title}</a></h3>
-                                <small>{lang}wcf.quizCreator.quiz.played{/lang}</small>
                             </div>
                         </li>
                     {/foreach}

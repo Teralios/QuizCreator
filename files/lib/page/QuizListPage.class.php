@@ -31,6 +31,11 @@ class QuizListPage extends SortablePage
     public $neededModules = ['MODULE_QUIZ_CREATOR'];
 
     /**
+     * @var ViewableQuizList
+     */
+    public $objectList = null;
+
+    /**
      * @var bool
      */
     public $showCopyright = true;
@@ -74,6 +79,8 @@ class QuizListPage extends SortablePage
     public function initObjectList()
     {
         parent::initObjectList();
+        $this->objectList->withMedia();
+        $this->objectList->withStatistic();
 
         // permission settingg
         if (!WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {

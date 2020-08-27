@@ -1,3 +1,3 @@
 {if $showQuizMakerCopyright|isset && $showQuizMakerCopyright === true}
-    <div class="copyright">{lang}wcf.quizMaker.copyright{/lang}</div>
+    <div class="copyright">{lang}wcf.quizCreator.copyright{/lang}</div>
 {/if}

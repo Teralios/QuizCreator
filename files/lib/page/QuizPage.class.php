@@ -6,6 +6,7 @@ namespace wcf\page;
 use wcf\data\quiz\game\GameList;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\ViewableQuiz;
+use wcf\system\cache\builder\QuizGameCacheBuilder;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
@@ -84,15 +85,21 @@ class QuizPage extends AbstractPage
         parent::readData();
 
         if (QUIZ_BEST_PLAYERS) {
-            $this->bestPlayers = GameList::bestPlayers($this->quiz->getDecoratedObject())->withUser();
-            $this->bestPlayers->sqlLimit = 10;
-            $this->bestPlayers->readObjects();
+            $this->bestPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
+                'context' => 'best',
+                'quizID' => $this->quiz->getObjectID(),
+                'withUser' => true,
+                'limit' => 10
+            ]);
         }
 
         if (QUIZ_LAST_PLAYERS) {
-            $this->lastPlayers = GameList::lastPlayers($this->quiz->getDecoratedObject())->withUser();
-            $this->bestPlayers->sqlLimit = 10;
-            $this->lastPlayers->readObjects();
+            $this->lastPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
+                'context' => 'last',
+                'quizID' => $this->quiz->getObjectID(),
+                'withUser' => true,
+                'limit' => 10
+            ]);
         }
     }
 

@@ -91,14 +91,16 @@ class ViewableQuiz extends DatabaseObjectDecorator
     }
 
     /**
-     * Only needed while WoltLab forgot to support group by command in DatabaseObjectList
+     * Work a round to set statistic for viewable quiz. Not nice but it's here.
      * @param int $score
      * @param int $players
      */
     public function setStatistic(int $score, int $players) //: void
     {
-        $this->data['scoreTotal'] = $score;
-        $this->data['players'] = $players;
+        $data = $this->getData();
+        $data['scoreTotal'] = $score;
+        $data['players'] = $players;
+        $this->object = new Quiz(null, $data);
     }
 
     /**

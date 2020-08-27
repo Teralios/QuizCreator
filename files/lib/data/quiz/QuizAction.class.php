@@ -40,6 +40,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     protected $permissionsLoadQuiz = ['user.quiz.canView'];
     protected $permissionFinishGame = ['user.quiz.canPlay'];
     protected $allowGuestAccess = ['loadQuiz', 'finishGame']; // allowed guest access
+    protected $resetCache = ['delete', 'update', 'toggle']; // primary options to reset quiz and game cache.
 
     /**
      * @var Quiz
@@ -178,6 +179,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         $quizEditor = new QuizEditor($this->quiz);
         $quizEditor->updatePlayed();
 
+        // maybe reset game caches for quiz?
         return $statistic;
     }
 

@@ -5,6 +5,8 @@ namespace wcf\page;
 // imports
 use wcf\data\quiz\game\GameList;
 use wcf\data\quiz\ViewableQuizList;
+use wcf\system\cache\builder\QuizGameCacheBuilder;
+use wcf\system\cache\builder\QuizMostPlayedCacheBuilder;
 use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
 use wcf\system\WCF;
@@ -73,6 +75,11 @@ class QuizListPage extends SortablePage
     {
         parent::initObjectList();
 
+        // permission settingg
+        if (!WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
+            $this->objectList->getConditionBuilder()->add($this->objectList->getDatabaseTableAlias() . '.isActive = ?', [1]);
+        }
+
         if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
             if (empty($this->languageID)) {
                 $languageIDs = WCF::getSession()->getLanguageIDs();
@@ -98,24 +105,26 @@ class QuizListPage extends SortablePage
     {
         parent::readData();
 
-        if (QUIZ_LIST_BEST_PLAYERS) { //@ todo implement an cache handler for this
-            $this->bestPlayers = GameList::bestPlayers()->withQuiz()->withUser();
-            $this->bestPlayers->sqlLimit = 10;
-            $this->bestPlayers->readObjects();
+        if (QUIZ_LIST_BEST_PLAYERS) {
+            $this->bestPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
+                'context' => 'best',
+                'withQuiz' => true,
+                'withUser' => true,
+                'limit' => 10
+            ]);
         }
 
-        if (QUIZ_LIST_LAST_PLAYERS) { //@ todo implement an cache handler for this
-            $this->lastPlayers = GameList::lastPlayers()->withQuiz()->withUser();
-            $this->lastPlayers->sqlLimit = 10;
-            $this->lastPlayers->readObjects();
+        if (QUIZ_LIST_LAST_PLAYERS) {
+            $this->lastPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
+                'context' => 'last',
+                'withQuiz' => true,
+                'withUser' => true,
+                'limit' => 10
+            ]);
         }
 
-        if (QUIZ_LIST_MOST_PLAYED) { //@ todo implement an cache handler for this
-            $this->mostPlayed = new ViewableQuizList(true, false);
-            $this->mostPlayed->getConditionBuilder()->add('type = ?', ['competition']);
-            $this->mostPlayed->sqlOrderBy = $this->mostPlayed->getDatabaseTableAlias() . '.played DESC';
-            $this->mostPlayed->sqlLimit = 10;
-            $this->mostPlayed->readObjects();
+        if (QUIZ_LIST_MOST_PLAYED) {
+            $this->mostPlayed = /** @scrutinizer ignore-call */QuizMostPlayedCacheBuilder::getInstance()->getData(['limit' => 10]);
         }
     }
 

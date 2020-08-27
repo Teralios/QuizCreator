@@ -72,11 +72,6 @@ class ViewableQuizList extends QuizList
 
         $this->loadMedia = $loadMedia;
         $this->loadStatistic = $loadStatistic;
-
-        // base condition: isActive
-        if (!WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
-            $this->getConditionBuilder()->add($this->getDatabaseTableAlias() . '.isActive = ?', [1]);
-        }
     }
 
     /**
@@ -100,7 +95,6 @@ class ViewableQuizList extends QuizList
      */
     public function readObjects()
     {
-        // add sql commands for statistic DO NOT WORK HERE! THANKS WOLTLAB!
         /* if ($this->loadStatistic === true) {
             $this->buildStatisticSQL();
         } */
@@ -142,7 +136,7 @@ class ViewableQuizList extends QuizList
         $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute($this->objectIDs);
 
-        while (($row = $statement->fetchArray()) !== false) {
+        while (($row = $statement->fetchArray()) != false) {
             if (isset($this->objects[$row['quizID']])) {
                 /** @var $quiz ViewableQuiz */
                 $quiz = $this->objects[$row['quizID']];

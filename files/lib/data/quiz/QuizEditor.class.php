@@ -4,8 +4,11 @@ namespace wcf\data\quiz;
 
 // imports
 use wcf\data\DatabaseObjectEditor;
+use wcf\data\IEditableCachedObject;
 use wcf\data\quiz\goal\GoalEditor;
 use wcf\data\quiz\question\QuestionEditor;
+use wcf\system\cache\builder\QuizGameCacheBuilder;
+use wcf\system\cache\builder\QuizMostPlayedCacheBuilder;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\SystemException;
@@ -33,7 +36,7 @@ use wcf\system\WCF;
  * @property-read int $goals
  * @property-read int $played
  */
-class QuizEditor extends DatabaseObjectEditor
+class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
 {
     protected static $baseClass = Quiz::class;
 
@@ -169,5 +172,29 @@ class QuizEditor extends DatabaseObjectEditor
         }
 
         return $goals;
+    }
+
+    /**
+     * @inheritdoc
+     * @throws SystemException
+     */
+    public static function resetCache()
+    {
+        // reset general caches.
+        /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->reset([
+            'context' => 'best',
+            'withQuiz' => true,
+            'withUser' => true,
+            'limit' => 10
+        ]);
+
+        /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->reset([
+            'context' => 'last',
+            'withQuiz' => true,
+            'withUser' => true,
+            'limit' => 10
+        ]);
+
+        /** @scrutinizer ignore-call */QuizMostPlayedCacheBuilder::getInstance()->reset(['limit' => 10]);
     }
 }

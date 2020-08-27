@@ -69,6 +69,8 @@
 		<item name="wcf.quizCreator.quiz.played"><![CDATA[Wurde {#$quiz->played} mal gespielt.]]></item>
 		<item name="wcf.quizCreator.user.played"><![CDATA[Spielte „<a href="{$quiz->getLink()}">{$quiz->title}</a>“ am {@$player->playedTime|time}]]></item>
 		<item name="wcf.quizCreator.game.otherPlayers"><![CDATA[Du bist besser als {literal}{$percent}{/literal} % der Spieler]]></item>
+		<item name="wcf.quizCreator.copyright"><![CDATA[Quiz erstellt mit <a href="https://www.my-wsc.de/forum/board/58-teralios-plugins/"><b>Teralios Quiz Creator</b></a>]]></item>
+		<item name="wcf.quizCreator.averageScore"><![CDATA[<b>⌀</b> Punkte]]></item>
 	</category>
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Kann Quizze verwalten]]></item>

@@ -129,7 +129,7 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
                 scoreHtml += '<p>⌀ ' + StringUtil.escapeHTML(data.averageScore) + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
             }
 
-            if (data.betterAs !== '') {
+            if (data.betterAs !== undefined || data.betterAs != 0) {
                 scoreHtml += Language.get('wcf.quizCreator.game.otherPlayers', {percent: StringUtil.escapeHTML(data.betterAs)})
             } else {
                 scoreHtml += '<p>' + Language.get('wcf.quizCreator.game.lastPosition') + '</p>';

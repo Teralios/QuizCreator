@@ -42,4 +42,6 @@ This file lists all changes like new features, improved functions and fixed bugs
     * Clean up acp forms
   * Language
 
-    
+## Beta 3
+### Bugs
+  * Fix error on result page. (undefined var)

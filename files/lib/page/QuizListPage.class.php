@@ -92,12 +92,12 @@ class QuizListPage extends SortablePage
                 $languageIDs = WCF::getSession()->getLanguageIDs();
 
                 $this->objectList->getConditionBuilder()->add(
-                    $this->objectList->getDatabaseTableAlias() . 'languageID IN (?' . str_repeat(', ?', count($languageIDs) - 1) . ')',
+                    $this->objectList->getDatabaseTableAlias() . '.languageID IN (?' . str_repeat(', ?', count($languageIDs) - 1) . ')',
                     $languageIDs
                 );
             } else {
                 $this->objectList->getConditionBuilder()->add(
-                    $this->objectList->getDatabaseTableAlias() . 'languageID = ?',
+                    $this->objectList->getDatabaseTableAlias() . '.languageID = ?',
                     [$this->languageID]
                 );
             }

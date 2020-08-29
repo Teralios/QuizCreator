@@ -9,6 +9,7 @@ use wcf\data\media\ViewableMedia;
 use wcf\system\Exception\SystemException;
 use wcf\system\request\IRouteController;
 use wcf\system\request\LinkHandler;
+use wcf\util\StringUtil;
 
 /**
  * Class QuizData
@@ -51,7 +52,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
      */
     public function getTitle()
     {
-        return $this->title;
+        return StringUtil::encodeHTML($this->title);
     }
 
     /**

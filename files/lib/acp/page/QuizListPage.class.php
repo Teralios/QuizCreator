@@ -32,7 +32,7 @@ class QuizListPage extends MultipleLinkPage
         parent::initObjectList();
 
         /** @scrutinizer ignore-call */
-        $this->objectList->loadMedia(false);
+        $this->objectList->withMedia();
     }
     /**
      * @inheritDoc

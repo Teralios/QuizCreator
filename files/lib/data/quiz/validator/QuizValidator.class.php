@@ -22,12 +22,12 @@ class QuizValidator
     /**
      * @var string[]
      */
-    protected $requiredQuizData = ['type', 'title', 'questions', 'goals'];
+    protected $requiredQuizData = ['type', 'title', 'questions'];
 
     /**
      * @var string[]
      */
-    protected $allowedQuizData = ['languageCode', 'description'];
+    protected $allowedQuizData = ['languageCode', 'description', 'goals'];
 
     /**
      * @var string[]
@@ -165,6 +165,10 @@ class QuizValidator
      */
     protected function checkDataMap(string $checkKey, array $requiredKeys, array $allowedKeys) //: ?QuizValidatorError
     {
+        if (!isset($this->data[$checkKey])) {
+            return null;
+        }
+
         $entries = $this->data[$checkKey];
         $i = 0;
 

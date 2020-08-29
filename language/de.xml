@@ -48,6 +48,9 @@
 		<item name="wcf.acp.quizCreator.quiz.delete.confirmMessage"><![CDATA[Möchten Sie das Quiz „{$quiz->title}“ löschen?]]></item>
 		<item name="wcf.acp.quizCreator.question.delete.confirmMessage"><![CDATA[Möchten sie die Frage „{$question->question}“ wirklich löschen?]]></item>
 		<item name="wcf.acp.quizCreator.goal.delete.confirmMessage"><![CDATA[Möchten sie das „Goal“ „{$goal->title}“ wirklich löschen?]]></item>
+		<item name="wcf.acp.quizCreator.language.tooltip"><![CDATA[Sprache »{$quiz->getLanguageName()}«]]></item>
+		<item name="wcf.acp.quizCreator.import.overrideLanguage"><![CDATA[Sprache überschreiben]]></item>
+		<item name="wcf.acp.quizCreator.import.overrideLanguage.description"><![CDATA[Soll die ursprüngliche Sprache des Quizzes überschrieben werden?]]></item>
 	</category>
 	<category name="wcf.quizCreator">
 		<item name="wcf.quizCreator.creationDate"><![CDATA[Datum]]></item>

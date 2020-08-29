@@ -39,7 +39,7 @@
                 <tr>
                     <th class="columnID columnQuizID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
                     <th class="columnTitle">{lang}wcf.global.title{/lang}</th>
-                    {if $isMultiLingual}<th class="columnText">{lang}wcf.global.language{/lang}</th>{/if}
+                    {if $isMultiLingual}<th class="columnText">{lang}wcf.user.language{/lang}</th>{/if}
                     <th class="columnText">{lang}wcf.global.date{/lang}</th>
                     <th class="columnText">{lang}wcf.acp.quizCreator.quiz.questions{/lang}</th>
                     <th class="columnText">{lang}wcf.acp.quizCreator.quiz.goals{/lang}</th>
@@ -82,7 +82,7 @@
                             <td class="columnText">
                                 {if !$quiz->getLanguageIcon()|empty}
                                     <img class="iconFlag jsTooltip"
-                                         title="{lang}wcf.acp.quiz.language.tooltip{/lang}"
+                                         title="{lang}wcf.acp.quizCreator.language.tooltip{/lang}"
                                          src="{$quiz->getLanguageIcon()}">
                                 {/if}
                             </td>

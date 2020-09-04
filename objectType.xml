@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/objectType.xsd">
+    <import>
+        <type>
+            <name>de.teralios.quizCreator.quiz</name>
+            <definitionname>com.woltlab.wcf.tagging.taggableObject</definitionname>
+            <classname>wcf\system\tagging\TaggableQuiz</classname>
+        </type>
+    </import>
+</data>

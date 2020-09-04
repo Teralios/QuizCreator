@@ -41,6 +41,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
     const MAX_SCORE = 10;
     const FUN = 'fun';
     const COMPETITION = 'competition';
+    const OBJECT_TYPE = 'de.teralios.quizCreator.quiz';
 
     /**
      * @var ViewableMedia

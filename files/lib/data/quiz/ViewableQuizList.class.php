@@ -39,26 +39,18 @@ class ViewableQuizList extends QuizList
     protected $mediaList;
 
     /**
-     * @var string[]
+     * ViewableQuizList constructor.
+     * @throws SystemException
      */
-    public $sqlGroupByFields = [
-        'quizID',
-        'languageID',
-        'creationDate',
-        'mediaID',
-        'type',
-        'title',
-        'description',
-        'isActive',
-        'questions',
-        'goals',
-        'played'
-    ];
+    public function __construct()
+    {
+        parent::__construct();
 
-    /**
-     * @var string
-     */
-    public $sqlGroupBy = '';
+        // permission setting
+        if (!WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
+            $this->getConditionBuilder()->add($this->getDatabaseTableAlias() . '.isActive = ?', [1]);
+        }
+    }
 
     /**
      * Load media data for quizzes.
@@ -81,10 +73,6 @@ class ViewableQuizList extends QuizList
      */
     public function readObjects()
     {
-        /* if ($this->loadStatistic === true) {
-            $this->buildStatisticSQL();
-        } */
-
         parent::readObjects();
 
         // read media IDs.
@@ -102,7 +90,7 @@ class ViewableQuizList extends QuizList
             }
         }
 
-        // read statistic for quiz ... only implement while WoltLab forgot GROUP BY support in DatabaseObjectList!
+        // read statistic for quiz
         if ($this->loadStatistic === true) {
             $this->loadStatisticTemp();
         }
@@ -131,9 +119,7 @@ class ViewableQuizList extends QuizList
         }
     }
 
-    /**
-     * Add default statistic sql parameters
-     *//*
+    /*
     protected function buildStatisticSQL()
     {
         $this->sqlSelects = 'COUNT(' . Game::getDatabaseTableAlias() . '.userID) AS players ';

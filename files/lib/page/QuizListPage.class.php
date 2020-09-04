@@ -82,11 +82,6 @@ class QuizListPage extends SortablePage
         $this->objectList->withMedia();
         $this->objectList->withStatistic();
 
-        // permission settingg
-        if (!WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
-            $this->objectList->getConditionBuilder()->add($this->objectList->getDatabaseTableAlias() . '.isActive = ?', [1]);
-        }
-
         if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
             if (empty($this->languageID)) {
                 $languageIDs = WCF::getSession()->getLanguageIDs();

@@ -6,8 +6,8 @@
 		<packagename language="de">Teralios QuizCreator</packagename>
 		<packagedescription>Create fun little quizzes for your website.</packagedescription>
 		<packagedescription language="de">Erstellen Sie kleine spassige Quizze für Ihre Webseite.</packagedescription>
-		<version>1.0.0 Beta 2</version>
-		<date>2020-08-13</date>
+		<version>1.0.0 Beta 3</version>
+		<date>2020-09-04</date>
 		<license/>
 	</packageinformation>
 	<authorinformation>
@@ -22,7 +22,7 @@
 	</excludedpackages>
 	<instructions type="install">
 		<instruction type="sql" run="standalone">quizcreator.sql</instruction>
-		<instruction type="file" application="wcf"/>
+		<instruction type="file" run="standalone" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="template"/>
 		<instruction type="templateListener"/>
@@ -32,5 +32,10 @@
 		<instruction type="userGroupOption"/>
 		<instruction type="language"/>
 		<instruction type="option"/>
+		<instruction type="objectType"/>
+	</instructions>
+	<instructions type="update" fromversion="1.0.0 Beta 2">
+		<instruction type="objectType"/>
+		<instruction type="file" run="standalone"/>
 	</instructions>
 </package>

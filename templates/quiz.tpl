@@ -101,7 +101,9 @@
             Language.add('wcf.quizCreator.game.start', '{lang}wcf.quizCreator.game.start{/lang}');
             Language.add('wcf.quizCreator.game.time', '{lang}wcf.quizCreator.game.time{/lang}');
             Language.add('wcf.quizCreator.game.lastPosition', '{lang}wcf.quizCreator.game.lastPosition{/lang}');
-            Language.add('wcf.quizCreator.game.otherPlayers', '{lang}wcf.quizCreator.game.otherPlayers{/lang}')
+            Language.add('wcf.quizCreator.game.otherPlayers', '{lang}wcf.quizCreator.game.otherPlayers{/lang}');
+            Language.add('wcf.quizCreator.game.noGoal', '{lang}wcf.quizCreator.game.noGoal{/lang}');
+            Language.add('wcf.quizCreator.game.noGoal.description', '{lang}wcf.quizCreator.game.noGoal.description{/lang}');
 
             new Quiz(elById('quiz{$quiz->quizID}'));
         });

@@ -89,6 +89,9 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
          */
         _renderGoal: function () {
             var goalList = this._quizData.goalList;
+            var goalHtml = '';
+            var goalContainer = elCreate('div');
+            goalContainer.classList.add('goal');
 
             if (goalList.length > 0) {
                 var goal = false;
@@ -100,20 +103,20 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
                 }
 
                 if (goal !== false) {
-                    var goalHtml = '<span class="icon icon96 ' + goal.icon + '"></span>';
+                    goalHtml = '<span class="icon icon96 ' + goal.icon + '"></span>';
                     goalHtml += '<h3 class="name">' + StringUtil.escapeHTML(goal.title) + '</h3>';
 
                     if (goal.description !== '') {
                         goalHtml += '<p class="small">' + StringUtil.escapeHTML(goal.description) + '</p>';
                     }
-
-                    var goalContainer = elCreate('div');
-                    goalContainer.classList.add('goal');
-                    goalContainer.innerHTML = goalHtml;
-
-                    this._resultContainer.appendChild(goalContainer);
                 }
+            } else {
+                goalHtml = '<h3 class="name">' + Language.get('wcf.quizCreator.game.noGoal') + '</h3>';
+                goalHtml += '<p class="small">' + Language.get('wcf.quizCreator.game.noGoal.description') + '</p>';
             }
+
+            goalContainer.innerHTML = goalHtml;
+            this._resultContainer.appendChild(goalContainer);
         },
 
         /**

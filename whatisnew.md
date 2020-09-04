@@ -43,5 +43,8 @@ This file lists all changes like new features, improved functions and fixed bugs
   * Language
 
 ## Beta 3
+### Improvements
+  * Game result page: Add a no goal information.
+  
 ### Bugs
   * Fix error on result page. (undefined var)

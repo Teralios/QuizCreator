@@ -53,7 +53,7 @@ CREATE TABLE wcf1_quiz_goal (
     icon VARCHAR(50) NOT NULL DEFAULT '',
     description TEXT,
     KEY (quizID),
-    KEY (quizID, points)
+    KEY (points)
 );
 
 -- questions

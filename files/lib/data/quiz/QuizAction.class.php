@@ -16,6 +16,8 @@ use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\UserInputException;
+use wcf\system\language\LanguageFactory;
+use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 use wcf\util\ArrayUtil;
 use wcf\util\JSON;
@@ -55,8 +57,41 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         // set timestamp
         $this->parameters['data']['creationDate'] = TIME_NOW;
 
+        // create quiz
+        $quiz = parent::create();
+
+        // tags
+        if (!empty($this->parameters['tags'])) {
+            /** @scrutinizer ignore-call */TagEngine::getInstance()->addObjectTags(
+                Quiz::OBJECT_TYPE,
+                $quiz->getObjectID(),
+                $this->parameters['tags'],
+                $quiz->languageID ?? /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getDefaultLanguageID()
+            );
+        }
+
         // create database entry
-        return parent::create();
+        return $quiz;
+    }
+
+    /**
+     * @inheritdoc
+     * @throws SystemException
+     */
+    public function update()
+    {
+        parent::update();
+
+        if (!empty($this->parameters['tags'])) {
+            foreach ($this->objects as $object) {
+                /** @scrutinizer ignore-call */TagEngine::getInstance()->addObjectTags(
+                    Quiz::OBJECT_TYPE,
+                    $object->getObjectID(),
+                    $this->parameters['tags'],
+                    $object->languageID ?? /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getDefaultLanguageID()
+                );
+            }
+        }
     }
 
     /**

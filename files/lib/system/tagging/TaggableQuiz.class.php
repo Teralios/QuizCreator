@@ -15,7 +15,8 @@ class TaggableQuiz extends AbstractCombinedTaggable
     /**
      * @inheritDoc
      */
-    public function getObjectListFor(array $tags) {
+    public function getObjectListFor(array $tags)
+    {
         return new TaggedQuizList($tags);
     }
 }

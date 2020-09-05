@@ -11,6 +11,7 @@ use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\DescriptionFormField;
 use wcf\system\form\builder\field\language\ContentLanguageFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
+use wcf\system\form\builder\field\tag\TagFormField;
 use wcf\system\form\builder\field\TitleFormField;
 use wcf\system\form\builder\field\media\SingleMediaSelectionFormField;
 use wcf\system\form\builder\field\BooleanFormField;
@@ -47,6 +48,8 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->required(),
             DescriptionFormField::create('description')
                 ->maximumLength(1000),
+            TagFormField::create('tags')
+                ->objectType(Quiz::OBJECT_TYPE),
             ContentLanguageFormField::create('languageID')
                 ->required(),
             RadioButtonFormField::create('type')

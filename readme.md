@@ -7,30 +7,6 @@ There are two types of quizzes:
   * __Fun__ - Here it doesn't matter how long it takes, there is always 1 point, at the end you can present a funny evaluation via goals.
 
 ## Todo
-### Beta 1
-  - [x] Implement Quiz in frontend
-  - [x] Implement base javascript for play
-
-### Beta 2
-  - [x] Implement base javascript
-    - [x] Overwork Teralios/Quiz/Quiz to Teralios/quizCreator/Game
-    - [x] Implement Teralios/quizCreator/Quiz for QuizPage
-  - [x] Change image to media
-  - [x] Implement result view for game (js)
-  - [x] Implement fun quiz support
-  - [x] Implement additional content on QuizList and Quiz
-    - [x] Last Player?
-    - [x] average score?
-  - [x] Import and Export quiz
-    - [x] Import
-    - [x] Export
-  - [x] Icon support for goals
-  - [x] Overwork language
-  - [x] Implement more permissions
-  - [x] Implement module option
-  - [x] Implement options for show players
-  - [x] Implement cache handler for some lists.
-
 ### Beta 3
   - [ ] Implement result view for quiz (tpl after play the game.)
   - [ ] Implement trophies

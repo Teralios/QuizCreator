@@ -42,8 +42,8 @@
 {/capture}
 
 {* variables *}
-{assign var="pageTitle" value=$quiz->getTitle()}
-{assign var="contentTitle" value=$quiz->getTitle()}
+{capture assign='pageTitle'}{$quiz->getTitle()}{/capture}
+{capture assign='ontentTitle'}{$quiz->getTitle()}{/capture}
 
 {* template *}
 {include file='header'}
@@ -67,7 +67,7 @@
                 </div>
                 {if !$tags|empty}
                     <div class="tags">
-
+ww
                     </div>
                 {/if}
             </div>

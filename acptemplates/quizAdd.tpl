@@ -11,7 +11,7 @@
 
 {capture assign="__formNavigationButtons"}
     {if !$formObject|empty && $quiz|empty}
-        {assign var="__formTitleDescription" value=$formObject->getTitle()}
+        {capture assign='__formTitleDescription'}{$formObject->getTitle()}{/capture}
         <li>
             <a class="button" href="{link controller='QuizQuestionAdd' quizID=$formObject->quizID}{/link}">
                 <span class="icon icon16 fa-question-circle"></span> <span>{lang}wcf.acp.quizCreator.question.add{/lang}</span>

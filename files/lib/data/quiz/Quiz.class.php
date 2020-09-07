@@ -53,7 +53,7 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
      */
     public function getTitle()
     {
-        return StringUtil::encodeHTML($this->title);
+        return $this->title;
     }
 
     /**

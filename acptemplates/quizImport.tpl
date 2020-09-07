@@ -4,7 +4,7 @@
 
 <header class="contentHeader">
     <div class="contentHeaderTitle">
-        <h1 class="contentTitle">{lang}{$__formTitle}{/lang}</h1>
+        <h1 class="contentTitle">{lang}{@$__formTitle}{/lang}</h1>
     </div>
 </header>
 

@@ -1,5 +1,5 @@
 {assign var="__formTitle" value='wcf.acp.quizCreator.goal.'|concat:$action}
 {assign var="__formAnchor" value="#goals"}
-{assign var="__formTitleDescription" value=$quiz->getTitle()}
+{capture assign='__formTitleDescription'}{$formObject->getTitle()}{/capture}
 
 {include file='_quizFormBase'}

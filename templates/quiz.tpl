@@ -62,6 +62,15 @@
                     {@$quiz->getDescription()}
                 </div>
             {/if}
+            <div class="statistic">
+                <div>
+                </div>
+                {if !$tags|empty}
+                    <div class="tags">
+
+                    </div>
+                {/if}
+            </div>
         </div>
     {/if}
     {if $__wcf->session->getPermission('user.quiz.canPlay')}

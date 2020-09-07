@@ -6,10 +6,12 @@ namespace wcf\page;
 use wcf\data\quiz\game\GameList;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\ViewableQuiz;
+use wcf\data\tag\TagList;
 use wcf\system\cache\builder\QuizGameCacheBuilder;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
+use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 
 /**
@@ -52,6 +54,11 @@ class QuizPage extends AbstractPage
     public $lastPlayers = null;
 
     /**
+     * @var Tag[]
+     */
+    public $tags = [];
+
+    /**
      * @inheritDoc
      * @throws IllegalLinkException
      * @throws PermissionDeniedException
@@ -62,7 +69,6 @@ class QuizPage extends AbstractPage
         parent::readParameters();
 
         $this->quizID = $_REQUEST['id'] ?? 0;
-
 
         $quiz = new Quiz((int) $this->quizID);
         if (!$quiz->quizID) {
@@ -101,6 +107,10 @@ class QuizPage extends AbstractPage
                 'limit' => 10
             ]);
         }
+
+        if (MODULE_TAGGING) {
+            $this->tags = /** @scrutinizer ignore-call */TagEngine::getInstance()->getObjectTags(Quiz::OBJECT_TYPE, $this->quiz->getObjectID());
+        }
     }
 
     /**
@@ -114,6 +124,7 @@ class QuizPage extends AbstractPage
             'quiz' => $this->quiz,
             'bestPlayers' => $this->bestPlayers,
             'lastPlayers' => $this->lastPlayers,
+            'tags' => $this->tags,
             'showQuizMakerCopyright' => $this->showCopyright,
         ]);
     }

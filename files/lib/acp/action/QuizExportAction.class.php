@@ -71,7 +71,7 @@ class QuizExportAction extends AbstractAction
         }
 
         // remove unneeded data
-        unset($data['quizID'], $data['creationDate'], $data['isActive'], $data['mediaID'], $data['languageID']);
+        unset($data['quizID'], $data['creationDate'], $data['isActive'], $data['mediaID'], $data['languageID'], $data['played']);
 
         // override questions and goals with data
         $data['questions'] = [];

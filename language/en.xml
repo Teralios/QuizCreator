@@ -75,6 +75,9 @@
 		<item name="wcf.quizCreator.copyright"><![CDATA[Quiz created with <a href="https://www.my-wsc.de/forum/board/58-teralios-plugins/"><b>Teralios' Quiz Creator</b></a>]]></item>
 		<item name="wcf.quizCreator.averageScore"><![CDATA[⌀ score]]></item>
 		<item name="wcf.quizCreator.game.missingData"><![CDATA[Unfortunately the quiz is not quite finished yet ;)]]></item>
+		<item name="wcf.quizCreator.game.noGoal"><![CDATA[Just missed!]]></item>
+		<item name="wcf.quizCreator.game.noGoal.description"><![CDATA[Unfortunately it was not quite enough for a Goal.]]></item>
+		<item name="wcf.quizCreator.played"><![CDATA[Played]]></item>
 	</category>
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Can manage quizzes]]></item>
@@ -92,5 +95,9 @@
 		<item name="wcf.acp.option.quiz_list_last_players"><![CDATA[Show last players]]></item>
 		<item name="wcf.acp.option.quiz_list_best_players"><![CDATA[Show best players]]></item>
 		<item name="wcf.acp.option.quiz_list_most_played"><![CDATA[Show most played quizzes]]></item>
+	</category>
+	<category name="wcf.tagging">
+		<item name="wcf.tagging.taggedObjects.de.teralios.quizCreator.quiz"><![CDATA[Quizzes]]></item>
+		<item name="wcf.tagging.objectType.de.teralios.quizCreator.quiz"><![CDATA[Quizzes]]></item>
 	</category>
 </language>

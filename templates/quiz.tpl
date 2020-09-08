@@ -50,8 +50,8 @@
 
 <div class="section quiz" id="quiz{$quiz->quizID}" data-id="{$quiz->quizID}">
     {assign var="media" value=$quiz->getMedia()}
-    {if !$media|is_null || !$quiz->description|empty}
-        <div class="information">
+    <div class="information">
+        {if !$media|is_null || !$quiz->description|empty}
             {if !$media|is_null}
                 <div class="image">
                     {@$media}
@@ -62,17 +62,24 @@
                     {@$quiz->getDescription()}
                 </div>
             {/if}
-            <div class="statistic">
-                <div>
-                </div>
-                {if !$tags|empty}
-                    <div class="tags">
-ww
-                    </div>
-                {/if}
+        {/if}
+        <div class="statistic">
+            <div>
+                <span>{#$quiz->questions} {lang}wcf.quizCreator.questions{/lang}</span>
+                <span class="separatorLeft">{#$quiz->played} {lang}wcf.quizCreator.played{/lang}</span>
             </div>
+            {if !$tags|empty}
+                <div class="tags">
+                    <ul class="tagList">
+                        {foreach from=$tags item=tag}
+                            <li><a href="{link controller='Tagged' object=$tag}de.teralios.quizCreator.quiz{/link}" class="tag">{$tag}</a></li>
+                        {/foreach}
+                    </ul>
+                </div>
+            {/if}
         </div>
-    {/if}
+    </div>
+
     {if $__wcf->session->getPermission('user.quiz.canPlay')}
         <div class="game dummy">
             <div class="gameHeader">
@@ -97,6 +104,7 @@ ww
             </div>
         </div>
     {/if}
+
 </div>
 
 {if $__wcf->session->getPermission('user.quiz.canPlay')}

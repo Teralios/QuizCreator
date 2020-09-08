@@ -190,29 +190,31 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         $statistic = Game::getStatistic($this->quiz, $score);
 
         // check user
-        if ($userID != 0) {
-            if (!Game::hasPlayed($this->quiz, $userID)) {
-                $scorePercent = $score / ($this->quiz->questions * Quiz::MAX_SCORE);
-                $data = [
-                    'userID' => $userID,
-                    'quizID' => $this->quiz->quizID,
-                    'score' => $score,
-                    'result' => JSON::encode($result),
-                    'scorePercent' => $scorePercent,
-                    'playedTime' => TIME_NOW,
-                    'timeTotal' => $timeTotal
-                ];
+        if ($this->quiz->isActive) {
+            if ($userID != 0) {
+                if (!Game::hasPlayed($this->quiz, $userID)) {
+                    $scorePercent = $score / ($this->quiz->questions * Quiz::MAX_SCORE);
+                    $data = [
+                        'userID' => $userID,
+                        'quizID' => $this->quiz->quizID,
+                        'score' => $score,
+                        'result' => JSON::encode($result),
+                        'scorePercent' => $scorePercent,
+                        'playedTime' => TIME_NOW,
+                        'timeTotal' => $timeTotal
+                    ];
 
-                GameEditor::create($data);
-            } elseif (($game = Game::getGame($this->quiz, $userID)) !== null) {
-                $game = new GameEditor($game);
-                $game->update(['lastScore' => $score, 'lastPlayedTime' => TIME_NOW]);
+                    GameEditor::create($data);
+                } elseif (($game = Game::getGame($this->quiz, $userID)) !== null) {
+                    $game = new GameEditor($game);
+                    $game->update(['lastScore' => $score, 'lastPlayedTime' => TIME_NOW]);
+                }
             }
-        }
 
-        // update quiz
-        $quizEditor = new QuizEditor($this->quiz);
-        $quizEditor->updatePlayed();
+            // update quiz
+            $quizEditor = new QuizEditor($this->quiz);
+            $quizEditor->updatePlayed();
+        }
 
         // maybe reset game caches for quiz?
         return $statistic;

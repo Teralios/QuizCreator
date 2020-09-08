@@ -22,7 +22,7 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
          * Show result for game.
          */
         showResult: function () {
-            if (this._quizData.type === 'competition') {
+            if (this._quizData.type === 'competition' && this._quizData.isActive === 1) {
                 this._loadResult();
             } else {
                 this._renderResultOffline();
@@ -132,7 +132,8 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
                 scoreHtml += '<p>⌀ ' + StringUtil.escapeHTML(data.averageScore) + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
             }
 
-            if (data.betterAs !== undefined || data.betterAs != 0) {
+            console.log(data.betterAs);
+            if (data.betterAs !== undefined && data.betterAs > 0) {
                 scoreHtml += Language.get('wcf.quizCreator.game.otherPlayers', {percent: StringUtil.escapeHTML(data.betterAs)})
             } else {
                 scoreHtml += '<p>' + Language.get('wcf.quizCreator.game.lastPosition') + '</p>';

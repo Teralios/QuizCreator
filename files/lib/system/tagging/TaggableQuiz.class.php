@@ -3,6 +3,7 @@
 namespace wcf\system\tagging;
 
 // imports
+use wcf\data\quiz\TaggedQuizList;
 
 class TaggableQuiz extends AbstractCombinedTaggable
 {

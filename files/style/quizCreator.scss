@@ -23,8 +23,19 @@
       }
     }
 
-    .description {
-      padding: 0.5em;
+    .description, .statistic {
+      border-top: $wcfContentBorderInner solid 1px;
+      padding: 1em;
+    }
+
+    .statistic
+    {
+      display: grid;
+      grid-template-columns: auto auto;
+
+      div {
+        font-size: $wcfFontSizeSmall;
+      }
     }
   }
 
@@ -33,8 +44,6 @@
   }
 
   .game {
-    //display: table-cell;
-    //vertical-align: middle;
     border-top: $wcfContentBorderInner solid 2px;
 
     .borderTop {

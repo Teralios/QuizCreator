@@ -9,7 +9,7 @@ use wcf\system\exception\SystemException;
 class QuizMostPlayedCacheBuilder extends AbstractCacheBuilder
 {
     // inherit vars
-    protected $maxLifeTime = 600; // 10 minutes
+    protected $maxLifetime = 300;
 
     /**
      * @param array $parameters

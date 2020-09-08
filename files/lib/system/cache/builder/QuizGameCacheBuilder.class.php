@@ -7,7 +7,7 @@ use wcf\data\quiz\game\GameList;
 
 class QuizGameCacheBuilder extends AbstractCacheBuilder
 {
-    protected $maxLifetime = 600; // 10 minutes;
+    protected $maxLifetime = 300;
 
     protected function rebuild(array $parameters)
     {

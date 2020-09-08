@@ -25,8 +25,7 @@ class TaggedQuizList extends ViewableQuizList
     {
         parent::__construct();
 
-        list($subSelect, $parameters) = TagEngine::getInstance()->getSubselectForObjectsByTags(Quiz::OBJECT_TYPE, $tags);
-
-        $this->getConditionBuilder()->add('quizID IN (' . $subSelect . ')', $parameters);
+        $tagSQL = TagEngine::getInstance()->getSubselectForObjectsByTags(Quiz::OBJECT_TYPE, $tags);
+        $this->getConditionBuilder()->add('quizID IN (' . $tagSQL['sql'] . ')', $tagSQL['parameters']);
     }
 }

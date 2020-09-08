@@ -10,7 +10,7 @@ There are two types of quizzes:
 ### Beta 3
   - [ ] Implement result view for quiz (tpl after play the game.)
   - [ ] Implement trophies
-  - [ ] Implement tags for quiz
+  - [x] Implement tags for quiz
 
 ### Beta 4
   - [ ] Implement frontend editor for manage quiz

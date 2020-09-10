@@ -14,7 +14,7 @@ There are two types of quizzes:
 ### RC1
   - [ ] Fix issues
 
-### 1.1
+### 2.0
 #### Beta 1
   - [ ] Improve PHP Code
   - [ ] Improve JavaScript Code
@@ -27,3 +27,6 @@ There are two types of quizzes:
 #### Beta 3
   - [ ] Implement players on quiz page
   - [ ] Implement result on quiz page
+  
+### Beta 4
+  - [ ] Gifts for players

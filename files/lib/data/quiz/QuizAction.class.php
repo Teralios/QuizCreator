@@ -22,7 +22,6 @@ use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 use wcf\util\ArrayUtil;
 use wcf\util\JSON;
-use wcf\util\StringUtil;
 
 /**
  * Class QuizAction

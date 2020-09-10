@@ -92,7 +92,7 @@ class ViewableQuizList extends QuizList
 
         // read statistic for quiz
         if ($this->loadStatistic === true) {
-            $this->loadStatisticTemp();
+            $this->loadStatistic();
         }
     }
 
@@ -101,7 +101,7 @@ class ViewableQuizList extends QuizList
      * @throws DatabaseQueryException
      * @throws DatabaseQueryExecutionException
      */
-    protected function loadStatisticTemp()
+    protected function loadStatistic()
     {
         $sql = 'SELECT      COUNT(userID) as players, SUM(score) as score, quizID
                 FROM        ' . Game::getDatabaseTableName() . '
@@ -118,21 +118,6 @@ class ViewableQuizList extends QuizList
             }
         }
     }
-
-    /*
-    protected function buildStatisticSQL()
-    {
-        $this->sqlSelects = 'COUNT(' . Game::getDatabaseTableAlias() . '.userID) AS players ';
-        $this->sqlSelects .= ', SUM(' . Game::getDatabaseTableAlias() . '.score) AS score';
-
-        $this->sqlJoins = 'LEFT JOIN ' . Game::getDatabaseTableName() . ' ' . Game::getDatabaseTableAlias() . ' ';
-        $this->sqlJoins .= 'ON ' . $this->getDatabaseTableAlias() . '.quizID = ' . Game::getDatabaseTAbleAlias() . '.quizID ';
-
-        // build group by
-        if (count($this->sqlGroupByFields)) {
-            $this->sqlGroupBy .= ' GROUP BY ' . implode(', ', $this->sqlGroupByFields);
-        }
-    }*/
 
     /**
      * Read media.

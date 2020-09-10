@@ -134,7 +134,7 @@
                         <li class="columnIcon">
                             <span
                                     class="icon icon32 {if $quiz->isActive == 0}fa-pencil{else}{if $quiz->type == 'competition'}fa-trophy{else}fa-child{/if}{/if} jsTooltip"
-                                    title="{lang}wcf.acp.quizCreator.quiz.type.{@$quiz->type}{/lang}">
+                                    title="{lang}wcf.acp.quizCreator.quiz.type.{@$quiz->type}{/lang}{if $quiz->isActive == 0} ({lang}wcf.acp.quizCreator.quiz.notActive{/lang}){/if}">
                             </span>
                         </li>
 

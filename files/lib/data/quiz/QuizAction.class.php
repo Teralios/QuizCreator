@@ -199,7 +199,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
                 $user = new UserEditor(WCF::getUser());
 
                 if (!Game::hasPlayed($this->quiz, $userID)) {
-                    $scorePercent = $score / ($this->quiz->questions * Quiz::MAX_SCORE);
+                    $scorePercent = $score / ($this->quiz->questions * Quiz::MAX_SCORE) * 100;
                     $data = [
                         'userID' => $userID,
                         'quizID' => $this->quiz->quizID,

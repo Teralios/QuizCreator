@@ -51,6 +51,7 @@
 		<item name="wcf.acp.quizCreator.language.tooltip"><![CDATA[Language “{$quiz->getLanguageName()}”]]></item>
 		<item name="wcf.acp.quizCreator.import.overrideLanguage"><![CDATA[Override language]]></item>
 		<item name="wcf.acp.quizCreator.import.overrideLanguage.description"/>
+		<item name="wcf.acp.quizCreator.quiz.notActive"><![CDATA[deactivated]]></item>
 	</category>
 	<category name="wcf.quizCreator">
 		<item name="wcf.quizCreator.creationDate"><![CDATA[Date]]></item>
@@ -68,7 +69,7 @@
 		<item name="wcf.quizCreator.game.lastPosition"><![CDATA[All other players are at least as good as you are.]]></item>
 		<item name="wcf.quizCreator.game.next"><![CDATA[next question]]></item>
 		<item name="wcf.quizCreator.game.finish"><![CDATA[finish quiz]]></item>
-		<item name="wcf.quizCreator.box.score.possible"><![CDATA[({#($player->scorePercent * 100)} % of score in quiz “<a href="{@$quiz->getLink()}">{$quiz->title}</a>”]]></item>
+		<item name="wcf.quizCreator.box.score.possible"><![CDATA[({#$player->scorePercent} % of score in quiz “<a href="{@$quiz->getLink()}">{$quiz->title}</a>”]]></item>
 		<item name="wcf.quizCreator.quiz.played"><![CDATA[Was played {#$quiz->played} times.]]></item>
 		<item name="wcf.quizCreator.user.played"><![CDATA[Played „<a href="{$quiz->getLink()}">{$quiz->title}</a>“ on {@$player->playedTime|time}]]></item>
 		<item name="wcf.quizCreator.game.otherPlayers"><![CDATA[You are better as {$percent} % of players.]]></item>

@@ -8,22 +8,22 @@ There are two types of quizzes:
 
 ## Todo
 ### Beta 3
-  - [ ] Implement result view for quiz (tpl after play the game.)
-  - [ ] Implement trophies
+  - [x] Implement trophies
   - [x] Implement tags for quiz
-
-### Beta 4
-  - [ ] Implement frontend editor for manage quiz
-  - [ ] Implement player list for quiz
-  - [ ] ???
  
 ### RC1
   - [ ] Fix issues
 
 ### 1.1
-  - [ ] Implement playing on QuizList
-  - [ ] Implement Quiz-of-the-Day
-  - [ ] Prepare for extension "quizCreator Community Edition"
+#### Beta 1
+  - [ ] Improve PHP Code
+  - [ ] Improve JavaScript Code
 
-### Beyond 1.1
-  - [ ] Eye Candy
+#### Beta 2
+  - [ ] Redesign quiz list view
+  - [ ] Redesign quiz view
+  - [ ] Redesign quiz game
+
+#### Beta 3
+  - [ ] Implement players on quiz page
+  - [ ] Implement result on quiz page

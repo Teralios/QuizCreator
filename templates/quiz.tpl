@@ -121,6 +121,7 @@
             Language.add('wcf.quizCreator.game.otherPlayers', '{lang}wcf.quizCreator.game.otherPlayers{/lang}');
             Language.add('wcf.quizCreator.game.noGoal', '{lang}wcf.quizCreator.game.noGoal{/lang}');
             Language.add('wcf.quizCreator.game.noGoal.description', '{lang}wcf.quizCreator.game.noGoal.description{/lang}');
+            Language.add('wcf.quizCreator.game.missingData', '{lang}wcf.quizCreator.game.missingData{/lang}');
 
             new Quiz(elById('quiz{$quiz->quizID}'));
         });

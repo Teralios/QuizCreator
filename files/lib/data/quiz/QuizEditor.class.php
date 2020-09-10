@@ -47,23 +47,18 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
      */
     public function incrementCounter(bool $questions = true)
     {
-        $data = [];
-
         if ($questions === true) {
-            $data['questions'] = $this->questions + 1;
+            $data = ['questions' => 1];
         } else {
-            $data['goals'] = $this->goals + 1;
+            $data = ['goals' => 1];
         }
 
-        $this->update($data);
+        $this->updateCounters($data);
     }
 
     public function updatePlayed()
     {
-        $data = [];
-        $data['played'] = $this->played + 1;
-
-        $this->update($data);
+        $this->updateCounters(['played' => 1]);
     }
 
     /**

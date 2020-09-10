@@ -11,6 +11,7 @@ use wcf\data\quiz\game\Game;
 use wcf\data\quiz\game\GameEditor;
 use wcf\data\quiz\goal\GoalList;
 use wcf\data\quiz\question\QuestionList;
+use wcf\data\user\UserEditor;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\PermissionDeniedException;
@@ -180,6 +181,9 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
      */
     public function finishGame()
     {
+        // user data for update
+        $userData = [];
+
         // data
         $userID = WCF::getUser()->getUserID();
         $score = $this->parameters['score'];
@@ -192,6 +196,8 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         // check user
         if ($this->quiz->isActive) {
             if ($userID != 0) {
+                $user = new UserEditor(WCF::getUser());
+
                 if (!Game::hasPlayed($this->quiz, $userID)) {
                     $scorePercent = $score / ($this->quiz->questions * Quiz::MAX_SCORE);
                     $data = [
@@ -204,11 +210,17 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
                         'timeTotal' => $timeTotal
                     ];
 
+                    $scorePercent = round($scorePercent * 10000, 0); // no float support, so 99,99% must be 9999 int. ;)
+                    $userData['quizMaxScore'] = ($user->quizMaxScore < $scorePercent) ? $scorePercent : $user->quizMaxScore;
+                    $userData['quizPlayedUnique'] = $user->quizPlayedUnique + 1;
                     GameEditor::create($data);
                 } elseif (($game = Game::getGame($this->quiz, $userID)) !== null) {
                     $game = new GameEditor($game);
                     $game->update(['lastScore' => $score, 'lastPlayedTime' => TIME_NOW]);
                 }
+
+                $userData['quizPlayed'] = $user->quizPlayed + 1;
+                $user->update($userData);
             }
 
             // update quiz

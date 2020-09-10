@@ -2,9 +2,38 @@
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/objectType.xsd">
     <import>
         <type>
+            <!-- Tagging -->
             <name>de.teralios.quizCreator.quiz</name>
             <definitionname>com.woltlab.wcf.tagging.taggableObject</definitionname>
             <classname>wcf\system\tagging\TaggableQuiz</classname>
+        </type>
+
+        <!-- Trophies -->
+        <type>
+            <name>de.teralios.quizCreator.played</name>
+            <definitionname>com.woltlab.wcf.condition.trophy</definitionname>
+            <classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+            <conditiongroup>contents</conditiongroup>
+            <propertyname>quizPlayed</propertyname>
+            <minvalue>0</minvalue>
+        </type>
+
+        <type>
+            <name>de.teralios.quizCreator.quizPlayedUnique</name>
+            <definitionname>com.woltlab.wcf.condition.trophy</definitionname>
+            <classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+            <conditiongroup>contents</conditiongroup>
+            <propertyname>quizPlayedUnique</propertyname>
+            <minvalue>0</minvalue>
+        </type>
+
+        <type>
+            <name>de.teralios.quizCreator.quizMaxScore</name>
+            <definitionname>com.woltlab.wcf.condition.trophy</definitionname>
+            <classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+            <conditiongroup>contents</conditiongroup>
+            <propertyname>quizMaxScore</propertyname>
+            <minvalue>0</minvalue>
         </type>
     </import>
 </data>

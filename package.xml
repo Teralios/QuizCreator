@@ -21,10 +21,13 @@
 		<excludedpackage version="6.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
 	</excludedpackages>
 	<instructions type="install">
+		<!-- files -->
 		<instruction type="sql" run="standalone">install.sql</instruction>
 		<instruction type="file" run="standalone" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="template" application="wcf"/>
+
+		<!-- XML -->
 		<instruction type="templateListener"/>
 		<instruction type="page"/>
 		<instruction type="acpMenu"/>
@@ -35,10 +38,14 @@
 		<instruction type="objectType"/>
 	</instructions>
 	<instructions type="update" fromversion="1.0.0 Beta 2">
+		<!-- files -->
 		<instruction type="sql" run="standalone">update_b2.sql</instruction>
 		<instruction type="file" run="standalone" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="template" application="wcf"/>
+
+		<!-- xml -->
 		<instruction type="objectType"/>
+		<instruction type="language"/>
 	</instructions>
 </package>

@@ -69,7 +69,7 @@
 		<item name="wcf.quizCreator.game.lastPosition"><![CDATA[All other players are at least as good as you are.]]></item>
 		<item name="wcf.quizCreator.game.next"><![CDATA[next question]]></item>
 		<item name="wcf.quizCreator.game.finish"><![CDATA[finish quiz]]></item>
-		<item name="wcf.quizCreator.box.score.possible"><![CDATA[({#$player->scorePercent} % of score in quiz “<a href="{@$quiz->getLink()}">{$quiz->title}</a>”]]></item>
+		<item name="wcf.quizCreator.box.score.possible"><![CDATA[({#($player->scorePercent * 100)} % of score in quiz “<a href="{@$quiz->getLink()}">{$quiz->title}</a>”]]></item>
 		<item name="wcf.quizCreator.quiz.played"><![CDATA[Was played {#$quiz->played} times.]]></item>
 		<item name="wcf.quizCreator.user.played"><![CDATA[Played „<a href="{$quiz->getLink()}">{$quiz->title}</a>“ on {@$player->playedTime|time}]]></item>
 		<item name="wcf.quizCreator.game.otherPlayers"><![CDATA[You are better as {$percent} % of players.]]></item>
@@ -100,5 +100,10 @@
 	<category name="wcf.tagging">
 		<item name="wcf.tagging.taggedObjects.de.teralios.quizCreator.quiz"><![CDATA[Quizzes]]></item>
 		<item name="wcf.tagging.objectType.de.teralios.quizCreator.quiz"><![CDATA[Quizzes]]></item>
+	</category>
+	<category name="wcf.user.condition">
+		<item name="wcf.user.condition.quizPlayed"><![CDATA[Quizzes played (over-all)]]></item>
+		<item name="wcf.user.condition.quizPlayedUnique"><![CDATA[Rated quizzes]]></item>
+		<item name="wcf.user.condition.quizMaxScore"><![CDATA[Achieved relative score (max. 10 000)]]></item>
 	</category>
 </language>

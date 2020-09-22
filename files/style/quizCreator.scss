@@ -6,6 +6,7 @@
       margin: 0;
       padding: 0;
       text-align: center;
+
       img {
         max-width: 100%;
 
@@ -14,11 +15,11 @@
         }
 
         @include screen-md-down {
-          max-height: 450px;
+          max-height: 400px;
         }
 
         @include screen-lg {
-          max-height: 700px;
+          max-height: 600px;
         }
       }
     }
@@ -28,24 +29,23 @@
       padding: 1em;
     }
 
-    .statistic
-    {
-      display: grid;
-      grid-template-columns: auto auto;
+    .statistic {
+      display: flex;
+      justify-content: space-between;
 
       div {
         font-size: $wcfFontSizeSmall;
       }
     }
   }
+}
 
+.gameContainer {
   .dummy {
     visibility: hidden;
   }
 
   .game {
-    border-top: $wcfContentBorderInner solid 2px;
-
     .borderTop {
       border-top: $wcfContentBorderInner solid 1px;
     }

@@ -78,7 +78,7 @@
 		<item name="wcf.quizCreator.game.missingData"><![CDATA[Unfortunately the quiz is not quite finished yet ;)]]></item>
 		<item name="wcf.quizCreator.game.noGoal"><![CDATA[Just missed!]]></item>
 		<item name="wcf.quizCreator.game.noGoal.description"><![CDATA[Unfortunately it was not quite enough for a Goal.]]></item>
-		<item name="wcf.quizCreator.played"><![CDATA[Played]]></item>
+		<item name="wcf.quizCreator.played"><![CDATA[times played]]></item>
 	</category>
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Can manage quizzes]]></item>

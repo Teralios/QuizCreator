@@ -48,7 +48,7 @@
 {* template *}
 {include file='header'}
 
-<div class="section quiz" id="quiz{$quiz->quizID}" data-id="{$quiz->quizID}">
+<div class="section quiz" id="quiz{$quiz->quizID}">
     {assign var="media" value=$quiz->getMedia()}
     <div class="information">
         {if !$media|is_null || !$quiz->description|empty}
@@ -91,8 +91,8 @@
     </nav>
 
     {if $__wcf->session->getPermission('user.quiz.canPlay')}
-        <div class="tabMenuContent gameContainer" id="gameContainer">
-            <div class="game dummy">
+        <div class="tabMenuContent gameContainer" id="gameContainer" data-id="{$quiz->quizID}">
+            <div class="gameField dummy">
                 <div class="gameHeader">
                     <div class="questionCounter"><b>{lang}wcf.quizCreator.game.questions{/lang}</b></div>
                     <div class="clock"><b>{lang}wcf.quizCreator.game.time{/lang}</b></div>

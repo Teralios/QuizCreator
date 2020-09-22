@@ -14,22 +14,22 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizCreator/Game'], function
     Quiz.prototype = {
         /**
          * Inits quiz.
-         * @param quizContainer
+         * @param gameContainer
          */
-        init: function (quizContainer) {
-            this._quizContainer = quizContainer;
-            this.quizID = Number(elData(this._quizContainer, 'id'));
+        init: function (gameContainer) {
+            this._gameContainer = gameContainer;
+            this.quizID = Number(elData(this._gameContainer, 'id'));
 
-            this._gameContainer = elBySel('.game', this._quizContainer);
+            this._gameFieldContainer = elBySel('.gameField', this._gameContainer);
 
-            if (!this._gameContainer) {
-                this._gameContainer = elCreate('div');
-                this._gameContainer.className = 'game';
-                this._quizContainer.appendChild(this._gameContainer);
+            if (!this._gameFieldContainer) {
+                this._gameFieldContainer = elCreate('div');
+                this._gameFieldContainer.className = 'gameField';
+                this._gameContainer.appendChild(this._gameFieldContainer);
             } else {
-                this._gameContainer.style.height = this._gameContainer.offsetHeight + 'px';
-                this._gameContainer.innerHTML = '';
-                this._gameContainer.classList.remove('dummy');
+                // this._gameContainer.style.height = this._gameContainer.offsetHeight + 'px';
+                this._gameFieldContainer.innerHTML = '';
+                this._gameFieldContainer.classList.remove('dummy');
             }
 
             if (!Number.isInteger(this.quizID)) {
@@ -74,7 +74,7 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizCreator/Game'], function
          * @private
          */
         _printError: function (errorMessage) {
-            this._gameContainer.innerHTML = '<div class="gameContent"><p class="error">' + StringUtil.escapeHTML(errorMessage) + '</p></div>';
+            this._gameFieldContainer.innerHTML = '<div class="gameContent"><p class="error">' + StringUtil.escapeHTML(errorMessage) + '</p></div>';
         },
 
         /**
@@ -82,7 +82,7 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizCreator/Game'], function
          * @private
          */
         _initGame: function () {
-            this._game = new Game(this._data, this._gameContainer);
+            this._game = new Game(this._data, this._gameFieldContainer);
             this._game.buildGame();
         }
     };

@@ -16,6 +16,18 @@ use wcf\util\JSON;
  * @author      Karsten (Teralios) Achterrath
  * @copyright   ©2020 Teralios.de
  * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ *
+ * @property-read int $userID
+ * @property-read int $quizID
+ * @property-read int $gameID
+ * @property-read int $playedTime
+ * @property-read int $timeTotal
+ * @property-read int $score
+ * @property-read float $scorePercent
+ * @property-read int $lastScore
+ * @property-read int $lastPlayedTime
+ * @property-read int $lastTimeTotal
+ * @property-read string $result
  */
 class GameEditor extends DatabaseObjectEditor
 {
@@ -56,6 +68,8 @@ class GameEditor extends DatabaseObjectEditor
      */
     public function getUserData(User $user, bool $newResult = false): array
     {
+        $userData = [];
+
         // new game
         if ($newResult) {
             $userData['quizPlayedUnique'] = $user->quizPlayedUnique + 1;

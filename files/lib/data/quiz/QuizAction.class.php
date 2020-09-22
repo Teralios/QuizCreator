@@ -206,7 +206,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
 
                 // update user
                 $userEditor = new UserEditor(WCF::getUser());
-                $userEditor->update();
+                $userEditor->update($userData);
             }
 
             // update quiz

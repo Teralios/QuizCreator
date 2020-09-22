@@ -59,6 +59,11 @@ class QuizPage extends AbstractPage
     public $tags = [];
 
     /**
+     * @var string
+     */
+    public $activeTabMenuItem = 'gameContainer';
+
+    /**
      * @inheritDoc
      * @throws IllegalLinkException
      * @throws PermissionDeniedException
@@ -125,6 +130,7 @@ class QuizPage extends AbstractPage
             'bestPlayers' => $this->bestPlayers,
             'lastPlayers' => $this->lastPlayers,
             'tags' => $this->tags,
+            'activeTabMenuItem' => $this->activeTabMenuItem,
             'showQuizMakerCopyright' => $this->showCopyright,
         ]);
     }

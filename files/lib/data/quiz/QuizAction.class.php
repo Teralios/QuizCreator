@@ -187,7 +187,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         $userID = WCF::getUser()->getUserID();
         $score = $this->parameters['score'];
         $result = $this->parameters['result'];
-        $timeTotal = $this->parameters['timeTotal'];
+        $time = $this->parameters['timeTotal'];
 
         // build statistic
         $statistic = Game::getStatistic($this->quiz, $score);
@@ -195,31 +195,18 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         // check user
         if ($this->quiz->isActive) {
             if ($userID != 0) {
-                $user = new UserEditor(WCF::getUser());
-
                 if (!Game::hasPlayed($this->quiz, $userID)) {
-                    $scorePercent = $score / ($this->quiz->questions * Quiz::MAX_SCORE);
-                    $data = [
-                        'userID' => $userID,
-                        'quizID' => $this->quiz->quizID,
-                        'score' => $score,
-                        'result' => JSON::encode($result),
-                        'scorePercent' => $scorePercent,
-                        'playedTime' => TIME_NOW,
-                        'timeTotal' => $timeTotal
-                    ];
-
-                    $scorePercent = round($scorePercent * 10000, 0); // no float support, so 99,99% must be 9999 int. ;)
-                    $userData['quizMaxScore'] = ($user->quizMaxScore < $scorePercent) ? $scorePercent : $user->quizMaxScore;
-                    $userData['quizPlayedUnique'] = $user->quizPlayedUnique + 1;
-                    GameEditor::create($data);
+                    $game = GameEditor::createGameResult($this->quiz, $userID, $score, $time, $result);
+                    $userData = $game->getUserData(WCF::getUser(), true);
                 } elseif (($game = Game::getGame($this->quiz, $userID)) !== null) {
                     $game = new GameEditor($game);
                     $game->update(['lastScore' => $score, 'lastPlayedTime' => TIME_NOW]);
+                    $userData = $game->getUserData(WCF::getUser());
                 }
 
-                $userData['quizPlayed'] = $user->quizPlayed + 1;
-                $user->update($userData);
+                // update user
+                $userEditor = new UserEditor(WCF::getUser());
+                $userEditor->update();
             }
 
             // update quiz

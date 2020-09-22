@@ -8,25 +8,14 @@ There are two types of quizzes:
 
 ## Todo
 ### Beta 3
+  - [x] Improve PHP Code
   - [x] Implement trophies
   - [x] Implement tags for quiz
+  - [ ] Improve Quiz view
+  - [ ] Player list on quiz view
+  
+### Beta 4
+  - [ ] ???
  
 ### RC1
   - [ ] Fix issues
-
-### 2.0
-#### Beta 1
-  - [ ] Improve PHP Code
-  - [ ] Improve JavaScript Code
-
-#### Beta 2
-  - [ ] Redesign quiz list view
-  - [ ] Redesign quiz view
-  - [ ] Redesign quiz game
-
-#### Beta 3
-  - [ ] Implement players on quiz page
-  - [ ] Implement result on quiz page
-  
-### Beta 4
-  - [ ] Gifts for players

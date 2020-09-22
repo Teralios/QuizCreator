@@ -30,27 +30,6 @@ class Goal extends DatabaseObject
     protected static $databaseTableName = 'quiz_goal';
     protected static $databaseTableIndexName = 'goalID';
 
-    // point stages
-    const POINTS_FUN = 1;
-    const POINTS_COMPETITION_L1 = Quiz::MAX_SCORE;
-    const POINTS_COMPETITION_L2 = 5;
-    const POINTS_COMPETITION_L3 = 1;
-    const TIME_L1 = 5;
-    const TIME_L2 = 15;
-
-    /**
-     * @param Quiz $quiz
-     * @return float|int
-     */
-    public static function calculateMaxPoints(Quiz $quiz)
-    {
-        if ($quiz->type == Quiz::FUN) {
-            return $quiz->questions * static::POINTS_FUN;
-        }
-
-        return $quiz->questions * static::POINTS_COMPETITION_L1;
-    }
-
     /**
      * @param int $quizID
      * @param int $points

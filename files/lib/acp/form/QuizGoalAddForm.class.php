@@ -61,7 +61,7 @@ class QuizGoalAddForm extends BaseQuizForm
             IntegerFormField::create('points')
                 ->label('wcf.acp.quizCreator.goal.points')
                 ->minimum(0)
-                ->maximum(Goal::calculateMaxPoints($this->quizObject))
+                ->maximum($this->quizObject->getMaxScore())
                 ->addValidator(new FormFieldValidator('pointsExist', $pointsValidator))
                 ->required(),
             IconFormField::create('icon')

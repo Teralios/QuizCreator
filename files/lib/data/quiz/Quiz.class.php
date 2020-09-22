@@ -7,6 +7,7 @@ use wcf\data\DatabaseObject;
 use wcf\data\ILinkableObject;
 use wcf\data\media\ViewableMedia;
 use wcf\system\Exception\SystemException;
+use wcf\system\form\builder\field\IntegerFormField;
 use wcf\system\request\IRouteController;
 use wcf\system\request\LinkHandler;
 use wcf\util\StringUtil;
@@ -38,9 +39,10 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
     protected static $databaseTableIndexName = 'quizID';
 
     // const
-    const MAX_SCORE = 10;
-    const FUN = 'fun';
-    const COMPETITION = 'competition';
+    const MAX_VALUE_QUESTION = 10;
+    const FUN_VALUE_QUESTION = 1;
+    const TYPE_FUN = 'fun';
+    const TYPE_COMPETITION = 'competition';
     const OBJECT_TYPE = 'de.teralios.quizCreator.quiz';
 
     /**
@@ -69,5 +71,26 @@ class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
                 'forceFrontend' => true
             ]
         );
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxScore(): int
+    {
+        return static::calculateMaxScore($this);
+    }
+
+    /**
+     * @param Quiz $quiz
+     * @return int
+     */
+    public static function calculateMaxScore(Quiz $quiz): int
+    {
+        if ($quiz->type == Quiz::TYPE_FUN) {
+            return $quiz->questions * static::FUN_VALUE_QUESTION;
+        }
+
+        return $quiz->questions * static::MAX_VALUE_QUESTION;
     }
 }

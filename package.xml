@@ -3,7 +3,6 @@
 	<packageinformation>
 		<!-- de.teralios.quizCreator -->
 		<packagename>Teralios' QuizCreator</packagename>
-		<packagename language="de">Teralios QuizCreator</packagename>
 		<packagedescription>Create fun little quizzes for your website.</packagedescription>
 		<packagedescription language="de">Erstellen Sie kleine spassige Quizze für Ihre Webseite.</packagedescription>
 		<version>1.0.0 Beta 3</version>
@@ -19,6 +18,7 @@
 	</requiredpackages>
 	<excludedpackages>
 		<excludedpackage version="6.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
+		<excludedpackage>com.uz.wcf.quiz</excludedpackage>
 	</excludedpackages>
 	<instructions type="install">
 		<!-- files -->

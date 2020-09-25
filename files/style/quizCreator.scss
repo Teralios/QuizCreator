@@ -6,6 +6,7 @@
       margin: 0;
       padding: 0;
       text-align: center;
+      border-bottom: $wcfContentBorderInner solid 1px;
 
       img {
         max-width: 100%;
@@ -25,8 +26,11 @@
     }
 
     .description, .statistic {
-      border-top: $wcfContentBorderInner solid 1px;
       padding: 1em;
+    }
+
+    .description {
+      border-bottom: $wcfContentBorderInner solid 1px;
     }
 
     .statistic {

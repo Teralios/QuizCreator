@@ -9,6 +9,7 @@ use wcf\data\user\UserProfile;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\WCF;
+use wcf\util\JSON;
 use wcf\util\StringUtil;
 
 /**
@@ -48,6 +49,20 @@ class Game extends DatabaseObject
     protected $quiz = null;
 
     /**
+     * @var array
+     */
+    protected $questions = null;
+
+    public function getQuestion(int $index = 0)
+    {
+        if ($this->questions === null) {
+            $this->parseResult();
+        }
+
+        return (isset($this->questions[$index])) ? $this->questions[$index] : [];
+    }
+
+    /**
      * Sets user profile.
      * @param UserProfile $user
      */
@@ -81,6 +96,17 @@ class Game extends DatabaseObject
     public function getQuiz() //: ?Quiz
     {
         return $this->quiz;
+    }
+
+    protected function parseResult()
+    {
+        $questions = JSON::decode($this->result);
+        $i = 1;
+
+        foreach ($questions as $question) {
+            $this->questions[$i] = $question;
+            $i++;
+        }
     }
 
     /**

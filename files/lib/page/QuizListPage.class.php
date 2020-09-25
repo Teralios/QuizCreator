@@ -112,7 +112,6 @@ class QuizListPage extends SortablePage
                 'context' => 'best',
                 'withQuiz' => true,
                 'withUser' => true,
-                'limit' => 10
             ]);
         }
 
@@ -121,12 +120,11 @@ class QuizListPage extends SortablePage
                 'context' => 'last',
                 'withQuiz' => true,
                 'withUser' => true,
-                'limit' => 10
             ]);
         }
 
         if (QUIZ_LIST_MOST_PLAYED) {
-            $this->mostPlayed = /** @scrutinizer ignore-call */QuizMostPlayedCacheBuilder::getInstance()->getData(['limit' => 10]);
+            $this->mostPlayed = /** @scrutinizer ignore-call */QuizMostPlayedCacheBuilder::getInstance()->getData();
         }
     }
 

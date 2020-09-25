@@ -18,7 +18,7 @@ class QuizMostPlayedCacheBuilder extends AbstractCacheBuilder
      */
     protected function rebuild(array $parameters)
     {
-        $limit = $parameters['limit'] ?? 10;
+        $limit = 10; // @todo create option for it.
 
         $mostPlayed = new ViewableQuizList();
         $mostPlayed->withMedia();

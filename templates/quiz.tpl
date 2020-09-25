@@ -85,8 +85,10 @@
     <nav class="tabMenu">
         <ul>
             {if $__wcf->session->getPermission('user.quiz.canPlay')}<li><a href="{@$__wcf->getAnchor('gameContainer')}">{lang}wcf.quizCreator.tab.gameContainer{/lang}</a></li>{/if}
-            <li><a href="{@$__wcf->getAnchor('playerContainer')}">{lang}wcf.quizCreator.tab.playerContainer{/lang}</a></li>
-            <li><a href="{@$__wcf->getAnchor('resultContainer')}">{lang}wcf.quizCreator.tab.resultContainer{/lang}</a></li>
+            {if $quiz->type != 'fun'}
+                <li><a href="{@$__wcf->getAnchor('playerContainer')}">{lang}wcf.quizCreator.tab.playerContainer{/lang}</a></li>
+                <li><a href="{@$__wcf->getAnchor('resultContainer')}">{lang}wcf.quizCreator.tab.resultContainer{/lang}</a></li>
+            {/if}
         </ul>
     </nav>
 
@@ -115,14 +117,16 @@
             </div>
         </div>
     {/if}
+    {if $quiz->type != 'fun'}
+        <div class="tabMenuContent" id="playerContainer">
+            <pre>{$objects|print_r}</pre>
+        </div>
 
-    <div class="tabMenuContent" id="playerContainer">
-
-    </div>
-
-    <div class="tabMenuContent" id="resultContainer">
-
-    </div>
+        <div class="tabMenuContent" id="resultContainer">
+            <pre>{$questions|print_r}</pre>
+            <pre>{$game|print_r}</pre>
+        </div>
+    {/if}
 </div>
 
 {if $__wcf->session->getPermission('user.quiz.canPlay')}

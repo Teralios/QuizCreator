@@ -13,9 +13,9 @@ class QuizGameCacheBuilder extends AbstractCacheBuilder
     {
         $context = $parameters['context'] ?? 'best';
         $quizID = $parameters['quizID'] ?? 0;
-        $limit = $parameters['limit'] ?? 10;
         $withQuiz = $parameters['withQuiz'] ?? false;
         $withUser = $parameters['withUser'] ?? false;
+        $limit = 10; // @todo create option for it.
 
         $list = null;
         switch ($context) {

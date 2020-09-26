@@ -51,7 +51,7 @@ class QuizImportForm extends AbstractFormBuilderForm
                 ->label('wcf.acp.quizCreator.import.file')
                 ->description('wcf.acp.quizCreator.import.file.description')
                 ->maximum(1)
-                /*->setAcceptableFiles('json') // comes with 5.3 */
+                ->setAcceptableFiles('.json, .quiz')
                 ->addValidator(new FormFieldValidator('quizFile', $this->getFileValidator())),
             MultilineTextFormField::create('text')
                 ->label('wcf.acp.quizCreator.import.text')

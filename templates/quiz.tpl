@@ -132,18 +132,18 @@
 {if $__wcf->session->getPermission('user.quiz.canPlay')}
     <script data-relocate="true">
         require(['Teralios/QuizCreator/Quiz', 'Language'], function (Quiz, Language) {
-            Language.add('wcf.quizCreator.game.finish', '{lang}wcf.quizCreator.game.finish{/lang}');
-            Language.add('wcf.quizCreator.game.next', '{lang}wcf.quizCreator.game.next{/lang}');
-            Language.add('wcf.quizCreator.game.points', '{lang}wcf.quizCreator.game.points{/lang}');
-            Language.add('wcf.quizCreator.game.questions', '{lang}wcf.quizCreator.game.questions{/lang}');
-            Language.add('wcf.quizCreator.game.score', '{lang}wcf.quizCreator.game.score{/lang}');
-            Language.add('wcf.quizCreator.game.start', '{lang}wcf.quizCreator.game.start{/lang}');
-            Language.add('wcf.quizCreator.game.time', '{lang}wcf.quizCreator.game.time{/lang}');
-            Language.add('wcf.quizCreator.game.lastPosition', '{lang}wcf.quizCreator.game.lastPosition{/lang}');
-            Language.add('wcf.quizCreator.game.otherPlayers', '{lang}wcf.quizCreator.game.otherPlayers{/lang}');
-            Language.add('wcf.quizCreator.game.noGoal', '{lang}wcf.quizCreator.game.noGoal{/lang}');
-            Language.add('wcf.quizCreator.game.noGoal.description', '{lang}wcf.quizCreator.game.noGoal.description{/lang}');
-            Language.add('wcf.quizCreator.game.missingData', '{lang}wcf.quizCreator.game.missingData{/lang}');
+            Language.add('wcf.quizCreator.game.finish', '{jslang}wcf.quizCreator.game.finish{/jslang}');
+            Language.add('wcf.quizCreator.game.next', '{jslang}wcf.quizCreator.game.next{/jslang}');
+            Language.add('wcf.quizCreator.game.points', '{jslang}wcf.quizCreator.game.points{/jslang}');
+            Language.add('wcf.quizCreator.game.questions', '{jslang}wcf.quizCreator.game.questions{/jslang}');
+            Language.add('wcf.quizCreator.game.score', '{jslang}wcf.quizCreator.game.score{/jslang}');
+            Language.add('wcf.quizCreator.game.start', '{jslang}wcf.quizCreator.game.start{/jslang}');
+            Language.add('wcf.quizCreator.game.time', '{jslang}wcf.quizCreator.game.time{/jslang}');
+            Language.add('wcf.quizCreator.game.lastPosition', '{jslang}wcf.quizCreator.game.lastPosition{/jslang}');
+            Language.add('wcf.quizCreator.game.otherPlayers', '{jslang}wcf.quizCreator.game.otherPlayers{/jslang}');
+            Language.add('wcf.quizCreator.game.noGoal', '{jslang}wcf.quizCreator.game.noGoal{/jslang}');
+            Language.add('wcf.quizCreator.game.noGoal.description', '{jslang}wcf.quizCreator.game.noGoal.description{/jslang}');
+            Language.add('wcf.quizCreator.game.missingData', '{jslang}wcf.quizCreator.game.missingData{/jslang}');
 
             new Quiz(elById('gameContainer'));
         });

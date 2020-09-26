@@ -29,6 +29,7 @@ class QuizPage extends MultipleLinkPage
     public $neededPermissions = ['user.quiz.canView'];
     public $neededModules = ['MODULE_QUIZ_CREATOR'];
     public $objectListClassName = GameList::class;
+    public $itemsPerPage = 20; // @todo implement option
 
     /**
      * @var GameList

@@ -81,53 +81,30 @@
     </div>
 </div>
 
-<div class="section tabMenuContainer" data-active="{$activeTabMenuItem}" data-store="activeTabMenuItem" id="pageTabMenuContainer">
-    <nav class="tabMenu">
-        <ul>
-            {if $__wcf->session->getPermission('user.quiz.canPlay')}<li><a href="{@$__wcf->getAnchor('gameContainer')}">{lang}wcf.quizCreator.tab.gameContainer{/lang}</a></li>{/if}
-            {if $quiz->type != 'fun'}
-                <li><a href="{@$__wcf->getAnchor('playerContainer')}">{lang}wcf.quizCreator.tab.playerContainer{/lang}</a></li>
-                <li><a href="{@$__wcf->getAnchor('resultContainer')}">{lang}wcf.quizCreator.tab.resultContainer{/lang}</a></li>
-            {/if}
-        </ul>
-    </nav>
-
-    {if $__wcf->session->getPermission('user.quiz.canPlay')}
-        <div class="tabMenuContent gameContainer" id="gameContainer" data-id="{$quiz->quizID}">
-            <div class="gameField dummy">
-                <div class="gameHeader">
-                    <div class="questionCounter"><b>{lang}wcf.quizCreator.game.questions{/lang}</b></div>
-                    <div class="clock"><b>{lang}wcf.quizCreator.game.time{/lang}</b></div>
-                    <div class="currentQuestionValue">{lang}wcf.quizCreator.game.points{/lang}</div>
-                </div>
-                <div class="gameContent">
-                    <p>Dummy Question</p>
-                    <ul class="answerList">
-                        <li><button>Dummy 1</button></li>
-                        <li><button>Dummy 2</button></li>
-                        <li><button>Dummy 3</button></li>
-                        <li><button>Dummy 4</button></li>
-                    </ul>
-
-                    <button>{lang}wcf.quizCreator.game.next{/lang}</button>
-                </div>
-                <div class="gameFooter">
-                    <p>{lang}wcf.quizCreator.game.score{/lang}</p>
-                </div>
+{if $__wcf->session->getPermission('user.quiz.canPlay')}
+    <div class="section gameContainer" id="gameContainer" data-id="{$quiz->quizID}">
+        <div class="gameField dummy">
+            <div class="gameHeader">
+                <div class="questionCounter"><b>{lang}wcf.quizCreator.game.questions{/lang}</b></div>
+                <div class="clock"><b>{lang}wcf.quizCreator.game.time{/lang}</b></div>
+                <div class="currentQuestionValue">{lang}wcf.quizCreator.game.points{/lang}</div>
+            </div>
+            <div class="gameContent">
+                <p>Dummy Question</p>
+                <ul class="answerList">
+                    <li><button>Dummy 1</button></li>
+                    <li><button>Dummy 2</button></li>
+                    <li><button>Dummy 3</button></li>
+                    <li><button>Dummy 4</button></li>
+                </ul>
+                <button>{lang}wcf.quizCreator.game.next{/lang}</button>
+            </div>
+            <div class="gameFooter">
+                <p>{lang}wcf.quizCreator.game.score{/lang}</p>
             </div>
         </div>
-    {/if}
-    {if $quiz->type != 'fun'}
-        <div class="tabMenuContent" id="playerContainer">
-            <pre>{$objects|print_r}</pre>
-        </div>
-
-        <div class="tabMenuContent" id="resultContainer">
-            <pre>{$questions|print_r}</pre>
-            <pre>{$game|print_r}</pre>
-        </div>
-    {/if}
-</div>
+    </div>
+{/if}
 
 {if $__wcf->session->getPermission('user.quiz.canPlay')}
     <script data-relocate="true">

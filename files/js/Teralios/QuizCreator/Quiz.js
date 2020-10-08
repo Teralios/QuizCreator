@@ -27,7 +27,7 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizCreator/Game'], function
                 this._gameFieldContainer.className = 'gameField';
                 this._gameContainer.appendChild(this._gameFieldContainer);
             } else {
-                // this._gameContainer.style.height = this._gameContainer.offsetHeight + 'px';
+                this._gameContainer.style.height = this._gameContainer.offsetHeight + 'px';
                 this._gameFieldContainer.innerHTML = '';
                 this._gameFieldContainer.classList.remove('dummy');
             }

@@ -23,18 +23,11 @@ use wcf\system\WCF;
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
-class QuizPage extends MultipleLinkPage
+class QuizPage extends AbstractPage
 {
     // inherit vars
     public $neededPermissions = ['user.quiz.canView'];
     public $neededModules = ['MODULE_QUIZ_CREATOR'];
-    public $objectListClassName = GameList::class;
-    public $itemsPerPage = 20; // @todo implement option
-
-    /**
-     * @var GameList
-     */
-    public $objectList = null;
 
     /**
      * @var ViewableQuiz
@@ -66,9 +59,6 @@ class QuizPage extends MultipleLinkPage
      */
     public $tags = [];
 
-    public $game = null;
-    public $questions = null;
-
     /**
      * @var string
      */
@@ -99,23 +89,6 @@ class QuizPage extends MultipleLinkPage
     }
 
     /**
-     * @inheritdoc
-     * @throws SystemException
-     */
-    public function initObjectList()
-    {
-        parent::initObjectList();
-
-        $this->objectList->getConditionBuilder()->add(
-            $this->objectList->getDatabaseTableAlias() . '.quizID = ?',
-            [$this->quiz->quizID]
-        );
-        $this->objectList->withUser();
-        $this->objectList->sqlOrderBy = $this->objectList->getDatabaseTableAlias() . '.scorePercent DESC';
-        $this->objectList->sqlOrderBy .= ', ' . $this->objectList->getDatabaseTAbleAlias() . '.timeTotal ASC';
-    }
-
-    /**
      * @inheritDoc
      * @throws SystemException
      */
@@ -142,16 +115,6 @@ class QuizPage extends MultipleLinkPage
         if (MODULE_TAGGING) {
             $this->tags = /** @scrutinizer ignore-call */TagEngine::getInstance()->getObjectTags(Quiz::OBJECT_TYPE, $this->quiz->getObjectID());
         }
-
-        // questions and game of user
-        if (WCF::getUser()->userID !== null) {
-            $this->game = Game::getGame($this->quiz->getDecoratedObject(), WCF::getUser()->userID);
-
-            if ($this->game->gameID) {
-                $this->questions = new QuestionList($this->quiz->getDecoratedObject());
-                $this->questions->readObjects();
-            }
-        }
     }
 
     /**
@@ -166,8 +129,6 @@ class QuizPage extends MultipleLinkPage
             'bestPlayers' => $this->bestPlayers,
             'lastPlayers' => $this->lastPlayers,
             'tags' => $this->tags,
-            'game' => $this->game,
-            'questions' => $this->questions,
             'activeTabMenuItem' => $this->activeTabMenuItem,
             'showQuizMakerCopyright' => $this->showCopyright,
         ]);

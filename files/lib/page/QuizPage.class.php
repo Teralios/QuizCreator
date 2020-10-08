@@ -5,6 +5,7 @@ namespace wcf\page;
 // imports
 use wcf\data\quiz\game\GameList;
 use wcf\data\quiz\Quiz;
+use wcf\data\quiz\ViewableQuiz;
 use wcf\system\cache\builder\QuizGameCacheBuilder;
 use wcf\system\exception\SystemException;
 use wcf\system\tagging\TagEngine;
@@ -94,8 +95,9 @@ class QuizPage extends AbstractPage
     {
         parent::assignVariables();
 
-        $this->assignQuizData();
         WCF::getTPL()->assign([
+            'quiz' => new ViewableQuiz($this->quiz),
+            'tags' => $this->tags,
             'bestPlayers' => $this->bestPlayers,
             'lastPlayers' => $this->lastPlayers,
             'activeTabMenuItem' => $this->activeTabMenuItem,

@@ -28,7 +28,7 @@ trait TQuizPage
     public $quizID = 0;
 
     /**
-     * @var ViewableQuiz
+     * @var Quiz
      */
     public $quiz;
 
@@ -56,24 +56,24 @@ trait TQuizPage
             throw new PermissionDeniedException();
         }
 
-        $this->quiz = new ViewableQuiz($quiz);
-
-        // read tags
-        if (MODULE_TAGGING) {
-            $this->tags = /** @scrutinizer ignore-call */TagEngine::getInstance()->getObjectTags(Quiz::OBJECT_TYPE, $this->quiz->getObjectID());
-        }
+        $this->quiz = $quiz;
     }
 
+    /**
+     * Set quiz data and tags.
+     */
     public function assignQuizData()
     {
         WCF::getTPL()->assign([
             'quiz' => $this->quiz,
-            'tags' => $this->tags
         ]);
     }
 
+    /**
+     * @throws SystemException
+     */
     public function setQuizParentLocation()
     {
-        /** @scrutinizer ignore-call */PageLocationManager::getInstance()->addParentLocation('de.teralios.quizCreator.Quiz', $this->quizID, $this->quiz->getDecoratedObject());
+        /** @scrutinizer ignore-call */PageLocationManager::getInstance()->addParentLocation('de.teralios.quizCreator.Quiz', $this->quizID, $this->quiz);
     }
 }

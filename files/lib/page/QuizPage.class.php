@@ -87,11 +87,10 @@ class QuizPage extends AbstractPage
     {
         parent::assignVariables();
 
+        $this->assignQuizData();
         WCF::getTPL()->assign([
-            'quiz' => $this->quiz,
             'bestPlayers' => $this->bestPlayers,
             'lastPlayers' => $this->lastPlayers,
-            'tags' => $this->tags,
             'activeTabMenuItem' => $this->activeTabMenuItem,
             'showQuizMakerCopyright' => $this->showCopyright,
         ]);

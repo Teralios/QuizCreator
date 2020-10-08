@@ -7,6 +7,8 @@ use wcf\data\quiz\Quiz;
 use wcf\data\quiz\ViewableQuiz;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
+use wcf\system\exception\SystemException;
+use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 
 /**
@@ -29,6 +31,17 @@ trait TQuizPage
      */
     public $quiz;
 
+    /**
+     * @var Tag[]
+     */
+    public $tags = [];
+
+    /**
+     * Base implementation for readParameters for quiz pages.
+     * @throws IllegalLinkException
+     * @throws PermissionDeniedException
+     * @throws SystemException
+     */
     public function readParameters()
     {
         parent::readParameters();
@@ -45,5 +58,18 @@ trait TQuizPage
         }
 
         $this->quiz = new ViewableQuiz($quiz);
+
+        // read tags
+        if (MODULE_TAGGING) {
+            $this->tags = /** @scrutinizer ignore-call */TagEngine::getInstance()->getObjectTags(Quiz::OBJECT_TYPE, $this->quiz->getObjectID());
+        }
+    }
+
+    public function assignQuizData()
+    {
+        WCF::getTPL()->assign([
+            'quiz' => $this->quiz,
+            'tags' => $this->tags
+        ]);
     }
 }

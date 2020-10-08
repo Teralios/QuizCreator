@@ -4,6 +4,7 @@ namespace wcf\page;
 
 // imports
 use wcf\data\quiz\game\GameList;
+use wcf\system\WCF;
 
 class QuizPlayerList extends MultipleLinkPage
 {
@@ -17,6 +18,15 @@ class QuizPlayerList extends MultipleLinkPage
      * @var GameList
      */
     public $objectList = null;
+
+
+    public function readParameters()
+    {
+        parent::readParameters();
+
+        $this->readQuizParameters();
+        $this->setQuizParentLocation();
+    }
 
     public function initObjectList()
     {

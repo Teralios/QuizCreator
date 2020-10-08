@@ -51,6 +51,13 @@ class QuizPage extends AbstractPage
      */
     public $activeTabMenuItem = 'gameContainer';
 
+    public function readParameters()
+    {
+        parent::readParameters();
+
+        $this->readQuizParameters();
+    }
+
     /**
      * @inheritDoc
      * @throws SystemException

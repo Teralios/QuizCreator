@@ -25,6 +25,18 @@
 			<parent>de.teralios.quizCreator.QuizList</parent>
 			<permissions>user.quiz.canView</permissions>
 			<allowSpidersToIndex>1</allowSpidersToIndex>
+			<requireObjectID>1</requireObjectID>
+		</page>
+
+		<page identifier="de.teralios.quizCreator.Players">
+			<pageType>system</pageType>
+			<controller>wcf\page\QuizPlayerList</controller>
+			<name language="de">Quizspieler</name>
+			<name language="en">Quiz players</name>
+			<hasFixedParent>1</hasFixedParent>
+			<parent>de.teralios.quizCreator.Quiz</parent>
+			<permissions>user.quiz.canView</permissions>
+			<requireObjectID>1</requireObjectID>
 		</page>
 	</import>
 </data>

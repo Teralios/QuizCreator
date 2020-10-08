@@ -16,6 +16,7 @@
                     </li>
                 {/foreach}
                 </ul>
+                <p><a href="{link controller='QuizPlayerList' object=$quiz}{/link}">{lang}wcf.quizCreator.quiz.showPlayers{/lang}</a></p>
             </div>
         </section>
     {/if}

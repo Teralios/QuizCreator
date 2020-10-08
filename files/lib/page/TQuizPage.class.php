@@ -8,6 +8,7 @@ use wcf\data\quiz\ViewableQuiz;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
+use wcf\system\page\PageLocationManager;
 use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 
@@ -42,10 +43,8 @@ trait TQuizPage
      * @throws PermissionDeniedException
      * @throws SystemException
      */
-    public function readParameters()
+    public function readQuizParameters()
     {
-        parent::readParameters();
-
         $this->quizID = $_REQUEST['id'] ?? 0;
 
         $quiz = new Quiz((int) $this->quizID);
@@ -71,5 +70,10 @@ trait TQuizPage
             'quiz' => $this->quiz,
             'tags' => $this->tags
         ]);
+    }
+
+    public function setQuizParentLocation()
+    {
+        /** @scrutinizer ignore-call */PageLocationManager::getInstance()->addParentLocation('de.teralios.quizCreator.Quiz', $this->quizID, $this->quiz->getDecoratedObject());
     }
 }

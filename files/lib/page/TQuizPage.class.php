@@ -74,6 +74,10 @@ trait TQuizPage
      */
     public function setQuizParentLocation()
     {
-        /** @scrutinizer ignore-call */PageLocationManager::getInstance()->addParentLocation('de.teralios.quizCreator.Quiz', $this->quizID, $this->quiz);
+        /** @scrutinizer ignore-call */PageLocationManager::getInstance()->addParentLocation(
+            'de.teralios.quizCreator.Quiz',
+            $this->quizID,
+            $this->quiz
+        );
     }
 }

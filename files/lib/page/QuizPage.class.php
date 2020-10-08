@@ -3,14 +3,9 @@
 namespace wcf\page;
 
 // imports
-use wcf\data\quiz\game\Game;
 use wcf\data\quiz\game\GameList;
-use wcf\data\quiz\question\QuestionList;
 use wcf\data\quiz\Quiz;
-use wcf\data\quiz\ViewableQuiz;
 use wcf\system\cache\builder\QuizGameCacheBuilder;
-use wcf\system\exception\IllegalLinkException;
-use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
 use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
@@ -25,19 +20,11 @@ use wcf\system\WCF;
  */
 class QuizPage extends AbstractPage
 {
+    use TQuizPage;
+
     // inherit vars
     public $neededPermissions = ['user.quiz.canView'];
     public $neededModules = ['MODULE_QUIZ_CREATOR'];
-
-    /**
-     * @var ViewableQuiz
-     */
-    public $quiz;
-
-    /**
-     * @var int
-     */
-    public $quizID = 0;
 
     /**
      * @var bool
@@ -63,30 +50,6 @@ class QuizPage extends AbstractPage
      * @var string
      */
     public $activeTabMenuItem = 'gameContainer';
-
-    /**
-     * @inheritDoc
-     * @throws IllegalLinkException
-     * @throws PermissionDeniedException
-     * @throws SystemException
-     */
-    public function readParameters()
-    {
-        parent::readParameters();
-
-        $this->quizID = $_REQUEST['id'] ?? 0;
-
-        $quiz = new Quiz((int) $this->quizID);
-        if (!$quiz->quizID) {
-            throw new IllegalLinkException();
-        }
-
-        if ($quiz->isActive == 0 && !WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
-            throw new PermissionDeniedException();
-        }
-
-        $this->quiz = new ViewableQuiz($quiz);
-    }
 
     /**
      * @inheritDoc

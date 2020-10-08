@@ -8,7 +8,7 @@ build:
         before:
         - git clone https://github.com/WoltLab/WCF.git wcf/
         - cd wcf/
-        - git checkout 5.2
+        #- git checkout 5.2
         - cd ..
       tests:
         override:

@@ -7,5 +7,11 @@
             <eventname>copyright</eventname>
             <templatecode><![CDATA[{include file='__quizCreatorCopyright'}]]></templatecode>
         </templatelistener>
+        <templatelistener name="teraliosJSInclude">
+            <environment>user</environment>
+            <templatename>headInclude</templatename>
+            <eventname>javascriptInclude</eventname>
+            <templatecode><![CDATA[{if !ENABLE_DEBUG_MODE && $templateName == 'quiz'}{js application='wcf' file='Teralios.QuizCreator' core='true' hasTiny=true}{/if}]]></templatecode>
+        </templatelistener>
     </import>
 </data>

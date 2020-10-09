@@ -35,6 +35,10 @@ class QuizPlayerListPage extends MultipleLinkPage
         $this->objectList->withUser();
         $this->objectList->sqlOrderBy = $this->objectList->getDatabaseTableAlias() . '.score DESC';
         $this->objectList->sqlOrderBy .= ', ' . $this->objectList->getDatabaseTableAlias() . '.timeTotal ASC';
+        $this->objectList->getConditionBuilder()->add(
+            $this->objectList->getDatabaseTableAlias() . '.quizID = ?',
+            [$this->quiz->quizID]
+        );
     }
 
     public function assignVariables()

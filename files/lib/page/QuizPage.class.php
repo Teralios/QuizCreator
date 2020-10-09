@@ -3,6 +3,7 @@
 namespace wcf\page;
 
 // imports
+use wcf\data\quiz\game\Game;
 use wcf\data\quiz\game\GameList;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\ViewableQuiz;
@@ -48,6 +49,11 @@ class QuizPage extends AbstractPage
     public $tags = [];
 
     /**
+     * @var Game
+     */
+    public $game = null;
+
+    /**
      * @var string
      */
     public $activeTabMenuItem = 'gameContainer';
@@ -86,6 +92,8 @@ class QuizPage extends AbstractPage
         if (MODULE_TAGGING) {
             $this->tags = /** @scrutinizer ignore-call */TagEngine::getInstance()->getObjectTags(Quiz::OBJECT_TYPE, $this->quiz->getObjectID());
         }
+
+        $this->game = Game::getGame($this->quiz, WCF::getUser()->userID);
     }
 
     /**
@@ -98,6 +106,7 @@ class QuizPage extends AbstractPage
         WCF::getTPL()->assign([
             'quiz' => new ViewableQuiz($this->quiz),
             'tags' => $this->tags,
+            'game' => $this->game,
             'bestPlayers' => $this->bestPlayers,
             'lastPlayers' => $this->lastPlayers,
             'activeTabMenuItem' => $this->activeTabMenuItem,

@@ -57,12 +57,13 @@ class Game extends DatabaseObject
      * Returns needed time for quiz as second.
      * @return string
      */
-    public function getPlayTime(): string
+    public function getPlayTime(bool $last = false): string
     {
-        $minutes = round($this->timeTotal / 60, 0);
-        $seconds = $this->timeTotal % 60;
+        $time = ($last) ? $this->lastTimeTotal : $this->timeTotal;
+        $minutes = round($time / 60, 0);
+        $seconds = $time % 60;
 
-        return $minutes . ':' . ((strlen($seconds) == 1) ? $seconds . '0' : $seconds);
+        return $minutes . ':' . (($seconds < 10) ? '0' . $seconds : $seconds);
     }
 
     /**

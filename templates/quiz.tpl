@@ -11,7 +11,7 @@
                         <a href="{@$user->getLink()}">{@$user->getAvatar()->getImageTag(24)}</a>
                         <div class="sidebarItemTitle">
                             <h3>{user object=$user}</h3>
-                            <small>{#$player->score} <b>{lang}wcf.quizCreator.game.score{/lang}</b></small>
+                            <small>{#$player->score} <b>{lang}wcf.quizCreator.player.score{/lang}</b></small>
                         </div>
                     </li>
                 {/foreach}
@@ -36,6 +36,41 @@
                             </div>
                         </li>
                     {/foreach}
+                </ul>
+            </div>
+        </section>
+    {/if}
+
+    {if $game !== null}
+        <section class="box">
+            <h2 class="boxTitle">{lang}wcf.quizCreator.quiz.box.userResult{/lang}</h2>
+            <div class="boxContent">
+                <ul class="sidebarItemList">
+                    <li>
+                        <h3>{lang}wcf.quizCreator.players.played{/lang}</h3>
+                        <dl class="plain dataList">
+                            <dt><b>{lang}wcf.quizCreator.player.score{/lang}</b></dt>
+                            <dd>{$game->score}</dd>
+                        </dl>
+                        <dl class="plain dataList">
+                            <dt><b>{lang}wcf.quizCreator.player.gameTime{/lang}</b></dt>
+                            <dd>{$game->getPlayTime()}</dd>
+                        </dl>
+                    </li>
+                    {if $game->lastPlayedTime > 0}
+                        <li>
+                            <h3>{lang}wcf.quizCreator.player.lastPlayed{/lang}</h3>
+                            <dl class="plain dataList">
+                                <dt><b>{lang}wcf.quizCreator.player.score{/lang}</b></dt>
+                                <dd>{$game->lastScore}</dd>
+                            </dl>
+                            <dl class="plain dataList">
+                                <dt><b>{lang}wcf.quizCreator.player.gameTime{/lang}</b></dt>
+                                <dd>{$game->getPlayTime(true)}</dd>
+                            </dl>
+                        </li>
+
+                    {/if}
                 </ul>
             </div>
         </section>

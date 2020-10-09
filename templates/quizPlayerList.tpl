@@ -39,8 +39,8 @@
                         <li class="columnUser">
                             <h3>{user object=$user}</h3>
                             <ul class="inlineList dotSeparated small">
-                                <li>{lang}wcf.quizCreator.players.played{/lang} {@$game->playedTime|time}</li>
-                                {if $game->lastPlayedTime > 0}<li>{lang}wcf.quizCreator.player.lastPlayed{/lang} {@$game->lastPlayedTime|time}</li>{/if}
+                                <li>{lang}wcf.quizCreator.players.played{/lang}: {@$game->playedTime|time}</li>
+                                {if $game->lastPlayedTime > 0}<li>{lang}wcf.quizCreator.player.lastPlayed{/lang}: {@$game->lastPlayedTime|time}</li>{/if}
                             </ul>
                         </li>
                         <li class="columnStats">

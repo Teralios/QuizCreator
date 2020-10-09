@@ -4,12 +4,10 @@ namespace wcf\page;
 
 // imports
 use wcf\data\quiz\Quiz;
-use wcf\data\quiz\ViewableQuiz;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
 use wcf\system\page\PageLocationManager;
-use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 
 /**
@@ -41,7 +39,6 @@ trait TQuizPage
      * Base implementation for readParameters for quiz pages.
      * @throws IllegalLinkException
      * @throws PermissionDeniedException
-     * @throws SystemException
      */
     public function readQuizParameters()
     {

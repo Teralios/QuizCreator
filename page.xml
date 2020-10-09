@@ -30,7 +30,7 @@
 
 		<page identifier="de.teralios.quizCreator.Players">
 			<pageType>system</pageType>
-			<controller>wcf\page\QuizPlayerList</controller>
+			<controller>wcf\page\QuizPlayerListPage</controller>
 			<name language="de">Quizspieler</name>
 			<name language="en">Quiz players</name>
 			<hasFixedParent>1</hasFixedParent>

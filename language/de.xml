@@ -79,6 +79,16 @@
 		<item name="wcf.quizCreator.game.noGoal"><![CDATA[Knapp verpasst!]]></item>
 		<item name="wcf.quizCreator.game.noGoal.description"><![CDATA[Leider hat es für ein „Goal“ nicht ganz gereicht.]]></item>
 		<item name="wcf.quizCreator.played"><![CDATA[mal gespielt]]></item>
+		<item name="wcf.quizCreator.quiz.playerList"><![CDATA[Quiz-Spieler]]></item>
+		<item name="wcf.quizCreator.quiz.showPlayers"><![CDATA[Zeige Spieler]]></item>
+		<item name="wcf.quizCreator.quiz.backTo"><![CDATA[Zurück zum Quiz]]></item>
+		<item name="wcf.quizCreator.players.placement"><![CDATA[#]]></item>
+		<item name="wcf.quizCreator.players.name"><![CDATA[Spieler]]></item>
+		<item name="wcf.quizCreator.player.score"><![CDATA[Punkte]]></item>
+		<item name="wcf.quizCreator.player.gameTime"><![CDATA[Minuten]]></item>
+		<item name="wcf.quizCreator.players.played"><![CDATA[Offizielles Ergebnis]]></item>
+		<item name="wcf.quizCreator.player.lastPlayed"><![CDATA[Zuletzt gespielt]]></item>
+		<item name="wcf.quizCreator.players.noPlayers"><![CDATA[Es hat noch niemand das Quiz gespielt.]]></item>
 	</category>
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Kann Quizze verwalten]]></item>

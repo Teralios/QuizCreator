@@ -155,3 +155,28 @@
     }
   }
 }
+
+.playerList {
+  .place1 {
+    color: gold;
+  }
+
+  .place2 {
+    color: silver;
+  }
+
+  .place3 {
+    color: #bf8970;
+  }
+
+  .tabularListRow {
+    .columnUser {
+      flex: 1 1 auto;
+    }
+
+    .columnStats {
+      flex: 0 0 150px;
+      text-align: center;
+    }
+  }
+}

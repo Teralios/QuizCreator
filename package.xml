@@ -6,8 +6,8 @@
 		<packagedescription>Create fun little quizzes for your website.</packagedescription>
 		<packagedescription language="de">Erstellen Sie kleine spassige Quizze für Ihre Webseite.</packagedescription>
 		<version>1.0.0 Beta 3</version>
-		<date>2020-09-04</date>
-		<license/>
+		<date>2020-10-09</date>
+		<license>GNU GPLv3</license>
 	</packageinformation>
 	<authorinformation>
 		<author>Karsten (Teralios) Achterrath</author>
@@ -21,13 +21,10 @@
 		<excludedpackage>com.uz.wcf.quiz</excludedpackage>
 	</excludedpackages>
 	<instructions type="install">
-		<!-- files -->
 		<instruction type="sql" run="standalone">install.sql</instruction>
 		<instruction type="file" run="standalone" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="template" application="wcf"/>
-
-		<!-- XML -->
 		<instruction type="templateListener"/>
 		<instruction type="page"/>
 		<instruction type="acpMenu"/>
@@ -38,14 +35,12 @@
 		<instruction type="objectType"/>
 	</instructions>
 	<instructions type="update" fromversion="1.0.0 Beta 2">
-		<!-- files -->
 		<instruction type="sql" run="standalone">update_b2.sql</instruction>
 		<instruction type="file" run="standalone" application="wcf"/>
 		<instruction type="acpTemplate" application="wcf"/>
 		<instruction type="template" application="wcf"/>
-
-		<!-- xml -->
 		<instruction type="objectType"/>
 		<instruction type="language"/>
+		<instruction type="page"/>
 	</instructions>
 </package>

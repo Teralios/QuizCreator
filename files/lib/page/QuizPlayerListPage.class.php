@@ -4,9 +4,9 @@ namespace wcf\page;
 
 // imports
 use wcf\data\quiz\game\GameList;
-use wcf\system\WCF;
+use wcf\system\WCF as WCF;
 
-class QuizPlayerList extends MultipleLinkPage
+class QuizPlayerListPage extends MultipleLinkPage
 {
     // quiz page trait
     use TQuizPage;
@@ -42,5 +42,8 @@ class QuizPlayerList extends MultipleLinkPage
         parent::assignVariables();
 
         $this->assignQuizData();
+        WCF::getTPL()->assign([
+            'placementStart' => (1 + (25 * ($this->pageNo - 1)))
+        ]);
     }
 }

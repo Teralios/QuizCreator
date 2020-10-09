@@ -10,13 +10,13 @@
                     <li class="box24">
                         <a href="{@$user->getLink()}">{@$user->getAvatar()->getImageTag(24)}</a>
                         <div class="sidebarItemTitle">
-                            <h3><a href="{@$user->getLink()}">{$user->username}</a></h3>
+                            <h3>{user object=$user}</h3>
                             <small>{#$player->score} <b>{lang}wcf.quizCreator.game.score{/lang}</b></small>
                         </div>
                     </li>
                 {/foreach}
                 </ul>
-                <p><a href="{link controller='QuizPlayerList' object=$quiz}{/link}">{lang}wcf.quizCreator.quiz.showPlayers{/lang}</a></p>
+                <p class="small text-center"><a href="{link controller='QuizPlayerList' object=$quiz}{/link}">{lang}wcf.quizCreator.quiz.showPlayers{/lang}</a></p>
             </div>
         </section>
     {/if}
@@ -31,7 +31,7 @@
                         <li class="box24">
                             <a href="{@$user->getLink()}">{@$user->getAvatar()->getImageTag(24)}</a>
                             <div class="sidebarItemTitle">
-                                <h3><a href="{@$user->getLink()}">{$user->username}</a></h3>
+                                <h3>{user object=$user}</h3>
                                 <small>{@$player->playedTime|time}</small>
                             </div>
                         </li>

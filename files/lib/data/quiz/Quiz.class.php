@@ -5,6 +5,7 @@ namespace wcf\data\quiz;
 // imports
 use wcf\data\DatabaseObject;
 use wcf\data\ILinkableObject;
+use wcf\data\ITitledLinkObject;
 use wcf\data\media\ViewableMedia;
 use wcf\system\Exception\SystemException;
 use wcf\system\form\builder\field\IntegerFormField;
@@ -32,7 +33,7 @@ use wcf\util\StringUtil;
  * @property-read int $goals
  * @property-read int $played
  */
-class Quiz extends DatabaseObject implements ILinkableObject, IRouteController
+class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
 {
     // inherit vars
     protected static $databaseTableName = 'quiz';

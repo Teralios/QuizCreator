@@ -110,7 +110,7 @@ class ViewableQuizList extends QuizList
         $statement = WCF::getDB()->prepareStatement($sql);
         $statement->execute($this->objectIDs);
 
-        while (($row = $statement->fetchArray()) != false) {
+        while (($row = $statement->fetchArray()) !== false) {
             if (isset($this->objects[$row['quizID']])) {
                 /** @var $quiz ViewableQuiz */
                 $quiz = $this->objects[$row['quizID']];

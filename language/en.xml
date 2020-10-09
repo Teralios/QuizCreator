@@ -86,8 +86,8 @@
 		<item name="wcf.quizCreator.players.name"><![CDATA[Player]]></item>
 		<item name="wcf.quizCreator.player.score"><![CDATA[Score]]></item>
 		<item name="wcf.quizCreator.player.gameTime"><![CDATA[Minutes]]></item>
-		<item name="wcf.quizCreator.players.played"><![CDATA[Official result]]></item>
-		<item name="wcf.quizCreator.player.lastPlayed"><![CDATA[Last played]]></item>
+		<item name="wcf.quizCreator.players.played"><![CDATA[Official result:]]></item>
+		<item name="wcf.quizCreator.player.lastPlayed"><![CDATA[Last played:]]></item>
 		<item name="wcf.quizCreator.players.noPlayers"><![CDATA[No one has played the quiz yet.]]></item>
 	</category>
 	<category name="wcf.acp.group">

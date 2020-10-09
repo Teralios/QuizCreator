@@ -1,6 +1,8 @@
 define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (StringUtil, Language, Result) {
     "use strict";
 
+    /** global: WCF_CLICK_EVENT */
+
     // game vars
     var neededKeys = ['quizID', 'type', 'questions', 'questionList', 'goalList'];
     var answers = ['A', 'B', 'C', 'D'];
@@ -147,7 +149,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             // build start button
             this._buttonStart = elCreate('button');
             this._buttonStart.textContent = Language.get('wcf.quizCreator.game.start');
-            this._buttonStart.addEventListener(/** global: WCF_CLICK_EVENT */WCF_CLICK_EVENT, this.startGame.bind(this));
+            this._buttonStart.addEventListener(WCF_CLICK_EVENT, this.startGame.bind(this));
             this._contentContainer.appendChild(this._buttonStart);
         },
 
@@ -200,7 +202,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
 
             this._buttonNext = elCreate('button');
             this._buttonNext.textContent = Language.get('wcf.quizCreator.game.next');
-            this._buttonNext.addEventListener(/** global: WCF_CLICK_EVENT */WCF_CLICK_EVENT, this.next.bind(this));
+            this._buttonNext.addEventListener(WCF_CLICK_EVENT, this.next.bind(this));
             this._buttonNext.style.visibility = 'hidden';
             this._contentContainer.appendChild(this._buttonNext)
         },
@@ -224,7 +226,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
 
                 button.className = 'answer';
                 elData(button, 'value', key);
-                button.addEventListener(/** global: WCF_CLICK_EVENT */WCF_CLICK_EVENT, this.answer.bind(this));
+                button.addEventListener(WCF_CLICK_EVENT, this.answer.bind(this));
 
                 var liElement = elCreate('li');
                 liElement.appendChild(button);

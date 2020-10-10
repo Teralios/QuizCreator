@@ -11,10 +11,11 @@ use wcf\form\AbstractFormBuilderForm;
 use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\field\BooleanFormField;
-use wcf\system\form\builder\field\dependency\EmptyFormFieldDependency;
 use wcf\system\form\builder\field\dependency\NonEmptyFormFieldDependency;
+use wcf\system\form\builder\field\dependency\ValueFormFieldDependency;
 use wcf\system\form\builder\field\language\ContentLanguageFormField;
 use wcf\system\form\builder\field\MultilineTextFormField;
+use wcf\system\form\builder\field\RadioButtonFormField;
 use wcf\system\form\builder\field\UploadFormField;
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
 use wcf\system\form\builder\field\validation\FormFieldValidator;
@@ -47,11 +48,17 @@ class QuizImportForm extends AbstractFormBuilderForm
         // container
         $container = FormContainer::create('importQuiz');
         $container->appendChildren([
+            RadioButtonFormField::create('type')
+                ->label('wcf.acp.quizCreator.import.type')
+                ->options([
+                    'file' => 'wcf.acp.quizCreator.import.type.file',
+                    'text' => 'wcf.acp.quizCreator.import.type.text'
+                ]),
             UploadformField::create('file')
                 ->label('wcf.acp.quizCreator.import.file')
                 ->description('wcf.acp.quizCreator.import.file.description')
                 ->maximum(1)
-                ->setAcceptableFiles(['json', 'quiz'])
+                ->setAcceptableFiles(['.json', '.quiz'])
                 ->addValidator(new FormFieldValidator('quizFile', $this->getFileValidator())),
             MultilineTextFormField::create('text')
                 ->label('wcf.acp.quizCreator.import.text')
@@ -65,9 +72,15 @@ class QuizImportForm extends AbstractFormBuilderForm
         ]);
 
         // dependency
-        $dependency = EmptyFormFieldDependency::create('textOrFile');
-        $dependency->field($container->getNodeById('text'));
+        $dependency = ValueFormFieldDependency::create('useFile');
+        $dependency->field($container->getNodeById('type'));
+        $dependency->values(['file']);
         $container->getNodeById('file')->addDependency($dependency);
+
+        $dependency = ValueFormFieldDependency::create('tuseText');
+        $dependency->field($container->getNodeById('type'));
+        $dependency->values(['text']);
+        $container->getNodeById('text')->addDependency($dependency);
 
         $dependency = NonEmptyFormFieldDependency::create('languageOverride');
         $dependency->field($container->getNodeById('languageID'));

@@ -13,6 +13,7 @@ This file lists all changes like new features, improved functions and fixed bugs
   * Use 'updateCounters' when its possible.
   * Use wsc 5.3 improvements in templates.
   * Use wsc 5.3 improvement for file upload field.
+  * Chose »file« or »text« in import form.
   
 ### Bugs
   * Fix error on result page. (undefined var)

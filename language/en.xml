@@ -52,6 +52,9 @@
 		<item name="wcf.acp.quizCreator.import.overrideLanguage"><![CDATA[Override language]]></item>
 		<item name="wcf.acp.quizCreator.import.overrideLanguage.description"/>
 		<item name="wcf.acp.quizCreator.quiz.notActive"><![CDATA[deactivated]]></item>
+		<item name="wcf.acp.quizCreator.import.type"><![CDATA[Data source]]></item>
+		<item name="wcf.acp.quizCreator.import.type.file"><![CDATA[Import file]]></item>
+		<item name="wcf.acp.quizCreator.import.type.text"><![CDATA[Import text]]></item>
 	</category>
 	<category name="wcf.quizCreator">
 		<item name="wcf.quizCreator.creationDate"><![CDATA[Date]]></item>

@@ -29,6 +29,7 @@ class QuizListPage extends SortablePage
     public $validSortFields = ['title', 'creationDate'];
     public $neededPermissions = ['user.quiz.canView'];
     public $neededModules = ['MODULE_QUIZ_CREATOR'];
+    public $defaultSortOrder = 'DESC';
 
     /**
      * @var ViewableQuizList

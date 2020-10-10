@@ -69,9 +69,13 @@
                                 <dd>{$game->getPlayTime(true)}</dd>
                             </dl>
                         </li>
-
                     {/if}
                 </ul>
+            </div>
+            <div class="text-center boxContent">
+                <button class="small" id="showUserResult" data-quiz-id="{#$quiz->quizID}" data-game-id="{#$game->gameID}">
+                    {lang}wcf.quizCreator.player.showResult{/lang}
+                </button>
             </div>
         </section>
     {/if}
@@ -159,7 +163,15 @@
             Language.add('wcf.quizCreator.game.missingData', '{jslang}wcf.quizCreator.game.missingData{/jslang}');
 
             new Quiz(elById('gameContainer'));
-        });
+        })
+    </script>
+{/if}
+
+{if $game !== null}
+    <script data-relocate="true">
+        require(['Teralios/QuizCreator/GameResultDialog', 'Language'], function(GameResultDialog, Language) {
+            GameResultDialog.init();
+        })
     </script>
 {/if}
 

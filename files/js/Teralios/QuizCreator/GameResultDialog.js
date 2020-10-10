@@ -2,8 +2,8 @@ define(['Ajax', 'Ui/Dialog', 'Language', 'StringUtil'], function (Ajax, UiDialog
     "use strict";
 
     return {
-        init: function(quizID, gameID) {
-
+        init: function () {
+            var button = elById('showUserResult');
         },
     };
 });

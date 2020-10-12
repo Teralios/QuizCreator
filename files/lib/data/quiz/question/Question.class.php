@@ -30,6 +30,7 @@ class Question extends DatabaseObject
 {
     protected static $databaseTableName = 'quiz_question';
     protected static $databaseTableIndexName = 'questionID';
+    protected static $possibleOptions = ['A', 'B', 'C', 'D'];
 
     /**
      * Returns parsed explanation
@@ -40,5 +41,17 @@ class Question extends DatabaseObject
     public function getExplanation(bool $parsed = true)
     {
         return ($parsed) ? /** @scrutinizer ignore-call */SimpleMessageParser::getInstance()->parse($this->explanation) : $this->explanation;
+    }
+
+    public function getOption(string $option)
+    {
+        $option = 'option'.$option;
+
+        return $this->{$option};
+    }
+
+    public function getPossibleOptions()
+    {
+        return static::$possibleOptions;
     }
 }

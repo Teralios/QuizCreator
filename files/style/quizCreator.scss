@@ -180,3 +180,73 @@
     }
   }
 }
+
+.questionList {
+  .columnTitle {
+    h3 {
+      font-size: $wcfFontSizeHeadline;
+    }
+  }
+
+  .correct {
+    color: $wcfStatusSuccessText;
+    background-color: $wcfStatusSuccessBackground;
+
+    .icon {
+      color: $wcfStatusSuccessText;
+    }
+  }
+
+  .wrong {
+    color: $wcfStatusErrorText;
+    background-color: $wcfStatusErrorBackground;
+
+    .icon {
+      color: $wcfStatusErrorText;
+    }
+  }
+
+  .userAnswer {
+    font-weight: bold;
+  }
+
+  .userStats {
+    .tabularListColumns {
+      justify-content: space-between;
+
+      li {
+        &::after, &::before {
+          font-family: FontAwesome;
+          font-size: $wcfFontSizeDefault;
+          margin: auto 5px;
+        }
+
+        &:first-child {
+          color: $wcfStatusSuccessText;
+
+          &::after {
+            content: "\f00c";
+          }
+        }
+
+        &:nth-child(2) {
+          &::before {
+            font-family: FontAwesome;
+            font-size: $wcfFontSizeDefault;
+            content: "\f017";
+          }
+        }
+
+        &:last-child {
+          color: $wcfStatusErrorText;
+
+          &::before {
+            font-family: FontAwesome;
+            font-size: $wcfFontSizeDefault;
+            content: "\f00d";
+          }
+        }
+      }
+    }
+  }
+}

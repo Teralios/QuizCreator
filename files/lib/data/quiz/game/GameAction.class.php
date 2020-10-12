@@ -4,6 +4,7 @@ namespace wcf\data\quiz\game;
 
 // imports
 use wcf\data\AbstractDatabaseObjectAction;
+use wcf\data\DatabaseObjectDecorator;
 use wcf\data\quiz\question\QuestionList;
 use wcf\data\quiz\Quiz;
 use wcf\system\exception\PermissionDeniedException;
@@ -39,7 +40,7 @@ class GameAction extends AbstractDatabaseObjectAction
 
         $this->game = $this->getSingleObject();
         if ($this->game instanceof DatabaseObjectDecorator) {
-            $this->game = $this->game->getDecoratedObject();
+            $this->game =  /** @scrutinizer ignore-call */ $this->game->getDecoratedObject();
         }
     }
 

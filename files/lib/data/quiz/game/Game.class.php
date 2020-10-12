@@ -8,6 +8,7 @@ use wcf\data\quiz\Quiz;
 use wcf\data\user\UserProfile;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
+use wcf\system\exception\SystemException;
 use wcf\system\WCF;
 use wcf\util\JSON;
 use wcf\util\StringUtil;
@@ -116,6 +117,10 @@ class Game extends DatabaseObject
         return $this->quiz;
     }
 
+    /**
+     * Enode game result json data.
+     * @throws SystemException
+     */
     protected function parseResult()
     {
         $questions = JSON::decode($this->result);

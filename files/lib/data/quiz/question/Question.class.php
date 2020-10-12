@@ -30,7 +30,7 @@ class Question extends DatabaseObject
 {
     protected static $databaseTableName = 'quiz_question';
     protected static $databaseTableIndexName = 'questionID';
-    protected static $possibleOptions = ['A', 'B', 'C', 'D'];
+    const POSSIBLE_OPTIONS = ['A', 'B', 'C', 'D'];
 
     /**
      * Returns parsed explanation
@@ -43,6 +43,11 @@ class Question extends DatabaseObject
         return ($parsed) ? /** @scrutinizer ignore-call */SimpleMessageParser::getInstance()->parse($this->explanation) : $this->explanation;
     }
 
+    /**
+     * Returns text for given answer option.
+     * @param string $option
+     * @return string
+     */
     public function getOption(string $option)
     {
         $option = 'option'.$option;
@@ -50,8 +55,12 @@ class Question extends DatabaseObject
         return $this->{$option};
     }
 
+    /**
+     * Returns possible options for answers.
+     * @return string[]
+     */
     public function getPossibleOptions()
     {
-        return static::$possibleOptions;
+        return self::POSSIBLE_OPTIONS;
     }
 }

@@ -11,11 +11,16 @@ There are two types of quizzes:
   - [x] Improve PHP Code
   - [x] Implement trophies
   - [x] Implement tags for quiz
-  - [ ] Improve Quiz view
-  - [ ] Player list on quiz view
+  - [x] Improve quiz view
+  - [x] Implements player view
+  - [x] Implements result view
+  - [ ] Tests
   
 ### Beta 4
-  - [ ] ???
+  - [ ] Clean up language
+  - [ ] New json validator for quiz.
+  - [ ] Prepare quiz data base on my-wsc.de
+  - [ ] Fix issues
  
 ### RC1
   - [ ] Fix issues

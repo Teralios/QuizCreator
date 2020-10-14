@@ -8,6 +8,9 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
     var clockPoints = [10, 5, 1];
     var clockBorders = [5, 15, 0];
 
+    // reduces warnings on scrutinizer
+    var CLICK_EVENT = WCF_CLICK_EVENT
+
     /**
      * @param data
      * @param gameContainer
@@ -148,7 +151,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             this._buttonStart = elCreate('button');
             this._buttonStart.textContent = Language.get('wcf.quizCreator.game.start');
             /** global: WCF_CLICK_EVENT */
-            this._buttonStart.addEventListener(/** global: WCF_CLICK_EVENT */WCF_CLICK_EVENT, this.startGame.bind(this));
+            this._buttonStart.addEventListener(CLICK_EVENT, this.startGame.bind(this));
             this._contentContainer.appendChild(this._buttonStart);
         },
 
@@ -202,7 +205,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             this._buttonNext = elCreate('button');
             this._buttonNext.textContent = Language.get('wcf.quizCreator.game.next');
             /** global: WCF_CLICK_EVENT */
-            this._buttonNext.addEventListener(/** global: WCF_CLICK_EVENT */WCF_CLICK_EVENT, this.next.bind(this));
+            this._buttonNext.addEventListener(CLICK_EVENT, this.next.bind(this));
             this._buttonNext.style.visibility = 'hidden';
             this._contentContainer.appendChild(this._buttonNext)
         },
@@ -227,7 +230,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
                 button.className = 'answer';
                 elData(button, 'value', key);
                 /** global: WCF_CLICK_EVENT */
-                button.addEventListener(/** global: WCF_CLICK_EVENT */WCF_CLICK_EVENT, this.answer.bind(this));
+                button.addEventListener(CLICK_EVENT, this.answer.bind(this));
 
                 var liElement = elCreate('li');
                 liElement.appendChild(button);
@@ -306,7 +309,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             this._updateClockContainer();
             this._updatePointContainer();
 
-            this._clockID = setInterval(this._clockTick.bind(this), 1000);
+            this._clockID = setInterval(this.clockTick.bind(this), 1000);
         },
 
         /**
@@ -319,9 +322,8 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
 
         /**
          * A clock tick every second.
-         * @private
          */
-        _clockTick: function () {
+        clockTick: function () {
             this._time++;
 
             if (this._data.type === 'competition') {

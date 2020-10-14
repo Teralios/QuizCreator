@@ -170,6 +170,7 @@
 {if $game !== null}
     <script data-relocate="true">
         require(['Teralios/QuizCreator/GameResultDialog', 'Language'], function(GameResultDialog, Language) {
+            Language.add('wcf.quizCreator.player.result.title', '{jslang}wcf.quizCreator.player.result.title{/jslang}')
             GameResultDialog.init();
         })
     </script>

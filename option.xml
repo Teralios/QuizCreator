@@ -5,19 +5,22 @@
 			<category name="quizCreator">
 				<options>module_quiz_creator</options>
 			</category>
-			<category name="quizCreator.quiz.list">
+			<category name="quizCreator.quiz">
 				<parent>quizCreator</parent>
 			</category>
-			<category name="quizCreator.quiz.page">
+			<category name="quizCreator.quiz.pages">
 				<parent>quizCreator</parent>
 			</category>
 		</categories>
 		<options>
+			<!-- quiz_module -->
 			<option name="module_quiz_creator">
 				<categoryname>module.content</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 			</option>
+			<!-- basic quiz option -->
+			<!-- QuizListPage -->
 			<option name="quiz_list_last_players">
 				<categoryname>quizCreator.quiz.list</categoryname>
 				<optiontype>boolean</optiontype>
@@ -33,6 +36,7 @@
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 			</option>
+			<!-- QuizPage -->
 			<option name="quiz_last_players">
 				<categoryname>quizCreator.quiz.page</categoryname>
 				<optiontype>boolean</optiontype>
@@ -42,6 +46,32 @@
 				<categoryname>quizCreator.quiz.page</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
+			</option>
+			<option name="QUIZ_DESCRIPTION_LENGTH">
+				<categoryname>quizCreator.quiz</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>2500</defaultvalue>
+				<minvalue>1</minvalue>
+			</option>
+			<option name="QUIZ_LIST_QUIZZES_PER_PAGE">
+				<categoryname>quizCreator.quiz.list</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>20</defaultvalue>
+				<minvalue>1</minvalue>
+			</option>
+			<option name="QUIZ_PLAYERS_PER_BOX">
+				<categoryname>quizCreator.quiz</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>10</defaultvalue>
+				<options>quiz_list_best_players,quiz_list_last_players,quiz_best_players,quiz_last_players</options>
+				<minvalue>1</minvalue>
+			</option>
+			<option name="QUIZ_PER_BOX">
+				<categoryname>quizCreator.quiz.list</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>10</defaultvalue>
+				<options>quiz_list_most_played</options>
+				<minvalue>1</minvalue>
 			</option>
 		</options>
 	</import>

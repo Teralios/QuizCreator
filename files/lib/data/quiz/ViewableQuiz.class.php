@@ -6,7 +6,6 @@ namespace wcf\data\quiz;
 use wcf\data\DatabaseObjectDecorator;
 use wcf\data\media\ViewableMedia;
 use wcf\data\media\ViewableMediaList;
-use wcf\system\bbcode\SimpleMessageParser;
 use wcf\system\exception\SystemException;
 use wcf\system\html\output\HtmlOutputProcessor;
 use wcf\system\language\LanguageFactory;
@@ -47,10 +46,9 @@ class ViewableQuiz extends DatabaseObjectDecorator
     /**
      * Return description.
      *
-     * @param bool $parsed
      * @return string
      */
-    public function getDescription(bool $parsed = true): string
+    public function getDescription(): string
     {
         $processor = new HtmlOutputProcessor();
         $processor->process($this->description, Quiz::OBJECT_TYPE, $this->quizID);

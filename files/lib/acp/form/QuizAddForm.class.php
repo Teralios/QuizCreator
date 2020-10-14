@@ -51,7 +51,7 @@ class QuizAddForm extends AbstractFormBuilderForm
             WysiwygFormField::create('description')
                 ->label('wcf.global.description')
                 ->objectType(Quiz::OBJECT_TYPE)
-                ->maximumLength(1000)
+                ->maximumLength(QUIZ_DESCRIPTION_LENGTH)
                 ->required()
                 ->supportAttachments(false)
                 ->supportMentions(false)

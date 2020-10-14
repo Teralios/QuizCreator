@@ -23,7 +23,7 @@ class QuizListPage extends SortablePage
 {
     // inherit variables
     public $activeMenuItem = 'de.teralios.quizCreator.quizList';
-    public $itemsPerPage = 25; // current hard coded
+    public $itemsPerPage = QUIZ_LIST_QUIZZES_PER_PAGE;
     public $objectListClassName = ViewableQuizList::class;
     public $defaultSortField = 'creationDate';
     public $validSortFields = ['title', 'creationDate'];

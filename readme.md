@@ -19,6 +19,7 @@ There are two types of quizzes:
     - [x] Option for Box items of »Last Players« box
   - [ ] Overwork options structure
   - [ ] Use QuizValidator from package de.teralios.validator.quiz
+  - [ ] Implement PopOver on quiz list
   - [ ] ???
  
 ### RC1

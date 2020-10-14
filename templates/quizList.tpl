@@ -18,15 +18,13 @@
                     {foreach from=$mostPlayed item=$quiz}
                         {assign var="media" value=$quiz->getMedia()}
                         <li class="box24">
-                            <a href="{@$quiz->getLink()}">
-                                {if $media !== null}
-                                    {@$media->getElementTag(24)}
-                                {else}
-                                    <span class="icon icon24 fa-question-circle"></span>
-                                {/if}
-                            </a>
+                            {if $media !== null}
+                                {@$media->getElementTag(24)}
+                            {else}
+                                <span class="icon icon24 fa-question-circle"></span>
+                            {/if}
                             <div class="sidebarItemTitle">
-                                <h3><a href="{@$quiz->getLink()}">{$quiz->title}</a></h3>
+                                <h3>{anchor object=$quiz->getDecoratedObject()}</h3>
                                 <small>{lang}wcf.quizCreator.quiz.played{/lang}</small>
                             </div>
                         </li>
@@ -45,9 +43,9 @@
                         {assign var="user" value=$player->getUser()}
                         {assign var="quiz" value=$player->getQuiz()}
                         <li class="box24">
-                            <a href="{@$user->getLink()}">{@$user->getAvatar()->getImageTag(24)}</a>
+                            {@$user->getAvatar()->getImageTag(24)}
                             <div class="sidebarItemTitle">
-                                <h3><a href="{@$user->getLink()}">{$user->username}</a></h3>
+                                <h3>{user object=$user}</a></h3>
                                 <small>{lang}wcf.quizCreator.box.score.possible{/lang}</small>
                             </div>
                         </li>
@@ -65,9 +63,9 @@
                     {foreach from=$lastPlayers item=player}
                         {assign var="user" value=$player->getUser()}
                         <li class="box24">
-                            <a href="{@$user->getLink()}">{@$user->getAvatar()->getImageTag(24)}</a>
+                            {@$user->getAvatar()->getImageTag(24)}
                             <div class="sidebarItemTitle">
-                                <h3><a href="{@$user->getLink()}">{$user->username}</a></h3>
+                                <h3>{user object=$user}</h3>
                                 <small>{lang}wcf.quizCreator.user.played{/lang}</small>
                             </div>
                         </li>
@@ -139,7 +137,7 @@
                         </li>
 
                         <li class="columnSubject">
-                            <h3><a href="{$quiz->getLink()}">{$quiz->title}</a></h3>
+                            <h3>{anchor object=$quiz->getDecoratedObject()}</h3>
                             <small>{@$quiz->creationDate|time}</small>
                         </li>
 

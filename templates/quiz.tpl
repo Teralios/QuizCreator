@@ -8,7 +8,7 @@
                 {foreach from=$bestPlayers item=player}
                     {assign var="user" value=$player->getUser()}
                     <li class="box24">
-                        <a href="{@$user->getLink()}">{@$user->getAvatar()->getImageTag(24)}</a>
+                        {@$user->getAvatar()->getImageTag(24)}
                         <div class="sidebarItemTitle">
                             <h3>{user object=$user}</h3>
                             <small>{#$player->score} <b>{lang}wcf.quizCreator.player.score{/lang}</b></small>
@@ -29,7 +29,7 @@
                     {foreach from=$lastPlayers item=player}
                         {assign var="user" value=$player->getUser()}
                         <li class="box24">
-                            <a href="{@$user->getLink()}">{@$user->getAvatar()->getImageTag(24)}</a>
+                            {@$user->getAvatar()->getImageTag(24)}
                             <div class="sidebarItemTitle">
                                 <h3>{user object=$user}</h3>
                                 <small>{@$player->playedTime|time}</small>

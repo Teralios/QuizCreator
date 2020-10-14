@@ -4,6 +4,7 @@ namespace wcf\data\quiz;
 
 // imports
 use wcf\data\DatabaseObjectDecorator;
+use wcf\data\ITitledLinkObject;
 use wcf\data\media\ViewableMedia;
 use wcf\data\media\ViewableMediaList;
 use wcf\system\exception\SystemException;
@@ -41,7 +42,6 @@ class ViewableQuiz extends DatabaseObjectDecorator
      * @var ViewableMedia
      */
     protected $mediaObject = null;
-
 
     /**
      * Return description.

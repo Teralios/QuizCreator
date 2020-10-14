@@ -1,7 +1,7 @@
 {* variables *}
 {capture assign='pageTitle'}{lang}wcf.quizCreator.quiz.playerList{/lang} {if $pageNo > 1}- {lang}wcf.page.pageNo{/lang} {$pageNo}{/if}- {$quiz->getTitle()}{/capture}
 {capture assign='contentTitle'}{lang}wcf.quizCreator.quiz.playerList{/lang}{/capture}
-{capture assign='contentDescription'}<a href="{link controller='Quiz' object=$quiz}{/link}">{lang}wcf.quizCreator.quiz.backTo{/lang}</a>{/capture}
+{capture assign='contentDescription'}{anchor object=$quiz}{/capture}
 
 {* template *}
 {include file='header'}

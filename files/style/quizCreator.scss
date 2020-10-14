@@ -1,11 +1,10 @@
-.quiz {
+.quizInformation {
   padding: 0 !important;
 
-  .information {
-    .image {
+  header {
       margin: 0;
       padding: 0;
-      text-align: center;
+      text-align: center !important;
       border-bottom: $wcfContentBorderInner solid 1px;
 
       img {
@@ -25,26 +24,24 @@
       }
     }
 
-    .description, .statistic {
+  article {
+    padding: 1em;
+    border-bottom: $wcfContentBorderInner solid 1px;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+
+    div {
       padding: 1em;
-    }
-
-    .description {
-      border-bottom: $wcfContentBorderInner solid 1px;
-    }
-
-    .statistic {
-      display: flex;
-      justify-content: space-between;
-
-      div {
-        font-size: $wcfFontSizeSmall;
-      }
+      font-size: $wcfFontSizeSmall;
     }
   }
 }
 
-.gameContainer {
+
+.quizGame {
   .dummy {
     visibility: hidden;
   }

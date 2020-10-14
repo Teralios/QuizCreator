@@ -8,6 +8,7 @@ use wcf\data\quiz\QuizAction;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
+use wcf\system\form\builder\container\wysiwyg\WysiwygFormContainer;
 use wcf\system\form\builder\field\DescriptionFormField;
 use wcf\system\form\builder\field\language\ContentLanguageFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
@@ -15,6 +16,7 @@ use wcf\system\form\builder\field\tag\TagFormField;
 use wcf\system\form\builder\field\TitleFormField;
 use wcf\system\form\builder\field\media\SingleMediaSelectionFormField;
 use wcf\system\form\builder\field\BooleanFormField;
+use wcf\system\form\builder\field\wysiwyg\WysiwygFormField;
 use wcf\system\request\LinkHandler;
 use wcf\util\HeaderUtil;
 
@@ -46,8 +48,14 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->label('wcf.global.title')
                 ->maximumLength(191)
                 ->required(),
-            DescriptionFormField::create('description')
-                ->maximumLength(1000),
+            WysiwygFormField::create('description')
+                ->label('wcf.global.description')
+                ->objectType(Quiz::OBJECT_TYPE)
+                ->maximumLength(1000)
+                ->required()
+                ->supportAttachments(false)
+                ->supportMentions(false)
+                ->supportQuotes(false),
             TagFormField::create('tags')
                 ->objectType(Quiz::OBJECT_TYPE),
             ContentLanguageFormField::create('languageID')

@@ -7,20 +7,18 @@ There are two types of quizzes:
   * __Fun__ - Here it doesn't matter how long it takes, there is always 1 point, at the end you can present a funny evaluation via goals.
 
 ## Todo
-### Beta 3
-  - [x] Improve PHP Code
-  - [x] Implement trophies
-  - [x] Implement tags for quiz
-  - [x] Improve quiz view
-  - [x] Implements player view
-  - [x] Implements result view
-  - [ ] Tests
-  
 ### Beta 4
-  - [ ] Clean up language
-  - [ ] New json validator for quiz.
-  - [ ] Prepare quiz data base on my-wsc.de
-  - [ ] Fix issues
+  - [ ] Improve quiz information
+    - [x] Use WYSIWYG-Editor for description
+    - [ ] Option for length of description
+    - [x] Description for quiz is required
+  - [ ] Implement additional options
+    - [ ] Option for `$itemsPerPage` on QuizListPage
+    - [ ] Option for `$itemsPerPage` on QuizPlayerListPage
+    - [ ] Option for Box items of »Best Player« box.
+    - [ ] Option for Box items of »Last Players« box.
+  - [ ] Use QuizValidator from package de.teralios.validator.quiz
+  - [ ] ???
  
 ### RC1
-  - [ ] Fix issues
+  - [ ] ???

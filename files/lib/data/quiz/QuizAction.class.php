@@ -57,6 +57,9 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         // set timestamp
         $this->parameters['data']['creationDate'] = TIME_NOW;
 
+        // description
+        $this->parameters['data']['description'] = $this->parameters['description_htmlInputProcessor']->getHtml();
+
         // create quiz
         $quiz = parent::create();
 
@@ -80,8 +83,12 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
      */
     public function update()
     {
+        // description
+        $this->parameters['data']['description'] = $this->parameters['description_htmlInputProcessor']->getHtml();
+
         parent::update();
 
+        // tags
         if (!empty($this->parameters['tags'])) {
             foreach ($this->objects as $object) {
                 /** @scrutinizer ignore-call */TagEngine::getInstance()->addObjectTags(

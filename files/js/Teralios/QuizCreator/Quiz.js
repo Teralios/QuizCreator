@@ -18,8 +18,7 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizCreator/Game'], function
          */
         init: function (gameContainer) {
             this._gameContainer = gameContainer;
-            this.quizID = Number(elData(this._gameContainer, 'id'));
-
+            this.quizID = Number(elData(this._gameContainer, 'quiz-id'));
             this._gameFieldContainer = elBySel('.gameField', this._gameContainer);
 
             if (!this._gameFieldContainer) {

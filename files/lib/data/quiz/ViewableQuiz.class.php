@@ -8,6 +8,7 @@ use wcf\data\media\ViewableMedia;
 use wcf\data\media\ViewableMediaList;
 use wcf\system\bbcode\SimpleMessageParser;
 use wcf\system\exception\SystemException;
+use wcf\system\html\output\HtmlOutputProcessor;
 use wcf\system\language\LanguageFactory;
 use wcf\util\StringUtil;
 
@@ -48,11 +49,13 @@ class ViewableQuiz extends DatabaseObjectDecorator
      *
      * @param bool $parsed
      * @return string
-     * @throws SystemException
      */
     public function getDescription(bool $parsed = true): string
     {
-        return ($parsed) ? /** @scrutinizer ignore-call */SimpleMessageParser::getInstance()->parse($this->description) : $this->description;
+        $processor = new HtmlOutputProcessor();
+        $processor->process($this->description, Quiz::OBJECT_TYPE, $this->quizID);
+
+        return $processor->getHtml();
     }
 
     /**

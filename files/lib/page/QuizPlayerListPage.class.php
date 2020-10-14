@@ -4,8 +4,19 @@ namespace wcf\page;
 
 // imports
 use wcf\data\quiz\game\GameList;
+use wcf\system\exception\IllegalLinkException;
+use wcf\system\exception\PermissionDeniedException;
+use wcf\system\exception\SystemException;
 use wcf\system\WCF as WCF;
 
+/**
+ * Class        QuizPlayerListPage
+ * @package     QuizCreator
+ * @subpackage  wcf\page
+ * @author      Karsten (Teralios) Achterrath
+ * @copyright   ©2020 Teralios.de
+ * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ */
 class QuizPlayerListPage extends MultipleLinkPage
 {
     // quiz page trait
@@ -19,7 +30,12 @@ class QuizPlayerListPage extends MultipleLinkPage
      */
     public $objectList = null;
 
-
+    /**
+     * @inheritdoc
+     * @throws IllegalLinkException
+     * @throws PermissionDeniedException
+     * @throws SystemException
+     */
     public function readParameters()
     {
         parent::readParameters();
@@ -28,6 +44,10 @@ class QuizPlayerListPage extends MultipleLinkPage
         $this->setQuizParentLocation();
     }
 
+    /**
+     * @inheritdoc
+     * @throws SystemException
+     */
     public function initObjectList()
     {
         parent::initObjectList();
@@ -41,13 +61,16 @@ class QuizPlayerListPage extends MultipleLinkPage
         );
     }
 
+    /**
+     * @inheritdoc
+     */
     public function assignVariables()
     {
         parent::assignVariables();
 
         $this->assignQuizData();
         WCF::getTPL()->assign([
-            'placementStart' => (1 + (25 * ($this->pageNo - 1)))
+            'placementStart' => (1 + ($this->itemsPerPage * ($this->pageNo - 1)))
         ]);
     }
 }

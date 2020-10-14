@@ -93,6 +93,8 @@
 		<item name="wcf.quizCreator.player.lastPlayed"><![CDATA[Letztes Spiel]]></item>
 		<item name="wcf.quizCreator.players.noPlayers"><![CDATA[Es hat noch niemand das Quiz gespielt.]]></item>
 		<item name="wcf.quizCreator.quiz.box.userResult"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Dein{else}Ihr{/if} Spiel]]></item>
+		<item name="wcf.quizCreator.player.result.title"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Dein{else}Ihr{/if} offizielles Ergebnis]]></item>
+		<item name="wcf.quizCreator.player.showResult"><![CDATA[Spielergebnis]]></item>
 	</category>
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Kann Quizze verwalten]]></item>

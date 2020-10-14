@@ -44,11 +44,12 @@ define(['Ajax', 'Ui/Dialog', 'Language'], function (Ajax, UiDialog, Language) {
         },
 
         _dialogSetup: function() {
+            var title = Language.get('wcf.quizCreator.player.result.title')
             return {
                 id: "playerResult",
                 source: this.getHtml(),
                 options: {
-                    title: Language.get('wcf.quizCreator.player.result.title'),
+                    title: title,
                 }
             }
         },

@@ -8,7 +8,7 @@ There are two types of quizzes:
 
 ## Todo
 ### Beta 4
-  - [ ] Improve quiz information
+  - [x] Improve quiz information
     - [x] Use WYSIWYG-Editor for description
     - [x] Option for length of description
     - [x] Description for quiz is required
@@ -17,7 +17,7 @@ There are two types of quizzes:
     - [ ] Option for `$itemsPerPage` on QuizPlayerListPage
     - [x] Option for Box items of »Best Player« box
     - [x] Option for Box items of »Last Players« box
-  - [ ] Overwork option structure
+  - [ ] Overwork options structure
   - [ ] Use QuizValidator from package de.teralios.validator.quiz
   - [ ] ???
  

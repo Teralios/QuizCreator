@@ -11,6 +11,7 @@ use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
+use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 
 /**
@@ -76,6 +77,7 @@ class QuizExportAction extends AbstractAction
         // override questions and goals with data
         $data['questions'] = [];
         $data['goals'] = [];
+        $data['tags'] = [];
 
         // read questions
         $questions = new QuestionList($this->quiz);
@@ -93,6 +95,12 @@ class QuizExportAction extends AbstractAction
             $tmp = $goal->getData();
             unset($tmp['quizID'], $tmp['goalID']);
             $data['goals'][] = $tmp;
+        }
+
+        // read tags
+        $tags = /** @scrutinizer ignore-call */TagEngine::getInstance()->getObjectTags(Quiz::OBJECT_TYPE, $this->quiz->getObjectID());
+        foreach ($tags as $tag) {
+            $data['tags'][] = $tag->getTitle();
         }
 
         // header

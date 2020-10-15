@@ -28,7 +28,7 @@ class QuizValidator
     /**
      * @var string[]
      */
-    protected $allowedQuizData = ['languageCode', 'goals'];
+    protected $allowedQuizData = ['languageCode', 'goals', 'tags'];
 
     /**
      * @var string[]

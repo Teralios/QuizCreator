@@ -22,9 +22,9 @@ There are two types of quizzes:
     - [x] Assign options to new categories
     - [ ] Language variables
   - [ ] Use QuizValidator from package de.teralios.validator.quiz
-    - [ ] Clean up QuizImportFormPage
+    - [ ] Clean up QuizImportFormPage.class.php
   - [ ] Implement popover on quiz list
-  - [ ] Implement export of tags for quiz
+  - [x] Implement export and imports of tags for quiz
   - [ ] ???
  
 ### RC1

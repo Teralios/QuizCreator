@@ -7,6 +7,7 @@ use wcf\data\DatabaseObjectEditor;
 use wcf\data\IEditableCachedObject;
 use wcf\data\quiz\goal\GoalEditor;
 use wcf\data\quiz\question\QuestionEditor;
+use wcf\system\article\discussion\VoidArticleDiscussionProvider;
 use wcf\system\cache\builder\QuizGameCacheBuilder;
 use wcf\system\cache\builder\QuizMostPlayedCacheBuilder;
 use wcf\system\database\exception\DatabaseQueryException;
@@ -14,6 +15,7 @@ use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\SystemException;
 use wcf\system\html\input\HtmlInputProcessor;
 use wcf\system\language\LanguageFactory;
+use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 
 /**
@@ -105,7 +107,8 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
 
         // html input processor
         $htmlProcessor = new HtmlInputProcessor();
-        $quizData['description'] = $htmlProcessor->process($quizData['description'], Quiz::OBJECT_TYPE);
+        $htmlProcessor->process($quizData['description'], Quiz::OBJECT_TYPE);
+        $quizData['description'] = $htmlProcessor->getHtml();
 
         // language information
         if (isset($data['languageCode'])) {
@@ -122,6 +125,7 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
 
         $questions = static::importQuestions($data, $quiz->quizID);
         $goals = static::importGoals($data, $quiz->quizID);
+        static::importTags($data, $quiz);
 
         // update counters
         $quizEditor = new QuizEditor($quiz);
@@ -172,6 +176,23 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
         }
 
         return $goals;
+    }
+
+    /**
+     * Import tags.
+     * @param array $data
+     * @param Quiz $quiz
+     */
+    protected static function importTags(array $data, Quiz $quiz)
+    {
+        if (isset($data['tags']) && count($data['tags'])) {
+            /** @scrutinizer ignore-call */TagEngine::getInstance()->addObjectTags(
+                Quiz::OBJECT_TYPE,
+                $quiz->quizID,
+                $data['tags'],
+                $quiz->languageID ?? /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getDefaultLanguageID()
+            );
+        }
     }
 
     /**

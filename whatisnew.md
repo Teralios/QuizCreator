@@ -12,6 +12,8 @@ This file lists all changes like new features, improved functions and fixed bugs
     * Enable html/wysiwyg
   * Quiz data
     * Html mode for description
+  * Importer/Exporter
+    * Exports and imports tags
   
 ### Improvements
   * Quiz data

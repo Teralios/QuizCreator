@@ -56,46 +56,7 @@
 		<item name="wcf.acp.quizCreator.import.type.file"><![CDATA[Import file]]></item>
 		<item name="wcf.acp.quizCreator.import.type.text"><![CDATA[Import text]]></item>
 	</category>
-	<category name="wcf.quizCreator">
-		<item name="wcf.quizCreator.creationDate"><![CDATA[Date]]></item>
-		<item name="wcf.quizCreator.questions"><![CDATA[Questions]]></item>
-		<item name="wcf.quizCreator.players"><![CDATA[Players]]></item>
-		<item name="wcf.quizCreator.quizList.box.bestPlayers.overall"><![CDATA[Best players]]></item>
-		<item name="wcf.quizCreator.quizList.box.mostPlayed"><![CDATA[Most played]]></item>
-		<item name="wcf.quizCreator.quiz.box.bestPlayers"><![CDATA[Best players]]></item>
-		<item name="wcf.quizCreator.quiz.box.lastPlayers"><![CDATA[Last players]]></item>
-		<item name="wcf.quizCreator.game.start"><![CDATA[Start quiz]]></item>
-		<item name="wcf.quizCreator.game.questions"><![CDATA[Question:]]></item>
-		<item name="wcf.quizCreator.game.time"><![CDATA[Time:]]></item>
-		<item name="wcf.quizCreator.game.points"><![CDATA[Points]]></item>
-		<item name="wcf.quizCreator.game.score"><![CDATA[Score]]></item>
-		<item name="wcf.quizCreator.game.lastPosition"><![CDATA[All other players are at least as good as you are.]]></item>
-		<item name="wcf.quizCreator.game.next"><![CDATA[next question]]></item>
-		<item name="wcf.quizCreator.game.finish"><![CDATA[finish quiz]]></item>
-		<item name="wcf.quizCreator.box.score.possible"><![CDATA[({#($player->scorePercent * 100)} % of score in quiz “<a href="{@$quiz->getLink()}">{$quiz->title}</a>”]]></item>
-		<item name="wcf.quizCreator.quiz.played"><![CDATA[Was played {#$quiz->played} times.]]></item>
-		<item name="wcf.quizCreator.user.played"><![CDATA[Played „<a href="{$quiz->getLink()}">{$quiz->title}</a>“ on {@$player->playedTime|time}]]></item>
-		<item name="wcf.quizCreator.game.otherPlayers"><![CDATA[You are better as {$percent} % of players.]]></item>
-		<item name="wcf.quizCreator.copyright"><![CDATA[Quiz created with <a href="https://www.my-wsc.de/forum/board/58-teralios-plugins/"><b>Teralios' Quiz Creator</b></a>]]></item>
-		<item name="wcf.quizCreator.averageScore"><![CDATA[⌀ score]]></item>
-		<item name="wcf.quizCreator.game.missingData"><![CDATA[Unfortunately the quiz is not quite finished yet ;)]]></item>
-		<item name="wcf.quizCreator.game.noGoal"><![CDATA[Just missed!]]></item>
-		<item name="wcf.quizCreator.game.noGoal.description"><![CDATA[Unfortunately it was not quite enough for a Goal.]]></item>
-		<item name="wcf.quizCreator.played"><![CDATA[times played]]></item>
-		<item name="wcf.quizCreator.quiz.playerList"><![CDATA[Quiz players]]></item>
-		<item name="wcf.quizCreator.quiz.showPlayers"><![CDATA[Show players]]></item>
-		<item name="wcf.quizCreator.quiz.backTo"><![CDATA[Back to Quiz]]></item>
-		<item name="wcf.quizCreator.players.placement"><![CDATA[#]]></item>
-		<item name="wcf.quizCreator.players.name"><![CDATA[Player]]></item>
-		<item name="wcf.quizCreator.player.score"><![CDATA[Score]]></item>
-		<item name="wcf.quizCreator.player.gameTime"><![CDATA[Minutes]]></item>
-		<item name="wcf.quizCreator.players.played"><![CDATA[Official result]]></item>
-		<item name="wcf.quizCreator.player.lastPlayed"><![CDATA[Last play]]></item>
-		<item name="wcf.quizCreator.players.noPlayers"><![CDATA[No one has played the quiz yet.]]></item>
-		<item name="wcf.quizCreator.quiz.box.userResult"><![CDATA[Your game]]></item>
-		<item name="wcf.quizCreator.player.result.title"><![CDATA[Your official result]]></item>
-		<item name="wcf.quizCreator.player.showResult"><![CDATA[Game result]]></item>
-	</category>
+
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Can manage quizzes]]></item>
 		<item name="wcf.acp.group.option.category.user.quiz"><![CDATA[Quiz]]></item>

@@ -1,6 +1,6 @@
 {* variables *}
-{capture assign='pageTitle'}{lang}wcf.quizCreator.quiz.playerList{/lang} {if $pageNo > 1}- {lang}wcf.page.pageNo{/lang} {$pageNo}{/if}- {$quiz->getTitle()}{/capture}
-{capture assign='contentTitle'}{lang}wcf.quizCreator.quiz.playerList{/lang}{/capture}
+{capture assign='pageTitle'}{lang}wcf.quizCreator.players.page.title{/lang} {if $pageNo > 1}- {lang}wcf.page.pageNo{/lang} {$pageNo}{/if}- {$quiz->getTitle()}{/capture}
+{capture assign='contentTitle'}{lang}wcf.quizCreator.players.page.title{/lang}{/capture}
 {capture assign='contentDescription'}{anchor object=$quiz}{/capture}
 
 {* template *}
@@ -19,7 +19,7 @@
         <ol class="tabularList playerList">
             <li class="tabularListRow tabularListRowHead">
                 <ol class="tabularListColumns">
-                    <li class="columnUser">{lang}wcf.quizCreator.players.name{/lang}</li>
+                    <li class="columnUser">{lang}wcf.quizCreator.players{/lang}</li>
                 </ol>
             </li>
             {foreach from=$objects item=game}
@@ -38,18 +38,18 @@
                         <li class="columnUser">
                             <h3>{user object=$user}</h3>
                             <ul class="inlineList dotSeparated small">
-                                <li>{lang}wcf.quizCreator.players.played{/lang}: {@$game->playedTime|time}</li>
-                                {if $game->lastPlayedTime > 0}<li>{lang}wcf.quizCreator.player.lastPlayed{/lang}: {@$game->lastPlayedTime|time}</li>{/if}
+                                <li>{lang}wcf.quizCreator.players.played.official{/lang}: {@$game->playedTime|time}</li>
+                                {if $game->lastPlayedTime > 0}<li>{lang}wcf.quizCreator.players.played.last{/lang}: {@$game->lastPlayedTime|time}</li>{/if}
                             </ul>
                         </li>
                         <li class="columnStats">
                             <dl class="plain statsDataList">
-                                <dt>{lang}wcf.quizCreator.player.score{/lang}</dt>
+                                <dt>{lang}wcf.quizCreator.stats.score{/lang}</dt>
                                 <dd>{@$game->score|shortUnit}</dd>
                             </dl>
                             <dl class="plain statsDataList">
-                                <dt>{lang}wcf.quizCreator.player.gameTime{/lang}</dt>
-                                <dd>{@$game->getPlayTime()}</dd>
+                                <dt>{lang}wcf.quizCreator.stats.time{/lang}</dt>
+                                <dd>{@$game->getPlayTime()} <b>{lang}wcf.quizCreator.stats.time.minutes{/lang}</b></dd>
                             </dl>
                         </li>
                     </ol>

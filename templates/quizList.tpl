@@ -25,7 +25,7 @@
                             {/if}
                             <div class="sidebarItemTitle">
                                 <h3>{anchor object=$quiz->getDecoratedObject()}</h3>
-                                <small>{lang}wcf.quizCreator.quiz.played{/lang}</small>
+                                <small>{lang}.stats.played.detail{/lang}</small>
                             </div>
                         </li>
                     {/foreach}
@@ -46,7 +46,7 @@
                             {@$user->getAvatar()->getImageTag(24)}
                             <div class="sidebarItemTitle">
                                 <h3>{user object=$user}</a></h3>
-                                <small>{lang}wcf.quizCreator.box.score.possible{/lang}</small>
+                                <small>{lang}.stats.score.relative.quiz{/lang}</small>
                             </div>
                         </li>
                     {/foreach}
@@ -66,7 +66,7 @@
                             {@$user->getAvatar()->getImageTag(24)}
                             <div class="sidebarItemTitle">
                                 <h3>{user object=$user}</h3>
-                                <small>{lang}wcf.quizCreator.user.played{/lang}</small>
+                                <small>{lang}wcf.quizCreator.player.played.quiz{/lang}</small>
                             </div>
                         </li>
                     {/foreach}
@@ -113,7 +113,7 @@
                                                     {if $_sortField == 'title'}
                                                         {lang}wcf.global.title{/lang}
                                                     {else}
-                                                        {lang}wcf.quizCreator.{$_sortField}{/lang}
+                                                        {lang}wcf.quizCreator.sort.{$_sortField}{/lang}
                                                     {/if}
                                                 </a>
                                             </li>
@@ -132,7 +132,7 @@
                         <li class="columnIcon">
                             <span
                                     class="icon icon32 {if $quiz->isActive == 0}fa-pencil{else}{if $quiz->type == 'competition'}fa-trophy{else}fa-child{/if}{/if} jsTooltip"
-                                    title="{lang}wcf.acp.quizCreator.quiz.type.{@$quiz->type}{/lang}{if $quiz->isActive == 0} ({lang}wcf.acp.quizCreator.quiz.notActive{/lang}){/if}">
+                                    title="{lang}wcf.quizCreator.quiz.type.{@$quiz->type}{/lang}{if $quiz->isActive == 0} ({lang}wcf.acp.quizCreator.quiz.notActive{/lang}){/if}">
                             </span>
                         </li>
 
@@ -143,20 +143,20 @@
 
                         <li class="columnStats">
                             <dl class="plain statsDataList">
-                                <dt>{lang}wcf.quizCreator.questions{/lang}</dt>
+                                <dt>{lang}wcf.quizCreator.stats.questions{/lang}</dt>
                                 <dd>{@$quiz->questions|shortUnit}</dd>
-                                <dt>{lang}wcf.quizCreator.players{/lang}</dt>
+                                <dt>{lang}wcf.quizCreator.stats.players{/lang}</dt>
                                 <dd>{@$quiz->players|shortUnit}</dd>
                                 {if $quiz->players > 0}
-                                    <dt>{lang}wcf.quizCreator.averageScore{/lang}</dt>
+                                    <dt>{lang}wcf.quizCreator.stats.score.average{/lang}</dt>
                                     <dd>{($quiz->scoreTotal / $quiz->players)|shortUnit}</dd>
                                 {/if}
                             </dl>
-                            <div class="messageGroupListStatsSimple" aria-label="{lang}wcf.quizCreator.questions{/lang}"><span class="icon icon16 fa-question-circle"></span> {@$quiz->questions|shortUnit}</div>
+                            <div class="messageGroupListStatsSimple" aria-label="{lang}wcf.quizCreator.stats.questions{/lang}"><span class="icon icon16 fa-question-circle"></span> {@$quiz->questions|shortUnit}</div>
                         </li>
                         {if !$quiz->languageID|empty}
                             <li class="columnIcon">
-                                <a class="jsTooltip" href="{link controller='QuizList'}languageID={$quiz->languageID}{/link}" title="{lang}wcf.quizCreator.language{/lang}">
+                                <a class="jsTooltip" href="{link controller='QuizList'}languageID={$quiz->languageID}{/link}" title="{lang}wcf.quizCreator.quiz.language{/lang}">
                                     <img class="iconFlag" src="{$quiz->getLanguageIcon()}">
                                 </a>
                             </li>

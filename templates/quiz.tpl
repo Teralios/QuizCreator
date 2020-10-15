@@ -2,7 +2,7 @@
 {capture assign='sidebarRight'}
     {if $bestPlayers !== null && $bestPlayers|count > 0}
         <section class="box">
-            <h2 class="boxTitle">{lang}wcf.quizCreator..box.players.best{/lang}</h2>
+            <h2 class="boxTitle">{lang}wcf.quizCreator.box.players.best{/lang}</h2>
             <div class="boxContent">
                 <ul class="sidebarItemList">
                 {foreach from=$bestPlayers item=player}
@@ -11,7 +11,7 @@
                         {@$user->getAvatar()->getImageTag(24)}
                         <div class="sidebarItemTitle">
                             <h3>{user object=$user}</h3>
-                            <small>{#$player->score} <b>{lang}wcf.quizCreator.player.score{/lang}</b></small>
+                            <small>{#$player->score} <b>{lang}wcf.quizCreator.stats.score{/lang}</b></small>
                         </div>
                     </li>
                 {/foreach}
@@ -49,23 +49,23 @@
                     <li>
                         <h3>{lang}wcf.quizCreator.user.play.official{/lang}</h3>
                         <dl class="plain dataList">
-                            <dt><b>{lang}wcf.quizCreator.player.score{/lang}</b></dt>
+                            <dt><b>{lang}wcf.quizCreator.stats.score{/lang}</b></dt>
                             <dd>{$game->score}</dd>
                         </dl>
                         <dl class="plain dataList">
-                            <dt><b>{lang}wcf.quizCreator.player.played.time{/lang}</b></dt>
-                            <dd>{$game->getPlayTime()} {lang}wcf.quizCreator.player.minutes{/lang}</dd>
+                            <dt><b>{lang}wcf.quizCreator.player.stats.time{/lang}</b></dt>
+                            <dd>{$game->getPlayTime()} {lang}wcf.quizCreator.stats.time.minutes{/lang}</dd>
                         </dl>
                     </li>
                     {if $game->lastPlayedTime > 0}
                         <li>
                             <h3>{lang}wcf.quizCreator.user.play.last{/lang}</h3>
                             <dl class="plain dataList">
-                                <dt><b>{lang}wcf.quizCreator.player.score{/lang}</b></dt>
+                                <dt><b>{lang}wcf.quizCreator.stats.score{/lang}</b></dt>
                                 <dd>{$game->lastScore}</dd>
                             </dl>
                             <dl class="plain dataList">
-                                <dt><b>{lang}wcf.quizCreator.player.played.time{/lang}</b></dt>
+                                <dt><b>{lang}wcf.quizCreator.stats.time{/lang}</b></dt>
                                 <dd>{$game->getPlayTime(true)} {lang}wcf.quizCreator.player.minutes{/lang}</dd>
                             </dl>
                         </li>
@@ -105,7 +105,7 @@
             <span>{lang}wcf.quizCreator.stats.question.detail{/lang}</span>
             <span class="separatorLeft">{lang}wcf.quizCreator.stats.played.detail{/lang}</span>
         </div>
-        {* language over work finished here *}
+
         {if !$tags|empty}
             <div class="tags">
                 <ul class="tagList">
@@ -122,9 +122,9 @@
     <div class="section quizGame" id="gameContainer" data-quiz-id="{$quiz->quizID}">
         <div class="gameField dummy">
             <div class="gameHeader">
-                <div class="questionCounter"><b>{lang}wcf.quizCreator.game.questions{/lang}</b></div>
-                <div class="clock"><b>{lang}wcf.quizCreator.game.time{/lang}</b></div>
-                <div class="currentQuestionValue">{lang}wcf.quizCreator.game.points{/lang}</div>
+                <div class="questionCounter"><b>{lang}wcf.quizCreator.stats.questions{/lang}</b></div>
+                <div class="clock"><b>{lang}wcf.quizCreator.stats.play.time{/lang}</b></div>
+                <div class="currentQuestionValue">{lang}wcf.quizCreator.player.points{/lang}</div>
             </div>
             <div class="gameContent">
                 <p>Dummy Question</p>
@@ -137,7 +137,7 @@
                 <button>{lang}wcf.quizCreator.game.next{/lang}</button>
             </div>
             <div class="gameFooter">
-                <p>{lang}wcf.quizCreator.game.score{/lang}</p>
+                <p>{lang}wcf.quizCreator.player.score{/lang}</p>
             </div>
         </div>
     </div>
@@ -146,18 +146,24 @@
 {if $__wcf->session->getPermission('user.quiz.canPlay')}
     <script data-relocate="true">
         require(['Teralios/QuizCreator/Quiz', 'Language'], function (Quiz, Language) {
-            Language.add('wcf.quizCreator.game.finish', '{jslang}wcf.quizCreator.game.finish{/jslang}');
-            Language.add('wcf.quizCreator.game.next', '{jslang}wcf.quizCreator.game.next{/jslang}');
-            Language.add('wcf.quizCreator.game.points', '{jslang}wcf.quizCreator.game.points{/jslang}');
-            Language.add('wcf.quizCreator.game.questions', '{jslang}wcf.quizCreator.game.questions{/jslang}');
-            Language.add('wcf.quizCreator.game.score', '{jslang}wcf.quizCreator.game.score{/jslang}');
+
             Language.add('wcf.quizCreator.game.start', '{jslang}wcf.quizCreator.game.start{/jslang}');
-            Language.add('wcf.quizCreator.game.time', '{jslang}wcf.quizCreator.game.time{/jslang}');
-            Language.add('wcf.quizCreator.game.lastPosition', '{jslang}wcf.quizCreator.game.lastPosition{/jslang}');
-            Language.add('wcf.quizCreator.game.otherPlayers', '{jslang}wcf.quizCreator.game.otherPlayers{/jslang}');
-            Language.add('wcf.quizCreator.game.noGoal', '{jslang}wcf.quizCreator.game.noGoal{/jslang}');
-            Language.add('wcf.quizCreator.game.noGoal.description', '{jslang}wcf.quizCreator.game.noGoal.description{/jslang}');
-            Language.add('wcf.quizCreator.game.missingData', '{jslang}wcf.quizCreator.game.missingData{/jslang}');
+            Language.add('wcf.quizCreator.game.finish', '{jslang}wcf.quizCreator.game.finish{/jslang}');
+            Language.add('wcf.quizCreator.game.next', '{jslang}wcf.quizCreator.game.question.next{/jslang}');
+
+            Language.add('wcf.quizCreator.game.points', '{jslang}wcf.quizCreator.stats.points{/jslang}');
+            Language.add('wcf.quizCreator.game.questions', '{jslang}wcf.quizCreator.stats.questions{/jslang}');
+
+            Language.add('wcf.quizCreator.game.score', '{jslang}wcf.quizCreator.stats.score{/jslang}');
+            Language.add('wcf.quizCreator.game.time', '{jslang}wcf.quizCreator.stats.time{/jslang}');
+
+            Language.add('wcf.quizCreator.game.lastPosition', '{jslang}wcf.quizCreator.game.result.asGood{/jslang}');
+            Language.add('wcf.quizCreator.game.otherPlayers', '{jslang}wcf.quizCreator.game.result.betterAs{/jslang}');
+
+            Language.add('wcf.quizCreator.game.noGoal', '{jslang}wcf.quizCreator.game.goal.none{/jslang}');
+            Language.add('wcf.quizCreator.game.noGoal.description', '{jslang}wcf.quizCreator.game.goal.none.detail{/jslang}');
+
+            Language.add('wcf.quizCreator.game.missingData', '{jslang}wcf.quizCreator.game.data.missing{/jslang}');
 
             new Quiz(elById('gameContainer'));
         })

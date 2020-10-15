@@ -56,46 +56,7 @@
 		<item name="wcf.acp.quizCreator.import.type.file"><![CDATA[Datei importieren]]></item>
 		<item name="wcf.acp.quizCreator.import.type.text"><![CDATA[Text importieren]]></item>
 	</category>
-	<category name="wcf.quizCreator">
-		<item name="wcf.quizCreator.creationDate"><![CDATA[Datum]]></item>
-		<item name="wcf.quizCreator.questions"><![CDATA[Fragen]]></item>
-		<item name="wcf.quizCreator.players"><![CDATA[Spieler]]></item>
-		<item name="wcf.quizCreator.quizList.box.bestPlayers.overall"><![CDATA[Besten Spieler]]></item>
-		<item name="wcf.quizCreator.quizList.box.mostPlayed"><![CDATA[Meist gespielt]]></item>
-		<item name="wcf.quizCreator.quiz.box.bestPlayers"><![CDATA[Besten Spieler]]></item>
-		<item name="wcf.quizCreator.quiz.box.lastPlayers"><![CDATA[Letzten Spieler]]></item>
-		<item name="wcf.quizCreator.game.start"><![CDATA[Quiz starten]]></item>
-		<item name="wcf.quizCreator.game.questions"><![CDATA[Frage:]]></item>
-		<item name="wcf.quizCreator.game.time"><![CDATA[Zeit:]]></item>
-		<item name="wcf.quizCreator.game.points"><![CDATA[Punkte]]></item>
-		<item name="wcf.quizCreator.game.score"><![CDATA[Punkte]]></item>
-		<item name="wcf.quizCreator.game.lastPosition"><![CDATA[Alle anderen Spieler sind mindestens genauso gut wie {if LANGUAGE_USE_INFORMAL_VARIANT}du{else}Sie{/if}.]]></item>
-		<item name="wcf.quizCreator.game.next"><![CDATA[nächste Frage]]></item>
-		<item name="wcf.quizCreator.game.finish"><![CDATA[Quiz beenden]]></item>
-		<item name="wcf.quizCreator.box.score.possible"><![CDATA[{#($player->scorePercent * 100)} % der Punkte im Quiz „<a href="{$quiz->getLink()}">{$quiz->title}</a>“]]></item>
-		<item name="wcf.quizCreator.quiz.played"><![CDATA[Wurde {#$quiz->played} mal gespielt.]]></item>
-		<item name="wcf.quizCreator.user.played"><![CDATA[Spielte „<a href="{$quiz->getLink()}">{$quiz->title}</a>“ am {@$player->playedTime|time}]]></item>
-		<item name="wcf.quizCreator.game.otherPlayers"><![CDATA[Du bist besser als {literal}{$percent}{/literal} % der Spieler]]></item>
-		<item name="wcf.quizCreator.game.otherPlayers"><![CDATA[Quiz erstellt mit <a href="https://www.my-wsc.de/forum/board/58-teralios-plugins/"><b>Teralios Quiz Creator</b></a>]]></item>
-		<item name="wcf.quizCreator.averageScore"><![CDATA[⌀ Punkte]]></item>
-		<item name="wcf.quizCreator.game.missingData"><![CDATA[Das Quiz ist leider noch nicht ganz fertig.]]></item>
-		<item name="wcf.quizCreator.game.noGoal"><![CDATA[Knapp verpasst!]]></item>
-		<item name="wcf.quizCreator.game.noGoal.description"><![CDATA[Leider hat es für ein „Goal“ nicht ganz gereicht.]]></item>
-		<item name="wcf.quizCreator.played"><![CDATA[mal gespielt]]></item>
-		<item name="wcf.quizCreator.quiz.playerList"><![CDATA[Quiz-Spieler]]></item>
-		<item name="wcf.quizCreator.quiz.showPlayers"><![CDATA[Zeige Spieler]]></item>
-		<item name="wcf.quizCreator.quiz.backTo"><![CDATA[Zurück zum Quiz]]></item>
-		<item name="wcf.quizCreator.players.placement"><![CDATA[#]]></item>
-		<item name="wcf.quizCreator.players.name"><![CDATA[Spieler]]></item>
-		<item name="wcf.quizCreator.player.score"><![CDATA[Punkte]]></item>
-		<item name="wcf.quizCreator.player.gameTime"><![CDATA[Minuten]]></item>
-		<item name="wcf.quizCreator.players.played"><![CDATA[Offizielles Ergebnis]]></item>
-		<item name="wcf.quizCreator.player.lastPlayed"><![CDATA[Letztes Spiel]]></item>
-		<item name="wcf.quizCreator.players.noPlayers"><![CDATA[Es hat noch niemand das Quiz gespielt.]]></item>
-		<item name="wcf.quizCreator.quiz.box.userResult"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Dein{else}Ihr{/if} Spiel]]></item>
-		<item name="wcf.quizCreator.player.result.title"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Dein{else}Ihr{/if} offizielles Ergebnis]]></item>
-		<item name="wcf.quizCreator.player.showResult"><![CDATA[Spielergebnis]]></item>
-	</category>
+
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Kann Quizze verwalten]]></item>
 		<item name="wcf.acp.group.option.category.user.quiz"><![CDATA[Quiz]]></item>

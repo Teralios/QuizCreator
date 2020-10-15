@@ -216,7 +216,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
                 if (!Match::hasPlayed($this->quiz, $userID)) {
                     $game = MatchEditor::createGameResult($this->quiz, $userID, $score, $time, $result);
                     $userData = $game->getUserData(WCF::getUser(), true);
-                } elseif (($game = Match::getGame($this->quiz, $userID)) !== null) {
+                } elseif (($game = Match::getMatch($this->quiz, $userID)) !== null) {
                     $game = new MatchEditor($game);
                     $game->update(['lastScore' => $score, 'lastPlayedTime' => TIME_NOW, 'lastTimeTotal' => $time]);
                     $userData = $game->getUserData(WCF::getUser());

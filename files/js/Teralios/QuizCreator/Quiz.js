@@ -32,7 +32,7 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizCreator/Game'], function
             }
 
             if (!Number.isInteger(this.quizID)) {
-                this._printError(Language.get('wcf.quizMaker.quiz.error.notValidID'));
+                this._printError(Language.get('wcf.quizCreator.quiz.id.invalid'));
             }
 
             this._loadData();
@@ -52,7 +52,7 @@ define(['Ajax', 'StringUtil', 'Language', 'Teralios/QuizCreator/Game'], function
                     },
                     success: this.prepareGame.bind(this),
                     failure: function () {
-                        this._printError(Language.get('wcf.quizMaker.quiz.error.loading'));
+                        this._printError(Language.get('wcf.quizCreator.quiz.loading.error'));
                     }.bind(this)
                 }
             )

@@ -111,8 +111,8 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
                     }
                 }
             } else {
-                goalHtml = '<h3 class="name">' + Language.get('wcf.quizCreator.game.noGoal') + '</h3>';
-                goalHtml += '<p class="small">' + Language.get('wcf.quizCreator.game.noGoal.description') + '</p>';
+                goalHtml = '<h3 class="name">' + Language.get('wcf.quizCreator.game.goal.none') + '</h3>';
+                goalHtml += '<p class="small">' + Language.get('wcf.quizCreator.game.goal.none.detail') + '</p>';
             }
 
             goalContainer.innerHTML = goalHtml;
@@ -125,17 +125,17 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
          * @private
          */
         _renderScore: function (data) {
-            var scoreHtml = '<p class="player">' + this._score + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
+            var scoreHtml = '<p class="player">' + this._score + ' ' + Language.get('wcf.quizCreator.stats.score') + '</p>';
 
             if (data.players > 0) {
                 scoreHtml += '<div class="others">';
-                scoreHtml += '<p>⌀ ' + StringUtil.escapeHTML(data.averageScore) + ' ' + Language.get('wcf.quizCreator.game.score') + '</p>';
+                scoreHtml += '<p>⌀ ' + StringUtil.escapeHTML(data.averageScore) + ' ' + Language.get('wcf.quizCreator.stats.score') + '</p>';
             }
 
             if (data.betterAs !== undefined && data.betterAs > 0) {
-                scoreHtml += Language.get('wcf.quizCreator.game.otherPlayers', {percent: StringUtil.escapeHTML(data.betterAs)})
+                scoreHtml += Language.get('wcf.quizCreator.game.result.betterAs', {percent: StringUtil.escapeHTML(data.betterAs)})
             } else {
-                scoreHtml += '<p>' + Language.get('wcf.quizCreator.game.lastPosition') + '</p>';
+                scoreHtml += '<p>' + Language.get('wcf.quizCreator.game.result.asGood') + '</p>';
             }
 
             scoreHtml += '</div>';

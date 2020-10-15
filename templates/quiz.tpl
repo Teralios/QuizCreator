@@ -151,19 +151,22 @@
             Language.add('wcf.quizCreator.game.finish', '{jslang}wcf.quizCreator.game.finish{/jslang}');
             Language.add('wcf.quizCreator.game.next', '{jslang}wcf.quizCreator.game.question.next{/jslang}');
 
-            Language.add('wcf.quizCreator.game.points', '{jslang}wcf.quizCreator.stats.points{/jslang}');
-            Language.add('wcf.quizCreator.game.questions', '{jslang}wcf.quizCreator.stats.questions{/jslang}');
+            Language.add('wcf.quizCreator.stats.points', '{jslang}wcf.quizCreator.stats.points{/jslang}');
+            Language.add('wcf.quizCreator.stats.questions', '{jslang}wcf.quizCreator.stats.questions{/jslang}');
 
-            Language.add('wcf.quizCreator.game.score', '{jslang}wcf.quizCreator.stats.score{/jslang}');
-            Language.add('wcf.quizCreator.game.time', '{jslang}wcf.quizCreator.stats.time{/jslang}');
+            Language.add('wcf.quizCreator.stats.score', '{jslang}wcf.quizCreator.stats.score{/jslang}');
+            Language.add('wcf.quizCreator.stats.time', '{jslang}wcf.quizCreator.stats.time{/jslang}');
 
-            Language.add('wcf.quizCreator.game.lastPosition', '{jslang}wcf.quizCreator.game.result.asGood{/jslang}');
-            Language.add('wcf.quizCreator.game.otherPlayers', '{jslang}wcf.quizCreator.game.result.betterAs{/jslang}');
+            Language.add('wcf.quizCreator.game.result.asGood', '{jslang}wcf.quizCreator.game.result.asGood{/jslang}');
+            Language.add('wcf.quizCreator.game.result.betterAs', '{jslang}wcf.quizCreator.game.result.betterAs{/jslang}');
 
-            Language.add('wcf.quizCreator.game.noGoal', '{jslang}wcf.quizCreator.game.goal.none{/jslang}');
-            Language.add('wcf.quizCreator.game.noGoal.description', '{jslang}wcf.quizCreator.game.goal.none.detail{/jslang}');
+            Language.add('wcf.quizCreator.game.goal.none', '{jslang}wcf.quizCreator.game.goal.none{/jslang}');
+            Language.add('wcf.quizCreator.game.goal.none.detail', '{jslang}wcf.quizCreator.game.goal.none.detail{/jslang}');
 
-            Language.add('wcf.quizCreator.game.missingData', '{jslang}wcf.quizCreator.game.data.missing{/jslang}');
+            Language.add('wcf.quizCreator.game.data.missing', '{jslang}wcf.quizCreator.game.data.missing{/jslang}');
+
+            Language.add('wcf.quizCreator.quiz.id.invalid', '{jslang}wcf.quizCreator.quiz.id.invalid{/jslang}');
+            Language.add('wcf.quizCreator.quiz.loading.error', '{jslang}wcf.quizCreator.quiz.loading.error{/jslang}')
 
             new Quiz(elById('gameContainer'));
         })
@@ -172,9 +175,9 @@
 
 {if $game !== null}
     <script data-relocate="true">
-        require(['Teralios/QuizCreator/GameResultDialog', 'Language'], function(GameResultDialog, Language) {
-            Language.add('wcf.quizCreator.user.play.details.dialog.titel', '{jslang}wcf.quizCreator.user.play.details.dialog.titel{/jslang}')
-            GameResultDialog.init();
+        require(['Teralios/QuizCreator/Dialog/Player', 'Language'], function(PlayerDialog, Language) {
+            Language.add('wcf.quizCreator.user.play.details.dialog.titel', '{jslang}wcf.quizCreator.user.play.details.dialog.title{/jslang}')
+            PlayerDialog.init();
         })
     </script>
 {/if}

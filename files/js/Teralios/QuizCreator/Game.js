@@ -122,7 +122,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             }
 
             if (error === true) {
-                this._printError(Language.get('wcf.quizCreator.game.missingData'));
+                this._printError(Language.get('wcf.quizCreator.game.data.missing'));
             }
 
             return !error;
@@ -162,7 +162,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
         _buildGameHTML: function () {
             // game information header
             // question counter
-            var questionCounterRawHtml = '<b>' + Language.get('wcf.quizCreator.game.questions') + '</b> ';
+            var questionCounterRawHtml = '<b>' + Language.get('wcf.quizCreator.stats.questions') + '</b> ';
             questionCounterRawHtml += '<span class="currentQuestion"> ' + this._questionIndex + '</span> / ' + this._data.questions;
 
             var questionCounterDiv = elCreate('div');
@@ -175,7 +175,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             // time counter
             var timeCounterDiv = elCreate('div');
             timeCounterDiv.className = 'clock';
-            timeCounterDiv.innerHTML = '<b>' + Language.get('wcf.quizCreator.game.time') + ':</b> <span class="seconds"></span> ';
+            timeCounterDiv.innerHTML = '<b>' + Language.get('wcf.quizCreator.stats.time') + ':</b> <span class="seconds"></span> ';
 
             this._timeContainer = elBySel('.seconds', timeCounterDiv);
             this._headerContainer.appendChild(timeCounterDiv);
@@ -183,13 +183,13 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             // point value of question
             var pointValueDiv = elCreate('div');
             pointValueDiv.className = 'currentQuestionValue';
-            pointValueDiv.innerHTML = '+ <span class="questionValue"></span> <b>' + Language.get('wcf.quizCreator.game.points') + '</b>';
+            pointValueDiv.innerHTML = '+ <span class="questionValue"></span> <b>' + Language.get('wcf.quizCreator.stats.points') + '</b>';
 
             this._questionValueContainer = elBySel('.questionValue', pointValueDiv);
             this._headerContainer.appendChild(pointValueDiv);
 
             // game information footer
-            this._footerContainer.innerHTML = '<p><span class="score"></span> ' + Language.get('wcf.quizCreator.game.score') + '</p>';
+            this._footerContainer.innerHTML = '<p><span class="score"></span> ' + Language.get('wcf.quizCreator.stats.score') + '</p>';
             this._scoreContainer = elBySel('.score', this._footerContainer);
 
             // build game content

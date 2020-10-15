@@ -9,7 +9,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
     var clockBorders = [5, 15, 0];
 
     // reduces warnings on scrutinizer
-    var CLICK_EVENT = WCF_CLICK_EVENT
+    var CLICK_EVENT = /** global: WCF_CLICK_EVENT */WCF_CLICK_EVENT
 
     /**
      * @param data
@@ -150,7 +150,6 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             // build start button
             this._buttonStart = elCreate('button');
             this._buttonStart.textContent = Language.get('wcf.quizCreator.game.start');
-            /** global: WCF_CLICK_EVENT */
             this._buttonStart.addEventListener(CLICK_EVENT, this.startGame.bind(this));
             this._contentContainer.appendChild(this._buttonStart);
         },
@@ -204,7 +203,6 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
 
             this._buttonNext = elCreate('button');
             this._buttonNext.textContent = Language.get('wcf.quizCreator.game.next');
-            /** global: WCF_CLICK_EVENT */
             this._buttonNext.addEventListener(CLICK_EVENT, this.next.bind(this));
             this._buttonNext.style.visibility = 'hidden';
             this._contentContainer.appendChild(this._buttonNext)
@@ -229,7 +227,6 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
 
                 button.className = 'answer';
                 elData(button, 'value', key);
-                /** global: WCF_CLICK_EVENT */
                 button.addEventListener(CLICK_EVENT, this.answer.bind(this));
 
                 var liElement = elCreate('li');

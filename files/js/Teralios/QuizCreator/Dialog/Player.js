@@ -2,7 +2,7 @@ define(['Ajax', 'Ui/Dialog', 'Language'], function (Ajax, UiDialog, Language) {
     "use strict";
 
     // reduces warnings on scrutinizer
-    var CLICK_EVENT = WCF_CLICK_EVENT
+    var CLICK_EVENT = /** global: WCF_CLICK_EVENT */WCF_CLICK_EVENT
 
     return {
         init: function () {

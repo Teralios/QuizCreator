@@ -58,13 +58,13 @@
 	</category>
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Can manage quizzes]]></item>
-		<item name="wcf.acp.group.option.category.user.quiz"><![CDATA[Quiz]]></item>
+		<item name="wcf.acp.group.option.category.user.quiz"><![CDATA[QuizCreator]]></item>
 		<item name="wcf.acp.group.option.user.quiz.canView"><![CDATA[Can view quizzes]]></item>
 		<item name="wcf.acp.group.option.user.quiz.canPlay"><![CDATA[Can play quizzes]]></item>
 	</category>
 	<category name="wcf.acp.option">
 		<item name="wcf.acp.option.module_quiz_creator"><![CDATA[Teralios' QuizCreator]]></item>
-		<item name="wcf.acp.option.category.quizCreator"><![CDATA[Quiz Creator]]></item>
+		<item name="wcf.acp.option.category.quizCreator"><![CDATA[QuizCreator]]></item>
 		<item name="wcf.acp.option.category.quizCreator.quiz.page"><![CDATA[Quiz (Page)]]></item>
 		<item name="wcf.acp.option.category.quizCreator.quiz.list"><![CDATA[Quizzes (list)]]></item>
 		<item name="wcf.acp.option.quiz_last_players"><![CDATA[Show last players]]></item>
@@ -80,7 +80,7 @@
 	<category name="wcf.user.condition">
 		<item name="wcf.user.condition.quizPlayed"><![CDATA[Quizzes played (over-all)]]></item>
 		<item name="wcf.user.condition.quizPlayedUnique"><![CDATA[Rated quizzes]]></item>
-		<item name="wcf.user.condition.quizMaxScore"><![CDATA[Achieved relative score (max. 10 000)]]></item>
+		<item name="wcf.user.condition.quizMaxScore"><![CDATA[Achieved relative score (max. {#10000})]]></item>
 	</category>
 	<category name="wcf.quizCreator.box">
 		<item name="wcf.quizCreator.box.players.best"><![CDATA[Best players]]></item>

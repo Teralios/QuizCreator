@@ -31,6 +31,7 @@ use wcf\util\StringUtil;
  * @property-read int $goals
  * @property-read int $players
  * @property-read int $scoreTotal
+ * @method string getDescription()
  */
 class ViewableQuiz extends DatabaseObjectDecorator
 {
@@ -43,22 +44,8 @@ class ViewableQuiz extends DatabaseObjectDecorator
     protected $mediaObject = null;
 
     /**
-     * Return description.
-     *
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        $processor = new HtmlOutputProcessor();
-        $processor->process($this->description, Quiz::OBJECT_TYPE, $this->quizID);
-
-        return $processor->getHtml();
-    }
-
-    /**
      * @param int $length
      * @return string
-     * @throws SystemException
      */
     public function getPreview(int $length = 150)
     {

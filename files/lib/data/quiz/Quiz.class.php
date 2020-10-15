@@ -7,8 +7,10 @@ use wcf\data\DatabaseObject;
 use wcf\data\ILinkableObject;
 use wcf\data\ITitledLinkObject;
 use wcf\data\media\ViewableMedia;
+use wcf\system\bbcode\SimpleMessageParser;
 use wcf\system\Exception\SystemException;
 use wcf\system\form\builder\field\IntegerFormField;
+use wcf\system\html\output\HtmlOutputProcessor;
 use wcf\system\request\IRouteController;
 use wcf\system\request\LinkHandler;
 use wcf\util\StringUtil;
@@ -72,6 +74,28 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
                 'forceFrontend' => true
             ]
         );
+    }
+
+    /**
+     * Return description.
+     *
+     * @return string
+     * @throws SystemException
+     */
+    public function getDescription(): string
+    {
+        if (QUIZ_DESCRIPTION_HTML == 1) {
+            $processor = new HtmlOutputProcessor();
+            $processor->process($this->description, Quiz::OBJECT_TYPE, $this->quizID);
+            return $processor->getHtml();
+        }
+
+        return SimpleMessageParser::getInstance()->parse($this->description);
+    }
+
+    public function getRawDescription(): string
+    {
+        return $this->description;
     }
 
     /**

@@ -12,6 +12,7 @@ use wcf\system\cache\builder\QuizMostPlayedCacheBuilder;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\SystemException;
+use wcf\system\html\input\HtmlInputProcessor;
 use wcf\system\language\LanguageFactory;
 use wcf\system\WCF;
 
@@ -101,6 +102,10 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
         $quizData['title'] = $data['title'] ?? WCF::getLanguage()->get('wcf.acp.quizCreator.import.defaultTitle');
         $quizData['description'] = $data['description'] ?? '';
         $quizData['creationDate'] = TIME_NOW;
+
+        // html input processor
+        $htmlProcessor = new HtmlInputProcessor();
+        $quizData['description'] = $htmlProcessor->process($quizData['description'], Quiz::OBJECT_TYPE);
 
         // language information
         if (isset($data['languageCode'])) {

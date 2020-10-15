@@ -9,3 +9,5 @@ define('QUIZ_PER_BOX', 10);
 define('QUIZ_LAST_PLAYERS', 1);
 define('QUIZ_BEST_PLAYERS', 1);
 define('QUIZ_DESCRIPTION_LENGTH', 2500);
+define('QUIZ_PLAYERS_PER_PAGE', 25);
+define('QUIZ_DESCRIPTION_HTML', 1);

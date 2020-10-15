@@ -5,11 +5,28 @@
 			<category name="quizCreator">
 				<options>module_quiz_creator</options>
 			</category>
-			<category name="quizCreator.quiz">
+			<!-- General -->
+			<category name="quizCreator.general">
 				<parent>quizCreator</parent>
 			</category>
-			<category name="quizCreator.quiz.pages">
+			<category name="quizCreator.general.quiz">
+				<parent>quizCreator.general</parent>
+			</category>
+			<category name="quizCreator.general.box">
+				<parent>quizCreator.general</parent>
+			</category>
+			<!-- Pages -->
+			<category name="quizCreator.pages">
 				<parent>quizCreator</parent>
+			</category>
+			<category name="quizCreator.pages.list">
+				<parent>quizCreator.pages</parent>
+			</category>
+			<category name="quizCreator.pages.quiz">
+				<parent>quizCreator.pages</parent>
+			</category>
+			<category name="quizCreator.pages.players">
+				<parent>quizCreator.pages</parent>
 			</category>
 		</categories>
 		<options>
@@ -19,55 +36,68 @@
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 			</option>
-			<!-- basic quiz option -->
-			<!-- QuizListPage -->
+			<!-- pages.list -->
 			<option name="quiz_list_last_players">
-				<categoryname>quizCreator.quiz.list</categoryname>
+				<categoryname>quizCreator.pages.list</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 			</option>
 			<option name="quiz_list_best_players">
-				<categoryname>quizCreator.quiz.list</categoryname>
+				<categoryname>quizCreator.pages.list</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 			</option>
 			<option name="quiz_list_most_played">
-				<categoryname>quizCreator.quiz.list</categoryname>
+				<categoryname>quizCreator.pages.list</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 			</option>
-			<!-- QuizPage -->
-			<option name="quiz_last_players">
-				<categoryname>quizCreator.quiz.page</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
-			<option name="quiz_best_players">
-				<categoryname>quizCreator.quiz.page</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
-			<option name="QUIZ_DESCRIPTION_LENGTH">
-				<categoryname>quizCreator.quiz</categoryname>
-				<optiontype>integer</optiontype>
-				<defaultvalue>2500</defaultvalue>
-				<minvalue>1</minvalue>
-			</option>
-			<option name="QUIZ_LIST_QUIZZES_PER_PAGE">
+			<option name="quiz_list_quizzes_per_page">
 				<categoryname>quizCreator.quiz.list</categoryname>
 				<optiontype>integer</optiontype>
 				<defaultvalue>20</defaultvalue>
 				<minvalue>1</minvalue>
 			</option>
-			<option name="QUIZ_PLAYERS_PER_BOX">
-				<categoryname>quizCreator.quiz</categoryname>
+			<!-- pages.quiz -->
+			<option name="quiz_last_players">
+				<categoryname>quizCreator.pages.quiz</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			<option name="quiz_best_players">
+				<categoryname>quizCreator.pages.quiz</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			<!-- pages.player -->
+			<option name="quiz_players_per_page">
+				<categoryname>quizCreator.pages.players</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>20</defaultvalue>
+				<minvalue>2</minvalue>
+			</option>
+			<!-- general.quiz -->
+			<option name="quiz_description_length">
+				<categoryname>quizCreator.general.quiz</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>2500</defaultvalue>
+				<minvalue>1</minvalue>
+			</option>
+			<option name="quiz_description_html">
+				<categoryname>quizCreator.general.quiz</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			<!-- general.box -->
+			<option name="quiz_players_per_box">
+				<categoryname>quizCreator.general.box</categoryname>
 				<optiontype>integer</optiontype>
 				<defaultvalue>10</defaultvalue>
 				<options>quiz_list_best_players,quiz_list_last_players,quiz_best_players,quiz_last_players</options>
 				<minvalue>1</minvalue>
 			</option>
-			<option name="QUIZ_PER_BOX">
-				<categoryname>quizCreator.quiz.list</categoryname>
+			<option name="quiz_per_box">
+				<categoryname>quizCreator.general.box</categoryname>
 				<optiontype>integer</optiontype>
 				<defaultvalue>10</defaultvalue>
 				<options>quiz_list_most_played</options>

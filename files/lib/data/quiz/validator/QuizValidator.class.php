@@ -4,6 +4,7 @@ namespace wcf\data\quiz\validator;
 
 // imports
 use wcf\system\exception\SystemException;
+use wcf\system\html\input\HtmlInputProcessor;
 use wcf\system\language\LanguageFactory;
 use wcf\util\ArrayUtil;
 use wcf\util\JSON;
@@ -22,12 +23,12 @@ class QuizValidator
     /**
      * @var string[]
      */
-    protected $requiredQuizData = ['type', 'title', 'questions'];
+    protected $requiredQuizData = ['type', 'title', 'questions', 'description'];
 
     /**
      * @var string[]
      */
-    protected $allowedQuizData = ['languageCode', 'description', 'goals'];
+    protected $allowedQuizData = ['languageCode', 'goals'];
 
     /**
      * @var string[]

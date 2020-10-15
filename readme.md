@@ -17,9 +17,14 @@ There are two types of quizzes:
     - [x] Option for `$itemsPerPage` on QuizPlayerListPage
     - [x] Option for Box items of »Best Player« box
     - [x] Option for Box items of »Last Players« box
-  - [x] Overwork options structure
+  - [ ] Overwork options structure
+    - [x] New categories
+    - [x] Assign options to new categories
+    - [ ] Language variables
   - [ ] Use QuizValidator from package de.teralios.validator.quiz
-  - [ ] Implement PopOver on quiz list
+    - [ ] Clean up QuizImportFormPage
+  - [ ] Implement popover on quiz list
+  - [ ] Implement export of tags for quiz
   - [ ] ???
  
 ### RC1

@@ -42,20 +42,29 @@ class QuizAddForm extends AbstractFormBuilderForm
     {
         parent::createForm();
 
-        $container = FormContainer::create('quizCreatorGlobal');
-        $container->appendChildren([
-            TitleFormField::create('title')
-                ->label('wcf.global.title')
-                ->maximumLength(191)
-                ->required(),
-            WysiwygFormField::create('description')
+        // description field
+        if (QUIZ_DESCRIPTION_HTML) {
+            $descriptionField = WysiwygFormField::create('description')
                 ->label('wcf.global.description')
                 ->objectType(Quiz::OBJECT_TYPE)
                 ->maximumLength(QUIZ_DESCRIPTION_LENGTH)
                 ->required()
                 ->supportAttachments(false)
                 ->supportMentions(false)
-                ->supportQuotes(false),
+                ->supportQuotes(false);
+        } else {
+            $descriptionField = DescriptionFormField::create('description')
+                ->maximumLength(QUIZ_DESCRIPTION_LENGTH)
+                ->required();
+        }
+
+        $container = FormContainer::create('quizCreatorGlobal');
+        $container->appendChildren([
+            TitleFormField::create('title')
+                ->label('wcf.global.title')
+                ->maximumLength(191)
+                ->required(),
+            $descriptionField,
             TagFormField::create('tags')
                 ->objectType(Quiz::OBJECT_TYPE),
             ContentLanguageFormField::create('languageID')

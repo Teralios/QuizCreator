@@ -10,8 +10,9 @@ This file lists all changes like new features, improved functions and fixed bugs
     * Quizzes per box
     * Quiz description length
     * Enable html/wysiwyg
-  * Quiz data
+  * Quiz
     * Html mode for description
+    * Reset all matches
   * Importer/Exporter
     * Exports and imports tags
   
@@ -23,6 +24,7 @@ This file lists all changes like new features, improved functions and fixed bugs
     * Use more category for language items
     * Use 5.3 functions in language variables
     * Remove style related signs and html code.
+  * Rename game to match -> better english. ;)
   
 ### Bugs
   * "Quiz" to "Quizze" - QuizListPage

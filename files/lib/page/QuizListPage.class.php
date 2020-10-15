@@ -3,9 +3,9 @@
 namespace wcf\page;
 
 // imports
-use wcf\data\quiz\game\GameList;
+use wcf\data\quiz\match\MatchList;
 use wcf\data\quiz\ViewableQuizList;
-use wcf\system\cache\builder\QuizGameCacheBuilder;
+use wcf\system\cache\builder\QuizMatchCacheBuilder;
 use wcf\system\cache\builder\QuizMostPlayedCacheBuilder;
 use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
@@ -47,12 +47,12 @@ class QuizListPage extends SortablePage
     public $languageID = 0;
 
     /**
-     * @var GameList|null
+     * @var MatchList|null
      */
     public $lastPlayers = null;
 
     /**
-     * @var GameList|null
+     * @var MatchList|null
      */
     public $bestPlayers = null;
 
@@ -109,7 +109,7 @@ class QuizListPage extends SortablePage
         parent::readData();
 
         if (QUIZ_LIST_BEST_PLAYERS) {
-            $this->bestPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
+            $this->bestPlayers = /** @scrutinizer ignore-call */QuizMatchCacheBuilder::getInstance()->getData([
                 'context' => 'best',
                 'withQuiz' => true,
                 'withUser' => true,
@@ -117,7 +117,7 @@ class QuizListPage extends SortablePage
         }
 
         if (QUIZ_LIST_LAST_PLAYERS) {
-            $this->lastPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
+            $this->lastPlayers = /** @scrutinizer ignore-call */QuizMatchCacheBuilder::getInstance()->getData([
                 'context' => 'last',
                 'withQuiz' => true,
                 'withUser' => true,

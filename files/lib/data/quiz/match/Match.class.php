@@ -1,6 +1,6 @@
 <?php
 
-namespace wcf\data\quiz\game;
+namespace wcf\data\quiz\match;
 
 // imports
 use wcf\data\DatabaseObject;
@@ -14,7 +14,7 @@ use wcf\util\JSON;
 use wcf\util\StringUtil;
 
 /**
- * Class        Game
+ * Class        Match
  * @package     QuizCreator
  * @subpackage  wcf\data\quiz\game
  * @author      Karsten (Teralios) Achterrath
@@ -23,7 +23,7 @@ use wcf\util\StringUtil;
  *
  * @property-read int $userID
  * @property-read int $quizID
- * @property-read int $gameID
+ * @property-read int $matchID
  * @property-read int $playedTime
  * @property-read int $timeTotal
  * @property-read int $score
@@ -33,11 +33,11 @@ use wcf\util\StringUtil;
  * @property-read int $lastTimeTotal
  * @property-read string $result
  */
-class Game extends DatabaseObject
+class Match extends DatabaseObject
 {
     // inherit vars
-    protected static $databaseTableName = 'quiz_game';
-    protected static $databaseTableIndexName = 'gameID';
+    protected static $databaseTableName = 'quiz_match';
+    protected static $databaseTableIndexName = 'matchID';
 
     /**
      * @var UserProfile|null
@@ -56,6 +56,7 @@ class Game extends DatabaseObject
 
     /**
      * Returns needed time for quiz as second.
+     * @param boolean $last
      * @return string
      */
     public function getPlayTime(bool $last = false): string
@@ -214,7 +215,7 @@ class Game extends DatabaseObject
      * @throws DatabaseQueryException
      * @throws DatabaseQueryExecutionException
      */
-    public static function getGame(Quiz $quiz, int $userID)
+    public static function getMatch(Quiz $quiz, int $userID)
     {
         $sql = 'SELECT  *
                 FROM    ' . static::getDatabaseTableName() . '

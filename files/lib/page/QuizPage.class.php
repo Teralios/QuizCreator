@@ -3,11 +3,11 @@
 namespace wcf\page;
 
 // imports
-use wcf\data\quiz\game\Game;
-use wcf\data\quiz\game\GameList;
+use wcf\data\quiz\match\Match;
+use wcf\data\quiz\match\MatchList;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\ViewableQuiz;
-use wcf\system\cache\builder\QuizGameCacheBuilder;
+use wcf\system\cache\builder\QuizMatchCacheBuilder;
 use wcf\system\exception\SystemException;
 use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
@@ -34,12 +34,12 @@ class QuizPage extends AbstractPage
     public $showCopyright = true;
 
     /**
-     * @var null|GameList
+     * @var null|MatchList
      */
     public $bestPlayers = null;
 
     /**
-     * @var null|GameList
+     * @var null|MatchList
      */
     public $lastPlayers = null;
 
@@ -49,9 +49,9 @@ class QuizPage extends AbstractPage
     public $tags = [];
 
     /**
-     * @var Game
+     * @var Match
      */
-    public $game = null;
+    public $match = null;
 
     /**
      * @var string
@@ -74,7 +74,7 @@ class QuizPage extends AbstractPage
         parent::readData();
 
         if (QUIZ_BEST_PLAYERS) {
-            $this->bestPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
+            $this->bestPlayers = /** @scrutinizer ignore-call */QuizMatchCacheBuilder::getInstance()->getData([
                 'context' => 'best',
                 'quizID' => $this->quiz->quizID,
                 'withUser' => true,
@@ -82,7 +82,7 @@ class QuizPage extends AbstractPage
         }
 
         if (QUIZ_LAST_PLAYERS) {
-            $this->lastPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
+            $this->lastPlayers = /** @scrutinizer ignore-call */QuizMatchCacheBuilder::getInstance()->getData([
                 'context' => 'last',
                 'quizID' => $this->quiz->quizID,
                 'withUser' => true,
@@ -93,7 +93,7 @@ class QuizPage extends AbstractPage
             $this->tags = /** @scrutinizer ignore-call */TagEngine::getInstance()->getObjectTags(Quiz::OBJECT_TYPE, $this->quiz->getObjectID());
         }
 
-        $this->game = Game::getGame($this->quiz, WCF::getUser()->userID);
+        $this->match = Match::getMatch($this->quiz, WCF::getUser()->userID);
     }
 
     /**
@@ -106,7 +106,7 @@ class QuizPage extends AbstractPage
         WCF::getTPL()->assign([
             'quiz' => new ViewableQuiz($this->quiz),
             'tags' => $this->tags,
-            'game' => $this->game,
+            'match' => $this->match,
             'bestPlayers' => $this->bestPlayers,
             'lastPlayers' => $this->lastPlayers,
             'activeTabMenuItem' => $this->activeTabMenuItem,

@@ -3,9 +3,9 @@
 namespace wcf\system\cache\builder;
 
 // imports
-use wcf\data\quiz\game\GameList;
+use wcf\data\quiz\match\MatchList;
 
-class QuizGameCacheBuilder extends AbstractCacheBuilder
+class QuizMatchCacheBuilder extends AbstractCacheBuilder
 {
     protected $maxLifetime = 300;
 
@@ -20,10 +20,10 @@ class QuizGameCacheBuilder extends AbstractCacheBuilder
         $list = null;
         switch ($context) {
             case 'last':
-                $list = GameList::lastPlayers($quizID);
+                $list = MatchList::lastPlayers($quizID);
                 break;
             default:
-                $list = GameList::bestPlayers($quizID);
+                $list = MatchList::bestPlayers($quizID);
         }
 
         if ($withQuiz) {
@@ -37,11 +37,11 @@ class QuizGameCacheBuilder extends AbstractCacheBuilder
         $list->sqlLimit = $limit;
         $list->readObjects();
 
-        $games = [];
-        foreach ($list as $game) {
-            $games[] = $game;
+        $matches = [];
+        foreach ($list as $match) {
+            $matches[] = $match;
         }
 
-        return $games;
+        return $matches;
     }
 }

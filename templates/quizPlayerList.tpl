@@ -22,8 +22,8 @@
                     <li class="columnUser">{lang}wcf.quizCreator.players.players{/lang}</li>
                 </ol>
             </li>
-            {foreach from=$objects item=game}
-                {assign var="user" value=$game->getUser()}
+            {foreach from=$objects item=match}
+                {assign var="user" value=$match->getUser()}
                 <li class="tabularListRow">
                     <ol class="tabularListColumns">
                         <li class="columnID">{#$placement}.</li>
@@ -38,18 +38,18 @@
                         <li class="columnUser">
                             <h3>{user object=$user}</h3>
                             <ul class="inlineList dotSeparated small">
-                                <li>{lang}wcf.quizCreator.players.played.official{/lang}: {@$game->playedTime|time}</li>
-                                {if $game->lastPlayedTime > 0}<li>{lang}wcf.quizCreator.players.played.last{/lang}: {@$game->lastPlayedTime|time}</li>{/if}
+                                <li>{lang}wcf.quizCreator.players.played.official{/lang}: {@$match->playedTime|time}</li>
+                                {if $match->lastPlayedTime > 0}<li>{lang}wcf.quizCreator.players.played.last{/lang}: {@$match->lastPlayedTime|time}</li>{/if}
                             </ul>
                         </li>
                         <li class="columnStats">
                             <dl class="plain statsDataList">
                                 <dt>{lang}wcf.quizCreator.stats.score{/lang}</dt>
-                                <dd>{@$game->score|shortUnit}</dd>
+                                <dd>{@$match->score|shortUnit}</dd>
                             </dl>
                             <dl class="plain statsDataList">
                                 <dt>{lang}wcf.quizCreator.stats.time{/lang}</dt>
-                                <dd>{@$game->getPlayTime()}</dd>
+                                <dd>{@$match->getPlayTime()}</dd>
                             </dl>
                         </li>
                     </ol>

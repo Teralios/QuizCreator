@@ -84,6 +84,11 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->label('wcf.acp.quizCreator.quiz.isActive')
                 ->value(0)
                 ->available($this->formAction == 'edit'),
+            BooleanFormField::create('resetMatches')
+                ->label('wcf.acp.quizCreator.quiz.reset.matches')
+                ->objectProperty('actions')
+                ->value(0)
+                ->available($this->formAction == 'edit'),
         ]);
 
         $this->form->appendChild($container);

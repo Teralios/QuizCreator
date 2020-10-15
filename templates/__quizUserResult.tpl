@@ -8,7 +8,7 @@
     {assign var="correctCount" value=0}
 
     {foreach from=$questions item=question}
-        {assign var="answer" value=$game->getQuestion($question->position)}
+        {assign var="answer" value=$match->getQuestion($question->position)}
         {assign var="userChoice" value=$answer['answer']}
         {assign var="userTime" value=$answer['time']}
         {if $userChoice == $question->answer}{assign var="correctCount" value=$correctCount+1}{else}{assign var="wrongCount" value=$wrongCount+1}{/if}
@@ -36,7 +36,7 @@
     <li class="tabularListRow userStats">
         <ol class="tabularListColumns">
             <li class="columnStats"><b>{lang}wcf.quizCreator.stats.correct{/lang}</b>: {#$correctCount}</li>
-            <li class="columnStats">{$game->getPlayTime()} {lang}wcf.quizCreator.stats.time.minutes{/lang}</li>
+            <li class="columnStats">{$match->getPlayTime()} {lang}wcf.quizCreator.stats.time.minutes{/lang}</li>
             <li class="columnStats"><b>{lang}wcf.quizCreator.stats.incorrect{/lang}</b>: {#$wrongCount}</li>
         </ol>
     </li>

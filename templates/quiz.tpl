@@ -41,7 +41,7 @@
         </section>
     {/if}
 
-    {if $game !== null}
+    {if $match !== null}
         <section class="box">
             <h2 class="boxTitle">{lang}wcf.quizCreator.box.user.result{/lang}</h2>
             <div class="boxContent">
@@ -50,30 +50,30 @@
                         <h3>{lang}wcf.quizCreator.user.play.official{/lang}</h3>
                         <dl class="plain dataList small">
                             <dt><b>{lang}wcf.quizCreator.stats.score{/lang}</b></dt>
-                            <dd>{$game->score}</dd>
+                            <dd>{$match->score}</dd>
                         </dl>
                         <dl class="plain dataList small">
                             <dt><b>{lang}wcf.quizCreator.stats.time{/lang}</b></dt>
-                            <dd>{$game->getPlayTime()} {lang}wcf.quizCreator.stats.time.minutes{/lang}</dd>
+                            <dd>{$match->getPlayTime()} {lang}wcf.quizCreator.stats.time.minutes{/lang}</dd>
                         </dl>
                     </li>
-                    {if $game->lastPlayedTime > 0}
+                    {if $match->lastPlayedTime > 0}
                         <li>
                             <h3>{lang}wcf.quizCreator.user.play.last{/lang}</h3>
                             <dl class="plain dataList small">
                                 <dt><b>{lang}wcf.quizCreator.stats.score{/lang}</b></dt>
-                                <dd>{$game->lastScore}</dd>
+                                <dd>{$match->lastScore}</dd>
                             </dl>
                             <dl class="plain dataList small">
                                 <dt><b>{lang}wcf.quizCreator.stats.time{/lang}</b></dt>
-                                <dd>{$game->getPlayTime(true)} {lang}wcf.quizCreator.stats.time.minutes{/lang}</dd>
+                                <dd>{$match->getPlayTime(true)} {lang}wcf.quizCreator.stats.time.minutes{/lang}</dd>
                             </dl>
                         </li>
                     {/if}
                 </ul>
             </div>
             <div class="text-center boxContent">
-                <button class="small" id="showUserResult" data-quiz-id="{#$quiz->quizID}" data-game-id="{#$game->gameID}">
+                <button class="small" id="showUserResult" data-quiz-id="{#$quiz->quizID}" data-game-id="{#$match->gameID}">
                     {lang}wcf.quizCreator.user.play.show.details{/lang}
                 </button>
             </div>
@@ -168,7 +168,7 @@
     </script>
 {/if}
 
-{if $game !== null}
+{if $match !== null}
     <script data-relocate="true">
         require(['Teralios/QuizCreator/Dialog/Player', 'Language'], function(PlayerDialog, Language) {
             Language.add('wcf.quizCreator.user.play.details.dialog.title', '{jslang}wcf.quizCreator.user.play.details.dialog.title{/jslang}')

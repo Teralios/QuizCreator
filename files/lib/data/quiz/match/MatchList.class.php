@@ -1,10 +1,9 @@
 <?php
 
-namespace wcf\data\quiz\game;
+namespace wcf\data\quiz\match;
 
 // imports
 use wcf\data\DatabaseObjectList;
-use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizList;
 use wcf\data\user\UserProfileList;
 use wcf\system\exception\SystemException;
@@ -17,7 +16,7 @@ use wcf\system\exception\SystemException;
  * @copyright   ©2020 Teralios.de
  * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
-class GameList extends DatabaseObjectList
+class MatchList extends DatabaseObjectList
 {
     /**
      * @var bool
@@ -96,7 +95,7 @@ class GameList extends DatabaseObjectList
      */
     protected function prepareRead()
     {
-        /** @var Game $object */
+        /** @var Match $object */
         foreach ($this->objects as $object) {
             $this->userIDs[] = $object->userID;
             $this->quizIDs[] = $object->quizID;
@@ -131,7 +130,7 @@ class GameList extends DatabaseObjectList
         $users = ($this->userList !== null) ? $this->userList->getObjects() : [];
         $quizzes = ($this->quizList !== null) ? $this->quizList->getObjects() : [];
 
-        /** @var Game $object */
+        /** @var Match $object */
         foreach ($this->objects as $object) {
             if (isset($users[$object->userID])) {
                 /** @scrutinizer ignore-call */$object->setUser($users[$object->userID]);
@@ -151,8 +150,8 @@ class GameList extends DatabaseObjectList
     public static function bestPlayers(int $quizID = 0) //: static
     {
         $gameList = static::getBaseList($quizID);
-        $gameList->sqlOrderBy = Game::getDatabaseTableAlias() . '.scorePercent DESC';
-        $gameList->sqlOrderBy .= ', ' . Game::getDatabaseTableAlias() . '.timeTotal ASC';
+        $gameList->sqlOrderBy = Match::getDatabaseTableAlias() . '.scorePercent DESC';
+        $gameList->sqlOrderBy .= ', ' . Match::getDatabaseTableAlias() . '.timeTotal ASC';
 
         return $gameList;
     }
@@ -165,7 +164,7 @@ class GameList extends DatabaseObjectList
     public static function lastPlayers(int $quizID = 0) //: static
     {
         $gameList = static::getBaseList($quizID);
-        $gameList->sqlOrderBy = Game::getDatabaseTableAlias() . '.playedTime DESC';
+        $gameList->sqlOrderBy = Match::getDatabaseTableAlias() . '.playedTime DESC';
 
         return $gameList;
     }
@@ -181,7 +180,7 @@ class GameList extends DatabaseObjectList
 
         if ($quizID != 0) {
             $gameList->getConditionBuilder()->add(
-                Game::getDatabaseTableAlias() . '.quizID = ?',
+                Match::getDatabaseTableAlias() . '.quizID = ?',
                 [$quizID]
             );
         }

@@ -25,6 +25,8 @@ There are two types of quizzes:
     - [ ] Clean up QuizImportFormPage.class.php
   - [ ] Implement popover on quiz list
   - [x] Implement export and imports of tags for quiz
+  - [x] Option to reset all played matches.
+  - [x] Rename Game\* and \*_game to Match/\*_match
   - [ ] ???
  
 ### RC1

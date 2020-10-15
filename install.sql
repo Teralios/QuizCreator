@@ -24,9 +24,9 @@ CREATE TABLE wcf1_quiz (
 );
 
 -- player result table (game)
-DROP TABLE IF EXISTS wcf1_quiz_game;
-CREATE TABLE wcf1_quiz_game (
-    gameID INT(10) NOT NULL auto_increment PRIMARY KEY,
+DROP TABLE IF EXISTS wcf1_quiz_match;
+CREATE TABLE wcf1_quiz_match (
+    matchID INT(10) NOT NULL auto_increment PRIMARY KEY,
     quizID INT(10) NOT NULL,
     userID INT(10) NOT NULL,
     playedTime INT(10) NOT NULL,
@@ -77,8 +77,8 @@ CREATE TABLE wcf1_quiz_question (
 -- foreign keys
 ALTER TABLE wcf1_quiz ADD FOREIGN KEY (languageID) REFERENCES wcf1_language (languageID) ON DELETE SET NULL;
 ALTER TABLE wcf1_quiz ADD FOREIGN KEY (mediaID) REFERENCES wcf1_media (mediaID) ON DELETE SET NULL;
-ALTER TABLE wcf1_quiz_game ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (quizID) ON DELETE CASCADE;
-ALTER TABLE wcf1_quiz_game ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE CASCADE;
+ALTER TABLE wcf1_quiz_match ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (quizID) ON DELETE CASCADE;
+ALTER TABLE wcf1_quiz_match ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE CASCADE;
 ALTER TABLE wcf1_quiz_goal ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (quizID) ON DELETE CASCADE;
 ALTER TABLE wcf1_quiz_question ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (quizID) ON DELETE CASCADE;
 

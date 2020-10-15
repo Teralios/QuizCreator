@@ -1,6 +1,6 @@
 <?php
 
-namespace wcf\data\quiz\game;
+namespace wcf\data\quiz\match;
 
 // imports
 use wcf\data\AbstractDatabaseObjectAction;
@@ -20,14 +20,14 @@ use wcf\system\WCF;
  * @copyright   ©2020 Teralios.de
  * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
-class GameAction extends AbstractDatabaseObjectAction
+class MatchAction extends AbstractDatabaseObjectAction
 {
     protected $permissionsShowResult = ['user.quiz.canView'];
 
     /**
-     * @var Game
+     * @var Match
      */
-    protected $game = null;
+    protected $match = null;
 
     /**
      * Validate show result.
@@ -38,9 +38,9 @@ class GameAction extends AbstractDatabaseObjectAction
     {
         WCF::getSession()->checkPermissions($this->permissionsShowResult);
 
-        $this->game = $this->getSingleObject();
-        if ($this->game instanceof DatabaseObjectDecorator) {
-            $this->game =  /** @scrutinizer ignore-call */ $this->game->getDecoratedObject();
+        $this->match = $this->getSingleObject();
+        if ($this->match instanceof DatabaseObjectDecorator) {
+            $this->match =  /** @scrutinizer ignore-call */ $this->match->getDecoratedObject();
         }
     }
 
@@ -51,12 +51,12 @@ class GameAction extends AbstractDatabaseObjectAction
      */
     public function showResult()
     {
-        $quiz = new Quiz($this->game->quizID);
+        $quiz = new Quiz($this->match->quizID);
         $questions = new QuestionList($quiz);
         $questions->readObjects();
 
         WCF::getTPL()->assign([
-            'game' => $this->game,
+            'match' => $this->match,
             'quiz' => $quiz,
             'questions' => $questions,
         ]);

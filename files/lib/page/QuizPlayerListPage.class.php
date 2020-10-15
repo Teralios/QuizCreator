@@ -3,11 +3,11 @@
 namespace wcf\page;
 
 // imports
-use wcf\data\quiz\game\GameList;
+use wcf\data\quiz\match\MatchList;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
-use wcf\system\WCF as WCF;
+use wcf\system\WCF;
 
 /**
  * Class        QuizPlayerListPage
@@ -23,10 +23,10 @@ class QuizPlayerListPage extends MultipleLinkPage
     use TQuizPage;
 
     // inherit vars
-    public $objectListClassName = GameList::class;
+    public $objectListClassName = MatchList::class;
 
     /**
-     * @var GameList
+     * @var MatchList
      */
     public $objectList = null;
 

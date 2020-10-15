@@ -7,8 +7,8 @@ use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\DatabaseObjectDecorator;
 use wcf\data\IStorableObject;
 use wcf\data\IToggleAction;
-use wcf\data\quiz\game\Game;
-use wcf\data\quiz\game\GameEditor;
+use wcf\data\quiz\match\Match;
+use wcf\data\quiz\match\MatchEditor;
 use wcf\data\quiz\goal\GoalList;
 use wcf\data\quiz\question\QuestionList;
 use wcf\data\user\UserEditor;
@@ -41,7 +41,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     protected $permissionsToggle = ['admin.content.quizCreator.canManage'];
     protected $permissionsLoadQuiz = ['user.quiz.canView'];
     protected $permissionFinishGame = ['user.quiz.canPlay'];
-    protected $allowGuestAccess = ['loadQuiz', 'finishGame']; // allowed guest access
+    protected $allowGuestAccess = ['loadQuiz', 'finishMatch']; // allowed guest access
     protected $resetCache = ['delete', 'update', 'toggle']; // primary options to reset quiz and game cache.
 
     /**
@@ -85,6 +85,13 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     {
         // description
         $this->parameters['data']['description'] = $this->parameters['description_htmlInputProcessor']->getHtml();
+
+        // reset games
+        if ($this->parameters['actions']['reset'] == 1) {
+            $this->parameters['data']['played'] = 0;
+            MatchEditor::deleteforQuizzes($this->getObjectIDs());
+            MatchEditor::resetCache();
+        }
 
         parent::update();
 
@@ -172,20 +179,20 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
      * @throws UserInputException
      * @throws PermissionDeniedException
      */
-    public function validateFinishGame()
+    public function validateFinishMatch()
     {
         $this->validateLoadQuiz();
         WCF::getSession()->checkPermissions($this->permissionFinishGame);
     }
 
     /**
-     * Finish game.
+     * Finish match.
      * @return array
      * @throws SystemException
      * @throws DatabaseQueryException
      * @throws DatabaseQueryExecutionException
      */
-    public function finishGame()
+    public function finishMatch()
     {
         // user data for update
         $userData = [];
@@ -197,16 +204,16 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         $time = $this->parameters['timeTotal'];
 
         // build statistic
-        $statistic = Game::getStatistic($this->quiz, $score);
+        $statistic = Match::getStatistic($this->quiz, $score);
 
         // check user
         if ($this->quiz->isActive) {
             if ($userID != 0) {
-                if (!Game::hasPlayed($this->quiz, $userID)) {
-                    $game = GameEditor::createGameResult($this->quiz, $userID, $score, $time, $result);
+                if (!Match::hasPlayed($this->quiz, $userID)) {
+                    $game = MatchEditor::createGameResult($this->quiz, $userID, $score, $time, $result);
                     $userData = $game->getUserData(WCF::getUser(), true);
-                } elseif (($game = Game::getGame($this->quiz, $userID)) !== null) {
-                    $game = new GameEditor($game);
+                } elseif (($game = Match::getGame($this->quiz, $userID)) !== null) {
+                    $game = new MatchEditor($game);
                     $game->update(['lastScore' => $score, 'lastPlayedTime' => TIME_NOW, 'lastTimeTotal' => $time]);
                     $userData = $game->getUserData(WCF::getUser());
                 }

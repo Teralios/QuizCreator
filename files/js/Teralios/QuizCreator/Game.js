@@ -175,7 +175,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             // time counter
             var timeCounterDiv = elCreate('div');
             timeCounterDiv.className = 'clock';
-            timeCounterDiv.innerHTML = '<b>' + Language.get('wcf.quizCreator.game.time') + '</b> <span class="seconds"></span> ';
+            timeCounterDiv.innerHTML = '<b>' + Language.get('wcf.quizCreator.game.time') + ':</b> <span class="seconds"></span> ';
 
             this._timeContainer = elBySel('.seconds', timeCounterDiv);
             this._headerContainer.appendChild(timeCounterDiv);

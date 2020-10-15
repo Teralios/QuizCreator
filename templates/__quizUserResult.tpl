@@ -1,8 +1,7 @@
 <ol class="tabularList questionList">
     <li class="tabularListRowHead">
         <ol class="tabularListColumns">
-            <li class="columnID">#</li>
-            <li class="columnText">Frage</li>
+            <li class="columnText">{lang}wcf.quizCreator.quiz.question{/lang}</li>
         </ol>
     </li>
     {assign var="wrongCount" value=0}
@@ -19,7 +18,7 @@
                 <li class="columnID">{#$question->position}</li>
                 <li class="columnIcon"><span class="icon icon32 {if $userChoice == $question->answer}fa-thumbs-up{else}fa-thumbs-down{/if}"></span></li>
                 <li class="columnTitle">
-                    <h3>{$question->question} <span class="small"><span class="icon icon16 fa-clock-o"></span> {#$userTime} Sekunden</span></h3>
+                    <h3>{$question->question} <span class="small"><span class="icon icon16 fa-clock-o"></span> {#$userTime} {lang}wcf.quizCreator.player.seconds{/lang}</span></h3>
                     <ul class="inlineList dotSeparated small answerList">
                         {foreach from=$question->getPossibleOptions() item=option}
                             {capture assign="answerStartLi"}
@@ -36,9 +35,9 @@
     {/foreach}
     <li class="tabularListRow userStats">
         <ol class="tabularListColumns">
-            <li class="columnStats">{#$correctCount}</li>
-            <li class="columnStats">{$game->getPlayTime()}</li>
-            <li class="columnStats">{#$wrongCount}</li>
+            <li class="columnStats"><b>{lang}wcf.quizCreator.player.correct{/lang}</b>: {#$correctCount}</li>
+            <li class="columnStats">{$game->getPlayTime()} {lang}wcf.quizCreator.player.minutes{/lang}</li>
+            <li class="columnStats"><b>{lang}wcf.quizCreator.player.incorrect{/lang}</b>: {#$wrongCount}</li>
         </ol>
     </li>
 </ol>

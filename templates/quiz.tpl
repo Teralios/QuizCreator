@@ -2,7 +2,7 @@
 {capture assign='sidebarRight'}
     {if $bestPlayers !== null && $bestPlayers|count > 0}
         <section class="box">
-            <h2 class="boxTitle">{lang}wcf.quizCreator.quiz.box.bestPlayers{/lang}</h2>
+            <h2 class="boxTitle">{lang}wcf.quizCreator..box.players.best{/lang}</h2>
             <div class="boxContent">
                 <ul class="sidebarItemList">
                 {foreach from=$bestPlayers item=player}
@@ -16,14 +16,14 @@
                     </li>
                 {/foreach}
                 </ul>
-                <p class="small text-center"><a href="{link controller='QuizPlayerList' object=$quiz}{/link}">{lang}wcf.quizCreator.quiz.showPlayers{/lang}</a></p>
+                <p class="small text-center"><a href="{link controller='QuizPlayerList' object=$quiz}{/link}">{lang}wcf.quizCreator.player.show.all{/lang}</a></p>
             </div>
         </section>
     {/if}
 
     {if $lastPlayers !== null && $lastPlayers|count > 0}
         <section class="box">
-            <h2 class="boxTitle">{lang}wcf.quizCreator.quiz.box.lastPlayers{/lang}</h2>
+            <h2 class="boxTitle">{lang}wcf.quizCreator.box.players.last{/lang}</h2>
             <div class="boxContent">
                 <ul class="sidebarItemList">
                     {foreach from=$lastPlayers item=player}
@@ -43,30 +43,30 @@
 
     {if $game !== null}
         <section class="box">
-            <h2 class="boxTitle">{lang}wcf.quizCreator.quiz.box.userResult{/lang}</h2>
+            <h2 class="boxTitle">{lang}wcf.quizCreator.box.user.result{/lang}</h2>
             <div class="boxContent">
                 <ul class="sidebarItemList">
                     <li>
-                        <h3>{lang}wcf.quizCreator.players.played{/lang}</h3>
+                        <h3>{lang}wcf.quizCreator.user.play.official{/lang}</h3>
                         <dl class="plain dataList">
                             <dt><b>{lang}wcf.quizCreator.player.score{/lang}</b></dt>
                             <dd>{$game->score}</dd>
                         </dl>
                         <dl class="plain dataList">
-                            <dt><b>{lang}wcf.quizCreator.player.gameTime{/lang}</b></dt>
-                            <dd>{$game->getPlayTime()}</dd>
+                            <dt><b>{lang}wcf.quizCreator.player.played.time{/lang}</b></dt>
+                            <dd>{$game->getPlayTime()} {lang}wcf.quizCreator.player.minutes{/lang}</dd>
                         </dl>
                     </li>
                     {if $game->lastPlayedTime > 0}
                         <li>
-                            <h3>{lang}wcf.quizCreator.player.lastPlayed{/lang}</h3>
+                            <h3>{lang}wcf.quizCreator.user.play.last{/lang}</h3>
                             <dl class="plain dataList">
                                 <dt><b>{lang}wcf.quizCreator.player.score{/lang}</b></dt>
                                 <dd>{$game->lastScore}</dd>
                             </dl>
                             <dl class="plain dataList">
-                                <dt><b>{lang}wcf.quizCreator.player.gameTime{/lang}</b></dt>
-                                <dd>{$game->getPlayTime(true)}</dd>
+                                <dt><b>{lang}wcf.quizCreator.player.played.time{/lang}</b></dt>
+                                <dd>{$game->getPlayTime(true)} {lang}wcf.quizCreator.player.minutes{/lang}</dd>
                             </dl>
                         </li>
                     {/if}
@@ -74,7 +74,7 @@
             </div>
             <div class="text-center boxContent">
                 <button class="small" id="showUserResult" data-quiz-id="{#$quiz->quizID}" data-game-id="{#$game->gameID}">
-                    {lang}wcf.quizCreator.player.showResult{/lang}
+                    {lang}wcf.quizCreator.user.play.show.details{/lang}
                 </button>
             </div>
         </section>
@@ -102,9 +102,10 @@
     {/if}
     <footer>
         <div>
-            <span>{#$quiz->questions} {lang}wcf.quizCreator.questions{/lang}</span>
-            <span class="separatorLeft">{#$quiz->played} {lang}wcf.quizCreator.played{/lang}</span>
+            <span>{lang}wcf.quizCreator.stats.question.detail{/lang}</span>
+            <span class="separatorLeft">{lang}wcf.quizCreator.stats.played.detail{/lang}</span>
         </div>
+        {* language over work finished here *}
         {if !$tags|empty}
             <div class="tags">
                 <ul class="tagList">
@@ -166,7 +167,7 @@
 {if $game !== null}
     <script data-relocate="true">
         require(['Teralios/QuizCreator/GameResultDialog', 'Language'], function(GameResultDialog, Language) {
-            Language.add('wcf.quizCreator.player.result.title', '{jslang}wcf.quizCreator.player.result.title{/jslang}')
+            Language.add('wcf.quizCreator.user.play.details.dialog.titel', '{jslang}wcf.quizCreator.user.play.details.dialog.titel{/jslang}')
             GameResultDialog.init();
         })
     </script>

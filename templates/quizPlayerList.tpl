@@ -19,7 +19,6 @@
         <ol class="tabularList playerList">
             <li class="tabularListRow tabularListRowHead">
                 <ol class="tabularListColumns">
-                    <li class="columnID">{lang}wcf.quizCreator.players.placement{/lang}</li>
                     <li class="columnUser">{lang}wcf.quizCreator.players.name{/lang}</li>
                 </ol>
             </li>
@@ -60,7 +59,7 @@
         </ol>
     </div>
 {else}
-    <p class="info">{lang}wcf.quizCreator.players.noPlayers{/lang}</p>
+    <p class="info">{lang}wcf.global.noItems{/lang}</p>
 {/if}
 
 <footer class="contentFooter">

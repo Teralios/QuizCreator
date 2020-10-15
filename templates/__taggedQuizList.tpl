@@ -12,7 +12,7 @@
                                         <li class="columnIcon">
                                             <span
                                                 class="icon icon32 {if $quiz->type == 'competition'}fa-trophy{else}fa-child{/if} jsTooltip"
-                                                title="{lang}wcf.acp.quizCreator.quiz.type.{@$quiz->type}{/lang}">
+                                                title="{lang}wcf.quizCreator.quiz.type.{@$quiz->type}{/lang}">
                                             </span>
                                         </li>
 
@@ -23,9 +23,9 @@
 
                                         <li class="columnStats">
                                                 <dl class="plain statsDataList">
-                                                        <dt>{lang}wcf.quizCreator.questions{/lang}</dt>
+                                                        <dt>{lang}wcf.quizCreator.stats.questions{/lang}</dt>
                                                         <dd>{@$quiz->questions|shortUnit}</dd>
-                                                        <dt>{lang}wcf.quizCreator.played{/lang}</dt>
+                                                        <dt>{lang}wcf.quizCreator.stats.played{/lang}</dt>
                                                         <dd>{@$quiz->played|shortUnit}</dd>
                                                 </dl>
                                                 <div class="messageGroupListStatsSimple" aria-label="{lang}wcf.quizCreator.questions{/lang}"><span class="icon icon16 fa-question-circle"></span> {@$quiz->questions|shortUnit}</div>

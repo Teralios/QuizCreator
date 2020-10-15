@@ -70,7 +70,8 @@ class QuizPlayerListPage extends MultipleLinkPage
 
         $this->assignQuizData();
         WCF::getTPL()->assign([
-            'placementStart' => (1 + ($this->itemsPerPage * ($this->pageNo - 1)))
+            'placementStart' => (1 + ($this->itemsPerPage * ($this->pageNo - 1))),
+            'showQuizMakerCopyright' => true
         ]);
     }
 }

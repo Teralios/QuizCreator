@@ -5,7 +5,7 @@
 		<page identifier="de.teralios.quizCreator.QuizList">
 			<pageType>system</pageType>
 			<controller>wcf\page\QuizListPage</controller>
-			<name language="de">Quiz (Liste)</name>
+			<name language="de">Quizze</name>
 			<name language="en">Quizzes</name>
 			<permissions>user.quiz.canView</permissions>
 			<allowSpidersToIndex>1</allowSpidersToIndex>
@@ -31,8 +31,8 @@
 		<page identifier="de.teralios.quizCreator.Players">
 			<pageType>system</pageType>
 			<controller>wcf\page\QuizPlayerListPage</controller>
-			<name language="de">Quizspieler</name>
-			<name language="en">Quiz players</name>
+			<name language="de">Spieler</name>
+			<name language="en">Players</name>
 			<hasFixedParent>1</hasFixedParent>
 			<parent>de.teralios.quizCreator.Quiz</parent>
 			<permissions>user.quiz.canView</permissions>

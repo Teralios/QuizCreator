@@ -19,7 +19,7 @@
         <ol class="tabularList playerList">
             <li class="tabularListRow tabularListRowHead">
                 <ol class="tabularListColumns">
-                    <li class="columnUser">{lang}wcf.quizCreator.players{/lang}</li>
+                    <li class="columnUser">{lang}wcf.quizCreator.players.players{/lang}</li>
                 </ol>
             </li>
             {foreach from=$objects item=game}
@@ -49,7 +49,7 @@
                             </dl>
                             <dl class="plain statsDataList">
                                 <dt>{lang}wcf.quizCreator.stats.time{/lang}</dt>
-                                <dd>{@$game->getPlayTime()} <b>{lang}wcf.quizCreator.stats.time.minutes{/lang}</b></dd>
+                                <dd>{@$game->getPlayTime()}</dd>
                             </dl>
                         </li>
                     </ol>

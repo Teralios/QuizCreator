@@ -12,7 +12,7 @@
 {capture assign='sidebarRight'}
     {if $mostPlayed !== null && $mostPlayed|count > 0}
         <section class="box">
-            <h2 class="boxTitle">{lang}wcf.quizCreator.quizList.box.mostPlayed{/lang}</h2>
+            <h2 class="boxTitle">{lang}wcf.quizCreator.box.quiz.playedMost{/lang}</h2>
             <div class="boxContent">
                 <ul class="sidebarItemList">
                     {foreach from=$mostPlayed item=$quiz}
@@ -25,7 +25,7 @@
                             {/if}
                             <div class="sidebarItemTitle">
                                 <h3>{anchor object=$quiz->getDecoratedObject()}</h3>
-                                <small>{lang}.stats.played.detail{/lang}</small>
+                                <small>{lang}wcf.quizCreator.stats.played.detail{/lang}</small>
                             </div>
                         </li>
                     {/foreach}
@@ -36,7 +36,7 @@
 
     {if $bestPlayers !== null && $bestPlayers|count > 0}
         <section class="box">
-            <h2 class="boxTitle">{lang}wcf.quizCreator.quiz.box.bestPlayers{/lang}</h2>
+            <h2 class="boxTitle">{lang}wcf.quizCreator.box.players.best{/lang}</h2>
             <div class="boxContent">
                 <ul class="sidebarItemList">
                     {foreach from=$bestPlayers item=player}
@@ -46,7 +46,7 @@
                             {@$user->getAvatar()->getImageTag(24)}
                             <div class="sidebarItemTitle">
                                 <h3>{user object=$user}</a></h3>
-                                <small>{lang}.stats.score.relative.quiz{/lang}</small>
+                                <small>{lang}wcf.quizCreator.stats.score.relative.quiz{/lang}</small>
                             </div>
                         </li>
                     {/foreach}
@@ -57,7 +57,7 @@
 
     {if $lastPlayers !== null && $lastPlayers|count > 0}
         <section class="box">
-            <h2 class="boxTitle">{lang}wcf.quizCreator.quiz.box.lastPlayers{/lang}</h2>
+            <h2 class="boxTitle">{lang}wcf.quizCreator.box.players.last{/lang}</h2>
             <div class="boxContent">
                 <ul class="sidebarItemList">
                     {foreach from=$lastPlayers item=player}
@@ -104,7 +104,7 @@
                             </li>
                             <li>
                                 <div class="dropdown">
-                                    <span class="dropdownToggle">{if $sortField == 'title'}{lang}wcf.global.title{/lang}{else}{lang}wcf.quizCreator.{$sortField}{/lang}{/if}</span>
+                                    <span class="dropdownToggle">{if $sortField == 'title'}{lang}wcf.global.title{/lang}{else}{lang}wcf.quizCreator.sort.{$sortField}{/lang}{/if}</span>
 
                                     <ul class="dropdownMenu">
                                         {foreach from=$validSortFields item=_sortField}

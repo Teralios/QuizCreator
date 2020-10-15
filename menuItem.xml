@@ -3,7 +3,7 @@
 	<import>
 		<item identifier="de.teralios.quizCreator.quizList">
 			<menu>com.woltlab.wcf.MainMenu</menu>
-			<title language="de">Quiz</title>
+			<title language="de">Quizze</title>
 			<title language="en">Quizzes</title>
 			<page>de.teralios.quizCreator.QuizList</page>
 		</item>

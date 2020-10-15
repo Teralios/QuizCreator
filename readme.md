@@ -12,12 +12,12 @@ There are two types of quizzes:
     - [x] Use WYSIWYG-Editor for description
     - [x] Option for length of description
     - [x] Description for quiz is required
-  - [ ] Implement additional options
+  - [x] Implement additional options
     - [x] Option for `$itemsPerPage` on QuizListPage
-    - [ ] Option for `$itemsPerPage` on QuizPlayerListPage
+    - [x] Option for `$itemsPerPage` on QuizPlayerListPage
     - [x] Option for Box items of »Best Player« box
     - [x] Option for Box items of »Last Players« box
-  - [ ] Overwork options structure
+  - [x] Overwork options structure
   - [ ] Use QuizValidator from package de.teralios.validator.quiz
   - [ ] Implement PopOver on quiz list
   - [ ] ???

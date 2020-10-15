@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/vortex/language.xsd" languagecode="de">
 	<category name="wcf.acp.menu">
-		<item name="wcf.acp.menu.link.quizCreator"><![CDATA[Quiz]]></item>
+		<item name="wcf.acp.menu.link.quizCreator"><![CDATA[QuizCreator]]></item>
 		<item name="wcf.acp.menu.link.quizCreator.list"><![CDATA[Quizze]]></item>
 		<item name="wcf.acp.menu.link.quizCreator.add"><![CDATA[Quiz hinzufügen]]></item>
 		<item name="wcf.acp.menu.link.quizCreator.import"><![CDATA[Quiz importieren]]></item>
@@ -56,7 +56,6 @@
 		<item name="wcf.acp.quizCreator.import.type.file"><![CDATA[Datei importieren]]></item>
 		<item name="wcf.acp.quizCreator.import.type.text"><![CDATA[Text importieren]]></item>
 	</category>
-
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Kann Quizze verwalten]]></item>
 		<item name="wcf.acp.group.option.category.user.quiz"><![CDATA[Quiz]]></item>
@@ -82,5 +81,64 @@
 		<item name="wcf.user.condition.quizPlayed"><![CDATA[Quizze gespielt (gesamt)]]></item>
 		<item name="wcf.user.condition.quizPlayedUnique"><![CDATA[Gewertete Quizze]]></item>
 		<item name="wcf.user.condition.quizMaxScore"><![CDATA[Erreichte relative Punktzahl (max. 10 000)]]></item>
+	</category>
+	<category name="wcf.quizCreator.box">
+		<item name="wcf.quizCreator.box.players.best"><![CDATA[Besten Spieler]]></item>
+		<item name="wcf.quizCreator.box.players.last"><![CDATA[Letzten Spieler]]></item>
+		<item name="wcf.quizCreator.box.user.result"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Dein{else}Ihr{/if} Ergebnis]]></item>
+		<item name="wcf.quizCreator.box.quiz.playedMost"><![CDATA[Meist gespielte Quizze]]></item>
+	</category>
+	<category name="wcf.quizCreator.player">
+		<item name="wcf.quizCreator.player.show.all"><![CDATA[Zeige alle Spieler]]></item>
+		<item name="wcf.quizCreator.player.played.quiz"><![CDATA[Spielte „{anchor object=$quiz}“: {@$player->playedTime|time}]]></item>
+	</category>
+	<category name="wcf.quizCreator.user">
+		<item name="wcf.quizCreator.user.play.official"><![CDATA[Offizielles Spiel]]></item>
+		<item name="wcf.quizCreator.user.play.last"><![CDATA[Letztes Spiel]]></item>
+		<item name="wcf.quizCreator.user.play.show.details"><![CDATA[Zeige Details]]></item>
+		<item name="wcf.quizCreator.user.play.details.dialog.title"><![CDATA[Offizielle Wertung]]></item>
+	</category>
+	<category name="wcf.quizCreator.quiz">
+		<item name="wcf.quizCreator.quiz.question"><![CDATA[Frage]]></item>
+		<item name="wcf.quizCreator.quiz.language"><![CDATA[Sprache]]></item>
+		<item name="wcf.quizCreator.quiz.type.competition"><![CDATA[Wettkampf]]></item>
+		<item name="wcf.quizCreator.quiz.type.fun"><![CDATA[Spaß]]></item>
+		<item name="wcf.quizCreator.quiz.loading.error"><![CDATA[Fehler beim Laden]]></item>
+	</category>
+	<category name="wcf.quizCreator.stats">
+		<item name="wcf.quizCreator.stats.questions"><![CDATA[Frage]]></item>
+		<item name="wcf.quizCreator.stats.played"><![CDATA[Spiele]]></item>
+		<item name="wcf.quizCreator.stats.questions.detail"><![CDATA[{plural value=$quiz->questions 1='eine Frage' 2='zwei Fragen' 3='drei Fragen' other='# Fragen'}]]></item>
+		<item name="wcf.quizCreator.stats.played.detail"><![CDATA[{plural value=$quiz->played 1='einmal' 2='zweimal' other='# mal'} gespielt]]></item>
+		<item name="wcf.quizCreator.stats.time"><![CDATA[Zeit]]></item>
+		<item name="wcf.quizCreator.stats.points"><![CDATA[Punkte]]></item>
+		<item name="wcf.quizCreator.stats.score"><![CDATA[Punkte]]></item>
+		<item name="wcf.quizCreator.stats.score.relative"><![CDATA[{#($player->scorePercent * 100)} % der Punkte]]></item>
+		<item name="wcf.quizCreator.stats.score.relative.quiz"><![CDATA[{#($player->scorePercent * 100)} % der Punkte im Quiz „{anchor object=$quiz}“]]></item>
+		<item name="wcf.quizCreator.stats.score.average"><![CDATA[⌀ Punkte]]></item>
+		<item name="wcf.quizCreator.stats.time.minutes"><![CDATA[Minuten]]></item>
+		<item name="wcf.quizCreator.stats.time.seconds"><![CDATA[Sekunden]]></item>
+		<item name="wcf.quizCreator.stats.correct"><![CDATA[Richtig]]></item>
+		<item name="wcf.quizCreator.stats.players"><![CDATA[Spieler]]></item>
+		<item name="wcf.quizCreator.stats.incorrect"><![CDATA[Falsch]]></item>
+	</category>
+	<category name="wcf.quizCreator.game">
+		<item name="wcf.quizCreator.game.start"><![CDATA[Spiel starten]]></item>
+		<item name="wcf.quizCreator.game.question.next"><![CDATA[Nächste Frage]]></item>
+		<item name="wcf.quizCreator.game.finish"><![CDATA[Spiel beenden]]></item>
+		<item name="wcf.quizCreator.game.result.asGood"><![CDATA[Andere Spieler sind so gut wie {if LANGUAGE_USE_INFORMAL_VARIANT}Du{else}Sie{/if}.]]></item>
+		<item name="wcf.quizCreator.game.result.betterAs"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du bist{else}Sie sind{/if} besser als {literal}{$percent}{/literal} % der Spieler.]]></item>
+		<item name="wcf.quizCreator.game.goal.none"><![CDATA[Knapp verpasst!]]></item>
+		<item name="wcf.quizCreator.game.goal.none.detail"><![CDATA[Leider hat es für ein „Goal“ nicht ganz gereicht.]]></item>
+		<item name="wcf.quizCreator.game.data.missing"><![CDATA[Das Quiz ist leider noch nicht ganz fertig.]]></item>
+	</category>
+	<category name="wcf.quizCreator.sort">
+		<item name="wcf.quizCreator.sort.creationDate"><![CDATA[Datum]]></item>
+	</category>
+	<category name="wcf.quizCreator.players">
+		<item name="wcf.quizCreator.players.page.title"><![CDATA[Spieler]]></item>
+		<item name="wcf.quizCreator.players.players"><![CDATA[Spieler]]></item>
+		<item name="wcf.quizCreator.players.played.official"><![CDATA[Spielte (gewertet)]]></item>
+		<item name="wcf.quizCreator.players.played.last"><![CDATA[Spielte (zuletzt)]]></item>
 	</category>
 </language>

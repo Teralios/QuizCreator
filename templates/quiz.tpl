@@ -73,7 +73,7 @@
                 </ul>
             </div>
             <div class="text-center boxContent">
-                <button class="small" id="showUserResult" data-quiz-id="{#$quiz->quizID}" data-game-id="{#$match->gameID}">
+                <button class="small" id="showUserResult" data-match-id="{#$match->matchID}">
                     {lang}wcf.quizCreator.user.play.show.details{/lang}
                 </button>
             </div>

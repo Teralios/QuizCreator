@@ -86,8 +86,12 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         // description
         $this->parameters['data']['description'] = $this->parameters['description_htmlInputProcessor']->getHtml();
 
+        /*echo '<pre>';
+        print_r($this->parameters);
+        exit;*/
+
         // reset games
-        if ($this->parameters['actions']['reset'] == 1) {
+        if (isset($this->parameters['actions']['resetMatches']) && $this->parameters['actions']['resetMatches'] == 1) {
             $this->parameters['data']['played'] = 0;
             MatchEditor::deleteforQuizzes($this->getObjectIDs());
             MatchEditor::resetCache();

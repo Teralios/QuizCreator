@@ -7,7 +7,7 @@ define(['Ajax', 'Ui/Dialog', 'Language'], function (Ajax, UiDialog, Language) {
     return {
         init: function () {
             this._button = elById('showUserResult');
-            this.gameID = elData(this._button, 'game-id');
+            this.matchID = elData(this._button, 'match-id');
 
             this._loadTPL();
         },
@@ -31,8 +31,8 @@ define(['Ajax', 'Ui/Dialog', 'Language'], function (Ajax, UiDialog, Language) {
                 {
                     data: {
                         actionName: "showResult",
-                        className: 'wcf\\data\\quiz\\game\\GameAction',
-                        objectIDs: [this.gameID]
+                        className: 'wcf\\data\\quiz\\match\\MatchAction',
+                        objectIDs: [this.matchID]
                     },
                     success: this.getData.bind(this),
                 }

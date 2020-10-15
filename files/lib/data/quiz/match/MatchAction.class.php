@@ -23,6 +23,7 @@ use wcf\system\WCF;
 class MatchAction extends AbstractDatabaseObjectAction
 {
     protected $permissionsShowResult = ['user.quiz.canView'];
+    protected $className = MatchEditor::class;
 
     /**
      * @var Match

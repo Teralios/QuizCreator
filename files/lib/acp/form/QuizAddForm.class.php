@@ -9,6 +9,7 @@ use wcf\form\AbstractFormBuilderForm;
 use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\container\wysiwyg\WysiwygFormContainer;
+use wcf\system\form\builder\data\processor\CustomFormDataProcessor;
 use wcf\system\form\builder\field\DescriptionFormField;
 use wcf\system\form\builder\field\language\ContentLanguageFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
@@ -17,6 +18,7 @@ use wcf\system\form\builder\field\TitleFormField;
 use wcf\system\form\builder\field\media\SingleMediaSelectionFormField;
 use wcf\system\form\builder\field\BooleanFormField;
 use wcf\system\form\builder\field\wysiwyg\WysiwygFormField;
+use wcf\system\form\builder\IFormDocument;
 use wcf\system\request\LinkHandler;
 use wcf\util\HeaderUtil;
 
@@ -86,10 +88,26 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->available($this->formAction == 'edit'),
             BooleanFormField::create('resetMatches')
                 ->label('wcf.acp.quizCreator.quiz.reset.matches')
-                ->objectProperty('actions')
                 ->value(0)
                 ->available($this->formAction == 'edit'),
         ]);
+
+        if ($this->formAction == 'edit') {
+            // actions data processor, add moment only one action is preformed.
+            $this->form->getDataHandler()->addProcessor(
+                new CustomFormDataProcessor(
+                    'actionResetMatches',
+                    function (IFormDocument $document, array $parameters) {
+                        if (isset($parameters['data']['resetMatches'])) {
+                            $parameters['actions']['resetMatches'] = $parameters['data']['resetMatches'];
+                            unset($parameters['data']['resetMatches']);
+                        }
+
+                        return $parameters;
+                    }
+                )
+            );
+        }
 
         $this->form->appendChild($container);
     }

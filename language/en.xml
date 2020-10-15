@@ -72,6 +72,18 @@
 		<item name="wcf.acp.option.quiz_list_last_players"><![CDATA[Show last players]]></item>
 		<item name="wcf.acp.option.quiz_list_best_players"><![CDATA[Show best players]]></item>
 		<item name="wcf.acp.option.quiz_list_most_played"><![CDATA[Show most played quizzes]]></item>
+		<item name="wcf.acp.option.category.quizCreator.general"><![CDATA[General]]></item>
+		<item name="wcf.acp.option.category.quizCreator.pages"><![CDATA[Pages]]></item>
+		<item name="wcf.acp.option.category.quizCreator.general.quiz"><![CDATA[Quiz]]></item>
+		<item name="wcf.acp.option.quiz_description_length"><![CDATA[Maximum description length]]></item>
+		<item name="wcf.acp.option.quiz_description_html"><![CDATA[Use html for description]]></item>
+		<item name="wcf.acp.option.category.quizCreator.general.box"><![CDATA[Boxes]]></item>
+		<item name="wcf.acp.option.quiz_players_per_box"><![CDATA[Players per box]]></item>
+		<item name="wcf.acp.option.quiz_per_box"><![CDATA[Quizzes per box]]></item>
+		<item name="wcf.acp.option.category.quizCreator.pages.list"><![CDATA[Page „Quizzes“]]></item>
+		<item name="wcf.acp.option.category.quizCreator.pages.quiz"><![CDATA[Page “Quiz”]]></item>
+		<item name="wcf.acp.option.category.quizCreator.pages.players"><![CDATA[Page “Players”]]></item>
+		<item name="wcf.acp.option.quiz_players_per_page"><![CDATA[Players per page]]></item>
 	</category>
 	<category name="wcf.tagging">
 		<item name="wcf.tagging.taggedObjects.de.teralios.quizCreator.quiz"><![CDATA[Quizzes]]></item>

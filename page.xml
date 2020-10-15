@@ -9,11 +9,11 @@
 			<name language="en">Quizzes</name>
 			<permissions>user.quiz.canView</permissions>
 			<allowSpidersToIndex>1</allowSpidersToIndex>
+			<content language="de">
+				<title>Quizze</title>
+			</content>
 			<content language="en">
 				<title>Quizzes</title>
-			</content>
-			<content language="de">
-				<title>Quiz</title>
 			</content>
 		</page>
 		<page identifier="de.teralios.quizCreator.Quiz">

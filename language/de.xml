@@ -70,6 +70,18 @@
 		<item name="wcf.acp.option.quiz_list_last_players"><![CDATA[Zeige letzte Spieler an]]></item>
 		<item name="wcf.acp.option.quiz_list_best_players"><![CDATA[Zeige beste Spieler]]></item>
 		<item name="wcf.acp.option.quiz_list_most_played"><![CDATA[Zeige meist gespielte Quizze]]></item>
+		<item name="wcf.acp.option.category.quizCreator.general"><![CDATA[Allgemein]]></item>
+		<item name="wcf.acp.option.category.quizCreator.pages"><![CDATA[Seiten]]></item>
+		<item name="wcf.acp.option.category.quizCreator.general.quiz"><![CDATA[Quiz]]></item>
+		<item name="wcf.acp.option.quiz_description_length"><![CDATA[Maximale Beschreibungslänge]]></item>
+		<item name="wcf.acp.option.quiz_description_html"><![CDATA[HTML aktivieren für Beschreibung]]></item>
+		<item name="wcf.acp.option.category.quizCreator.general.box"><![CDATA[Boxen]]></item>
+		<item name="wcf.acp.option.quiz_players_per_box"><![CDATA[Spieler pro Box]]></item>
+		<item name="wcf.acp.option.quiz_per_box"><![CDATA[Quizze pro Box]]></item>
+		<item name="wcf.acp.option.category.quizCreator.pages.list"><![CDATA[Seite „Quizze“]]></item>
+		<item name="wcf.acp.option.category.quizCreator.pages.quiz"><![CDATA[Seite „Quiz“]]></item>
+		<item name="wcf.acp.option.category.quizCreator.pages.players"><![CDATA[Seite „Spieler“]]></item>
+		<item name="wcf.acp.option.quiz_players_per_page"><![CDATA[Spieler pro Seite]]></item>
 	</category>
 	<category name="wcf.tagging">
 		<item name="wcf.tagging.taggedObjects.de.teralios.quizCreator.quiz"><![CDATA[Quizze]]></item>
@@ -81,8 +93,8 @@
 		<item name="wcf.user.condition.quizMaxScore"><![CDATA[Erreichte relative Punktzahl (max. {#10000})]]></item>
 	</category>
 	<category name="wcf.quizCreator.box">
-		<item name="wcf.quizCreator.box.players.best"><![CDATA[Besten Spieler]]></item>
-		<item name="wcf.quizCreator.box.players.last"><![CDATA[Letzten Spieler]]></item>
+		<item name="wcf.quizCreator.box.players.best"><![CDATA[Beste Spieler]]></item>
+		<item name="wcf.quizCreator.box.players.last"><![CDATA[Letzte Spieler]]></item>
 		<item name="wcf.quizCreator.box.user.result"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Dein{else}Ihr{/if} Ergebnis]]></item>
 		<item name="wcf.quizCreator.box.quiz.playedMost"><![CDATA[Meist gespielte Quizze]]></item>
 	</category>

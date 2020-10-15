@@ -54,7 +54,7 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
          */
         _renderResultLive: function (data) {
             this._renderBase();
-            this._renderScore(data)
+            this._renderScore(data);
         },
 
         /**

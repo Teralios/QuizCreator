@@ -25,3 +25,4 @@ This file lists all changes like new features, improved functions and fixed bugs
     * Remove style related signs and html code.
   
 ### Bugs
+  * "Quiz" to "Quizze" - QuizListPage

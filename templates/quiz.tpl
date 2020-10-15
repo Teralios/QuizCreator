@@ -84,6 +84,7 @@
 {* variables *}
 {capture assign='pageTitle'}{$quiz->getTitle()}{/capture}
 {capture assign='contentTitle'}{$quiz->getTitle()}{/capture}
+{capture assign='quizAnchor'}{anchor object=$quiz}{/capture}
 
 {* template *}
 {include file='header'}
@@ -146,25 +147,19 @@
 {if $__wcf->session->getPermission('user.quiz.canPlay')}
     <script data-relocate="true">
         require(['Teralios/QuizCreator/Quiz', 'Language'], function (Quiz, Language) {
-
+            // language variables
             Language.add('wcf.quizCreator.game.start', '{jslang}wcf.quizCreator.game.start{/jslang}');
             Language.add('wcf.quizCreator.game.finish', '{jslang}wcf.quizCreator.game.finish{/jslang}');
             Language.add('wcf.quizCreator.game.next', '{jslang}wcf.quizCreator.game.question.next{/jslang}');
-
-            Language.add('wcf.quizCreator.stats.points', '{jslang}wcf.quizCreator.stats.points{/jslang}');
-            Language.add('wcf.quizCreator.stats.questions', '{jslang}wcf.quizCreator.stats.questions{/jslang}');
-
-            Language.add('wcf.quizCreator.stats.score', '{jslang}wcf.quizCreator.stats.score{/jslang}');
-            Language.add('wcf.quizCreator.stats.time', '{jslang}wcf.quizCreator.stats.time{/jslang}');
-
             Language.add('wcf.quizCreator.game.result.asGood', '{jslang}wcf.quizCreator.game.result.asGood{/jslang}');
             Language.add('wcf.quizCreator.game.result.betterAs', '{jslang}wcf.quizCreator.game.result.betterAs{/jslang}');
-
             Language.add('wcf.quizCreator.game.goal.none', '{jslang}wcf.quizCreator.game.goal.none{/jslang}');
             Language.add('wcf.quizCreator.game.goal.none.detail', '{jslang}wcf.quizCreator.game.goal.none.detail{/jslang}');
-
             Language.add('wcf.quizCreator.game.data.missing', '{jslang}wcf.quizCreator.game.data.missing{/jslang}');
-
+            Language.add('wcf.quizCreator.stats.points', '{jslang}wcf.quizCreator.stats.points{/jslang}');
+            Language.add('wcf.quizCreator.stats.questions', '{jslang}wcf.quizCreator.stats.questions{/jslang}');
+            Language.add('wcf.quizCreator.stats.score', '{jslang}wcf.quizCreator.stats.score{/jslang}');
+            Language.add('wcf.quizCreator.stats.time', '{jslang}wcf.quizCreator.stats.time{/jslang}');
             Language.add('wcf.quizCreator.quiz.id.invalid', '{jslang}wcf.quizCreator.quiz.id.invalid{/jslang}');
             Language.add('wcf.quizCreator.quiz.loading.error', '{jslang}wcf.quizCreator.quiz.loading.error{/jslang}')
 
@@ -176,7 +171,7 @@
 {if $game !== null}
     <script data-relocate="true">
         require(['Teralios/QuizCreator/Dialog/Player', 'Language'], function(PlayerDialog, Language) {
-            Language.add('wcf.quizCreator.user.play.details.dialog.titel', '{jslang}wcf.quizCreator.user.play.details.dialog.title{/jslang}')
+            Language.add('wcf.quizCreator.user.play.details.dialog.title', '{jslang}wcf.quizCreator.user.play.details.dialog.title{/jslang}')
             PlayerDialog.init();
         })
     </script>

@@ -3,10 +3,10 @@ define(['Ajax', 'Ui/Confirmation', 'Language'], function(Ajax, UiConfirmation, L
 
     if (!COMPILER_TARGET_DEFAULT) {
         return {
-            init: function (dboActionClass, selector, isButton) { },
+            init: function (/** @scrutinizer ignore-unused */dboActionClass, /** @scrutinizer ignore-unused */selector, /** @scrutinizer ignore-unused */isButton) { },
             confirm: function () { },
-            click: function (event) { },
-            addEvent: function (element) { },
+            click: function (/** @scrutinizer ignore-unused */event) { },
+            addEvent: function (/** @scrutinizer ignore-unused */element) { },
             _buildClick: function () { },
             _ajaxSetup: function () { },
         };

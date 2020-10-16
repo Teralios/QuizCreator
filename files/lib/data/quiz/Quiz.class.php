@@ -5,6 +5,7 @@ namespace wcf\data\quiz;
 // imports
 use wcf\data\DatabaseObject;
 use wcf\data\ILinkableObject;
+use wcf\data\IPopoverObject;
 use wcf\data\ITitledLinkObject;
 use wcf\data\media\ViewableMedia;
 use wcf\system\bbcode\SimpleMessageParser;
@@ -35,7 +36,7 @@ use wcf\util\StringUtil;
  * @property-read int $goals
  * @property-read int $played
  */
-class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
+class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject, IPopoverObject
 {
     // inherit vars
     protected static $databaseTableName = 'quiz';
@@ -117,5 +118,13 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
         }
 
         return $quiz->questions * static::MAX_VALUE_QUESTION;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPopoverLinkClass()
+    {
+        return 'quizPopover';
     }
 }

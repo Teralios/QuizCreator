@@ -164,16 +164,14 @@
             Language.add('wcf.quizCreator.quiz.loading.error', '{jslang}wcf.quizCreator.quiz.loading.error{/jslang}')
 
             new Quiz(elById('gameContainer'));
-        })
-    </script>
-{/if}
+        });
 
-{if $match !== null}
-    <script data-relocate="true">
-        require(['Teralios/QuizCreator/Dialog/Player', 'Language'], function(PlayerDialog, Language) {
-            Language.add('wcf.quizCreator.user.play.details.dialog.title', '{jslang}wcf.quizCreator.user.play.details.dialog.title{/jslang}')
-            PlayerDialog.init();
-        })
+        {if $match !== null}
+            require(['Teralios/QuizCreator/Dialog/Player', 'Language'], function(PlayerDialog, Language) {
+                Language.add('wcf.quizCreator.user.play.details.dialog.title', '{jslang}wcf.quizCreator.user.play.details.dialog.title{/jslang}')
+                PlayerDialog.init();
+            });
+        {/if}
     </script>
 {/if}
 

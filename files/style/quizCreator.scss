@@ -40,6 +40,26 @@
   }
 }
 
+.quizPreview {
+  header {
+    border-bottom: $wcfContentBorderInner solid 1px;
+
+    h3 {
+      font-size: $wcfFontSizeHeadline;
+    }
+  }
+
+  div {
+    margin-top: 5px;
+  }
+
+  footer {
+    margin-top: 5px;
+    border-top: $wcfContentBorderInner solid 1px;
+    font-size: $wcfFontSizeSmall;
+  }
+}
+
 
 .quizGame {
   .dummy {
@@ -52,7 +72,7 @@
     }
 
     .gameHeader {
-      padding: 1em;
+      padding: 10px;
       display: grid;
       grid-template-columns: auto auto auto;
 
@@ -81,7 +101,7 @@
 
     .gameContent {
       text-align: center;
-      padding: 1em;
+      padding: 10px;
 
       .question {
         height: 1.2em;
@@ -89,10 +109,10 @@
       }
 
       .answerList {
-        margin: 0.5em;
+        margin: 5px;
 
         li {
-          padding: 0.2em;
+          padding: 2px;
 
           button {
             width: 80%;
@@ -116,8 +136,8 @@
     .gameFooter {
       visibilty: hidden;
       text-align: center;
-      margin-top: 1em;
-      padding: 1em;
+      margin-top: 10px;
+      padding: 10px;
     }
 
     // result
@@ -126,15 +146,15 @@
 
       .goal {
         border-bottom: $wcfContentBorderInner solid 1px;
-        padding: 1em;
+        padding: 10px;
 
         .name {
-          font-size: 2em;
+          font-size: $wcfFontSizeHeadline;
         }
       }
 
       .score {
-        padding: 1em;
+        padding: 10px;
 
         .player {
           font-weight: bold;

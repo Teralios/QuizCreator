@@ -137,7 +137,7 @@
                         </li>
 
                         <li class="columnSubject">
-                            <h3>{anchor object=$quiz->getDecoratedObject()}</h3>
+                            <h3>{anchor object=$quiz->getDecoratedObject() class=$quiz->getPopoverLinkClass()}</h3>
                             <small>{@$quiz->creationDate|time}</small>
                         </li>
 
@@ -187,5 +187,15 @@
         </nav>
     {/hascontent}
 </footer>
+
+<script data-relocate="true">
+    require(['WoltLabSuite/Core/Controller/Popover'], function(ControllerPopover) {
+        ControllerPopover.init({
+            className: 'quizPopover',
+            dboAction: 'wcf\\data\\quiz\\QuizAction',
+            identifier: 'de.teralios.quizCreator.quiz'
+        });
+    });
+</script>
 
 {include file='footer'}

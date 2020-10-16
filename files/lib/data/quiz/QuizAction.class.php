@@ -5,6 +5,7 @@ namespace wcf\data\quiz;
 // imports
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\DatabaseObjectDecorator;
+use wcf\data\IPopoverAction;
 use wcf\data\IStorableObject;
 use wcf\data\IToggleAction;
 use wcf\data\quiz\match\Match;
@@ -31,7 +32,7 @@ use wcf\util\JSON;
  * @copyright ©2020 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
-class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
+class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, IPopoverAction
 {
     // inherit vars
     protected $className = QuizEditor::class;
@@ -41,9 +42,10 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     protected $permissionsToggle = ['admin.content.quizCreator.canManage'];
     protected $permissionsResetMatches = ['admin.content.quizCreator.canManage'];
     protected $permissionsLoadQuiz = ['user.quiz.canView'];
+    protected $permissionsPopover = ['user.quiz.canView'];
     protected $permissionFinishGame = ['user.quiz.canPlay'];
-    protected $allowGuestAccess = ['loadQuiz', 'finishMatch']; // allowed guest access
-    protected $resetCache = ['delete', 'update', 'toggle']; // primary options to reset quiz and game cache.
+    protected $allowGuestAccess = ['loadQuiz', 'finishMatch'];
+    protected $resetCache = ['delete', 'update', 'toggle'];
 
     /**
      * @var Quiz
@@ -252,14 +254,50 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         return QuizEditor::importQuiz($data);
     }
 
+    /**
+     * Check permissions for reset matches.
+     * @throws PermissionDeniedException
+     */
     public function validateResetMatches()
     {
         WCF::getSession()->checkPermissions($this->permissionsResetMatches);
     }
 
+    /**
+     * Execute reset matches action.
+     * @throws DatabaseQueryException
+     * @throws DatabaseQueryExecutionException
+     */
     public function resetMatches()
     {
         MatchEditor::deleteForQuizzes($this->objectIDs);
         MatchEditor::resetCache();
+    }
+
+    /**
+     * @inheritdoc
+     * @throws PermissionDeniedException
+     * @throws SystemException
+     * @throws UserInputException
+     */
+    public function validateGetPopover()
+    {
+        WCF::getSession()->checkPermissions($this->permissionsPopover);
+
+        // get quiz.
+        $this->quiz = $this->getSingleObject();
+        if ($this->quiz instanceof DatabaseObjectDecorator) {
+            $this->quiz = new ViewableQuiz($this->quiz->getDecoratedObject());
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPopover()
+    {
+        WCF::getTPL()->assign('quiz', $this->quiz);
+
+        return ['template' => WCF::getTPL()->fetch('__quizPopover')];
     }
 }

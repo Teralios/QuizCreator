@@ -21,13 +21,12 @@ There are two types of quizzes:
     - [x] New categories
     - [x] Assign options to new categories
     - [x] Language variables
-  - [ ] Use QuizValidator from package de.teralios.validator.quiz
-    - [ ] Clean up QuizImportFormPage.class.php
-  - [ ] Implement popover on quiz list
+  - [x] Implement popover on quiz list
   - [x] Implement export and imports of tags for quiz
   - [x] Option to reset all played matches.
   - [x] Rename Game\* and \*_game to Match/\*_match
-  - [ ] ???
+  - [ ] Use QuizValidator from package de.teralios.validator.quiz
+    - [ ] Clean up QuizImportFormPage.class.php
  
 ### RC1
-  - [ ] ???
+  - [ ] Prepare for release in "WoltLab® Plugin Store"

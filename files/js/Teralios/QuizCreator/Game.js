@@ -8,7 +8,6 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
     var clockPoints = [10, 5, 1];
     var clockBorders = [5, 15, 0];
 
-    // reduces warnings on scrutinizer
     var CLICK_EVENT = window.WCF_CLICK_EVENT;
 
     /**

@@ -12,7 +12,7 @@ build:
         - cd ..
       tests:
         override:
-          - php-scrutinizer-run
+          - php-scrutinizer-run --enable-security-analysis
           - js-scrutinizer-run
 filter:
   excluded_paths:

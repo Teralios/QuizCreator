@@ -55,6 +55,8 @@
 		<item name="wcf.acp.quizCreator.import.type"><![CDATA[Datenquelle]]></item>
 		<item name="wcf.acp.quizCreator.import.type.file"><![CDATA[Datei importieren]]></item>
 		<item name="wcf.acp.quizCreator.import.type.text"><![CDATA[Text importieren]]></item>
+		<item name="wcf.acp.quizCreator.reset.matches"><![CDATA[Zurück setzten aller Nutzerspiele]]></item>
+		<item name="wcf.acp.quizCreator.reset.matches.confirm"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Möchtest du{else}Möchten Sie{/if} alle Spiele der Nutzer zum Quiz „{$quiz->getTitle()}“ löschen?]]></item>
 	</category>
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Kann Quizze verwalten]]></item>

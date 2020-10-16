@@ -2,9 +2,15 @@
 
 {capture assign="__formJavaScript"}
     <script data-relocate="true">
+        // base delete action
         $(function() {
             new WCF.Action.Delete('wcf\\data\\quiz\\question\\QuestionAction', '.jsQuestionRow');
             new WCF.Action.Delete('wcf\\data\\quiz\\goal\\GoalAction', '.jsGoalRow');
+        });
+
+        // reset game caches
+        require(['Teralios/QuizCreator/Acp/ActionReset'], function(ActionReset) {
+            ActionReset.init('wcf\\data\\quiz\\QuizAction', '.jsResetMatchesButton', true);
         });
     </script>
 {/capture}
@@ -21,6 +27,13 @@
             <a class="button" href="{link controller='QuizGoalAdd' quizID=$formObject->quizID}{/link}">
                 <span class="icon icon16 fa-trophy"></span> <span>{lang}wcf.acp.quizCreator.goal.add{/lang}</span>
             </a>
+        </li>
+        <li>
+            <button class="jsResetMatchesButton"
+                    data-object-id="{#$formObject->quizID}"
+                    data-confirm-message-html="{lang __encode=true quiz=$formObject}wcf.acp.quizCreator.reset.matches.confirm{/lang}">
+                <span class="icon icon16 fa-user-times"></span> <span>{lang}wcf.acp.quizCreator.reset.matches{/lang}</span>
+            </button>
         </li>
     {/if}
 {/capture}

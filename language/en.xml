@@ -55,6 +55,8 @@
 		<item name="wcf.acp.quizCreator.import.type"><![CDATA[Data source]]></item>
 		<item name="wcf.acp.quizCreator.import.type.file"><![CDATA[Import file]]></item>
 		<item name="wcf.acp.quizCreator.import.type.text"><![CDATA[Import text]]></item>
+		<item name="wcf.acp.quizCreator.reset.matches"><![CDATA[Reset all matches]]></item>
+		<item name="wcf.acp.quizCreator.reset.matches.confirm"><![CDATA[Do you want to delete all matches of users for the quiz "{$quiz->getTitle()}"?]]></item>
 	</category>
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.admin.content.quizCreator.canManage"><![CDATA[Can manage quizzes]]></item>

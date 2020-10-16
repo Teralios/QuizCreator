@@ -9,7 +9,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
     var clockBorders = [5, 15, 0];
 
     // reduces warnings on scrutinizer
-    var CLICK_EVENT = /** global: WCF_CLICK_EVENT */WCF_CLICK_EVENT
+    var CLICK_EVENT = window.WCF_CLICK_EVENT;
 
     /**
      * @param data
@@ -63,13 +63,13 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             this._toggleButtons(false);
             this._stopClock();
 
-            var answer = elData(event.target, 'value');
+            var answer = elData(event.currentTarget, 'value');
             if (answer === this._currentQuestion.answer) {
-                event.target.classList.add('correct');
+                event.currentTarget.classList.add('correct');
                 this._score += this._questionScoreValue;
                 this._updateScoreContainer();
             } else {
-                event.target.classList.add('wrong');
+                event.currentTarget.classList.add('wrong');
             }
 
             this._gameResult[this._questionIndex] = {

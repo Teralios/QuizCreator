@@ -85,29 +85,8 @@ class QuizAddForm extends AbstractFormBuilderForm
             BooleanFormField::create('isActive')
                 ->label('wcf.acp.quizCreator.quiz.isActive')
                 ->value(0)
-                ->available($this->formAction == 'edit'),
-            BooleanFormField::create('resetMatches')
-                ->label('wcf.acp.quizCreator.quiz.reset.matches')
-                ->value(0)
-                ->available($this->formAction == 'edit'),
+                ->available($this->formAction == 'edit')
         ]);
-
-        if ($this->formAction == 'edit') {
-            // actions data processor, add moment only one action is preformed.
-            $this->form->getDataHandler()->addProcessor(
-                new CustomFormDataProcessor(
-                    'actionResetMatches',
-                    function (IFormDocument $document, array $parameters) {
-                        if (isset($parameters['data']['resetMatches'])) {
-                            $parameters['actions']['resetMatches'] = $parameters['data']['resetMatches'];
-                            unset($parameters['data']['resetMatches']);
-                        }
-
-                        return $parameters;
-                    }
-                )
-            );
-        }
 
         $this->form->appendChild($container);
     }

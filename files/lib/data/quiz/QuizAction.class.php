@@ -39,6 +39,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     protected $permissionsUpdate = ['admin.content.quizCreator.canManage'];
     protected $permissionsDelete = ['admin.content.quizCreator.canManage'];
     protected $permissionsToggle = ['admin.content.quizCreator.canManage'];
+    protected $permissionsResetMatches = ['admin.content.quizCreator.canManage'];
     protected $permissionsLoadQuiz = ['user.quiz.canView'];
     protected $permissionFinishGame = ['user.quiz.canPlay'];
     protected $allowGuestAccess = ['loadQuiz', 'finishMatch']; // allowed guest access
@@ -85,17 +86,6 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
     {
         // description
         $this->parameters['data']['description'] = $this->parameters['description_htmlInputProcessor']->getHtml();
-
-        /*echo '<pre>';
-        print_r($this->parameters);
-        exit;*/
-
-        // reset games
-        if (isset($this->parameters['actions']['resetMatches']) && $this->parameters['actions']['resetMatches'] == 1) {
-            $this->parameters['data']['played'] = 0;
-            MatchEditor::deleteforQuizzes($this->getObjectIDs());
-            MatchEditor::resetCache();
-        }
 
         parent::update();
 
@@ -260,5 +250,16 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction
         }
 
         return QuizEditor::importQuiz($data);
+    }
+
+    public function validateResetMatches()
+    {
+        WCF::getSession()->checkPermissions($this->permissionsResetMatches);
+    }
+
+    public function resetMatches()
+    {
+        MatchEditor::deleteForQuizzes($this->objectIDs);
+        MatchEditor::resetCache();
     }
 }

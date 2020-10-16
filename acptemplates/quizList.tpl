@@ -1,9 +1,15 @@
 {include file='header' pageTitle='wcf.acp.quizCreator.quiz.list'}
 
 <script data-relocate="true">
+    // base delete and toggle action
     $(function() {
         new WCF.Action.Delete('wcf\\data\\quiz\\QuizAction', '.jsQuizRow');
         new WCF.Action.Toggle('wcf\\data\\quiz\\QuizAction', '.jsQuizRow');
+    });
+
+    // reset cache - new action
+    require(['Teralios/QuizCreator/Acp/ActionReset'], function(ActionReset) {
+        ActionReset.init('wcf\\data\\quiz\\QuizAction', '.jsQuizRow');
     });
 </script>
 <header class="contentHeader">
@@ -62,6 +68,12 @@
                                   title="{lang}wcf.global.button.delete{/lang}"
                                   data-object-id="{#$quiz->quizID}"
                                   data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.quiz.delete.confirmMessage{/lang}">
+                            </span>
+
+                            <span class="icon icon16 fa-user-times jsResetMatchesButton jsTooltip pointer"
+                                  title="{lang}wcf.acp.quizCreator.reset.matches{/lang}"
+                                  data-object-id="{#$quiz->quizID}"
+                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.reset.matches.confirm{/lang}">
                             </span>
 
                             <a href="{link controller="QuizExport" id=$quiz->quizID}{/link}">

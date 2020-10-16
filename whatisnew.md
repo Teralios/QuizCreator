@@ -13,6 +13,7 @@ This file lists all changes like new features, improved functions and fixed bugs
   * Quiz
     * Html mode for description
     * Reset all matches
+    * Popover on quiz list.
   * Importer/Exporter
     * Exports and imports tags
   

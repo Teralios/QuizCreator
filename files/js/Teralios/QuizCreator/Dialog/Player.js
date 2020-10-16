@@ -1,6 +1,18 @@
 define(['Ajax', 'Ui/Dialog', 'Language'], function (Ajax, UiDialog, Language) {
     "use strict";
 
+    if (!COMPILER_TARGET_DEFAULT) {
+        return {
+            init: function () { },
+            getData: function (data) { },
+            getHtml: function () { },
+            showDialog: function () { },
+            _loadTPL: function () { },
+            _buildButton: function () { },
+            _dialogSetup: function () { }
+        };
+    }
+
     // reduces warnings on scrutinizer
     var CLICK_EVENT = window.WCF_CLICK_EVENT;
 

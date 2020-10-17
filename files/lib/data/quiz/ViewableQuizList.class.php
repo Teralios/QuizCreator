@@ -127,7 +127,7 @@ class ViewableQuizList extends QuizList
      */
     protected function readMedia(array $mediaIDs)
     {
-        ViewableMediaRuntimeCache::getInstance()->cacheObjectIDs($mediaIDs);
+        /** @scrutinizer ignore-call */ViewableMediaRuntimeCache::getInstance()->cacheObjectIDs($mediaIDs);
 
         $this->setMedia();
     }
@@ -140,7 +140,7 @@ class ViewableQuizList extends QuizList
         foreach ($this->objects as $quiz) {
             /** @var $quiz ViewableQuiz */
             if ($quiz->mediaID) {
-                $quiz->setMedia(ViewableMediaRuntimeCache::getInstance()->getObject($quiz->mediaID));
+                $quiz->setMedia(/** @scrutinizer ignore-call */ViewableMediaRuntimeCache::getInstance()->getObject($quiz->mediaID));
             }
         }
     }

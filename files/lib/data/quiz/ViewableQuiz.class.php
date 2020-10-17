@@ -57,7 +57,7 @@ class ViewableQuiz extends DatabaseObjectDecorator
     public function getMedia() //: ?ViewableMedia
     {
         if ($this->mediaID && $this->mediaObject === null) {
-            $this->mediaObject = ViewableMediaRuntimeCache::getInstance()->getObject($this->mediaID);
+            $this->mediaObject = /** @scrutinizer ignore-call */ViewableMediaRuntimeCache::getInstance()->getObject($this->mediaID);
         }
 
         return $this->mediaObject;

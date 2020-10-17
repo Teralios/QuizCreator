@@ -77,31 +77,11 @@ class QuizExportAction extends AbstractAction
         // override questions and goals with data
         $data['questions'] = [];
         $data['goals'] = [];
-        $data['tags'] = [];
 
-        // read questions
-        $questions = new QuestionList($this->quiz);
-        $questions->readObjects();
-        foreach ($questions as $question) {
-            $tmp = $question->getData();
-            unset($tmp['questionID'], $tmp['quizID']);
-            $data['questions'][] = $tmp;
-        }
-
-        // read goals
-        $goals = new GoalList($this->quiz);
-        $goals->readObjects();
-        foreach ($goals as $goal) {
-            $tmp = $goal->getData();
-            unset($tmp['quizID'], $tmp['goalID']);
-            $data['goals'][] = $tmp;
-        }
-
-        // read tags
-        $tags = /** @scrutinizer ignore-call */TagEngine::getInstance()->getObjectTags(Quiz::OBJECT_TYPE, $this->quiz->getObjectID());
-        foreach ($tags as $tag) {
-            $data['tags'][] = $tag->getTitle();
-        }
+        // read child datas
+        $data['questions'] = $this->getQuestions();
+        $data['goals'] = $this->getGoals();
+        $data['tags'] = $this->getTags();
 
         // header
         if (!headers_sent()) {
@@ -114,5 +94,59 @@ class QuizExportAction extends AbstractAction
         }
 
         echo json_encode($data, JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Reads questions.
+     * @return array
+     * @throws SystemException
+     */
+    protected function getQuestions(): array
+    {
+        $questions = [];
+        $questionList = new QuestionList($this->quiz);
+        $questionList->readObjects();
+        foreach ($questionList as $question) {
+            $tmp = $question->getData();
+            unset($tmp['questionID'], $tmp['quizID']);
+            $questions[] = $tmp;
+        }
+
+        return $questions;
+    }
+
+    /**
+     * Reads goals.
+     * @return array
+     * @throws SystemException
+     */
+    protected function getGoals(): array
+    {
+        $goals = [];
+        $goalList = new GoalList($this->quiz);
+        $goalList->readObjects();
+        foreach ($goalList as $goal) {
+            $tmp = $goal->getData();
+            unset($tmp['quizID'], $tmp['goalID']);
+            $goals[] = $tmp;
+        }
+
+        return $goals;
+    }
+
+    /**
+     * Reads tags.
+     * @return array
+     * @throws SystemException
+     */
+    protected function getTags(): array
+    {
+        $tags = [];
+        $rawTags = /** @scrutinizer ignore-call */TagEngine::getInstance()->getObjectTags(Quiz::OBJECT_TYPE, $this->quiz->getObjectID());
+        foreach ($rawTags as $tag) {
+            $tags[]['name'] = $tag->getTitle();
+        }
+
+        return $tags;
     }
 }

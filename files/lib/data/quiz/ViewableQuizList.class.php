@@ -5,6 +5,7 @@ namespace wcf\data\quiz;
 // imports
 use wcf\data\media\ViewableMediaList;
 use wcf\data\quiz\match\Match;
+use wcf\system\cache\runtime\ViewableMediaRuntimeCache;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\SystemException;
@@ -126,9 +127,7 @@ class ViewableQuizList extends QuizList
      */
     protected function readMedia(array $mediaIDs)
     {
-        $this->mediaList = new ViewableMediaList();
-        $this->mediaList->setObjectIDs($mediaIDs);
-        $this->mediaList->readObjects();
+        ViewableMediaRuntimeCache::getInstance()->cacheObjectIDs($mediaIDs);
 
         $this->setMedia();
     }
@@ -141,7 +140,7 @@ class ViewableQuizList extends QuizList
         foreach ($this->objects as $quiz) {
             /** @var $quiz ViewableQuiz */
             if ($quiz->mediaID) {
-                $quiz->setMedia($this->mediaList->search($quiz->mediaID));
+                $quiz->setMedia(ViewableMediaRuntimeCache::getInstance()->getObject($quiz->mediaID));
             }
         }
     }

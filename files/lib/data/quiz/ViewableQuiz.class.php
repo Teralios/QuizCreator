@@ -5,9 +5,8 @@ namespace wcf\data\quiz;
 // imports
 use wcf\data\DatabaseObjectDecorator;
 use wcf\data\media\ViewableMedia;
-use wcf\data\media\ViewableMediaList;
+use wcf\system\cache\runtime\ViewableMediaRuntimeCache;
 use wcf\system\exception\SystemException;
-use wcf\system\html\output\HtmlOutputProcessor;
 use wcf\system\language\LanguageFactory;
 use wcf\util\StringUtil;
 
@@ -58,11 +57,7 @@ class ViewableQuiz extends DatabaseObjectDecorator
     public function getMedia() //: ?ViewableMedia
     {
         if ($this->mediaID && $this->mediaObject === null) {
-            $mediaList = new ViewableMediaList();
-            $mediaList->setObjectIDs([$this->mediaID]);
-            $mediaList->readObjects();
-
-            $this->mediaObject = $mediaList->search($this->mediaID);
+            $this->mediaObject = ViewableMediaRuntimeCache::getInstance()->getObject($this->mediaID);
         }
 
         return $this->mediaObject;

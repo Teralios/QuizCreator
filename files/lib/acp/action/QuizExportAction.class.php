@@ -78,7 +78,7 @@ class QuizExportAction extends AbstractAction
         $data['questions'] = [];
         $data['goals'] = [];
 
-        // read child datas
+        // read child data
         $data['questions'] = $this->getQuestions();
         $data['goals'] = $this->getGoals();
         $data['tags'] = $this->getTags();

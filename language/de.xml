@@ -120,8 +120,8 @@
 	<category name="wcf.quizCreator.stats">
 		<item name="wcf.quizCreator.stats.questions"><![CDATA[Frage]]></item>
 		<item name="wcf.quizCreator.stats.played"><![CDATA[Spiele]]></item>
-		<item name="wcf.quizCreator.stats.questions.detail"><![CDATA[{plural value=$quiz->questions 1='eine Frage' 2='zwei Fragen' 3='drei Fragen' other='# Fragen'}]]></item>
-		<item name="wcf.quizCreator.stats.played.detail"><![CDATA[{plural value=$quiz->played 1='einmal' 2='zweimal' other='# mal'} gespielt]]></item>
+		<item name="wcf.quizCreator.stats.questions.detail"><![CDATA[{plural value=$quiz->questions 0='keine Frage' 1='eine Frage' 2='zwei Fragen' 3='drei Fragen' other='# Fragen'}]]></item>
+		<item name="wcf.quizCreator.stats.played.detail"><![CDATA[{plural value=$quiz->played 0='keinmal' 1='einmal' 2='zweimal' other='# mal'} gespielt]]></item>
 		<item name="wcf.quizCreator.stats.time"><![CDATA[Zeit]]></item>
 		<item name="wcf.quizCreator.stats.points"><![CDATA[Punkte]]></item>
 		<item name="wcf.quizCreator.stats.score"><![CDATA[Punkte]]></item>

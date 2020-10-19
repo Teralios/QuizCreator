@@ -5,6 +5,8 @@ namespace wcf\data\quiz;
 // imports
 use wcf\data\DatabaseObjectEditor;
 use wcf\data\IEditableCachedObject;
+use wcf\data\quiz\goal\GoalEditor;
+use wcf\data\quiz\match\Match;
 use wcf\data\quiz\question\QuestionEditor;
 use wcf\system\cache\builder\QuizMatchCacheBuilder;
 use wcf\system\cache\builder\QuizMostPlayedCacheBuilder;
@@ -73,6 +75,80 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
         $this->update(['isActive' => ($this->isActive) ? 0 : 1]);
     }
 
+    public function importData(ValidatedQuiz $data)
+    {
+        // import questions, goals and tags.
+        $questions = ($data->has('questions')) ? $this->importQuestions($data->questions) : 0;
+        $goals = ($data->has('goals')) ? $this->importGoals($data->goals) : 0;
+        if ($data->has('tags')) {
+            $this->importTags($data->tags);
+        }
+
+        $this->update(['questions' => $questions, 'goals' => $goals]);
+    }
+
+    /**
+     * Imports questions.
+     * @param ValidatedQuestion[] $questions
+     * @return int
+     * @throws DatabaseQueryException
+     */
+    protected function importQuestions(array $questions): int
+    {
+        $numbers = 0;
+        foreach ($questions as $question) {
+            $data = $question->getData();
+            $data['quizID'] = $this->quizID;
+            QuestionEditor::create($data);
+
+            $numbers++;
+        }
+
+        return $numbers;
+    }
+
+    /**
+     * Import goals.
+     * @param ValidatedGoal[] $goals
+     * @return int
+     */
+    protected function importGoals(array $goals): int
+    {
+        $numbers = 0;
+        foreach ($goals as $goal) {
+            $data = $goal->getData();
+            $data['quizID'] = $this->quizID;
+            GoalEditor::create($data);
+
+            $numbers++;
+        }
+
+        return $numbers;
+    }
+
+    /**
+     * Import tags.
+     * @param ValidatedTag[] $tags
+     * @param Quiz $quiz
+     */
+    protected function importTags(array $tags)
+    {
+        $data = [];
+        foreach ($tags as $tag) {
+            $data[] = $tag->name;
+        }
+
+        if (count($data)) {
+            /** @scrutinizer ignore-call */TagEngine::getInstance()->addObjectTags(
+                Quiz::OBJECT_TYPE,
+                $this->quizID,
+                $data,
+                $this->languageID ?? /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getDefaultLanguageID()
+            );
+        }
+    }
+
+
     /**
      * Update counter for quiz after deletion of questions or stages.
      * @param int $quizID
@@ -124,80 +200,11 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
         // create quiz
         $quiz = QuizEditor::create($quizData);
 
-        $questions = ($data->has('questions')) ? static::importQuestions($data->questions, $quiz->quizID) : 0;
-        $goals = ($data->has('goals')) ? static::importGoals($data->goals, $quiz->quizID) : 0;
-        if ($data->has('tags')) {
-            static::importTags($data->tags, $quiz);
-        }
-
         // update counters
         $quizEditor = new QuizEditor($quiz);
-        $quizEditor->update(['questions' => $questions, 'goals' => $goals]);
+        $quizEditor->importData($data);
 
         return $quiz;
-    }
-
-    /**
-     * Imports questions.
-     * @param ValidatedQuestion[] $questions
-     * @param int $quizID
-     * @return int
-     * @throws DatabaseQueryException
-     */
-    protected static function importQuestions(array $questions, int $quizID): int
-    {
-        $numbers = 0;
-        foreach ($questions as $question) {
-            $data = $question->getData();
-            $data['questionID'] = $quizID;
-            QuestionEditor::create($data);
-
-            $numbers++;
-        }
-
-        return $numbers;
-    }
-
-    /**
-     * Import goals.
-     * @param ValidatedGoal[] $goals
-     * @param int $quizID
-     * @return int
-     */
-    protected static function importGoals(array $goals, int $quizID): int
-    {
-        $numbers = 0;
-        foreach ($goals as $goal) {
-            $data = $goal->getData();
-            $data['quizID'] = $quizID;
-            GoalEditor::create($data);
-
-            $numbers++;
-        }
-
-        return $numbers;
-    }
-
-    /**
-     * Import tags.
-     * @param ValidatedTag[] $tags
-     * @param Quiz $quiz
-     */
-    protected static function importTags(array $tags, Quiz $quiz)
-    {
-        $data = [];
-        foreach ($tags as $tag) {
-            $data[] = $tag->name;
-        }
-
-        if (count($data)) {
-            /** @scrutinizer ignore-call */TagEngine::getInstance()->addObjectTags(
-                Quiz::OBJECT_TYPE,
-                $quiz->quizID,
-                $data,
-                $quiz->languageID ?? /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getDefaultLanguageID()
-            );
-        }
     }
 
     /**

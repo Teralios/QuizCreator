@@ -5,7 +5,6 @@ namespace wcf\data\quiz;
 // imports
 use wcf\data\DatabaseObjectEditor;
 use wcf\data\IEditableCachedObject;
-use wcf\data\quiz\goal\GoalEditor;
 use wcf\data\quiz\question\QuestionEditor;
 use wcf\system\cache\builder\QuizMatchCacheBuilder;
 use wcf\system\cache\builder\QuizMostPlayedCacheBuilder;
@@ -14,6 +13,10 @@ use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\SystemException;
 use wcf\system\html\input\HtmlInputProcessor;
 use wcf\system\language\LanguageFactory;
+use wcf\system\quiz\validator\data\Goal as ValidatedGoal;
+use wcf\system\quiz\validator\data\Question as ValidatedQuestion;
+use wcf\system\quiz\validator\data\Quiz as ValidatedQuiz;
+use wcf\system\quiz\validator\data\Tag as ValidatedTag;
 use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 
@@ -90,17 +93,17 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
 
     /**
      * Imports a quiz.
-     * @param array $data
+     * @param ValidatedQuiz $data
      * @return Quiz
      * @throws SystemException
      */
-    public static function importQuiz(array $data): Quiz
+    public static function importQuiz(ValidatedQuiz $data): Quiz
     {
         // import base information for quiz
         $quizData = [];
-        $quizData['type'] = $data['type'] ?? 'fun';
-        $quizData['title'] = $data['title'] ?? WCF::getLanguage()->get('wcf.acp.quizCreator.import.defaultTitle');
-        $quizData['description'] = $data['description'] ?? '';
+        $quizData['type'] = $data->type;
+        $quizData['title'] = $data->title;
+        $quizData['description'] = $data->description;
         $quizData['creationDate'] = TIME_NOW;
 
         // html input processor
@@ -109,9 +112,9 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
         $quizData['description'] = $htmlProcessor->getHtml();
 
         // language information
-        if (isset($data['languageCode'])) {
+        if ($data->has('languageCode')) {
             if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
-                $language = /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguageByCode($data['languageCode']);
+                $language = /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguageByCode($data->languageCode);
 
                 $quizData['languageID'] = ($language !== null) ? $language->languageID :
                     /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getContentLanguageIDs()[0];
@@ -121,9 +124,11 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
         // create quiz
         $quiz = QuizEditor::create($quizData);
 
-        $questions = static::importQuestions($data, $quiz->quizID);
-        $goals = static::importGoals($data, $quiz->quizID);
-        static::importTags($data, $quiz);
+        $questions = ($data->has('questions')) ? static::importQuestions($data->questions, $quiz->quizID) : 0;
+        $goals = ($data->has('goals')) ? static::importGoals($data->goals, $quiz->quizID) : 0;
+        if ($data->has('tags')) {
+            static::importTags($data->tags, $quiz);
+        }
 
         // update counters
         $quizEditor = new QuizEditor($quiz);
@@ -134,60 +139,62 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
 
     /**
      * Imports questions.
-     * @param array $data
+     * @param ValidatedQuestion[] $questions
      * @param int $quizID
      * @return int
      * @throws DatabaseQueryException
      */
-    protected static function importQuestions(array $data, int $quizID): int
+    protected static function importQuestions(array $questions, int $quizID): int
     {
-        $questions = 0;
-        if (isset($data['questions']) && count($data['questions'])) {
-            foreach ($data['questions'] as $question) {
-                $question['quizID'] = $quizID;
+        $numbers = 0;
+        foreach ($questions as $question) {
+            $data = $question->getData();
+            $data['questionID'] = $quizID;
+            QuestionEditor::create($data);
 
-                QuestionEditor::create($question);
-                $questions++;
-            }
+            $numbers++;
         }
 
-        return $questions;
+        return $numbers;
     }
 
     /**
      * Import goals.
-     * @param array $data
+     * @param ValidatedGoal[] $goals
      * @param int $quizID
      * @return int
      */
-    protected static function importGoals(array $data, int $quizID): int
+    protected static function importGoals(array $goals, int $quizID): int
     {
-        $goals = 0;
+        $numbers = 0;
+        foreach ($goals as $goal) {
+            $data = $goal->getData();
+            $data['quizID'] = $quizID;
+            GoalEditor::create($data);
 
-        if (isset($data['goals']) && count($data['goals'])) {
-            foreach ($data['goals'] as $goal) {
-                $goal['quizID'] = $quizID;
-
-                GoalEditor::create($goal);
-                $goals++;
-            }
+            $numbers++;
         }
 
-        return $goals;
+        return $numbers;
     }
 
     /**
      * Import tags.
-     * @param array $data
+     * @param ValidatedTag[] $tags
      * @param Quiz $quiz
      */
-    protected static function importTags(array $data, Quiz $quiz)
+    protected static function importTags(array $tags, Quiz $quiz)
     {
-        if (isset($data['tags']) && count($data['tags'])) {
+        $data = [];
+        foreach ($tags as $tag) {
+            $data[] = $tag->name;
+        }
+
+        if (count($data)) {
             /** @scrutinizer ignore-call */TagEngine::getInstance()->addObjectTags(
                 Quiz::OBJECT_TYPE,
                 $quiz->quizID,
-                $data['tags'],
+                $data,
                 $quiz->languageID ?? /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getDefaultLanguageID()
             );
         }

@@ -19,6 +19,7 @@ use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\UserInputException;
 use wcf\system\language\LanguageFactory;
+use wcf\system\quiz\validator\Validator;
 use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 use wcf\util\ArrayUtil;
@@ -244,11 +245,10 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      */
     public function import()
     {
-        if (!empty($this->parameters['data']['text'])) {
-            $data = ArrayUtil::trim(JSON::decode($this->parameters['data']['text']));
-        } else {
-            $file = $this->parameters['file'][0];
-            $data = ArrayUtil::trim(JSON::decode(file_get_contents($file->getLocation())));
+        $data = Validator::getLastValidatedData();
+
+        if ($data === null) {
+            throw new SystemException('Missing validated quiz data.');
         }
 
         return QuizEditor::importQuiz($data);

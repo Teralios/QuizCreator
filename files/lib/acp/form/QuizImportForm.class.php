@@ -5,8 +5,6 @@ namespace wcf\acp\form;
 // imports
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizAction;
-use wcf\data\quiz\validator\QuizValidator;
-use wcf\data\quiz\validator\QuizValidatorError;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
@@ -17,8 +15,8 @@ use wcf\system\form\builder\field\language\ContentLanguageFormField;
 use wcf\system\form\builder\field\MultilineTextFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
 use wcf\system\form\builder\field\UploadFormField;
-use wcf\system\form\builder\field\validation\FormFieldValidationError;
 use wcf\system\form\builder\field\validation\FormFieldValidator;
+use wcf\system\quiz\validator\Validator;
 use wcf\system\request\LinkHandler;
 use wcf\util\HeaderUtil;
 
@@ -59,11 +57,11 @@ class QuizImportForm extends AbstractFormBuilderForm
                 ->description('wcf.acp.quizCreator.import.file.description')
                 ->maximum(1)
                 ->setAcceptableFiles(['.json', '.quiz'])
-                ->addValidator(new FormFieldValidator('quizFile', $this->getFileValidator())),
+                ->addValidator(new FormFieldValidator('quizFile', Validator::getUploadFieldValidator())),
             MultilineTextFormField::create('text')
                 ->label('wcf.acp.quizCreator.import.text')
                 ->description('wcf.acp.quizCreator.import.text.description')
-                ->addValidator(new FormFieldValidator('quizText', $this->getTextValidator())),
+                ->addValidator(new FormFieldValidator('quizText', Validator::getTextFieldValidator())),
             ContentLanguageFormField::create('languageID')
                 ->required(),
             BooleanFormField::create('overrideLanguage')
@@ -103,90 +101,5 @@ class QuizImportForm extends AbstractFormBuilderForm
                 ['id' => $quiz->quizID, 'success' => 1]
             ));
         }
-    }
-
-    /**
-     * Returns json validator.
-     * @return callable
-     */
-    protected function getJsonValidator(): callable
-    {
-        return function (string $jsonString) {
-            $validator = new QuizValidator();
-            $validator->setData($jsonString);
-
-            $error = $validator->validate();
-
-            if ($error !== null) {
-                return $error;
-            }
-
-            return null;
-        };
-    }
-
-    /**
-     * Returns file validator.
-     * @return callable
-     */
-    public function getFileValidator(): callable
-    {
-        $jsonValidator = $this->getJsonValidator();
-
-        return function (UploadFormField $formField) use ($jsonValidator) {
-            $file = $formField->getValue()[0];
-
-            $name = $file->getFilename();
-
-            // file extension
-            $lastDot = strrpos($name, '.');
-            if ($lastDot !== false) {
-                $extension = substr($name, $lastDot + 1);
-
-                if ($extension !== 'json') {
-                    $formField->addValidationError(new FormFieldValidationError('fileExtension', 'wcf.acp.quizCreator.import.error.file'));
-                    return;
-                }
-            } else {
-                $formField->addValidationError(new FormFieldValidationError('unknownExtension', 'wcf.acp.quizCreator.import.error.unknown'));
-                return;
-            }
-
-            // json test
-            /** @var QuizValidatorError $jsonError */
-            $jsonError = $jsonValidator(file_get_contents($file->getLocation()));
-
-            if ($jsonError !== null) {
-                $information = [
-                    'context' => $jsonError->getContext(),
-                    'type' => $jsonError->getType(),
-                    'key' => $jsonError->getKey(),
-                    'index' => $jsonError->getIndex()
-                ];
-                $formField->addValidationError(new FormFieldValidationError('json', 'wcf.acp.quizCreator.import.error.json', $information));
-            }
-        };
-    }
-
-    /**
-     * Returns text validator.
-     * @return callable
-     */
-    protected function getTextValidator(): callable
-    {
-        $jsonValidator = $this->getJsonValidator();
-
-        return function (MultilineTextFormField $formField) use ($jsonValidator) {
-            $jsonString = $formField->getSaveValue();
-
-            if (!empty($jsonString)) {
-                // test json string
-                $jsonError = $jsonValidator($jsonString);
-
-                if ($jsonError !== null) {
-                    $formField->addValidationError(new FormFieldValidationError('json', 'wcf.acp.quizCreator.import.error.json', [$jsonError]));
-                }
-            }
-        };
     }
 }

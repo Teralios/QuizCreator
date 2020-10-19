@@ -7,26 +7,9 @@ There are two types of quizzes:
   * __Fun__ - Here it doesn't matter how long it takes, there is always 1 point, at the end you can present a funny evaluation via goals.
 
 ## Todo
-### Beta 4
-  - [x] Improve quiz information
-    - [x] Use WYSIWYG-Editor for description
-    - [x] Option for length of description
-    - [x] Description for quiz is required
-  - [x] Implement additional options
-    - [x] Option for `$itemsPerPage` on QuizListPage
-    - [x] Option for `$itemsPerPage` on QuizPlayerListPage
-    - [x] Option for Box items of »Best Player« box
-    - [x] Option for Box items of »Last Players« box
-  - [x] Overwork options structure
-    - [x] New categories
-    - [x] Assign options to new categories
-    - [x] Language variables
-  - [x] Implement popover on quiz list
-  - [x] Implement export and imports of tags for quiz
-  - [x] Option to reset all played matches.
-  - [x] Rename Game\* and \*_game to Match/\*_match
-  - [ ] Use QuizValidator from package de.teralios.validator.quiz
-    - [ ] Clean up QuizImportFormPage.class.php
- 
+
 ### RC1
   - [ ] Prepare for release in "WoltLab® Plugin Store"
+  
+### 1.0.0 Final
+  - [ ] ???

@@ -5,7 +5,7 @@
 		<packagename>Teralios' QuizCreator</packagename>
 		<packagedescription>Create fun little quizzes for your website.</packagedescription>
 		<packagedescription language="de">Erstellen Sie kleine spassige Quizze für Ihre Webseite.</packagedescription>
-		<version>1.0.0 Beta 4</version>
+		<version>1.0.0 RC 1</version>
 		<date>2020-10-19</date>
 		<license>GNU GPLv3</license>
 	</packageinformation>
@@ -15,7 +15,7 @@
 	</authorinformation>
 	<requiredpackages>
 		<requiredpackage minversion="5.3.0 RC 1">com.woltlab.wcf</requiredpackage>
-		<requiredpackage minversion="1.0.0 Beta 4" file="requirements/de.teralios.validator.quiz.tar">de.teralios.validator.quiz</requiredpackage>
+		<requiredpackage minversion="1.0.0 RC 1" file="requirements/de.teralios.validator.quiz.tar">de.teralios.validator.quiz</requiredpackage>
 	</requiredpackages>
 	<excludedpackages>
 		<excludedpackage version="6.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
@@ -34,5 +34,10 @@
 		<instruction type="language"/>
 		<instruction type="option"/>
 		<instruction type="objectType"/>
+	</instructions>
+
+	<!-- update from beta 4 -->
+	<instructions type="update" fromversion="1.0.0 Beta 4">
+		<instruction type="file" run="standalone" application="wcf"/>
 	</instructions>
 </package>

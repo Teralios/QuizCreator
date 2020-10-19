@@ -7,9 +7,10 @@ build:
       dependencies:
         before:
         - git clone https://github.com/WoltLab/WCF.git wcf/
-        - cd wcf/
+        - git clone https://github.com/Teralios/de.teralios.validator.quiz.git teralios/
+        #- cd wcf/
         #- git checkout 5.2
-        - cd ..
+        #- cd ..
       tests:
         override:
           - php-scrutinizer-run --enable-security-analysis
@@ -20,3 +21,4 @@ filter:
     - "*.min.js"
   dependency_paths:
     - wcf/
+    - teralios/

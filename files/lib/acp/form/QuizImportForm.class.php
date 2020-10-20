@@ -15,8 +15,7 @@ use wcf\system\form\builder\field\language\ContentLanguageFormField;
 use wcf\system\form\builder\field\MultilineTextFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
 use wcf\system\form\builder\field\UploadFormField;
-use wcf\system\form\builder\field\validation\FormFieldValidator;
-use wcf\system\quiz\validator\Validator;
+use wcf\system\form\builder\field\validation\QuizJsonFormFieldValidator;
 use wcf\system\request\LinkHandler;
 use wcf\util\HeaderUtil;
 
@@ -57,11 +56,11 @@ class QuizImportForm extends AbstractFormBuilderForm
                 ->description('wcf.acp.quizCreator.import.file.description')
                 ->maximum(1)
                 ->setAcceptableFiles(['.json', '.quiz'])
-                ->addValidator(new FormFieldValidator('quizFile', Validator::getUploadFieldValidator())),
+                ->addValidator(QuizJsonFormFieldValidator::getFormFieldValidator('quizFile')),
             MultilineTextFormField::create('text')
                 ->label('wcf.acp.quizCreator.import.text')
                 ->description('wcf.acp.quizCreator.import.text.description')
-                ->addValidator(new FormFieldValidator('quizText', Validator::getTextFieldValidator())),
+                ->addValidator(QuizJsonFormFieldValidator::getFormFieldValidator('quizFile', false)),
             ContentLanguageFormField::create('languageID')
                 ->required(),
             BooleanFormField::create('overrideLanguage')

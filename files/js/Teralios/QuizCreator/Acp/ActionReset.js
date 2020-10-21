@@ -88,7 +88,7 @@ define(['Ajax', 'Ui/Confirmation', 'Language'], function(Ajax, UiConfirmation, L
         _ajaxSetup: function () {
             return {
                 data: {
-                    actionName: "resetMatches",
+                    actionName: "resetGames",
                     className: this._dboActionClass,
                 }
             }

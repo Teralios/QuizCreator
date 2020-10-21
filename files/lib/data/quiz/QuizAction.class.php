@@ -39,7 +39,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
     protected $permissionsUpdate = ['admin.content.quizCreator.canManage'];
     protected $permissionsDelete = ['admin.content.quizCreator.canManage'];
     protected $permissionsToggle = ['admin.content.quizCreator.canManage'];
-    protected $permissionsResetMatches = ['admin.content.quizCreator.canManage'];
+    protected $permissionsResetGames = ['admin.content.quizCreator.canManage'];
     protected $permissionsLoadQuiz = ['user.quiz.canView'];
     protected $permissionsPopover = ['user.quiz.canView'];
     protected $permissionFinishGame = ['user.quiz.canPlay'];
@@ -256,9 +256,9 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * Check permissions for reset matches.
      * @throws PermissionDeniedException
      */
-    public function validateResetMatches()
+    public function validateResetGames()
     {
-        WCF::getSession()->checkPermissions($this->permissionsResetMatches);
+        WCF::getSession()->checkPermissions($this->permissionsResetGames);
     }
 
     /**
@@ -266,10 +266,10 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * @throws DatabaseQueryException
      * @throws DatabaseQueryExecutionException
      */
-    public function resetMatches()
+    public function resetGames()
     {
-        MatchEditor::deleteForQuizzes($this->objectIDs);
-        MatchEditor::resetCache();
+        GameEditor::deleteForQuizzes($this->objectIDs);
+        GameEditor::resetCache();
     }
 
     /**

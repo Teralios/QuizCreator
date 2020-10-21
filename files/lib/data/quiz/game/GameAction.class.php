@@ -23,12 +23,12 @@ use wcf\system\WCF;
 class GameAction extends AbstractDatabaseObjectAction
 {
     protected $permissionsShowResult = ['user.quiz.canView'];
-    protected $className = MatchEditor::class;
+    protected $className = GameEditor::class;
 
     /**
      * @var Game
      */
-    protected $match = null;
+    protected $game = null;
 
     /**
      * Validate show result.
@@ -39,9 +39,9 @@ class GameAction extends AbstractDatabaseObjectAction
     {
         WCF::getSession()->checkPermissions($this->permissionsShowResult);
 
-        $this->match = $this->getSingleObject();
-        if ($this->match instanceof DatabaseObjectDecorator) {
-            $this->match =  /** @scrutinizer ignore-call */ $this->match->getDecoratedObject();
+        $this->game = $this->getSingleObject();
+        if ($this->game instanceof DatabaseObjectDecorator) {
+            $this->game =  /** @scrutinizer ignore-call */ $this->game->getDecoratedObject();
         }
     }
 
@@ -52,12 +52,12 @@ class GameAction extends AbstractDatabaseObjectAction
      */
     public function showResult()
     {
-        $quiz = new Quiz($this->match->quizID);
+        $quiz = new Quiz($this->game->quizID);
         $questions = new QuestionList($quiz);
         $questions->readObjects();
 
         WCF::getTPL()->assign([
-            'match' => $this->match,
+            'game' => $this->game,
             'quiz' => $quiz,
             'questions' => $questions,
         ]);

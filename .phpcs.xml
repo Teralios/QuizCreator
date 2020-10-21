@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset>
+	<file>files/</file>
+	<arg name="extensions" value="php" />
+	<arg value="p"/>
+	<arg name="basepath" value="."/>
+	<rule ref="./debug/ruleset.xml"/>
+</ruleset>

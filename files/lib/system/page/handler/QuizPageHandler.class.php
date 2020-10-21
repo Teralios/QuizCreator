@@ -9,6 +9,14 @@ use wcf\data\user\online\UserOnline;
 use wcf\system\cache\runtime\ViewableQuizRuntimeCache;
 use wcf\system\WCF;
 
+/**
+ * Class        QuizPageHandler
+ * @package     QuizCreator
+ * @subpackage  wcf\system\page\handler
+ * @author      Karsten (Teralios) Achterrath
+ * @copyright   ©2020 Teralios.de
+ * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ */
 class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocationPageHandler
 {
     use TOnlineLocationPageHandler;
@@ -16,21 +24,24 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
     /**
      * @inheritDoc
      */
-    public function getLink($objectID) {
+    public function getLink($objectID)
+    {
         return /** @scrutinizer ignore-call */ViewableQuizRuntimeCache::getInstance()->getObject($objectID)->getLink();
     }
 
     /**
      * @inheritDoc
      */
-    public function isValid($objectID) {
+    public function isValid($objectID)
+    {
         return /** @scrutinizer ignore-call */ViewableQuizRuntimeCache::getInstance()->getObject($objectID) !== null;
     }
 
     /**
      * @inheritDoc
      */
-    public function isVisible($objectID = null) {
+    public function isVisible($objectID = null)
+    {
         /** @var ViewableQuiz $quiz */
         $quiz = /** @scrutinizer ignore-call */ViewableQuizRuntimeCache::getInstance()->getObject($objectID);
 
@@ -40,7 +51,8 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
     /**
      * @inheritDoc
      */
-    public function lookup($searchString) {
+    public function lookup($searchString)
+    {
         $quizList = new ViewableQuizList();
         $quizList->withMedia();
         $quizList->getConditionBuilder()->add(
@@ -52,13 +64,13 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
 
         $results = [];
         /** @var ViewableQuiz $quiz */
-        foreach ($quizList->getObjects() as $quiz) {
+        foreach ($quizList as $quiz) {
             $results[] = [
-                'description' => $quiz->getPreview(),
-                'image' => $quiz->getMedia() ? $quiz->getMedia()->getElementTag(48) : '',
-                'link' => $quiz->getLink(),
+                'description' => /** @scrutinizer ignore-call */$quiz->getPreview(),
+                'image' => /** @scrutinizer ignore-call */$quiz->getMedia() ? $quiz->getMedia()->getElementTag(48) : '',
+                'link' => /** @scrutinizer ignore-call */$quiz->getLink(),
                 'objectID' => $quiz->quizID,
-                'title' => $quiz->getTitle()
+                'title' => /** @scrutinizer ignore-call */$quiz->getTitle()
             ];
         }
 
@@ -68,13 +80,14 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
     /**
      * @inheritDoc
      */
-    public function getOnlineLocation(Page $page, UserOnline $user) {
+    public function getOnlineLocation(Page $page, UserOnline $user)
+    {
         if ($user->pageObjectID === null) {
             return '';
         }
 
         $quiz = /** @scrutinizer ignore-call */ViewableQuizRuntimeCache::getInstance()->getObject($user->pageObjectID);
-        if ($quiz === null || !$quiz->canSee()) {
+        if ($quiz === null || /** @scrutinizer ignore-call */!$quiz->canSee()) {
             return '';
         }
 
@@ -84,7 +97,8 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
     /**
      * @inheritDoc
      */
-    public function prepareOnlineLocation(Page $page, UserOnline $user) {
+    public function prepareOnlineLocation(Page $page, UserOnline $user)
+    {
         if ($user->pageObjectID !== null) {
             /** @scrutinizer ignore-call */ViewableQuizRuntimeCache::getInstance()->cacheObjectID($user->pageObjectID);
         }

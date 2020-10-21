@@ -3,12 +3,24 @@
 namespace wcf\system\cache\builder;
 
 // imports
-use wcf\data\quiz\match\MatchList;
+use wcf\data\quiz\game\GameList;
 
-class QuizMatchCacheBuilder extends AbstractCacheBuilder
+/**
+ * Class        QuizMatchCacheBuilder
+ * @package     QuizCreator
+ * @subpackage  wcf\system\cache\builder
+ * @author      Karsten (Teralios) Achterrath
+ * @copyright   ©2020 Teralios.de
+ * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ */
+class QuizGameCacheBuilder extends AbstractCacheBuilder
 {
+    // inherit variables
     protected $maxLifetime = 300;
 
+    /**
+     * @inheritdoc
+     */
     protected function rebuild(array $parameters)
     {
         $context = $parameters['context'] ?? 'best';
@@ -20,10 +32,10 @@ class QuizMatchCacheBuilder extends AbstractCacheBuilder
         $list = null;
         switch ($context) {
             case 'last':
-                $list = MatchList::lastPlayers($quizID);
+                $list = GameList::lastPlayers($quizID);
                 break;
             default:
-                $list = MatchList::bestPlayers($quizID);
+                $list = GameList::bestPlayers($quizID);
         }
 
         if ($withQuiz) {

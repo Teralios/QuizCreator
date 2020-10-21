@@ -6,6 +6,14 @@ namespace wcf\system\cache\builder;
 use wcf\data\quiz\ViewableQuizList;
 use wcf\system\exception\SystemException;
 
+/**
+ * Class        QuizMostPlayedCacheBuilder
+ * @package     QuizCreator
+ * @subpackage  wcf\system\cache\builder
+ * @author      Karsten (Teralios) Achterrath
+ * @copyright   ©2020 Teralios.de
+ * @license     GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ */
 class QuizMostPlayedCacheBuilder extends AbstractCacheBuilder
 {
     // inherit vars

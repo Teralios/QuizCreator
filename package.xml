@@ -5,7 +5,7 @@
 		<packagename>Teralios' QuizCreator</packagename>
 		<packagedescription>Create fun little quizzes for your website.</packagedescription>
 		<packagedescription language="de">Erstellen Sie kleine spassige Quizze für Ihre Webseite.</packagedescription>
-		<version>1.0.0 RC 1</version>
+		<version>1.0.0 Beta 5</version>
 		<date>2020-10-19</date>
 		<license>GNU GPLv3</license>
 	</packageinformation>
@@ -34,12 +34,5 @@
 		<instruction type="language"/>
 		<instruction type="option"/>
 		<instruction type="objectType"/>
-	</instructions>
-
-	<!-- update from beta 4 -->
-	<instructions type="update" fromversion="1.0.0 Beta 4">
-		<instruction type="file" run="standalone" application="wcf"/>
-		<instruction type="page"/>
-		<instruction type="language"/>
 	</instructions>
 </package>

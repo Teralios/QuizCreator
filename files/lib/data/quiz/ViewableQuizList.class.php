@@ -4,7 +4,7 @@ namespace wcf\data\quiz;
 
 // imports
 use wcf\data\media\ViewableMediaList;
-use wcf\data\quiz\match\Match;
+use wcf\data\quiz\game\Game;
 use wcf\system\cache\runtime\ViewableMediaRuntimeCache;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
@@ -105,7 +105,7 @@ class ViewableQuizList extends QuizList
     protected function loadStatistic()
     {
         $sql = 'SELECT      COUNT(userID) as players, SUM(score) as score, quizID
-                FROM        ' . Match::getDatabaseTableName() . '
+                FROM        ' . Game::getDatabaseTableName() . '
                 WHERE       quizID IN (? ' . str_repeat(', ?', (count($this->objectIDs) - 1)) . ')
                 GROUP BY    quizID';
         $statement = WCF::getDB()->prepareStatement($sql);

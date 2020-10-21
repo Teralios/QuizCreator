@@ -8,8 +8,8 @@ use wcf\data\DatabaseObjectDecorator;
 use wcf\data\IPopoverAction;
 use wcf\data\IStorableObject;
 use wcf\data\IToggleAction;
-use wcf\data\quiz\match\Match;
-use wcf\data\quiz\match\MatchEditor;
+use wcf\data\quiz\game\Game;
+use wcf\data\quiz\game\GameEditor;
 use wcf\data\quiz\goal\GoalList;
 use wcf\data\quiz\question\QuestionList;
 use wcf\data\user\UserEditor;
@@ -22,8 +22,6 @@ use wcf\system\language\LanguageFactory;
 use wcf\system\quiz\validator\Validator;
 use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
-use wcf\util\ArrayUtil;
-use wcf\util\JSON;
 
 /**
  * Class QuizAction
@@ -45,7 +43,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
     protected $permissionsLoadQuiz = ['user.quiz.canView'];
     protected $permissionsPopover = ['user.quiz.canView'];
     protected $permissionFinishGame = ['user.quiz.canPlay'];
-    protected $allowGuestAccess = ['loadQuiz', 'finishMatch'];
+    protected $allowGuestAccess = ['loadQuiz', 'finishGame'];
     protected $resetCache = ['delete', 'update', 'toggle'];
 
     /**
@@ -176,7 +174,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * @throws UserInputException
      * @throws PermissionDeniedException
      */
-    public function validateFinishMatch()
+    public function validateFinishGame()
     {
         $this->validateLoadQuiz();
         WCF::getSession()->checkPermissions($this->permissionFinishGame);
@@ -189,7 +187,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * @throws DatabaseQueryException
      * @throws DatabaseQueryExecutionException
      */
-    public function finishMatch()
+    public function finishGame()
     {
         // user data for update
         $userData = [];
@@ -201,16 +199,16 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
         $time = $this->parameters['timeTotal'];
 
         // build statistic
-        $statistic = Match::getStatistic($this->quiz, $score);
+        $statistic = Game::getStatistic($this->quiz, $score);
 
         // check user
         if ($this->quiz->isActive) {
             if ($userID != 0) {
-                if (!Match::hasPlayed($this->quiz, $userID)) {
-                    $game = MatchEditor::createGameResult($this->quiz, $userID, $score, $time, $result);
+                if (!Game::hasPlayed($this->quiz, $userID)) {
+                    $game = GameEditor::createGameResult($this->quiz, $userID, $score, $time, $result);
                     $userData = $game->getUserData(WCF::getUser(), true);
-                } elseif (($game = Match::getMatch($this->quiz, $userID)) !== null) {
-                    $game = new MatchEditor($game);
+                } elseif (($game = Game::getMatch($this->quiz, $userID)) !== null) {
+                    $game = new GameEditor($game);
                     $game->update(['lastScore' => $score, 'lastPlayedTime' => TIME_NOW, 'lastTimeTotal' => $time]);
                     $userData = $game->getUserData(WCF::getUser());
                 }

@@ -6,9 +6,9 @@ namespace wcf\data\quiz;
 use wcf\data\DatabaseObjectEditor;
 use wcf\data\IEditableCachedObject;
 use wcf\data\quiz\goal\GoalEditor;
-use wcf\data\quiz\match\Match;
+use wcf\data\quiz\game\Game;
 use wcf\data\quiz\question\QuestionEditor;
-use wcf\system\cache\builder\QuizMatchCacheBuilder;
+use wcf\system\cache\builder\QuizGameCacheBuilder;
 use wcf\system\cache\builder\QuizMostPlayedCacheBuilder;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
@@ -214,13 +214,13 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
     public static function resetCache()
     {
         // reset general caches.
-        /** @scrutinizer ignore-call */QuizMatchCacheBuilder::getInstance()->reset([
+        /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->reset([
             'context' => 'best',
             'withQuiz' => true,
             'withUser' => true
         ]);
 
-        /** @scrutinizer ignore-call */QuizMatchCacheBuilder::getInstance()->reset([
+        /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->reset([
             'context' => 'last',
             'withQuiz' => true,
             'withUser' => true

@@ -8,9 +8,9 @@ build:
         before:
         - git clone https://github.com/WoltLab/WCF.git wcf/
         - git clone https://github.com/Teralios/de.teralios.validator.quiz.git teralios/
-        #- cd wcf/
-        #- git checkout 5.2
-        #- cd ..
+        - cd wcf/
+        - git checkout 5.3
+        - cd ..
       tests:
         override:
           - php-scrutinizer-run --enable-security-analysis

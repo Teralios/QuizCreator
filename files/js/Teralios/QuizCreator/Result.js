@@ -155,7 +155,7 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
         _ajaxSetup: function () {
             return {
                 data: {
-                    actionName: "finishMatch",
+                    actionName: "finishGame",
                     className: 'wcf\\data\\quiz\\QuizAction',
                 }
             }

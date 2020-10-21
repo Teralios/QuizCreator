@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
 <ruleset name="Athene">
-	<exclude-pattern>*/debug/*</exclude-pattern>
-	<exclude-pattern>*/templates/*</exclude-pattern>
 	<rule ref="PSR2"/>
 	<rule ref="Generic.Files.LineLength">
 		<properties>

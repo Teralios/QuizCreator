@@ -31,6 +31,9 @@ use wcf\util\StringUtil;
  * @property-read int $players
  * @property-read int $scoreTotal
  * @method string getDescription()
+ * @method string getLink()
+ * @method string getTitle()
+ * @method bool canSee()
  */
 class ViewableQuiz extends DatabaseObjectDecorator
 {

@@ -84,6 +84,10 @@
 		<item name="wcf.acp.option.category.quizCreator.pages.players"><![CDATA[Seite „Spieler“]]></item>
 		<item name="wcf.acp.option.quiz_players_per_page"><![CDATA[Spieler pro Seite]]></item>
 	</category>
+	<category name="wcf.page">
+		<item name="wcf.page.onlineLocation.de.teralios.quizCreator.Quiz"><![CDATA[Quiz {anchor object=$quiz}]]></item>
+		<item name="wcf.page.onlineLocation.de.teralios.quizCreator.Players"><![CDATA[Spieler <a href="{link controller="QuizPlayerList" id=$quiz->quizID}{/link}">{$quiz->getTitle()}</a>]]></item>
+	</category>
 	<category name="wcf.tagging">
 		<item name="wcf.tagging.taggedObjects.de.teralios.quizCreator.quiz"><![CDATA[Quizze]]></item>
 		<item name="wcf.tagging.objectType.de.teralios.quizCreator.quiz"><![CDATA[Quizze]]></item>
@@ -137,7 +141,7 @@
 		<item name="wcf.quizCreator.game.start"><![CDATA[Spiel starten]]></item>
 		<item name="wcf.quizCreator.game.question.next"><![CDATA[Nächste Frage]]></item>
 		<item name="wcf.quizCreator.game.finish"><![CDATA[Spiel beenden]]></item>
-		<item name="wcf.quizCreator.game.result.asGood"><![CDATA[Andere Spieler sind so gut wie {if LANGUAGE_USE_INFORMAL_VARIANT}Du{else}Sie{/if}.]]></item>
+		<item name="wcf.quizCreator.game.result.asGood"><![CDATA[Alle anderen Spieler sind mindestens so gut wie {if LANGUAGE_USE_INFORMAL_VARIANT}Du{else}Sie{/if}.]]></item>
 		<item name="wcf.quizCreator.game.result.betterAs"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du bist{else}Sie sind{/if} besser als {literal}{$percent}{/literal} % der Spieler.]]></item>
 		<item name="wcf.quizCreator.game.goal.none"><![CDATA[Knapp verpasst!]]></item>
 		<item name="wcf.quizCreator.game.goal.none.detail"><![CDATA[Leider hat es für ein „Goal“ nicht ganz gereicht.]]></item>

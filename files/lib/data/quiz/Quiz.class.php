@@ -14,6 +14,7 @@ use wcf\system\form\builder\field\IntegerFormField;
 use wcf\system\html\output\HtmlOutputProcessor;
 use wcf\system\request\IRouteController;
 use wcf\system\request\LinkHandler;
+use wcf\system\WCF;
 use wcf\util\StringUtil;
 
 /**
@@ -108,6 +109,26 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
     }
 
     /**
+     * @inheritdoc
+     */
+    public function getPopoverLinkClass()
+    {
+        return 'quizPopover';
+    }
+
+    /**
+     * @return bool
+     */
+    public function canSee(): bool
+    {
+        if ($this->isActive) {
+            return (WCF::getSession()->getPermission('user.quiz.canView')) ? true : false;
+        }
+
+        return (WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) ? true : false;
+    }
+
+    /**
      * @param Quiz $quiz
      * @return int
      */
@@ -118,13 +139,5 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
         }
 
         return $quiz->questions * static::MAX_VALUE_QUESTION;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getPopoverLinkClass()
-    {
-        return 'quizPopover';
     }
 }

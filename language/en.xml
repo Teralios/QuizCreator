@@ -86,6 +86,10 @@
 		<item name="wcf.acp.option.category.quizCreator.pages.players"><![CDATA[Page “Players”]]></item>
 		<item name="wcf.acp.option.quiz_players_per_page"><![CDATA[Players per page]]></item>
 	</category>
+	<category name="wcf.page">
+		<item name="wcf.page.onlineLocation.de.teralios.quizCreator.Quiz"><![CDATA[Quiz {anchor object=$quiz}]]></item>
+		<item name="wcf.page.onlineLocation.de.teralios.quizCreator.Players"><![CDATA[Players {anchor object=$quiz}]]></item>
+	</category>
 	<category name="wcf.tagging">
 		<item name="wcf.tagging.taggedObjects.de.teralios.quizCreator.quiz"><![CDATA[Quizzes]]></item>
 		<item name="wcf.tagging.objectType.de.teralios.quizCreator.quiz"><![CDATA[Quizzes]]></item>

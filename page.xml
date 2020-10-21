@@ -21,18 +21,25 @@
 			<controller>wcf\page\QuizPage</controller>
 			<name language="de">Quiz</name>
 			<name language="en">Quiz</name>
+			<handler>wcf\system\page\handler\QuizPageHandler</handler>
 			<hasFixedParent>1</hasFixedParent>
 			<parent>de.teralios.quizCreator.QuizList</parent>
 			<permissions>user.quiz.canView</permissions>
 			<allowSpidersToIndex>1</allowSpidersToIndex>
 			<requireObjectID>1</requireObjectID>
+			<content language="en">
+				<title>Quiz</title>
+			</content>
+			<content language="de">
+				<title>Quiz</title>
+			</content>
 		</page>
-
 		<page identifier="de.teralios.quizCreator.Players">
 			<pageType>system</pageType>
 			<controller>wcf\page\QuizPlayerListPage</controller>
 			<name language="de">Spieler</name>
 			<name language="en">Players</name>
+			<handler>wcf\system\page\handler\QuizPlayerPageHandler</handler>
 			<hasFixedParent>1</hasFixedParent>
 			<parent>de.teralios.quizCreator.Quiz</parent>
 			<permissions>user.quiz.canView</permissions>

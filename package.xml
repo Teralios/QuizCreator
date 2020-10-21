@@ -39,5 +39,7 @@
 	<!-- update from beta 4 -->
 	<instructions type="update" fromversion="1.0.0 Beta 4">
 		<instruction type="file" run="standalone" application="wcf"/>
+		<instruction type="page"/>
+		<instruction type="language"/>
 	</instructions>
 </package>

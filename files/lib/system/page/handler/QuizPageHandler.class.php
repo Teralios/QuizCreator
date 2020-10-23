@@ -7,6 +7,8 @@ use wcf\data\quiz\ViewableQuiz;
 use wcf\data\quiz\ViewableQuizList;
 use wcf\data\user\online\UserOnline;
 use wcf\system\cache\runtime\ViewableQuizRuntimeCache;
+use wcf\system\database\exception\DatabaseQueryExecutionException;
+use wcf\system\exception\SystemException;
 use wcf\system\WCF;
 
 /**
@@ -50,6 +52,7 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
 
     /**
      * @inheritDoc
+     * @throws DatabaseQueryExecutionException|SystemException
      */
     public function lookup($searchString)
     {
@@ -79,6 +82,7 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
 
     /**
      * @inheritDoc
+     * @throws SystemException
      */
     public function getOnlineLocation(Page $page, UserOnline $user)
     {
@@ -86,16 +90,18 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
             return '';
         }
 
+        /** @var ViewableQuiz $quiz */
         $quiz = /** @scrutinizer ignore-call */ViewableQuizRuntimeCache::getInstance()->getObject($user->pageObjectID);
         if ($quiz === null || /** @scrutinizer ignore-call */!$quiz->canSee()) {
             return '';
         }
 
-        return WCF::getLanguage()->getDynamicVariable('wcf.page.onlineLocation.'.$page->identifier, ['quiz' => $quiz->getDecoratedObject()]);
+        return WCF::getLanguage()->getDynamicVariable('wcf.page.onlineLocation.' . $page->identifier, ['quiz' => $quiz->getDecoratedObject()]);
     }
 
     /**
      * @inheritDoc
+     * @throws SystemException
      */
     public function prepareOnlineLocation(Page $page, UserOnline $user)
     {

@@ -19,6 +19,7 @@ use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\UserInputException;
 use wcf\system\language\LanguageFactory;
+use wcf\system\quiz\validator\data\Quiz as ValidatedQuiz;
 use wcf\system\quiz\validator\Validator;
 use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
@@ -33,7 +34,7 @@ use wcf\system\WCF;
  */
 class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, IPopoverAction
 {
-    // inherit vars
+    // inherit variables
     protected $className = QuizEditor::class;
     protected $permissionsCreate = ['admin.content.quizCreator.canManage'];
     protected $permissionsUpdate = ['admin.content.quizCreator.canManage'];
@@ -53,6 +54,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
 
     /**
      * @inheritDoc
+     * @throws SystemException
      */
     public function create()
     {
@@ -63,6 +65,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
         $this->parameters['data']['description'] = $this->parameters['description_htmlInputProcessor']->getHtml();
 
         // create quiz
+        /** @var Quiz $quiz */
         $quiz = parent::create();
 
         // tags
@@ -92,6 +95,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
 
         // tags
         if (!empty($this->parameters['tags'])) {
+            /** @var Quiz $object */
             foreach ($this->objects as $object) {
                 /** @scrutinizer ignore-call */TagEngine::getInstance()->addObjectTags(
                     Quiz::OBJECT_TYPE,
@@ -121,6 +125,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
             $this->readObjects();
         }
 
+        /** @var QuizEditor $quiz */
         foreach ($this->objects as $quiz) {
             $quiz->toggle();
         }
@@ -128,7 +133,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
 
     /**
      * Validate loadData method.
-     * @throws UserInputException
+     * @throws UserInputException|PermissionDeniedException
      */
     public function validateLoadQuiz()
     {
@@ -171,8 +176,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
 
     /**
      * Validate finish game.
-     * @throws UserInputException
-     * @throws PermissionDeniedException
+     * @throws UserInputException|PermissionDeniedException
      */
     public function validateFinishGame()
     {
@@ -183,9 +187,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
     /**
      * Finish match.
      * @return array
-     * @throws SystemException
-     * @throws DatabaseQueryException
-     * @throws DatabaseQueryExecutionException
+     * @throws SystemException|DatabaseQueryException|DatabaseQueryExecutionException
      */
     public function finishGame()
     {
@@ -248,7 +250,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
         $languageID = $this->parameters['data']['languageID'] ?? 0;
         $overrideLanguage = $this->parameters['data']['overrideLanguage'] ?? false;
 
-        if ($data === null) {
+        if ($data === null || !($data instanceof ValidatedQuiz)) {
             throw new SystemException('Missing validated quiz data.');
         }
 
@@ -266,8 +268,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
 
     /**
      * Execute reset matches action.
-     * @throws DatabaseQueryException
-     * @throws DatabaseQueryExecutionException
+     * @throws DatabaseQueryException|DatabaseQueryExecutionException|SystemException
      */
     public function resetGames()
     {
@@ -277,9 +278,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
 
     /**
      * @inheritdoc
-     * @throws PermissionDeniedException
-     * @throws SystemException
-     * @throws UserInputException
+     * @throws PermissionDeniedException|SystemException|UserInputException
      */
     public function validateGetPopover()
     {

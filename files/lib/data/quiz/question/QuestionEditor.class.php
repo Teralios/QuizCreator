@@ -28,7 +28,7 @@ use wcf\system\WCF;
  */
 class QuestionEditor extends DatabaseObjectEditor
 {
-    // inherit vars
+    // inherit variables
     protected static $baseClass = Question::class;
 
     /**

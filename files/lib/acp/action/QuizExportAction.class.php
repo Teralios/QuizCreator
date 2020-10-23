@@ -37,8 +37,7 @@ class QuizExportAction extends AbstractAction
 
     /**
      * @inheritDoc
-     * @throws IllegalLinkException
-     * @throws PermissionDeniedException
+     * @throws IllegalLinkException|PermissionDeniedException
      */
     public function readParameters()
     {

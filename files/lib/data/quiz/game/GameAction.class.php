@@ -32,8 +32,7 @@ class GameAction extends AbstractDatabaseObjectAction
 
     /**
      * Validate show result.
-     * @throws PermissionDeniedException
-     * @throws UserInputException
+     * @throws PermissionDeniedException|UserInputException
      */
     public function validateShowResult()
     {

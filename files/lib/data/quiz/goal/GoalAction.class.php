@@ -19,6 +19,7 @@ use wcf\system\exception\SystemException;
  */
 class GoalAction extends AbstractDatabaseObjectAction
 {
+    // inherit variables
     protected $className = GoalEditor::class;
     protected $permissionsCreate = ['admin.content.quizCreator.canManage'];
     protected $permissionsUpdate = ['admin.content.quizCreator.canManage'];
@@ -30,20 +31,19 @@ class GoalAction extends AbstractDatabaseObjectAction
      */
     public function create()
     {
-        $question = parent::create();
+        $goal = parent::create();
 
         // increment question counter
-        $quizID = $question->quizID;
+        $quizID = $goal->quizID;
         $quizEditor = new QuizEditor(new Quiz($quizID));
         $quizEditor->incrementCounter(false);
 
-        return $question;
+        return $goal;
     }
 
     /**
      * @inheritDoc
-     * @throws DatabaseQueryException
-     * @throws SystemException
+     * @throws DatabaseQueryException|SystemException
      */
     public function delete()
     {

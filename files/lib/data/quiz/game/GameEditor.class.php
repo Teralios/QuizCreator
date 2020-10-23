@@ -92,8 +92,7 @@ class GameEditor extends DatabaseObjectEditor
     /**
      * Delete all games/matches for given quiz.
      * @param int[] $quizIDs
-     * @throws DatabaseQueryException
-     * @throws DatabaseQueryExecutionException
+     * @throws DatabaseQueryException|DatabaseQueryExecutionException
      */
     public static function deleteForQuizzes(array $quizIDs)
     {
@@ -105,6 +104,9 @@ class GameEditor extends DatabaseObjectEditor
         }
     }
 
+    /**
+     * @throws SystemException
+     */
     public static function resetCache()
     {
         /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->reset();

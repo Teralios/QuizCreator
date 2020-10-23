@@ -26,7 +26,7 @@ class QuestionList extends DatabaseObjectList
      * @param Quiz|null $quiz
      * @throws SystemException
      */
-    public function __construct(Quiz $quiz = null)
+    public function __construct(?Quiz $quiz = null)
     {
         parent::__construct();
 
@@ -38,6 +38,7 @@ class QuestionList extends DatabaseObjectList
 
     /**
      * Build standard condition.
+     * @throws SystemException
      */
     protected function defaultCommand()
     {

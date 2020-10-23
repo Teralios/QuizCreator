@@ -15,5 +15,6 @@ use wcf\data\DatabaseObjectList;
  */
 class QuizList extends DatabaseObjectList
 {
+    // inherit variables
     public $className = Quiz::class;
 }

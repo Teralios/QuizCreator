@@ -21,5 +21,6 @@ use wcf\data\DatabaseObjectEditor;
  */
 class GoalEditor extends DatabaseObjectEditor
 {
+    // inherit variables
     protected static $baseClass = Goal::class;
 }

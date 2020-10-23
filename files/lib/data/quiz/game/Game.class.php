@@ -72,6 +72,7 @@ class Game extends DatabaseObject
      * Get result for question.
      * @param int $index
      * @return array|mixed
+     * @throws SystemException
      */
     public function getQuestion(int $index = 0)
     {
@@ -95,7 +96,7 @@ class Game extends DatabaseObject
      * Returns user profile.
      * @return UserProfile|null
      */
-    public function getUser() //: ?UserProfile
+    public function getUser(): ?UserProfile
     {
         return $this->user;
     }
@@ -113,13 +114,13 @@ class Game extends DatabaseObject
      * Return quiz.
      * @return Quiz|null
      */
-    public function getQuiz() //: ?Quiz
+    public function getQuiz(): ?Quiz
     {
         return $this->quiz;
     }
 
     /**
-     * Enode game result json data.
+     * Parse official game result.
      * @throws SystemException
      */
     protected function parseResult()
@@ -138,8 +139,7 @@ class Game extends DatabaseObject
      * @param Quiz $quiz
      * @param int $score
      * @return array
-     * @throws DatabaseQueryException
-     * @throws DatabaseQueryExecutionException
+     * @throws DatabaseQueryException|DatabaseQueryExecutionException
      */
     public static function getStatistic(Quiz $quiz, int $score = 0): array
     {
@@ -170,8 +170,7 @@ class Game extends DatabaseObject
      * @param Quiz $quiz
      * @param int $score
      * @return int
-     * @throws DatabaseQueryException
-     * @throws DatabaseQueryExecutionException
+     * @throws DatabaseQueryException|DatabaseQueryExecutionException
      */
     public static function getWorsePlayers(Quiz $quiz, int $score): int
     {
@@ -191,8 +190,7 @@ class Game extends DatabaseObject
      * @param Quiz $quiz
      * @param int $userID
      * @return bool
-     * @throws DatabaseQueryException
-     * @throws DatabaseQueryExecutionException
+     * @throws DatabaseQueryException|DatabaseQueryExecutionException
      */
     public static function hasPlayed(Quiz $quiz, int $userID): bool
     {
@@ -212,10 +210,9 @@ class Game extends DatabaseObject
      * @param Quiz $quiz
      * @param int $userID
      * @return DatabaseObject|null
-     * @throws DatabaseQueryException
-     * @throws DatabaseQueryExecutionException
+     * @throws DatabaseQueryException|DatabaseQueryExecutionException
      */
-    public static function getMatch(Quiz $quiz, int $userID)
+    public static function getMatch(Quiz $quiz, int $userID): ?self
     {
         $sql = 'SELECT  *
                 FROM    ' . static::getDatabaseTableName() . '

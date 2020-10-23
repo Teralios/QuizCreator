@@ -7,7 +7,10 @@ use wcf\data\quiz\game\Game;
 use wcf\data\quiz\game\GameList;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\ViewableQuiz;
+use wcf\data\tag\Tag;
 use wcf\system\cache\builder\QuizGameCacheBuilder;
+use wcf\system\exception\IllegalLinkException;
+use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
 use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
@@ -24,7 +27,7 @@ class QuizPage extends AbstractPage
 {
     use TQuizPage;
 
-    // inherit vars
+    // inherit variables
     public $neededPermissions = ['user.quiz.canView'];
     public $neededModules = ['MODULE_QUIZ_CREATOR'];
 
@@ -58,6 +61,10 @@ class QuizPage extends AbstractPage
      */
     public $activeTabMenuItem = 'gameContainer';
 
+    /**
+     * @inheritdoc
+     * @throws IllegalLinkException|PermissionDeniedException
+     */
     public function readParameters()
     {
         parent::readParameters();
@@ -98,6 +105,7 @@ class QuizPage extends AbstractPage
 
     /**
      * @inheritDoc
+     * @throws SystemException
      */
     public function assignVariables()
     {

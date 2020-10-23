@@ -30,7 +30,7 @@ class Question extends DatabaseObject
 {
     protected static $databaseTableName = 'quiz_question';
     protected static $databaseTableIndexName = 'questionID';
-    const POSSIBLE_OPTIONS = ['A', 'B', 'C', 'D'];
+    public const POSSIBLE_OPTIONS = ['A', 'B', 'C', 'D'];
 
     /**
      * Returns parsed explanation
@@ -50,7 +50,7 @@ class Question extends DatabaseObject
      */
     public function getOption(string $option)
     {
-        $option = 'option'.$option;
+        $option = 'option' . mb_strtoupper($option);
 
         return $this->{$option};
     }
@@ -59,7 +59,7 @@ class Question extends DatabaseObject
      * Returns possible options for answers.
      * @return string[]
      */
-    public function getPossibleOptions()
+    public function getPossibleOptions(): array
     {
         return self::POSSIBLE_OPTIONS;
     }

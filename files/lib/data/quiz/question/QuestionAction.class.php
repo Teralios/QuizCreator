@@ -5,6 +5,8 @@ namespace wcf\data\quiz\question;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizEditor;
+use wcf\system\database\exception\DatabaseQueryException;
+use wcf\system\exception\SystemException;
 
 /**
  * Class QuestionAction
@@ -23,10 +25,11 @@ class QuestionAction extends AbstractDatabaseObjectAction
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\exception\SystemException
+     * @throws SystemException
      */
     public function create()
     {
+        /** @var Question $question */
         $question = parent::create();
 
         // increment question counter
@@ -39,8 +42,7 @@ class QuestionAction extends AbstractDatabaseObjectAction
 
     /**
      * @inheritDoc
-     * @throws \wcf\system\database\exception\DatabaseQueryException
-     * @throws \wcf\system\exception\SystemException
+     * @throws DatabaseQueryException|SystemException
      */
     public function delete()
     {

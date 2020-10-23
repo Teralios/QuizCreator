@@ -31,14 +31,8 @@ trait TQuizPage
     public $quiz;
 
     /**
-     * @var Tag[]
-     */
-    public $tags = [];
-
-    /**
      * Base implementation for readParameters for quiz pages.
-     * @throws IllegalLinkException
-     * @throws PermissionDeniedException
+     * @throws IllegalLinkException|PermissionDeniedException
      */
     public function readQuizParameters()
     {

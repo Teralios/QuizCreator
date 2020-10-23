@@ -22,6 +22,10 @@ class QuizListPage extends MultipleLinkPage
     public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.list';
     public $objectListClassName = ViewableQuizList::class;
     public $neededPermissions = ['admin.content.quizCreator.canManage'];
+    /**
+     * @var ViewableQuizList
+     */
+    public $objectList = null;
 
     /**
      * @inheritDoc

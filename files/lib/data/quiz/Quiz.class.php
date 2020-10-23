@@ -44,11 +44,11 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
     protected static $databaseTableIndexName = 'quizID';
 
     // const
-    const MAX_VALUE_QUESTION = 10;
-    const FUN_VALUE_QUESTION = 1;
-    const TYPE_FUN = 'fun';
-    const TYPE_COMPETITION = 'competition';
-    const OBJECT_TYPE = 'de.teralios.quizCreator.quiz';
+    public const MAX_VALUE_QUESTION = 10;
+    public const FUN_VALUE_QUESTION = 1;
+    public const TYPE_FUN = 'fun';
+    public const TYPE_COMPETITION = 'competition';
+    public const OBJECT_TYPE = 'de.teralios.quizCreator.quiz';
 
     /**
      * @var ViewableMedia
@@ -67,7 +67,7 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
      * @inheritDoc
      * @throws SystemException
      */
-    public function getLink()
+    public function getLink(): string
     {
         return /** @scrutinizer ignore-call */LinkHandler::getInstance()->getLink(
             'Quiz',
@@ -111,7 +111,7 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
     /**
      * @inheritdoc
      */
-    public function getPopoverLinkClass()
+    public function getPopoverLinkClass(): string
     {
         return 'quizPopover';
     }

@@ -19,10 +19,9 @@ use wcf\system\WCF;
  */
 class QuizPlayerListPage extends MultipleLinkPage
 {
-    // quiz page trait
     use TQuizPage;
 
-    // inherit vars
+    // inherit variables
     public $objectListClassName = GameList::class;
 
     /**
@@ -32,9 +31,7 @@ class QuizPlayerListPage extends MultipleLinkPage
 
     /**
      * @inheritdoc
-     * @throws IllegalLinkException
-     * @throws PermissionDeniedException
-     * @throws SystemException
+     * @throws IllegalLinkException|PermissionDeniedException|SystemException
      */
     public function readParameters()
     {

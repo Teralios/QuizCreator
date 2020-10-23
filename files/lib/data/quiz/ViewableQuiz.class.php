@@ -37,7 +37,7 @@ use wcf\util\StringUtil;
  */
 class ViewableQuiz extends DatabaseObjectDecorator
 {
-    // inherit vars
+    // inherit variables
     protected static $baseClass = Quiz::class;
 
     /**
@@ -49,7 +49,7 @@ class ViewableQuiz extends DatabaseObjectDecorator
      * @param int $length
      * @return string
      */
-    public function getPreview(int $length = 150)
+    public function getPreview(int $length = 150): string
     {
         return StringUtil::truncateHTML($this->getDescription(), $length);
     }
@@ -57,7 +57,7 @@ class ViewableQuiz extends DatabaseObjectDecorator
     /**
      * @return ViewableMedia|null
      */
-    public function getMedia() //: ?ViewableMedia
+    public function getMedia(): ?ViewableMedia
     {
         if ($this->mediaID && $this->mediaObject === null) {
             $this->mediaObject = /** @scrutinizer ignore-call */ViewableMediaRuntimeCache::getInstance()->getObject($this->mediaID);
@@ -68,9 +68,9 @@ class ViewableQuiz extends DatabaseObjectDecorator
 
     /**
      * Set media object.
-     * @param ViewableMedia $media
+     * @param ViewableMedia|null $media
      */
-    public function setMedia(/*?ViewableMedia*/ $media) //: void
+    public function setMedia(?ViewableMedia $media): void
     {
         $this->mediaObject = $media;
     }
@@ -79,8 +79,9 @@ class ViewableQuiz extends DatabaseObjectDecorator
      * Work a round to set statistic for viewable quiz. Not nice but it's here.
      * @param int $score
      * @param int $players
+     * @return void
      */
-    public function setStatistic(int $score, int $players) //: void
+    public function setStatistic(int $score, int $players): void
     {
         $data = $this->getData();
         $data['scoreTotal'] = $score;

@@ -15,5 +15,6 @@ use wcf\data\quiz\ViewableQuizList;
  */
 class ViewableQuizRuntimeCache extends AbstractRuntimeCache
 {
+    // inherit variables
     protected $listClassName = ViewableQuizList::class;
 }

@@ -26,7 +26,7 @@ use wcf\system\WCF;
  */
 class Goal extends DatabaseObject
 {
-    // inherit vars
+    // inherit variables
     protected static $databaseTableName = 'quiz_goal';
     protected static $databaseTableIndexName = 'goalID';
 
@@ -34,8 +34,7 @@ class Goal extends DatabaseObject
      * @param int $quizID
      * @param int $points
      * @return bool
-     * @throws DatabaseQueryException
-     * @throws DatabaseQueryExecutionException
+     * @throws DatabaseQueryException|DatabaseQueryExecutionException
      */
     public static function checkGoalPoints(int $quizID, int $points): bool
     {

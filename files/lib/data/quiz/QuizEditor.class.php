@@ -6,7 +6,6 @@ namespace wcf\data\quiz;
 use wcf\data\DatabaseObjectEditor;
 use wcf\data\IEditableCachedObject;
 use wcf\data\quiz\goal\GoalEditor;
-use wcf\data\quiz\game\Game;
 use wcf\data\quiz\question\QuestionEditor;
 use wcf\system\cache\builder\QuizGameCacheBuilder;
 use wcf\system\cache\builder\QuizMostPlayedCacheBuilder;
@@ -44,14 +43,16 @@ use wcf\system\WCF;
  */
 class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
 {
+    // inherit variables
     protected static $baseClass = Quiz::class;
 
     /**
      * Increment counters for quiz.
      *
      * @param bool $questions
+     * @return void
      */
-    public function incrementCounter(bool $questions = true)
+    public function incrementCounter(bool $questions = true): void
     {
         if ($questions === true) {
             $data = ['questions' => 1];
@@ -62,20 +63,31 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
         $this->updateCounters($data);
     }
 
-    public function updatePlayed()
+    /**
+     * Update played counter.
+     * @return void
+     */
+    public function updatePlayed(): void
     {
         $this->updateCounters(['played' => 1]);
     }
 
     /**
      * Activate or deactivate a quiz.
+     * @return void
      */
-    public function toggle()
+    public function toggle(): void
     {
         $this->update(['isActive' => ($this->isActive) ? 0 : 1]);
     }
 
-    public function importData(ValidatedQuiz $data)
+    /**
+     * Import quiz data
+     * @param ValidatedQuiz $data
+     * @return void
+     * @throws DatabaseQueryException|SystemException
+     */
+    public function importData(ValidatedQuiz $data): void
     {
         // import questions, goals and tags.
         $questions = ($data->has('questions')) ? $this->importQuestions($data->questions) : 0;
@@ -129,9 +141,10 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
     /**
      * Import tags.
      * @param ValidatedTag[] $tags
-     * @param Quiz $quiz
+     * @return void
+     * @throws SystemException
      */
-    protected function importTags(array $tags)
+    protected function importTags(array $tags): void
     {
         $data = [];
         foreach ($tags as $tag) {
@@ -154,10 +167,11 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
      * @param int $quizID
      * @param int $counter
      * @param bool $questions
+     * @return void
      * @throws DatabaseQueryException
      * @throws DatabaseQueryExecutionException
      */
-    public static function updateCounterAfterDelete(int $quizID, int $counter, bool $questions = true)
+    public static function updateCounterAfterDelete(int $quizID, int $counter, bool $questions = true): void
     {
         $field = ($questions === true) ? 'questions' : 'goals';
         $sql = 'UPDATE  ' . static::getDatabaseTAbleNAme() . '
@@ -211,9 +225,10 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
 
     /**
      * @inheritdoc
+     * @return void
      * @throws SystemException
      */
-    public static function resetCache()
+    public static function resetCache(): void
     {
         // reset general caches.
         /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->reset([

@@ -55,24 +55,29 @@ class ViewableQuizList extends QuizList
 
     /**
      * Load media data for quizzes.
+     * @return self
      */
-    public function withMedia()
+    public function withMedia(): self
     {
         $this->loadMedia = true;
+        return $this;
     }
 
     /**
      * Loads statistic for quizzes.
+     * @return self
      */
-    public function withStatistic()
+    public function withStatistic(): self
     {
         $this->loadStatistic = true;
+        return $this;
     }
 
     /**
      * @inheritDoc
+     * @throws DatabaseQueryExecutionException|SystemException
      */
-    public function readObjects()
+    public function readObjects(): self
     {
         parent::readObjects();
 
@@ -98,9 +103,8 @@ class ViewableQuizList extends QuizList
     }
 
     /**
-     * Replace old way with a tempporary way.
-     * @throws DatabaseQueryException
-     * @throws DatabaseQueryExecutionException
+     * Replace old way with a temporary way.
+     * @throws DatabaseQueryException|DatabaseQueryExecutionException
      */
     protected function loadStatistic()
     {
@@ -122,8 +126,8 @@ class ViewableQuizList extends QuizList
 
     /**
      * Read media.
-     *
      * @param array $mediaIDs
+     * @throws SystemException
      */
     protected function readMedia(array $mediaIDs)
     {
@@ -134,6 +138,7 @@ class ViewableQuizList extends QuizList
 
     /**
      * Set media to quiz.
+     * @throws SystemException
      */
     protected function setMedia()
     {

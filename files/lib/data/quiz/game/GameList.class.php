@@ -51,7 +51,7 @@ class GameList extends DatabaseObjectList
     /**
      * @return $this
      */
-    public function withUser() //: static
+    public function withUser(): self
     {
         $this->withUser = true;
 
@@ -61,7 +61,7 @@ class GameList extends DatabaseObjectList
     /**
      * @return $this
      */
-    public function withQuiz() //: static
+    public function withQuiz(): self
     {
         $this->withQuiz = true;
 

@@ -11,14 +11,6 @@ There are two types of quizzes:
   * __Fun__ - Here it doesn't matter how long it takes, there is always 1 point, at the end you can present a funny evaluation via goals.
 
 ## Todo
-
-### RC1
-  - [ ] Prepare for release in "WoltLab® Plugin Store"
-  - [x] Rename match back to game (PHP 8.0)
-  
-### 1.0.0 Final
-  - [ ] ???
-  
 ### 1.1.0
   - [ ] Add option to change right answer to a new option.
   - [ ] ???

@@ -6,7 +6,7 @@
 		<packagedescription>Create fun little quizzes for your website.</packagedescription>
 		<packagedescription language="de">Erstellen Sie kleine spassige Quizze für Ihre Webseite.</packagedescription>
 		<version>1.0.0 RC 1</version>
-		<date>2020-10-19</date>
+		<date>2020-10-25</date>
 		<license>GNU GPLv3</license>
 	</packageinformation>
 	<authorinformation>
@@ -24,8 +24,8 @@
 	<instructions type="install">
 		<instruction type="sql" run="standalone">install.sql</instruction>
 		<instruction type="file" run="standalone" application="wcf"/>
-		<instruction type="acpTemplate" application="wcf"/>
-		<instruction type="template" application="wcf"/>
+		<instruction type="acpTemplate" run="standalone" application="wcf"/>
+		<instruction type="template" run="standalone" application="wcf"/>
 		<instruction type="templateListener"/>
 		<instruction type="page"/>
 		<instruction type="acpMenu"/>

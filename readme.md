@@ -18,3 +18,7 @@ There are two types of quizzes:
   
 ### 1.0.0 Final
   - [ ] ???
+  
+### 1.1.0
+  - [ ] Add option to change right answer to a new option.
+  - [ ] ???

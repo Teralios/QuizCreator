@@ -9,7 +9,7 @@
     <div class="quizPreview">
         <header><h3>{anchor object=$quiz->getDecoratedObject()}</h3></header>
         <div class="htmlContent">
-            {@$quiz->getDescription()}
+            {@$quiz->getPreview()}
         </div>
         <footer>
             <div>

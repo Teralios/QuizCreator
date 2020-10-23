@@ -173,7 +173,7 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
      * @return Quiz
      * @throws SystemException
      */
-    public static function importQuiz(ValidatedQuiz $data): Quiz
+    public static function importQuiz(ValidatedQuiz $data, bool $overrideLanguage = false, int $languageID): Quiz
     {
         // import base information for quiz
         $quizData = [];
@@ -188,12 +188,12 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
         $quizData['description'] = $htmlProcessor->getHtml();
 
         // language information
-        if ($data->has('languageCode')) {
-            if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
+        if (LanguageFactory::getInstance()->multilingualismEnabled()) {
+            if ($data->has('languageCode') && !$overrideLanguage) {
                 $language = /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguageByCode($data->languageCode);
-
-                $quizData['languageID'] = ($language !== null) ? $language->languageID :
-                    /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getContentLanguageIDs()[0];
+                $quizData['languageID'] = ($language !== null) ? $language->languageID : $languageID;
+            } else {
+                $quizData['languageID'] = $languageID;
             }
         }
 

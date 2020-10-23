@@ -72,6 +72,7 @@
                                 <tr>
                                     <th class="columnID columnQuestionID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
                                     <th class="columnTitle">{lang}wcf.acp.quizCreator.question{/lang}</th>
+                                    <th class="columnText">{lang}wcf.acp.quizCreator.question.answer{/lang}</th>
                                     <th class="columnDigits">{lang}wcf.acp.quizCreator.question.position{/lang}</th>
                                 </tr>
                             </thead>
@@ -93,6 +94,7 @@
                                         <td class="columnTitle">
                                             <a href="{$questionLink}">{$question->question}</a>
                                         </td>
+                                        <td class="columnText">{$question->answer}</td>
                                         <td class="columnDigits">{$question->position}</td>
                                     </tr>
                                 {/foreach}

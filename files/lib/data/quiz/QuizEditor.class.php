@@ -170,10 +170,12 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
     /**
      * Imports a quiz.
      * @param ValidatedQuiz $data
+     * @param int $languageID
+     * @param bool $overrideLanguage
      * @return Quiz
      * @throws SystemException
      */
-    public static function importQuiz(ValidatedQuiz $data, bool $overrideLanguage = false, int $languageID): Quiz
+    public static function importQuiz(ValidatedQuiz $data, int $languageID, bool $overrideLanguage = false): Quiz
     {
         // import base information for quiz
         $quizData = [];

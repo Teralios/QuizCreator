@@ -252,7 +252,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
             throw new SystemException('Missing validated quiz data.');
         }
 
-        return QuizEditor::importQuiz($data, $overrideLanguage, $languageID);
+        return QuizEditor::importQuiz($data, $languageID, $overrideLanguage);
     }
 
     /**

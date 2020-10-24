@@ -158,4 +158,7 @@
 		<item name="wcf.quizCreator.players.played.official"><![CDATA[Played (rated)]]></item>
 		<item name="wcf.quizCreator.players.played.last"><![CDATA[Played (last)]]></item>
 	</category>
+	<category name="teralios.copyright">
+		<item name="teralios.copyright.quizCreator"><![CDATA[<a href="https://www.teralios.de">Quizzes created with <b>Teralios QuizCreator</b></a>]]></item>
+	</category>
 </language>

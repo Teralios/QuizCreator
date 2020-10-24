@@ -2,7 +2,7 @@
 <package xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/package.xsd" name="de.teralios.quizCreator">
 	<packageinformation>
 		<!-- de.teralios.quizCreator -->
-		<packagename>Teralios' QuizCreator</packagename>
+		<packagename>Teralios QuizCreator</packagename>
 		<packagedescription>Create fun little quizzes for your website.</packagedescription>
 		<packagedescription language="de">Erstellen Sie kleine spassige Quizze für Ihre Webseite.</packagedescription>
 		<version>1.0.0 RC 1</version>

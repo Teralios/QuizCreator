@@ -14,7 +14,7 @@ There are two types of quizzes:
 
 ## Todo
 ### RC1
-  - [ ] Prepare for release in "WoltLab® Plugin Store"
+  - [x] Prepare for release in "WoltLab® Plugin Store"
   - [x] Rename match back to game (PHP 8.0)
   
 ### 1.0.0 Final

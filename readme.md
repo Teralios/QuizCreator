@@ -12,10 +12,6 @@ There are two types of quizzes:
   * __Competition__ - where members compete against each other for the high score. The value of the correct answer drops from 10 points to 1 over time.
   * __Fun__ - Here it doesn't matter how long it takes, there is always 1 point, at the end you can present a funny evaluation via goals.
 
-## Todo
-### RC1
-  - [x] Prepare for release in "WoltLab® Plugin Store"
-  - [x] Rename match back to game (PHP 8.0)
-  
-### 1.0.0 Final
-  - [ ] ???
+# More information
+[Changes and improvement in current version](./whatisnew.md)
+[Tasks for next versions](./nextversion.md)

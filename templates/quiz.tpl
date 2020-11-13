@@ -128,7 +128,7 @@
                 <div class="currentQuestionValue">{lang}wcf.quizCreator.player.points{/lang}</div>
             </div>
             <div class="gameContent">
-                <p>Dummy Question</p>
+                <p class="question">Dummy Question</p>
                 <ul class="answerList">
                     <li><button>Dummy 1</button></li>
                     <li><button>Dummy 2</button></li>

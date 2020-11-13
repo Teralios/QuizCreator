@@ -97,7 +97,7 @@
 	<category name="wcf.user.condition">
 		<item name="wcf.user.condition.quizPlayed"><![CDATA[Quizzes played (over-all)]]></item>
 		<item name="wcf.user.condition.quizPlayedUnique"><![CDATA[Rated quizzes]]></item>
-		<item name="wcf.user.condition.quizMaxScore"><![CDATA[Achieved relative score (max. {#10000})]]></item>
+		<item name="wcf.user.condition.quizMaxScore"><![CDATA[Achieved relative score (max. 10,000)]]></item>
 	</category>
 	<category name="wcf.quizCreator.box">
 		<item name="wcf.quizCreator.box.players.best"><![CDATA[Best players]]></item>
@@ -157,5 +157,8 @@
 		<item name="wcf.quizCreator.players.players"><![CDATA[Players]]></item>
 		<item name="wcf.quizCreator.players.played.official"><![CDATA[Played (rated)]]></item>
 		<item name="wcf.quizCreator.players.played.last"><![CDATA[Played (last)]]></item>
+	</category>
+	<category name="teralios.copyright">
+		<item name="teralios.copyright.quizCreator"><![CDATA[<a href="https://www.teralios.de">Quizzes created with <b>Teralios QuizCreator</b></a>]]></item>
 	</category>
 </language>

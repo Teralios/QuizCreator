@@ -1,4 +1,5 @@
 <ol class="tabularList questionList">
+    {* full rework for 1.0.1 *}
     <li class="tabularListRowHead">
         <ol class="tabularListColumns">
             <li class="columnText">{lang}wcf.quizCreator.quiz.question{/lang}</li>
@@ -17,8 +18,8 @@
             <ol class="tabularListColumns">
                 <li class="columnID">{#$question->position}</li>
                 <li class="columnIcon"><span class="icon icon32 {if $userChoice == $question->answer}fa-thumbs-up{else}fa-thumbs-down{/if}"></span></li>
-                <li class="columnTitle">
-                    <h3>{$question->question} <span class="small"><span class="icon icon16 fa-clock-o"></span> {#$userTime} {lang}wcf.quizCreator.stats.time.seconds{/lang}</span></h3>
+                <li class="columnText">
+                    <p>{$question->question} <span class="small"><span class="icon icon16 fa-clock-o"></span> {#$userTime} {lang}wcf.quizCreator.stats.time.seconds{/lang}</span></p>
                     <ul class="inlineList dotSeparated small answerList">
                         {foreach from=$question->getPossibleOptions() item=option}
                             {capture assign="answerStartLi"}

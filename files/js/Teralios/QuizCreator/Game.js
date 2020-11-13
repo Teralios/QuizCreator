@@ -268,13 +268,13 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             }
 
             this._currentQuestion = this._data.questionList[this._questionIndex];
-            this._questionText.textContent = StringUtil.escapeHTML(this._currentQuestion.question);
+            this._questionText.textContent = this._currentQuestion.question;
 
             // update buttons.
             for (var i = 0; i < 4; i++) {
                 var optionString = 'option' + elData(this._buttons[i], 'value');
 
-                this._buttons[i].textContent = StringUtil.escapeHTML(this._currentQuestion[optionString]);
+                this._buttons[i].textContent = this._currentQuestion[optionString];
             }
 
             this._toggleButtons(true);

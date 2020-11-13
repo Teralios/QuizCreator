@@ -1,9 +1,9 @@
 [![WSC Version](https://img.shields.io/badge/WSC-5.3-blue)](https://github.com/WoltLab/WCF/tree/5.3)
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/teralios/quizCreator?include_prereleases&style=flat)](https://github.com/Teralios/quizCreator/releases)
 [![GitHub](https://img.shields.io/github/license/Teralios/quizCreator?style=flat)](https://www.gnu.org/licenses/gpl-3.0.txt)
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/teralios/QuizCreator/PHP%20Build/1.0.x)](https://github.com/Teralios/QuizCreator/actions?query=workflow%3A%22PHP+Build%22)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Teralios/QuizCreator/badges/quality-score.png?b=1.0.x&style=flat)](https://scrutinizer-ci.com/g/Teralios/QuizCreator/?branch=1.0.x)
-[![Last commit (GitHub)](https://img.shields.io/github/last-commit/teralios/quizcreator/1.0.x)](https://github.com/Teralios/QuizCreator/commits/1.0.x)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/teralios/QuizCreator/PHP%20Build/main)](https://github.com/Teralios/QuizCreator/actions?query=workflow%3A%22PHP+Build%22)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Teralios/QuizCreator/badges/quality-score.png?b=main&style=flat)](https://scrutinizer-ci.com/g/Teralios/QuizCreator/?branch=main)
+[![Last commit (GitHub)](https://img.shields.io/github/last-commit/teralios/quizcreator/main)](https://github.com/Teralios/QuizCreator/commits/main)
 
 # Quiz Creator
 Adds a simple quiz system to the [WoltLab® Suite Core(WSC)](https://www.woltlab.com/features/) that allows the team to create quizzes for members of one community.

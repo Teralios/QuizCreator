@@ -95,7 +95,7 @@
 	<category name="wcf.user.condition">
 		<item name="wcf.user.condition.quizPlayed"><![CDATA[Quizze gespielt (gesamt)]]></item>
 		<item name="wcf.user.condition.quizPlayedUnique"><![CDATA[Gewertete Quizze]]></item>
-		<item name="wcf.user.condition.quizMaxScore"><![CDATA[Erreichte relative Punktzahl (max. {#10000})]]></item>
+		<item name="wcf.user.condition.quizMaxScore"><![CDATA[Erreichte relative Punktzahl (max. 10.000)]]></item>
 	</category>
 	<category name="wcf.quizCreator.box">
 		<item name="wcf.quizCreator.box.players.best"><![CDATA[Beste Spieler]]></item>

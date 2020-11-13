@@ -2,7 +2,7 @@
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/teralios/quizCreator?include_prereleases&style=flat)](https://github.com/Teralios/quizCreator/releases)
 [![GitHub](https://img.shields.io/github/license/Teralios/quizCreator?style=flat)](https://www.gnu.org/licenses/gpl-3.0.txt)
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/teralios/QuizCreator/PHP%20Build/1.0.x)](https://github.com/Teralios/QuizCreator/actions?query=workflow%3A%22PHP+Build%22)
-[![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/teralios/quizcreator/1.0.x)](https://scrutinizer-ci.com/g/Teralios/QuizCreator/?branch=1.0.x)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Teralios/QuizCreator/badges/quality-score.png?b=1.0.x&style=flat)](https://scrutinizer-ci.com/g/Teralios/QuizCreator/?branch=1.0.x)
 [![Last commit (GitHub)](https://img.shields.io/github/last-commit/teralios/quizcreator/1.0.x)](https://github.com/Teralios/QuizCreator/commits/1.0.x)
 
 # Quiz Creator

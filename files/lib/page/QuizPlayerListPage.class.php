@@ -30,6 +30,11 @@ class QuizPlayerListPage extends MultipleLinkPage
     public $objectList = null;
 
     /**
+     * @var bool
+     */
+    public $showCopyright = true;
+
+    /**
      * @inheritdoc
      * @throws IllegalLinkException|PermissionDeniedException|SystemException
      */
@@ -68,7 +73,8 @@ class QuizPlayerListPage extends MultipleLinkPage
         $this->assignQuizData();
         WCF::getTPL()->assign([
             'placementStart' => (1 + ($this->itemsPerPage * ($this->pageNo - 1))),
-            'showQuizMakerCopyright' => true
+            'showQuizMakerCopyright' => true,
+            'showQuizMakerCopyright' => $this->showCopyright,
         ]);
     }
 }

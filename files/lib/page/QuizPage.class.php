@@ -5,6 +5,7 @@ namespace wcf\page;
 // imports
 use wcf\data\quiz\game\Game;
 use wcf\data\quiz\game\GameList;
+use wcf\data\quiz\question\QuestionList;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\ViewableQuiz;
 use wcf\system\cache\builder\QuizGameCacheBuilder;
@@ -110,7 +111,7 @@ class QuizPage extends AbstractPage
             'bestPlayers' => $this->bestPlayers,
             'lastPlayers' => $this->lastPlayers,
             'activeTabMenuItem' => $this->activeTabMenuItem,
-            'showQuizMakerCopyright' => $this->showCopyright,
+            'showQuizMakerCopyright' => $this->showCopyright
         ]);
     }
 }

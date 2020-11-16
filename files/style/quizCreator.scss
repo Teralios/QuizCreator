@@ -200,69 +200,98 @@
 }
 
 .questionList {
-  .columnText {
-    font-size: $wcfFontSizeHeadline;
+  .questionListTitle {
+    font-size: $wcfFontSizeSection;
+    color: $wcfTabularBoxHeadline;
+    border-bottom: 1px solid $wcfTabularBoxHeadline;
+    padding: 5px;
   }
 
-
   .correct {
-    color: $wcfStatusSuccessText;
     background-color: $wcfStatusSuccessBackground;
+    color: $wcfStatusSuccessText;
+    border-bottom: 1px solid $wcfStatusSuccessBorder;
 
     .icon {
       color: $wcfStatusSuccessText;
     }
+
+    &:hover {
+      background-color: darken($wcfStatusSuccessBackground, 5%);
+    }
   }
 
   .wrong {
-    color: $wcfStatusErrorText;
     background-color: $wcfStatusErrorBackground;
+    color: $wcfStatusErrorText;
+    border-bottom: 1px solid $wcfStatusErrorBorder;
 
     .icon {
       color: $wcfStatusErrorText;
     }
+
+    &:hover {
+      background-color: darken($wcfStatusErrorBackground, 5%);
+    }
   }
 
-  .userAnswer {
-    font-weight: bold;
+  .question {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+    div {
+      padding: 5px 10px;
+    }
+
+    .questionIndicator {
+      flex: 0 0 auto;
+      font-size: $wcfFontSizeHeadline;
+      text-align: center;
+
+      &::after {
+        content: ".";
+      }
+    }
+
+    .questionText {
+      font-size: $wcfFontSizeHeadline;
+    }
   }
+}
 
-  .userStats {
-    .tabularListColumns {
-      justify-content: space-between;
+.playerStatistic {
+  display: flex;
+  justify-content: space-between;
 
-      li {
-        &::after, &::before {
-          font-family: FontAwesome;
-          font-size: $wcfFontSizeDefault;
-          margin: auto 5px;
-        }
+  div {
+    padding: 5px 10px;
 
-        &:first-child {
-          color: $wcfStatusSuccessText;
+    &::after, &::before {
+      font-family: FontAwesome;
+      font-size: $wcfFontSizeDefault;
+      margin: auto 5px;
+    }
 
-          &::after {
-            content: "\f00c";
-          }
-        }
+    &:first-child {
+      color: $wcfStatusSuccessText;
 
-        &:nth-child(2) {
-          &::before {
-            font-family: FontAwesome;
-            font-size: $wcfFontSizeDefault;
-            content: "\f017";
-          }
-        }
+      &::after {
+        content: "\f00c";
+      }
+    }
 
-        &:last-child {
-          color: $wcfStatusErrorText;
+    &:nth-child(2) {
+      &::before {
+        content: "\f017";
+      }
+    }
 
-          &::before {
-            font-family: FontAwesome;
-            font-size: $wcfFontSizeDefault;
-            content: "\f00d";
-          }
-        }
+    &:last-child {
+      color: $wcfStatusErrorText;
+
+      &::before {
+        content: "\f00d";
       }
     }
   }

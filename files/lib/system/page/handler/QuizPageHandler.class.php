@@ -67,7 +67,7 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
         foreach ($quizList as $quiz) {
             $results[] = [
                 'description' => /** @scrutinizer ignore-call */$quiz->getPreview(),
-                'image' => /** @scrutinizer ignore-call */$quiz->getMedia() ? $quiz->getMedia()->getElementTag(48) : '',
+                'image' => /** @scrutinizer ignore-call */$quiz->getMedia() ? /** @scrutinizer ignore-call */$quiz->getMedia()->getElementTag(48) : '',
                 'link' => /** @scrutinizer ignore-call */$quiz->getLink(),
                 'objectID' => $quiz->quizID,
                 'title' => /** @scrutinizer ignore-call */$quiz->getTitle()
@@ -91,7 +91,7 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
             return '';
         }
 
-        return WCF::getLanguage()->getDynamicVariable('wcf.page.onlineLocation.'.$page->identifier, ['quiz' => $quiz->getDecoratedObject()]);
+        return WCF::getLanguage()->getDynamicVariable('wcf.page.onlineLocation.' . $page->identifier, ['quiz' => $quiz->getDecoratedObject()]);
     }
 
     /**

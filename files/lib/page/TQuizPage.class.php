@@ -44,16 +44,14 @@ trait TQuizPage
     {
         $this->quizID = $_REQUEST['id'] ?? 0;
 
-        $quiz = new Quiz((int) $this->quizID);
-        if (!$quiz->quizID) {
+        $this->quiz = new Quiz((int) $this->quizID);
+        if (!$this->quiz ->quizID) {
             throw new IllegalLinkException();
         }
 
-        if ($quiz->isActive == 0 && !WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
+        if ($this->quiz->isActive == 0 && !WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
             throw new PermissionDeniedException();
         }
-
-        $this->quiz = $quiz;
     }
 
     /**

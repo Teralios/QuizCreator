@@ -88,7 +88,7 @@ class QuizListPage extends SortablePage
                 $languageIDs = WCF::getSession()->getLanguageIDs();
 
                 if (empty($languageIDs)) {
-                    $languageIDs[] = LanguageFactory::getInstance()->getContentLanguageIDs();
+                    $languageIDs[] = /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getContentLanguageIDs();
                 }
 
                 $this->objectList->getConditionBuilder()->add(

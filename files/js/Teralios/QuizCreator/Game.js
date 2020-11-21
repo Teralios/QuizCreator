@@ -192,9 +192,12 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
 
             // build game content
             this._questionText = elCreate('p');
-            this._questionText.className = 'question';
-            elHide(this._questionText);
-            this._contentContainer.appendChild(this._questionText);
+
+            var questionDiv = elCreate('div');
+            questionDiv.className = 'question';
+            questionDiv.appendChild(this._questionText)
+            elHide(questionDiv);
+            this._contentContainer.appendChild(questionDiv);
 
             this._answerList = this._buildQuestionField();
             elHide(this._answerList);
@@ -260,7 +263,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
          */
         _showQuestion: function (startGame) {
             if (startGame === true) {
-                elShow(this._questionText);
+                elShow(this._questionText.parentElement);
                 elShow(this._answerList);
                 this._contentContainer.classList.add('borderTop');
                 this._footerContainer.classList.add('borderTop');

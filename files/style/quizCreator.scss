@@ -104,9 +104,11 @@
       padding: 10px;
 
       .question {
-        height: 1.2em;
+        height: (3 * ($wcfFontSizeDefault + 4)) + 10px;
         font-weight: bold;
-        margin-bottom: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .answerList {

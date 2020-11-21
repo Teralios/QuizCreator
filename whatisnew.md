@@ -7,3 +7,6 @@ This file lists all changes like new features, improved functions and fixed bugs
  - Add forgotten ``$showCopyright`` in ``wcf\page\QuizPlayerListPage``
  - Remove bugs with multilingualism on ``wcf\page\QuizListPage``
  - Improve style for quiz result dialog.
+
+## 1.0.2
+ - Improve question in game field. [improvement]

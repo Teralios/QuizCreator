@@ -47,7 +47,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
     protected $resetCache = ['delete', 'update', 'toggle'];
 
     /**
-     * @var Quiz|ViewableQuiz
+     * @var Quiz
      */
     protected $quiz = null;
 
@@ -278,7 +278,6 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
     /**
      * @inheritdoc
      * @throws PermissionDeniedException
-     * @throws SystemException
      * @throws UserInputException
      */
     public function validateGetPopover()
@@ -287,17 +286,19 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
 
         // get quiz.
         $this->quiz = $this->getSingleObject();
-        if ($this->quiz instanceof DatabaseObjectDecorator) {
-            $this->quiz = new ViewableQuiz($this->quiz->getDecoratedObject());
-        }
     }
 
     /**
      * @inheritdoc
+     * @throws SystemException
      */
     public function getPopover()
     {
-        WCF::getTPL()->assign('quiz', $this->quiz);
+        if ($this->quiz instanceof DatabaseObjectDecorator) {
+            $quiz = new ViewableQuiz($this->quiz->getDecoratedObject());
+        }
+
+        WCF::getTPL()->assign('quiz', $quiz);
 
         return ['template' => WCF::getTPL()->fetch('__quizPopover')];
     }

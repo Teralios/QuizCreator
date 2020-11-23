@@ -47,7 +47,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
     protected $resetCache = ['delete', 'update', 'toggle'];
 
     /**
-     * @var Quiz
+     * @var Quiz|ViewableQuiz
      */
     protected $quiz = null;
 

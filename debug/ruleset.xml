@@ -3,7 +3,7 @@
 	<rule ref="PSR2"/>
 	<rule ref="Generic.Files.LineLength">
 		<properties>
-			<property phpcs-only="true" name="lineLimit" value="150"/>
+			<property phpcs-only="true" name="lineLimit" value="160"/>
 		</properties>
 	</rule>
 </ruleset>

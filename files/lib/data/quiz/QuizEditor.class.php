@@ -204,7 +204,7 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
         $quizData['description'] = $htmlProcessor->getHtml();
 
         // language information
-        if (LanguageFactory::getInstance()->multilingualismEnabled()) {
+        if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
             if ($data->has('languageCode') && !$overrideLanguage) {
                 $language = /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguageByCode($data->languageCode);
                 $quizData['languageID'] = ($language !== null) ? $language->languageID : $languageID;

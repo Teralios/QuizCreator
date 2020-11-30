@@ -13,4 +13,6 @@
   - [ ] Implement php and template events
     - [ ] Implement support for jCoins
   - [ ] Overwork quizzes overview (wcf\page\QuizListPage, quizList.tpl)
+  - [ ] Overwork language - acp
+  - [ ] Use »js«-file - csp.
   - [ ] ???

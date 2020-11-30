@@ -285,18 +285,17 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
         WCF::getSession()->checkPermissions($this->permissionsPopover);
 
         // get quiz.
-        $this->quiz = $this->getSingleObject();
-        if ($this->quiz instanceof DatabaseObjectDecorator) {
-            $this->quiz = new ViewableQuiz($this->quiz->getDecoratedObject());
-        }
+        $quiz = $this->getSingleObject();
+        $this->quiz = ($quiz instanceof DatabaseObjectDecorator) ? $quiz->getDecoratedObject() : $quiz;
     }
 
     /**
      * @inheritdoc
+     * @throws SystemException
      */
     public function getPopover()
     {
-        WCF::getTPL()->assign('quiz', $this->quiz);
+        WCF::getTPL()->assign('quiz', new ViewableQuiz($this->quiz));
 
         return ['template' => WCF::getTPL()->fetch('__quizPopover')];
     }

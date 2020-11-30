@@ -15,4 +15,9 @@
   - [ ] Overwork quizzes overview (wcf\page\QuizListPage, quizList.tpl)
   - [ ] Overwork language - acp
   - [ ] Use »js«-file - csp.
+  - [ ] Use Dialog for Game
   - [ ] ???
+
+# 2.0.0
+### 2.0.0 Beta 1
+  - [ ] Check if variable answers are possible.

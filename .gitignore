@@ -5,7 +5,8 @@
 .settings
 
 # PHPStorm
-.idea/
+.idea
+.idea/*
 .nameencodings
 .xmlmisc
 .xmlmodules

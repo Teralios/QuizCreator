@@ -57,7 +57,7 @@
                     <tr class="jsQuizRow">
                         <td class="columnIcon">
                             <span class="icon icon16 fa-{if $quiz->isActive}check-{/if}square-o jsToggleButton jsTooltip pointer"
-                                  title="{lang}wcf.global.button.{if $quiz->isActive}enable{else}disable{/if}{/lang}"
+                                  title="{lang}wcf.global.button.{if $quiz->isActive}disable{else}enable{/if}{/lang}"
                                   data-object-id="{@$quiz->quizID}">
                             </span>
                             <a href="{$quizLink}" title="{lang}wcf.global.button.edit{/lang}" class="jsTooltip">

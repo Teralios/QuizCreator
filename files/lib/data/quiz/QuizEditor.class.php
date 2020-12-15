@@ -129,7 +129,6 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
     /**
      * Import tags.
      * @param ValidatedTag[] $tags
-     * @param Quiz $quiz
      */
     protected function importTags(array $tags)
     {

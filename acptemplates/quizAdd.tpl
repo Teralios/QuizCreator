@@ -43,7 +43,7 @@
 {/capture}
 
 {capture assign="__formContentHeader"}
-    {if !$formObject|is_null && ($formObject->questions > 0 || $formObject->goals > 0)}
+    {if $formObject !== null && ($formObject->questions > 0 || $formObject->goals > 0)}
         <div class="section tabMenuContainer" data-active="{$activeTabMenuItem}" data-store="activeTabMenuItem" id="pageTabMenuContainer">
             <nav class="tabMenu">
                 <ul>
@@ -62,7 +62,7 @@
 {/capture}
 
 {capture assign="__formContentFooter"}
-    {if !$formObject|is_null && ($formObject->questions > 0 || $formObject->goals > 0)}
+    {if $formObject !== null && ($formObject->questions > 0 || $formObject->goals > 0)}
             </div>
             {if $questionList|isset && $questionList|count > 0}
                 <div id="questions" class="tabMenuContent">

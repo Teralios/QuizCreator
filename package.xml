@@ -6,7 +6,7 @@
 		<packagedescription>Create fun little quizzes for your website.</packagedescription>
 		<packagedescription language="de">Erstellen Sie kleine spassige Quizze für Ihre Webseite.</packagedescription>
 		<version>1.0.3</version>
-		<date>2020-12-11</date>
+		<date>2020-12-19</date>
 		<license>GNU GPLv3</license>
 	</packageinformation>
 	<authorinformation>
@@ -36,7 +36,7 @@
 		<instruction type="objectType"/>
 	</instructions>
 
-	<!-- update 1.0.0 -->
+	<!-- update 1.0.1 -->
 	<instructions type="update" fromversion="1.0.0">
 		<instruction type="file" run="standalone" application="wcf"/>
 		<instruction type="template" run="standalone" application="wcf"/>
@@ -44,16 +44,10 @@
 		<instruction type="language"/>
 	</instructions>
 
-	<!-- update 1.0.1 -->
+	<!-- update 1.0.2 -->
 	<instructions type="update" fromversion="1.0.1">
 		<instruction type="file" run="standalone" application="wcf"/>
 		<instruction type="template" run="standalone" application="wcf"/>
-		<instruction type="acpTemplate" run="standalone" application="wcf"/>
-	</instructions>
-
-	<!-- update 1.0.2 -->
-	<instructions type="update" fromversion="1.0.1">
-		<instruction type="acpTemplate" run="standalone" application="wcf"/>
 		<instruction type="acpTemplate" run="standalone" application="wcf"/>
 	</instructions>
 

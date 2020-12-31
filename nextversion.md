@@ -15,7 +15,9 @@
   - [ ] Overwork quizzes overview (wcf\page\QuizListPage, quizList.tpl)
   - [ ] Overwork language - acp
   - [ ] Use »js«-file - csp.
-  - [ ] Use Dialog for Game
+  - [ ] Use Dialog for Game.
+  - [ ] Implements simple category system for quizzes.
+  - [ ] Implement simple REST-API.  
   - [ ] ???
 
 # 2.0.0

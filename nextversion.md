@@ -17,7 +17,8 @@
   - [ ] Use »js«-file - csp.
   - [ ] Use Dialog for Game.
   - [ ] Implements simple category system for quizzes.
-  - [ ] Implement simple REST-API.  
+  - [ ] Implement simple REST-API
+  - [ ] Remove quiz type.
   - [ ] ???
 
 # 2.0.0

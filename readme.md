@@ -13,5 +13,6 @@ There are two types of quizzes:
   * __Fun__ - Here it doesn't matter how long it takes, there is always 1 point, at the end you can present a funny evaluation via goals.
 
 # More information
-[Changes and improvement in current version](./whatisnew.md)
+[Changelog](changelog.md)
+
 [Tasks for next versions](./nextversion.md)

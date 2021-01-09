@@ -1,26 +1,24 @@
+DROP TABLE IF EXISTS wcf1_quiz_category;
+CREATE TABLE wcf1_quiz_category (
+    categoryID INT(10) NOT NULL auto_increment PRIMARY KEY,
+    position SMALLINT(3) NOT NULL default 0,
+    name VARCHAR(191) NOT NULL DEFAULT ''
+);
+
 -- base quiz table
 DROP TABLE IF EXISTS wcf1_quiz;
 CREATE TABLE wcf1_quiz (
     quizID INT(10) NOT NULL auto_increment PRIMARY KEY,
     languageID INT(10) NULL,
+    categoryID INT(10) NOT NULL,
     creationDate INT(10) NOT NULL DEFAULT 0,
     mediaID INT(10) NULL,
-    type ENUM('fun', 'competition') DEFAULT 'fun',
     title VARCHAR(191) NOT NULL DEFAULT '',
     description TEXT,
     questions SMALLINT(3) NOT NULL DEFAULT 0,
     goals SMALLINT(3) NOT NULL DEFAULT 0,
     played INT(10) NOT NULL DEFAULT 0,
-    isActive TINYINT(1) NOT NULL DEFAULT 0,
-    KEY (title),
-    KEY (creationDate),
-    KEY (languageID),
-    KEY (isActive),
-    KEY (played),
-    KEY (type),
-    KEY (isActive, languageID),
-    KEY (isActive, type),
-    KEY (isActive, languageID, type)
+    isActive TINYINT(1) NOT NULL DEFAULT 0
 );
 
 -- player result table (game)
@@ -73,6 +71,13 @@ CREATE TABLE wcf1_quiz_question (
     KEY (quizID),
     KEY (position)
 );
+
+-- category indices
+ALTER TABLE wcf1_quiz_category ADD INDEX sort_position(position);
+
+-- quiz indices
+ALTER TABLE wcf1_quiz ADD INDEX sort_time(creationDate);
+ALTER TABLE wcf1_quiz ADD INDEX stats_played(played);
 
 -- foreign keys
 ALTER TABLE wcf1_quiz ADD FOREIGN KEY (languageID) REFERENCES wcf1_language (languageID) ON DELETE SET NULL;

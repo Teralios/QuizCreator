@@ -5,8 +5,8 @@
 		<packagename>Teralios QuizCreator</packagename>
 		<packagedescription>Create fun little quizzes for your website.</packagedescription>
 		<packagedescription language="de">Erstellen Sie kleine spassige Quizze für Ihre Webseite.</packagedescription>
-		<version>1.0.2</version>
-		<date>2020-11-26</date>
+		<version>1.1.0 Alpha 1</version>
+		<date>2021-01-09</date>
 		<license>GNU GPLv3</license>
 	</packageinformation>
 	<authorinformation>
@@ -36,16 +36,11 @@
 		<instruction type="objectType"/>
 	</instructions>
 
-	<!-- update 1.0.0 -->
-	<instructions type="update" fromversion="1.0.0">
+	<!-- update from 1.0.* -->
+	<!--<instructions type="update" fromversion="1.0.3">
+		<instruction type="sql" run="standalone">update_10x.sql</instruction>
 		<instruction type="file" run="standalone" application="wcf"/>
 		<instruction type="template" run="standalone" application="wcf"/>
 		<instruction type="language"/>
-	</instructions>
-
-	<!-- update 1.0.1 -->
-	<instructions type="update" fromversion="1.0.1">
-		<instruction type="file" run="standalone" application="wcf"/>
-		<instruction type="template" run="standalone" application="wcf"/>
-	</instructions>
+	</instructions> -->
 </package>

@@ -33,7 +33,6 @@ use wcf\system\WCF;
  * @property-read int $languageID
  * @property-read string $title
  * @property-read string $description
- * @property-read string $type
  * @property-read string $image
  * @property-read int $creationDate
  * @property-read int $isActive

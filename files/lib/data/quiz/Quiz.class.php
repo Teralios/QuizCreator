@@ -29,7 +29,6 @@ use wcf\util\StringUtil;
  * @property-read int $languageID
  * @property-read string $title
  * @property-read string $description
- * @property-read string $type
  * @property-read int $mediaID
  * @property-read int $creationDate
  * @property-read int $isActive
@@ -46,8 +45,6 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
     // const
     public const MAX_VALUE_QUESTION = 10;
     public const FUN_VALUE_QUESTION = 1;
-    public const TYPE_FUN = 'fun';
-    public const TYPE_COMPETITION = 'competition';
     public const OBJECT_TYPE = 'de.teralios.quizCreator.quiz';
 
     /**

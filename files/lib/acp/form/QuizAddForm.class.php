@@ -71,14 +71,6 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->objectType(Quiz::OBJECT_TYPE),
             ContentLanguageFormField::create('languageID')
                 ->required(),
-            RadioButtonFormField::create('type')
-                ->label('wcf.acp.quizCreator.quiz.type')
-                ->description('wcf.acp.quizCreator.quiz.type.description')
-                ->options([
-                    'fun' => 'wcf.acp.quizCreator.quiz.type.fun',
-                    'competition' => 'wcf.acp.quizCreator.quiz.type.competition'
-                ])
-                ->value('fun'),
             SingleMediaSelectionFormField::create('mediaID')
                 ->label('wcf.acp.quizCreator.quiz.image')
                 ->imageOnly(),

@@ -81,10 +81,6 @@
                                       title="{lang}wcf.acp.quizCreator.quiz.export{/lang}">
                                 </span>
                             </a>
-
-                            <span class="icon icon16 {if $quiz->type == 'competition'}fa-trophy{else}fa-child{/if} jsTooltip"
-                                    title="{lang}wcf.acp.quizCreator.quiz.type.{@$quiz->type}{/lang}">
-                            </span>
                         </td>
                         <td class="columnID columnQuizID">{@$quiz->quizID}</td>
                         <td class="columnTitle">

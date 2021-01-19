@@ -4,8 +4,8 @@
   - [x] Fix issue with number formatting in language variable
   - [x] Overwork player result dialog
 
-# 1.1.0
-### 1.1.0 Beta 1
+# 1.5.0
+### 1.5.0 Beta 1
   - [ ] Implement more options for trophies
     - [ ] ``scoreMin50p``
     - [ ] ``scoreMin75p``
@@ -14,11 +14,14 @@
     - [ ] Implement support for jCoins
   - [ ] Overwork quizzes overview (wcf\page\QuizListPage, quizList.tpl)
   - [ ] Overwork language - acp
+    - [x] General overwork
+    - [ ] Impelement in templates and language files.
   - [ ] Use »js«-file - csp.
   - [ ] Use Dialog for Game.
   - [ ] Implements simple category system for quizzes.
   - [ ] Implement simple REST-API
-  - [ ] Remove quiz type.
+    - [ ] Wait for TitusK package for GraphQL.
+  - [x] Remove quiz type.
   - [ ] ???
 
 # 2.0.0

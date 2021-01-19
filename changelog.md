@@ -15,8 +15,8 @@ This file lists all changes like new features, improved functions and fixed bugs
  - Fix using of wrong language variables. ([Aktiv/Inaktive Quizze](https://www.my-wsc.de/forum/thread/706-aktiv-inaktive-quizze/)) [fix]
  - Fix ``is_null`` in templates. Some admins/hoster thinks it is a good idea to put is_null to disabled functions. Why ever? [fix]
 
-## 1.0.4
- 
+## 1.5.0 Beta 1
+
 # Legend
 [fix] - Remove a bug or issue.
 [new] - New function.

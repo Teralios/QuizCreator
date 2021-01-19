@@ -131,10 +131,6 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
      */
     public static function calculateMaxScore(Quiz $quiz): int
     {
-        if ($quiz->type == Quiz::TYPE_FUN) {
-            return $quiz->questions * static::FUN_VALUE_QUESTION;
-        }
-
         return $quiz->questions * static::MAX_VALUE_QUESTION;
     }
 }

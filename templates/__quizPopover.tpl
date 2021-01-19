@@ -1,9 +1,9 @@
 <div class="box128">
-    <a href="{$quiz->getLink()}" class="jsTooltip" title="{$quiz->getTitle()} ({lang}wcf.quizCreator.quiz.type.{@$quiz->type}{/lang}{if $quiz->isActive == 0} ({lang}wcf.acp.quizCreator.quiz.notActive{/lang}){/if})">
+    <a href="{$quiz->getLink()}" class="jsTooltip" title="{$quiz->getTitle()} ({if $quiz->isActive == 0} ({lang}wcf.acp.quizCreator.quiz.notActive{/lang}){/if})">
         {if $quiz->getMedia() !== null}
             {@$quiz->getMedia()->getElementTag(128)}
         {else}
-            <span class="icon icon128 {if $quiz->isActive == 0}fa-pencil{else}{if $quiz->type == 'competition'}fa-trophy{else}fa-child{/if}{/if}"></span>
+            <span class="icon icon128 {if $quiz->isActive == 0}fa-pencil{else}fa-trophy{/if}"></span>
         {/if}
     </a>
     <div class="quizPreview">

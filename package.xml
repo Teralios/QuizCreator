@@ -5,8 +5,8 @@
 		<packagename>Teralios QuizCreator</packagename>
 		<packagedescription>Create fun little quizzes for your website.</packagedescription>
 		<packagedescription language="de">Erstellen Sie kleine spassige Quizze für Ihre Webseite.</packagedescription>
-		<version>1.1.0 Alpha 1</version>
-		<date>2021-01-09</date>
+		<version>1.5.0 Alpha 1</version>
+		<date>2021-01-19</date>
 		<license>GNU GPLv3</license>
 	</packageinformation>
 	<authorinformation>

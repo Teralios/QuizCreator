@@ -131,8 +131,8 @@
                     <ol class="tabularListColumns">
                         <li class="columnIcon">
                             <span
-                                    class="icon icon32 {if $quiz->isActive == 0}fa-pencil{else}{if $quiz->type == 'competition'}fa-trophy{else}fa-child{/if}{/if} jsTooltip"
-                                    title="{lang}wcf.quizCreator.quiz.type.{@$quiz->type}{/lang}{if $quiz->isActive == 0} ({lang}wcf.acp.quizCreator.quiz.notActive{/lang}){/if}">
+                                    class="icon icon32 {if $quiz->isActive == 0}fa-pencil{else}fa-trophy{/if} jsTooltip"
+                                    title="{if $quiz->isActive == 0} ({lang}wcf.acp.quizCreator.quiz.notActive{/lang}){/if}">
                             </span>
                         </li>
 

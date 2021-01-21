@@ -8,8 +8,12 @@
 ### 1.5.0 Beta 1
   - [ ] Implement more options for trophies
     - [ ] ``scoreMin50p``
+      - [x] Database implementation
+      - [ ] Implement in game code
     - [ ] ``scoreMin75p``
-    - [ ] ``scoreMin100p``
+      - [x] Database implementation
+      - [ ] Implement in game code
+    - [ ] Implement user options
   - [ ] Implement php and template events
     - [ ] Implement support for jCoins
   - [ ] Overwork quizzes overview (wcf\page\QuizListPage, quizList.tpl)
@@ -22,6 +26,7 @@
   - [ ] Implement simple REST-API
     - [ ] Wait for TitusK package for GraphQL.
   - [x] Remove quiz type.
+  - [x] New template for sidebar boxes - remove code duplication.
   - [ ] ???
 
 # 2.0.0

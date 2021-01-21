@@ -42,15 +42,28 @@ class ViewableQuizList extends QuizList
     /**
      * ViewableQuizList constructor.
      * @throws SystemException
+     * @param ?int $categoryID
      */
-    public function __construct()
+    public function __construct(?int $categoryID = null)
     {
         parent::__construct();
 
         // permission setting
         if (!WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
-            $this->getConditionBuilder()->add($this->getDatabaseTableAlias() . '.isActive = ?', [1]);
+            $this->getConditionBuilder()->add(
+                $this->getDatabaseTableAlias() . '.isActive = ?',
+                [1]
+            );
         }
+
+        // 1.5 code start
+        if ($categoryID === null || $categoryID == 0) {
+            $this->getConditionBuilder()->add(
+                $this->getDatabaseTableAlias() . '.categoryID = ?',
+                [$categoryID]
+            );
+        }
+        // 1.5 code end
     }
 
     /**

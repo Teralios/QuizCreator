@@ -3,10 +3,13 @@
 namespace wcf\page;
 
 // imports
+use wcf\data\quiz\category\Category;
+use wcf\data\quiz\category\CategoryList;
 use wcf\data\quiz\game\GameList;
 use wcf\data\quiz\ViewableQuizList;
 use wcf\system\cache\builder\QuizGameCacheBuilder;
 use wcf\system\cache\builder\QuizMostPlayedCacheBuilder;
+use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
 use wcf\system\WCF;
@@ -26,10 +29,11 @@ class QuizListPage extends SortablePage
     public $itemsPerPage = QUIZ_LIST_QUIZZES_PER_PAGE;
     public $objectListClassName = ViewableQuizList::class;
     public $defaultSortField = 'creationDate';
-    public $validSortFields = ['title', 'creationDate'];
+    public $validSortFields = ['creationDate'];
     public $neededPermissions = ['user.quiz.canView'];
     public $neededModules = ['MODULE_QUIZ_CREATOR'];
     public $defaultSortOrder = 'DESC';
+    public $categoryID = null;
 
     /**
      * @var ViewableQuizList
@@ -47,22 +51,34 @@ class QuizListPage extends SortablePage
     public $languageID = 0;
 
     /**
-     * @var GameList|null
+     * @var ?GameList
      */
     public $lastPlayers = null;
 
     /**
-     * @var GameList|null
+     * @var ?GameList
      */
     public $bestPlayers = null;
 
     /**
-     * @var ViewableQuizList|null;
+     * @var ?ViewableQuizList
      */
     public $mostPlayed = null;
 
     /**
+     * @var ?CategoryList
+     * @since 1.5
+     */
+    public $categoryList = null;
+
+    /**
+     * @var ?Category
+     */
+    public $category = null;
+
+    /**
      * @throws SystemException
+     * @throws IllegalLinkException
      */
     public function readParameters()
     {
@@ -70,6 +86,18 @@ class QuizListPage extends SortablePage
 
         if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
             $this->languageID = (isset($_REQUEST['languageID'])) ? (int)$_REQUEST['languageID'] : 0;
+        }
+
+        // 1.5 code start
+        if (isset($_REQUEST['categoryID'])) {
+            $this->categoryID = (int)$_REQUEST['categoryID'];
+            $this->category = new Category($this->categoryID);
+            if (!$this->category->categoryID) {
+                throw new IllegalLinkException();
+            }
+        } else {
+            $this->categoryList = new CategoryList();
+            $this->categoryList->readObjects();
         }
     }
 
@@ -147,6 +175,9 @@ class QuizListPage extends SortablePage
             'lastPlayers' => $this->lastPlayers,
             'mostPlayed' => $this->mostPlayed,
             'showQuizMakerCopyright' => $this->showCopyright,
+            // 1.5 code
+            'categoryList' => $this->categoryList,
+            'category' => $this->category,
         ]);
     }
 }

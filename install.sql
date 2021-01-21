@@ -78,6 +78,10 @@ ALTER TABLE wcf1_quiz_category ADD INDEX sort_position(position);
 -- quiz indices
 ALTER TABLE wcf1_quiz ADD INDEX sort_time(creationDate);
 ALTER TABLE wcf1_quiz ADD INDEX stats_played(played);
+ALTER TABLE wcf1_quiz ADD INDEX category(categoryID);
+ALTER TABLE wcf1_quiz ADD INDEX quizListView_1(isActive, categoryID);
+ALTER TABLE wcf1_quiz ADD INDEX quizListView_2(isActive, languageID);
+ALTER TABLE wcf1_quiz ADD INDEX quizListView_3(isActive, categoryID, languageID);
 
 -- foreign keys
 ALTER TABLE wcf1_quiz ADD FOREIGN KEY (languageID) REFERENCES wcf1_language (languageID) ON DELETE SET NULL;
@@ -91,3 +95,5 @@ ALTER TABLE wcf1_quiz_question ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (qu
 ALTER TABLE wcf1_user ADD COLUMN quizPlayed INT(10) NOT NULL DEFAULT 0;
 ALTER TABLE wcf1_user ADD COLUMN quizMaxScore SMALLINT(5) NOT NULL DEFAULT 0;
 ALTER TABLE wcf1_user ADD COLUMN quizPlayedUnique INT(10) NOT NULL DEFAULT 0;
+ALTER TABLE wcf1_user ADD COLUMN quizMin50 SMALLINT(5) NOT NULL DEFAULT 0;
+ALTER TABLE wcf1_user ADD COLUMN quizMin75 SMALLINT(5) NOT NULL DEFAULT 0;

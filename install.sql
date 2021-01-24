@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS wcf1_quiz;
 CREATE TABLE wcf1_quiz (
     quizID INT(10) NOT NULL auto_increment PRIMARY KEY,
     languageID INT(10) NULL,
-    categoryID INT(10) NOT NULL,
+    categoryID INT(10) NULL,
     creationDate INT(10) NOT NULL DEFAULT 0,
     mediaID INT(10) NULL,
     title VARCHAR(191) NOT NULL DEFAULT '',
@@ -86,6 +86,7 @@ ALTER TABLE wcf1_quiz ADD INDEX quizListView_3(isActive, categoryID, languageID)
 -- foreign keys
 ALTER TABLE wcf1_quiz ADD FOREIGN KEY (languageID) REFERENCES wcf1_language (languageID) ON DELETE SET NULL;
 ALTER TABLE wcf1_quiz ADD FOREIGN KEY (mediaID) REFERENCES wcf1_media (mediaID) ON DELETE SET NULL;
+ALTER TABLE wcf1_quiz ADD FOREIGN KEY (categoryID) REFERENCES wcf1_quiz_category (categoryID) ON DELETE SET NULL;
 ALTER TABLE wcf1_quiz_game ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (quizID) ON DELETE CASCADE;
 ALTER TABLE wcf1_quiz_game ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE CASCADE;
 ALTER TABLE wcf1_quiz_goal ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (quizID) ON DELETE CASCADE;

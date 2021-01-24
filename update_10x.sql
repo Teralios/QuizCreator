@@ -6,6 +6,11 @@ CREATE TABLE wcf1_quiz_category (
     name VARCHAR(191) NOT NULL DEFAULT ''
 );
 
+-- new columns
+ALTER TABLE wcf1_quiz ADD COLUMN categoryID INT(10) NULL;
+ALTER TABLE wcf1_user ADD COLUMN quizMin50 SMALLINT(5) NOT NULL DEFAULT 0;
+ALTER TABLE wcf1_user ADD COLUMN quizMin75 SMALLINT(5) NOT NULL DEFAULT 0;
+
 -- drop old indices.
 ALTER TABLE wcf1_quiz DROP INDEX isActive;
 ALTER TABLE wcf1_quiz DROP INDEX isActive_2;
@@ -32,8 +37,5 @@ ALTER TABLE wcf1_quiz ADD INDEX quizListView_1(isActive, categoryID);
 ALTER TABLE wcf1_quiz ADD INDEX quizListView_2(isActive, languageID);
 ALTER TABLE wcf1_quiz ADD INDEX quizListView_3(isActive, categoryID, languageID);
 
--- user table new columns
-ALTER TABLE wcf1_user ADD COLUMN quizMin50 SMALLINT(5) NOT NULL DEFAULT 0;
-ALTER TABLE wcf1_user ADD COLUMN quizMin75 SMALLINT(5) NOT NULL DEFAULT 0;
-
-
+-- foreign keys
+ALTER TABLE wcf1_quiz ADD FOREIGN KEY (categoryID) REFERENCES wcf1_quiz_category (categoryID) ON DELETE SET NULL;

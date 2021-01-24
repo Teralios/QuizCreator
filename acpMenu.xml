@@ -7,6 +7,21 @@
             <permissions>admin.content.quizCreator.canManage</permissions>
         </acpmenuitem>
 
+        <!-- category -->
+        <acpmenuitem name="wcf.acp.menu.link.quizCreator.category.list">
+            <parent>wcf.acp.menu.link.quizCreator</parent>
+            <controller>wcf\acp\page\QuizCategoryListPage</controller>
+            <permissions>admin.content.quizCreator.canManage</permissions>
+        </acpmenuitem>
+        <acpmenuitem name="wcf.acp.menu.link.quizCreator.category.add">
+            <parent>wcf.acp.menu.link.quizCreator.category.list</parent>
+            <controller>wcf\acp\page\QuizCategoryAddForm</controller>
+            <icon>fa-plus</icon>
+            <permissions>admin.content.quizCreator.canManage</permissions>
+        </acpmenuitem>
+        <!-- /category -->
+
+        <!-- quiz -->
         <acpmenuitem name="wcf.acp.menu.link.quizCreator.list">
             <parent>wcf.acp.menu.link.quizCreator</parent>
             <controller>wcf\acp\page\QuizListPage</controller>
@@ -18,10 +33,14 @@
             <icon>fa-plus</icon>
             <permissions>admin.content.quizCreator.canManage</permissions>
         </acpmenuitem>
+        <!-- /quiz -->
+
+        <!-- import -->
         <acpmenuitem name="wcf.acp.menu.link.quizCreator.import">
             <parent>wcf.acp.menu.link.quizCreator</parent>
             <controller>wcf\acp\form\QuizImportForm</controller>
             <permissions>admin.content.quizCreator.canManage</permissions>
         </acpmenuitem>
+        <!-- /import -->
     </import>
 </data>

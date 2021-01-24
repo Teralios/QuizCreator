@@ -1,12 +1,12 @@
 <?php
 
-namespace wcf\data\quiz\category;
+namespace wcf\acp\page;
 
 // imports
-use wcf\data\DatabaseObjectEditor;
+use wcf\page\MultipleLinkPage;
 
 /**
- * Class CategoryEditor
+ * Class QuizCategoryListPage
  *
  * @package   de.teralios.de.teralios.quizCreator
  * @author    teralios
@@ -14,8 +14,7 @@ use wcf\data\DatabaseObjectEditor;
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  * @since     1.5.0
  */
-class CategoryEditor extends DatabaseObjectEditor
+class QuizCategoryListPage extends MultipleLinkPage
 {
-    // inherit variables
-    protected static $baseClass = Category::class;
+
 }

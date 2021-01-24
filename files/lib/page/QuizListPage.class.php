@@ -95,10 +95,10 @@ class QuizListPage extends SortablePage
             if (!$this->category->categoryID) {
                 throw new IllegalLinkException();
             }
-        } else {
-            $this->categoryList = new CategoryList();
-            $this->categoryList->readObjects();
         }
+
+        $this->categoryList = new CategoryList();
+        $this->categoryList->defaultSorting()->readObjects();
     }
 
     /**

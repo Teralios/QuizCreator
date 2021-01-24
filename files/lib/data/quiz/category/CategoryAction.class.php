@@ -15,7 +15,7 @@ use wcf\system\language\I18nHandler;
  * @author    teralios
  * @copyright ©2021 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
- * @since     1.1.0
+ * @since     1.5.0
  */
 class CategoryAction extends AbstractDatabaseObjectAction
 {

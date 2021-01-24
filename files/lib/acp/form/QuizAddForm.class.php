@@ -3,6 +3,7 @@
 namespace wcf\acp\form;
 
 // imports
+use wcf\data\quiz\category\CategoryList;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizAction;
 use wcf\form\AbstractFormBuilderForm;
@@ -13,6 +14,7 @@ use wcf\system\form\builder\data\processor\CustomFormDataProcessor;
 use wcf\system\form\builder\field\DescriptionFormField;
 use wcf\system\form\builder\field\language\ContentLanguageFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
+use wcf\system\form\builder\field\SingleSelectionFormField;
 use wcf\system\form\builder\field\tag\TagFormField;
 use wcf\system\form\builder\field\TitleFormField;
 use wcf\system\form\builder\field\media\SingleMediaSelectionFormField;
@@ -44,6 +46,15 @@ class QuizAddForm extends AbstractFormBuilderForm
     {
         parent::createForm();
 
+        // code 1.5.0 start
+        $categoryOption = [];
+        $categoryList = new CategoryList();
+        $categoryList->defaultSorting()->readObjects();
+        foreach ($categoryList as $category) {
+            $categoryOption[$category->categoryID] = $category->name;
+        }
+        // code 1.5.0 end
+
         // description field
         if (QUIZ_DESCRIPTION_HTML) {
             $descriptionField = WysiwygFormField::create('description')
@@ -66,6 +77,11 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->label('wcf.global.title')
                 ->maximumLength(191)
                 ->required(),
+            // code 1.5.0 start
+            SingleSelectionFormField::create('categoryID')
+                ->label('wcf.acp.quizCreator.category')
+                ->options($categoryOption),
+            // code 1.5.0 end
             $descriptionField,
             TagFormField::create('tags')
                 ->objectType(Quiz::OBJECT_TYPE),

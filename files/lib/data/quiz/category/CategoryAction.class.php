@@ -34,7 +34,7 @@ class CategoryAction extends AbstractDatabaseObjectAction
         $editor = new CategoryEditor($object);
         $editor->update(['name' => Category::getLanguageItem($object)]);
 
-        I18nHandler::getInstance()->save(
+        /** @scrutinizer ignore-call */I18nHandler::getInstance()->save(
             'name',
             Category::getLanguageItem($object),
             'wcf.quizCreator.category',
@@ -50,7 +50,7 @@ class CategoryAction extends AbstractDatabaseObjectAction
 
         $packageID = /** @scrutinizer ignore-call */PackageCache::getInstance()->getPackageID('de.teralios.quizCreator');
         foreach ($this->objects as $object) {
-            I18nHandler::getInstance()->save(
+            /** @scrutinizer ignore-call */I18nHandler::getInstance()->save(
                 'name',
                 $object->name,
                 'wcf.quizCreator.category',

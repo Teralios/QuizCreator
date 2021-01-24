@@ -1,6 +1,6 @@
-{assign var="__formTitle" value='wcf.acp.quizCreator.quiz.'|concat:$action}
+{assign var="__title" value='wcf.acp.quizCreator.quiz.'|concat:$action}
 
-{capture assign="__formJavaScript"}
+{capture assign="__javascript"}
     <script data-relocate="true">
         // base delete action
         $(function() {
@@ -42,7 +42,7 @@
     {if $createSuccess|isset && $createSuccess === true}<p class="success">{lang}wcf.acp.quizCreator.quiz.created{/lang}</p>{/if}
 {/capture}
 
-{capture assign="__formContentHeader"}
+{capture assign="__formHeader"}
     {if $formObject !== null && ($formObject->questions > 0 || $formObject->goals > 0)}
         <div class="section tabMenuContainer" data-active="{$activeTabMenuItem}" data-store="activeTabMenuItem" id="pageTabMenuContainer">
             <nav class="tabMenu">
@@ -61,7 +61,7 @@
     {/if}
 {/capture}
 
-{capture assign="__formContentFooter"}
+{capture assign="__formFooter"}
     {if $formObject !== null && ($formObject->questions > 0 || $formObject->goals > 0)}
             </div>
             {if $questionList|isset && $questionList|count > 0}
@@ -143,4 +143,5 @@
     {/if}
 {/capture}
 
-{include file='_quizFormBase'}
+{* template *}
+{include file='_qcFormBase'}

@@ -8,7 +8,7 @@ use wcf\data\quiz\category\CategoryList;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\event\EventHandler;
 use wcf\system\form\builder\container\FormContainer;
-use wcf\system\form\builder\field\SortOrderFormField;
+use wcf\system\form\builder\field\ShowOrderFormField;
 use wcf\system\form\builder\field\TitleFormField;
 
 /**
@@ -25,6 +25,8 @@ class QuizCategoryAddForm extends AbstractFormBuilderForm
     // inherit variables
     public $objectActionClass = CategoryAction::class;
     public $objectEditLinkController = QuizCategoryEditForm::class;
+    public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.category.list';
+    public $neededPermissions = ['admin.content.quizCreator.canManage'];
 
     /**
      * @var CategoryList
@@ -38,6 +40,9 @@ class QuizCategoryAddForm extends AbstractFormBuilderForm
     {
         parent::createForm();
 
+        // load data
+        $this->loadFormFieldData();
+
         // order option
         $maxSort = $this->categoryList->countObjects();
         $orderOptions = [];
@@ -49,9 +54,10 @@ class QuizCategoryAddForm extends AbstractFormBuilderForm
         $categoryFormContainer = FormContainer::create('category');
         $categoryFormContainer->appendChildren([
             TitleFormField::create('name')
-                ->i18nRequired(),
-            SortOrderFormField::create('position')
-                ->options($orderOptions)
+                ->i18nRequired()
+                ->languageItemPattern('^wcf.quizCreator.category.category[\d]+$'),
+            ShowOrderFormField::create('position')
+                ->options($orderOptions),
         ]);
 
         $this->form->appendChild($categoryFormContainer);
@@ -59,7 +65,7 @@ class QuizCategoryAddForm extends AbstractFormBuilderForm
 
     public function loadFormFieldData()
     {
-        EventHandler::getInstance()->fireAction($this, 'loadFormFieldData');
+        /** @scrutinizer ignore-call */EventHandler::getInstance()->fireAction($this, 'loadFormFieldData');
 
         $this->categoryList = new CategoryList();
         $this->categoryList->sqlOrderBy = $this->categoryList->getDatabaseTableAlias() . '.position ASC';

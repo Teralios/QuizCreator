@@ -161,4 +161,7 @@
 	<category name="teralios.copyright">
 		<item name="teralios.copyright.quizCreator"><![CDATA[<a href="https://www.teralios.de">Quizzes created with <b>Teralios QuizCreator</b></a>]]></item>
 	</category>
+	<category name="wcf.quizCreator.category">
+		<item name="wcf.quizCreator.category.noCategory"><![CDATA[No categories]]></item>
+	</category>
 </language>

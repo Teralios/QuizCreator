@@ -40,12 +40,8 @@
 {/capture}
 
 {* template *}
-{if $isFrontend|empty}
-    {include file='header' pageTitle=$__formTitle}
-    {@$__contentHeader}
-{else}
-    {include file='header' pageTitle=$__formTitle contentHeader=$__contentHeader}
-{/if}
+{include file='header' pageTitle=$__formTitle}
+{@$__contentHeader}
 
 {@$form->getHtml()}
 

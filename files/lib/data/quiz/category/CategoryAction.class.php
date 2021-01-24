@@ -4,6 +4,9 @@ namespace wcf\data\quiz\category;
 
 // imports
 use wcf\data\AbstractDatabaseObjectAction;
+use wcf\data\DatabaseObject;
+use wcf\data\package\PackageCache;
+use wcf\system\language\I18nHandler;
 
 /**
  * Class CategoryAction
@@ -21,4 +24,38 @@ class CategoryAction extends AbstractDatabaseObjectAction
     protected $permissionsDelete = ['admin.content.quizCreator.canManage'];
     protected $permissionsUpdate = ['admin.content.quizCreator.canManage'];
     protected $className = CategoryEditor::class;
+
+    public function create(): DatabaseObject
+    {
+        $this->parameters['data']['name'] = 'tmp';
+        $packageID = /** @scrutinizer ignore-call */PackageCache::getInstance()->getPackageID('de.teralios.quizCreator');
+
+        $object = parent::create();
+        $editor = new CategoryEditor($object);
+        $editor->update(['name' => Category::getLanguageItem($object)]);
+
+        I18nHandler::getInstance()->save(
+            'name',
+            Category::getLanguageItem($object),
+            'wcf.quizCreator.category',
+            $packageID
+        );
+
+        return $object;
+    }
+
+    public function update()
+    {
+        parent::update();
+
+        $packageID = /** @scrutinizer ignore-call */PackageCache::getInstance()->getPackageID('de.teralios.quizCreator');
+        foreach ($this->objects as $object) {
+            I18nHandler::getInstance()->save(
+                'name',
+                $object->name,
+                'wcf.quizCreator.category',
+                $packageID
+            );
+        }
+    }
 }

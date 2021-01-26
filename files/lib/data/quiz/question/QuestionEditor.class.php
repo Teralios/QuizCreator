@@ -4,7 +4,6 @@ namespace wcf\data\quiz\question;
 
 // imports
 use wcf\data\DatabaseObjectEditor;
-use wcf\data\IStorableObject;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\exception\SystemException;
 use wcf\system\WCF;

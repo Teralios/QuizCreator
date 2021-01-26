@@ -23,9 +23,10 @@ class Category extends DatabaseObject
     // inherit variables
     public static $databaseTableName = 'quiz_category';
     public static $databaseTableIndexName = 'categoryID';
+    public const LANGUAGE_CATEGORY = 'wcf.quizCreator.category';
 
     public static function getLanguageItem(Category $category): string
     {
-        return 'wcf.quizCreator.category.category' . (string) $category->getObjectID();
+        return static::LANGUAGE_CATEGORY . '.category' . (string) $category->getObjectID();
     }
 }

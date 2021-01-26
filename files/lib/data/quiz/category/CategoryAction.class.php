@@ -37,7 +37,7 @@ class CategoryAction extends AbstractDatabaseObjectAction
         /** @scrutinizer ignore-call */I18nHandler::getInstance()->save(
             'name',
             Category::getLanguageItem($object),
-            'wcf.quizCreator.category',
+            Category::LANGUAGE_CATEGORY,
             $packageID
         );
 
@@ -53,7 +53,7 @@ class CategoryAction extends AbstractDatabaseObjectAction
             /** @scrutinizer ignore-call */I18nHandler::getInstance()->save(
                 'name',
                 $object->name,
-                'wcf.quizCreator.category',
+                Category::LANGUAGE_CATEGORY,
                 $packageID
             );
         }

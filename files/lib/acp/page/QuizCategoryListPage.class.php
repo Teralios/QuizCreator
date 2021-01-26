@@ -3,6 +3,7 @@
 namespace wcf\acp\page;
 
 // imports
+use wcf\data\quiz\category\CategoryList;
 use wcf\page\MultipleLinkPage;
 
 /**
@@ -16,5 +17,5 @@ use wcf\page\MultipleLinkPage;
  */
 class QuizCategoryListPage extends MultipleLinkPage
 {
-
+    public $objectListClassName = CategoryList::class;
 }

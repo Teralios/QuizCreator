@@ -4,6 +4,7 @@ namespace wcf\data\quiz\question;
 
 // imports
 use wcf\data\DatabaseObjectEditor;
+use wcf\data\IStorableObject;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\exception\SystemException;
 use wcf\system\WCF;
@@ -48,9 +49,9 @@ class QuestionEditor extends DatabaseObjectEditor
      * @inheritDoc
      * @throws DatabaseQueryException
      */
-    public static function create(array $parameters = [])
+    public static function create(array $parameters = []): Question
     {
-        static::updatePositionsBeforeCreate($parameters['quizID'], $parameters['position']);
+        static::updatePositionsBeforeCreate($parameters['quizID'], $parameters['position'] ?? 1);
 
         return parent::create($parameters);
     }
@@ -88,10 +89,14 @@ class QuestionEditor extends DatabaseObjectEditor
         $questions = $statement->fetchObjects(Question::class);
 
         if (count($questions)) {
+            $sql = 'UPDATE  ' . static::getDatabaseTableName() . '
+                    SET     position = ?
+                    WHERE   questionID = ?';
+            $statement = WCF::getDB()->prepareStatement($sql);
+
             $newPosition = 1;
             foreach ($questions as $question) {
-                $editor = new QuestionEditor($question);
-                $editor->update(['position' => $newPosition]);
+                $statement->execute([$newPosition, $question->questionID]);
                 ++$newPosition;
             }
         }

@@ -41,5 +41,16 @@
             <propertyname>quizMaxScore</propertyname>
             <minvalue>0</minvalue>
         </type>
+
+        <!-- Category -->
+        <type>
+            <name>de.teralios.quizCreator.quiz.category</name>
+            <definitionname>com.woltlab.wcf.category</definitionname>
+            <classname>wcf\system\category\QuizCategoryType</classname>
+        </type>
+       <!--<type>
+            <name>com.woltlab.wcf.article.category</name>
+            <definitionname>com.woltlab.wcf.acl</definitionname>
+        </type>-->
     </import>
 </data>

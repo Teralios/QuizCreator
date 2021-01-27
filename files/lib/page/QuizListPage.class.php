@@ -3,12 +3,14 @@
 namespace wcf\page;
 
 // imports
-use wcf\data\quiz\category\Category;
-use wcf\data\quiz\category\CategoryList;
+use wcf\data\category\Category;
+use wcf\data\category\CategoryNodeTree;
+use wcf\data\quiz\category\QuizCategory;
 use wcf\data\quiz\game\GameList;
 use wcf\data\quiz\ViewableQuizList;
 use wcf\system\cache\builder\QuizGameCacheBuilder;
 use wcf\system\cache\builder\QuizMostPlayedCacheBuilder;
+use wcf\system\category\CategoryHandler;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
@@ -72,7 +74,7 @@ class QuizListPage extends SortablePage
     public $categoryList;
 
     /**
-     * @var ?Category
+     * @var ?QuizCategory
      */
     public $category = null;
 
@@ -96,14 +98,14 @@ class QuizListPage extends SortablePage
         // 1.5 code start
         if (isset($_REQUEST['categoryID'])) {
             $this->categoryID = (int)$_REQUEST['categoryID'];
-            $this->category = new Category($this->categoryID);
+            $this->category = CategoryHandler::getInstance()->getCategory($this->categoryID);
             if (!$this->category->categoryID) {
                 throw new IllegalLinkException();
             }
         }
 
-        $this->categoryList = new CategoryList();
-        $this->categoryList->defaultSorting()->readObjects();
+        $categoryTree = new CategoryNodeTree(QuizCategory::OBJECT_TYPE);
+        $this->categoryList = $categoryTree->getIterator();
     }
 
     /**

@@ -1,10 +1,3 @@
-DROP TABLE IF EXISTS wcf1_quiz_category;
-CREATE TABLE wcf1_quiz_category (
-    categoryID INT(10) NOT NULL auto_increment PRIMARY KEY,
-    position SMALLINT(3) NOT NULL default 0,
-    name VARCHAR(191) NOT NULL DEFAULT ''
-);
-
 -- base quiz table
 DROP TABLE IF EXISTS wcf1_quiz;
 CREATE TABLE wcf1_quiz (
@@ -72,9 +65,6 @@ CREATE TABLE wcf1_quiz_question (
     KEY (position)
 );
 
--- category indices
-ALTER TABLE wcf1_quiz_category ADD INDEX sort_position(position);
-
 -- quiz indices
 ALTER TABLE wcf1_quiz ADD INDEX sort_time(creationDate);
 ALTER TABLE wcf1_quiz ADD INDEX stats_played(played);
@@ -86,7 +76,7 @@ ALTER TABLE wcf1_quiz ADD INDEX quizListView_3(isActive, categoryID, languageID)
 -- foreign keys
 ALTER TABLE wcf1_quiz ADD FOREIGN KEY (languageID) REFERENCES wcf1_language (languageID) ON DELETE SET NULL;
 ALTER TABLE wcf1_quiz ADD FOREIGN KEY (mediaID) REFERENCES wcf1_media (mediaID) ON DELETE SET NULL;
-ALTER TABLE wcf1_quiz ADD FOREIGN KEY (categoryID) REFERENCES wcf1_quiz_category (categoryID) ON DELETE SET NULL;
+ALTER TABLE wcf1_quiz ADD FOREIGN KEY (categoryID) REFERENCES wcf1_category (categoryID) ON DELETE SET NULL;
 ALTER TABLE wcf1_quiz_game ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (quizID) ON DELETE CASCADE;
 ALTER TABLE wcf1_quiz_game ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE CASCADE;
 ALTER TABLE wcf1_quiz_goal ADD FOREIGN KEY (quizID) REFERENCES wcf1_quiz (quizID) ON DELETE CASCADE;

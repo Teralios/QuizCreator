@@ -3,8 +3,7 @@
 namespace wcf\acp\page;
 
 // imports
-use wcf\data\quiz\category\CategoryList;
-use wcf\page\MultipleLinkPage;
+use wcf\data\quiz\category\QuizCategory;
 
 /**
  * Class QuizCategoryListPage
@@ -15,7 +14,8 @@ use wcf\page\MultipleLinkPage;
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  * @since     1.5.0
  */
-class QuizCategoryListPage extends MultipleLinkPage
+class QuizCategoryListPage extends AbstractCategoryListPage
 {
-    public $objectListClassName = CategoryList::class;
+    public $objectTypeName = QuizCategory::OBJECT_TYPE;
+    public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.category.list';
 }

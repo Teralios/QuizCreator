@@ -3,24 +3,21 @@
 namespace wcf\acp\form;
 
 // imports
-use wcf\data\quiz\category\CategoryList;
+use wcf\data\quiz\category\QuizCategory;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizAction;
 use wcf\form\AbstractFormBuilderForm;
+use wcf\system\category\CategoryHandler;
 use wcf\system\exception\SystemException;
 use wcf\system\form\builder\container\FormContainer;
-use wcf\system\form\builder\container\wysiwyg\WysiwygFormContainer;
-use wcf\system\form\builder\data\processor\CustomFormDataProcessor;
 use wcf\system\form\builder\field\DescriptionFormField;
 use wcf\system\form\builder\field\language\ContentLanguageFormField;
-use wcf\system\form\builder\field\RadioButtonFormField;
 use wcf\system\form\builder\field\SingleSelectionFormField;
 use wcf\system\form\builder\field\tag\TagFormField;
 use wcf\system\form\builder\field\TitleFormField;
 use wcf\system\form\builder\field\media\SingleMediaSelectionFormField;
 use wcf\system\form\builder\field\BooleanFormField;
 use wcf\system\form\builder\field\wysiwyg\WysiwygFormField;
-use wcf\system\form\builder\IFormDocument;
 use wcf\system\request\LinkHandler;
 use wcf\util\HeaderUtil;
 
@@ -46,15 +43,6 @@ class QuizAddForm extends AbstractFormBuilderForm
     {
         parent::createForm();
 
-        // code 1.5.0 start
-        $categoryOption = [];
-        $categoryList = new CategoryList();
-        $categoryList->defaultSorting()->readObjects();
-        foreach ($categoryList as $category) {
-            $categoryOption[$category->categoryID] = $category->name;
-        }
-        // code 1.5.0 end
-
         // description field
         if (QUIZ_DESCRIPTION_HTML) {
             $descriptionField = WysiwygFormField::create('description')
@@ -71,6 +59,9 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->required();
         }
 
+        // categories
+        $categories = CategoryHandler::getInstance()->getCategories(QuizCategory::OBJECT_TYPE);
+
         $container = FormContainer::create('quizCreatorGlobal');
         $container->appendChildren([
             TitleFormField::create('title')
@@ -79,8 +70,8 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->required(),
             // code 1.5.0 start
             SingleSelectionFormField::create('categoryID')
-                ->label('wcf.acp.quizCreator.category')
-                ->options($categoryOption),
+                ->label('wcf.acp.quizCreator.quiz.categoryID')
+                ->options($categories),
             // code 1.5.0 end
             $descriptionField,
             TagFormField::create('tags')

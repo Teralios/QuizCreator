@@ -2,9 +2,8 @@
 
 namespace wcf\acp\form;
 
-use wcf\data\quiz\category\Category;
+// imports
 use wcf\data\quiz\category\QuizCategory;
-use wcf\system\exception\IllegalLinkException;
 
 /**
  * Class QuizCategoryEditForm

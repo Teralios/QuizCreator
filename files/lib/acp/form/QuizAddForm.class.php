@@ -60,7 +60,7 @@ class QuizAddForm extends AbstractFormBuilderForm
         }
 
         // categories
-        $categories = CategoryHandler::getInstance()->getCategories(QuizCategory::OBJECT_TYPE);
+        $categories = /** @scrutinizer ignore-call */CategoryHandler::getInstance()->getCategories(QuizCategory::OBJECT_TYPE);
 
         $container = FormContainer::create('quizCreatorGlobal');
         $container->appendChildren([

@@ -68,7 +68,7 @@ class QuizListPage extends SortablePage
     public $mostPlayed = null;
 
     /**
-     * @var CategoryList
+     * @var CategoryNodeTree
      * @since 1.5
      */
     public $categoryList;
@@ -98,14 +98,13 @@ class QuizListPage extends SortablePage
         // 1.5 code start
         if (isset($_REQUEST['categoryID'])) {
             $this->categoryID = (int)$_REQUEST['categoryID'];
-            $this->category = CategoryHandler::getInstance()->getCategory($this->categoryID);
+            $this->category = /** @scrutinizer ignore-call */CategoryHandler::getInstance()->getCategory($this->categoryID);
             if (!$this->category->categoryID) {
                 throw new IllegalLinkException();
             }
         }
 
-        $categoryTree = new CategoryNodeTree(QuizCategory::OBJECT_TYPE);
-        $this->categoryList = $categoryTree->getIterator();
+        $this->categoryList = new CategoryNodeTree(QuizCategory::OBJECT_TYPE);
     }
 
     /**
@@ -184,7 +183,7 @@ class QuizListPage extends SortablePage
             'mostPlayed' => $this->mostPlayed,
             'showQuizMakerCopyright' => $this->showCopyright,
             // 1.5 code
-            'categoryList' => $this->categoryList,
+            'categoryList' => $this->categoryList->getIterator(),
             'category' => $this->category
         ]);
     }

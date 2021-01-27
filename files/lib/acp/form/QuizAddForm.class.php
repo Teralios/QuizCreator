@@ -3,6 +3,7 @@
 namespace wcf\acp\form;
 
 // imports
+use wcf\data\category\CategoryNodeTree;
 use wcf\data\quiz\category\QuizCategory;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizAction;
@@ -60,7 +61,7 @@ class QuizAddForm extends AbstractFormBuilderForm
         }
 
         // categories
-        $categories = /** @scrutinizer ignore-call */CategoryHandler::getInstance()->getCategories(QuizCategory::OBJECT_TYPE);
+        $categories = new CategoryNodeTree(QuizCategory::OBJECT_TYPE);
 
         $container = FormContainer::create('quizCreatorGlobal');
         $container->appendChildren([
@@ -71,7 +72,7 @@ class QuizAddForm extends AbstractFormBuilderForm
             // code 1.5.0 start
             SingleSelectionFormField::create('categoryID')
                 ->label('wcf.acp.quizCreator.quiz.categoryID')
-                ->options($categories),
+                ->options($categories->getIterator()),
             // code 1.5.0 end
             $descriptionField,
             TagFormField::create('tags')

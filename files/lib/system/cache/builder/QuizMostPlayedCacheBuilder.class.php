@@ -31,7 +31,6 @@ class QuizMostPlayedCacheBuilder extends AbstractCacheBuilder
         $mostPlayed = new ViewableQuizList();
         $mostPlayed->withMedia();
         $mostPlayed->getConditionBuilder()->add($mostPlayed->getDatabaseTableAlias() . '.isActive = ?', [1]);
-        $mostPlayed->getConditionBuilder()->add('type = ?', ['competition']);
         $mostPlayed->sqlOrderBy = $mostPlayed->getDatabaseTableAlias() . '.played DESC';
         $mostPlayed->sqlLimit = $limit;
         $mostPlayed->readObjects();

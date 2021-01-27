@@ -57,14 +57,4 @@
     {/hascontent}
 </footer>
 
-<script data-relocate="true">
-    require(['WoltLabSuite/Core/Controller/Popover'], function(ControllerPopover) {
-        ControllerPopover.init({
-            className: 'quizPopover',
-            dboAction: 'wcf\\data\\quiz\\QuizAction',
-            identifier: 'de.teralios.quizCreator.quiz'
-        });
-    });
-</script>
-
 {include file='footer'}

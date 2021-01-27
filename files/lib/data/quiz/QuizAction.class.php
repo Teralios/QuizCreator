@@ -278,7 +278,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
 
     /**
      * @inheritdoc
-     * @throws PermissionDeniedException|SystemException|UserInputException
+     * @throws PermissionDeniedException|UserInputException
      */
     public function validateGetPopover()
     {
@@ -292,6 +292,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
     /**
      * @inheritdoc
      * @throws SystemException
+     * @deprecated since 1.5.0
      */
     public function getPopover()
     {

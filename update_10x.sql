@@ -1,11 +1,3 @@
--- category table
-DROP TABLE IF EXISTS wcf1_quiz_category;
-CREATE TABLE wcf1_quiz_category (
-    categoryID INT(10) NOT NULL auto_increment PRIMARY KEY,
-    position SMALLINT(3) NOT NULL default 0,
-    name VARCHAR(191) NOT NULL DEFAULT ''
-);
-
 -- new columns
 ALTER TABLE wcf1_quiz ADD COLUMN categoryID INT(10) NULL;
 ALTER TABLE wcf1_user ADD COLUMN quizMin50 SMALLINT(5) NOT NULL DEFAULT 0;
@@ -38,4 +30,4 @@ ALTER TABLE wcf1_quiz ADD INDEX quizListView_2(isActive, languageID);
 ALTER TABLE wcf1_quiz ADD INDEX quizListView_3(isActive, categoryID, languageID);
 
 -- foreign keys
-ALTER TABLE wcf1_quiz ADD FOREIGN KEY (categoryID) REFERENCES wcf1_quiz_category (categoryID) ON DELETE SET NULL;
+ALTER TABLE wcf1_quiz ADD FOREIGN KEY (categoryID) REFERENCES wcf1_category (categoryID) ON DELETE SET NULL;

@@ -18,6 +18,7 @@ This file lists all changes like new features, improved functions and fixed bugs
 ## 1.5.0 Beta 1
  - [improvement] Combine sidebar boxes of quiz.tpl and quizList.tpl in own template to remove duplicate code.
  - [improvement] Use gender fair language.
+ - [improvement] Users can see which quiz they played.
  - [remove] Remove quiz type.
 
 # Legend

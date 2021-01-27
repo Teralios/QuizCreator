@@ -5,6 +5,7 @@ namespace wcf\data\quiz;
 // imports
 use wcf\data\media\ViewableMediaList;
 use wcf\data\quiz\game\Game;
+use wcf\data\quiz\game\GameList;
 use wcf\system\cache\runtime\ViewableMediaRuntimeCache;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
@@ -33,6 +34,11 @@ class ViewableQuizList extends QuizList
      * @var bool
      */
     protected $loadStatistic = false;
+
+    /**
+     * @var bool
+     */
+    protected $userStatus = false;
 
     /**
      * @var ViewableMediaList
@@ -87,6 +93,16 @@ class ViewableQuizList extends QuizList
     }
 
     /**
+     * @return $this
+     * @since 1.5.0
+     */
+    public function withUserStatus(): self
+    {
+        $this->userStatus = true;
+        return $this;
+    }
+
+    /**
      * @inheritDoc
      * @throws DatabaseQueryExecutionException|SystemException
      */
@@ -113,13 +129,44 @@ class ViewableQuizList extends QuizList
         if ($this->loadStatistic === true) {
             $this->loadStatistic();
         }
+
+        // load played status
+        if (WCF::getUser()->userID && $this->userStatus) {
+            $this->loadUserStatus();
+        }
+    }
+
+    /**
+     * @throws SystemException
+     * @since 1.5.0
+     */
+    protected function loadUserStatus(): void
+    {
+        $gameList = new GameList();
+        $gameList->getConditionBuilder()->add(
+            $gameList->getDatabaseTableAlias() . '.quizID IN (?)',
+            $this->getObjectIDs()
+        );
+        $gameList->getConditionBuilder()->add(
+            $gameList->getDatabaseTableAlias() . '.userID = ?',
+            [WCF::getUser()->userID]
+        );
+        $gameList->readObjects();
+
+        if (count($gameList)) {
+            foreach ($gameList as $game) {
+                if (isset($this->objects[$game->quizID])) {
+                    $this->objects[$game->gameID]->played(true);
+                }
+            }
+        }
     }
 
     /**
      * Replace old way with a temporary way.
      * @throws DatabaseQueryException|DatabaseQueryExecutionException
      */
-    protected function loadStatistic()
+    protected function loadStatistic(): void
     {
         $sql = 'SELECT      COUNT(userID) as players, SUM(score) as score, quizID
                 FROM        ' . Game::getDatabaseTableName() . '
@@ -142,7 +189,7 @@ class ViewableQuizList extends QuizList
      * @param array $mediaIDs
      * @throws SystemException
      */
-    protected function readMedia(array $mediaIDs)
+    protected function readMedia(array $mediaIDs): void
     {
         /** @scrutinizer ignore-call */ViewableMediaRuntimeCache::getInstance()->cacheObjectIDs($mediaIDs);
 
@@ -153,7 +200,7 @@ class ViewableQuizList extends QuizList
      * Set media to quiz.
      * @throws SystemException
      */
-    protected function setMedia()
+    protected function setMedia(): void
     {
         foreach ($this->objects as $quiz) {
             /** @var $quiz ViewableQuiz */

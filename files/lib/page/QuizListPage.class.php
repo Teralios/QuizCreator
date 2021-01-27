@@ -66,15 +66,20 @@ class QuizListPage extends SortablePage
     public $mostPlayed = null;
 
     /**
-     * @var ?CategoryList
+     * @var CategoryList
      * @since 1.5
      */
-    public $categoryList = null;
+    public $categoryList;
 
     /**
      * @var ?Category
      */
     public $category = null;
+
+    /**
+     * @var ?GameList
+     */
+    public $quizPlayed = null;
 
     /**
      * @throws SystemException
@@ -110,6 +115,7 @@ class QuizListPage extends SortablePage
         parent::initObjectList();
         $this->objectList->withMedia();
         $this->objectList->withStatistic();
+        $this->objectList->withUserStatus();
 
         if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->multilingualismEnabled()) {
             if (empty($this->languageID)) {
@@ -177,7 +183,7 @@ class QuizListPage extends SortablePage
             'showQuizMakerCopyright' => $this->showCopyright,
             // 1.5 code
             'categoryList' => $this->categoryList,
-            'category' => $this->category,
+            'category' => $this->category
         ]);
     }
 }

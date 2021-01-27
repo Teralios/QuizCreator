@@ -45,6 +45,12 @@ class ViewableQuiz extends DatabaseObjectDecorator
     protected $mediaObject = null;
 
     /**
+     * @since 1.5.0
+     * @var bool
+     */
+    protected $played = false;
+
+    /**
      * @param int $length
      * @return string
      */
@@ -112,5 +118,19 @@ class ViewableQuiz extends DatabaseObjectDecorator
     public function getLanguageName(): string
     {
         return /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguage($this->languageID)->languageName;
+    }
+
+    /**
+     * @param bool|null $played
+     * @return bool
+     * @since 1.5.0
+     */
+    public function played(?bool $played = null): bool
+    {
+        if ($played !== null) {
+            $this->played = $played;
+        }
+
+        return $played;
     }
 }

@@ -131,6 +131,6 @@ class ViewableQuiz extends DatabaseObjectDecorator
             $this->played = $played;
         }
 
-        return $played;
+        return $this->played;
     }
 }

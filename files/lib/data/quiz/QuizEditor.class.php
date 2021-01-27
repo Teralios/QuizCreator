@@ -14,10 +14,10 @@ use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\SystemException;
 use wcf\system\html\input\HtmlInputProcessor;
 use wcf\system\language\LanguageFactory;
-use wcf\system\quiz\validator\data\Goal as ValidatedGoal;
-use wcf\system\quiz\validator\data\Question as ValidatedQuestion;
-use wcf\system\quiz\validator\data\Quiz as ValidatedQuiz;
-use wcf\system\quiz\validator\data\Tag as ValidatedTag;
+use wcf\system\validator\data\quiz\Goal as ValidatedGoal;
+use wcf\system\validator\data\quiz\Question as ValidatedQuestion;
+use wcf\system\validator\data\quiz\Quiz as ValidatedQuiz;
+use wcf\system\validator\data\quiz\Tag as ValidatedTag;
 use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 

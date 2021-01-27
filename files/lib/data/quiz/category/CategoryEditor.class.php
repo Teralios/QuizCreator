@@ -4,8 +4,6 @@ namespace wcf\data\quiz\category;
 
 // imports
 use wcf\data\DatabaseObjectEditor;
-use wcf\data\quiz\question\Question;
-use wcf\data\quiz\question\QuestionEditor;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\exception\SystemException;
 use wcf\system\WCF;
@@ -18,6 +16,9 @@ use wcf\system\WCF;
  * @copyright ©2021 Teralios.de
  * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  * @since     1.5.0
+ *
+ * @property-read string $name
+ * @property-read int $position
  */
 class CategoryEditor extends DatabaseObjectEditor
 {

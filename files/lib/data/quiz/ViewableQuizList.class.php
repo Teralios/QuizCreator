@@ -106,7 +106,7 @@ class ViewableQuizList extends QuizList
      * @inheritDoc
      * @throws DatabaseQueryExecutionException|SystemException
      */
-    public function readObjects(): self
+    public function readObjects()
     {
         parent::readObjects();
 
@@ -156,7 +156,7 @@ class ViewableQuizList extends QuizList
         if (count($gameList)) {
             foreach ($gameList as $game) {
                 if (isset($this->objects[$game->quizID])) {
-                    $this->objects[$game->gameID]->played(true);
+                    /** @scrutinizer ignore-call */$this->objects[$game->gameID]->played(true);
                 }
             }
         }

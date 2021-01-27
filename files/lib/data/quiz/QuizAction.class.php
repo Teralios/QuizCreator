@@ -19,8 +19,8 @@ use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\SystemException;
 use wcf\system\exception\UserInputException;
 use wcf\system\language\LanguageFactory;
-use wcf\system\quiz\validator\data\Quiz as ValidatedQuiz;
-use wcf\system\quiz\validator\Validator;
+use wcf\system\validator\data\quiz\Quiz as ValidatedQuiz;
+use wcf\system\validator\Validator;
 use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 

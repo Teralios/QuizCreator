@@ -30,6 +30,9 @@ trait TQuizPage
      */
     public $quiz;
 
+    // only for scrutinizer … Look line 49: quiz is active …
+    public $isActive;
+
     /**
      * Base implementation for readParameters for quiz pages.
      * @throws IllegalLinkException|PermissionDeniedException

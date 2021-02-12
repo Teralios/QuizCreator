@@ -25,24 +25,27 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
 
     /**
      * @inheritDoc
+     * @throws SystemException
      */
-    public function getLink($objectID)
+    public function getLink($objectID): string
     {
         return /** @scrutinizer ignore-call */ViewableQuizRuntimeCache::getInstance()->getObject($objectID)->getLink();
     }
 
     /**
      * @inheritDoc
+     * @throws SystemException
      */
-    public function isValid($objectID)
+    public function isValid($objectID): bool
     {
         return /** @scrutinizer ignore-call */ViewableQuizRuntimeCache::getInstance()->getObject($objectID) !== null;
     }
 
     /**
      * @inheritDoc
+     * @throws SystemException
      */
-    public function isVisible($objectID = null)
+    public function isVisible($objectID = null): bool
     {
         /** @var ViewableQuiz $quiz */
         $quiz = /** @scrutinizer ignore-call */ViewableQuizRuntimeCache::getInstance()->getObject($objectID);
@@ -54,7 +57,7 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
      * @inheritDoc
      * @throws DatabaseQueryExecutionException|SystemException
      */
-    public function lookup($searchString)
+    public function lookup($searchString): array
     {
         $quizList = new ViewableQuizList();
         $quizList->withMedia();
@@ -84,7 +87,7 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
      * @inheritDoc
      * @throws SystemException
      */
-    public function getOnlineLocation(Page $page, UserOnline $user)
+    public function getOnlineLocation(Page $page, UserOnline $user): string
     {
         if ($user->pageObjectID === null) {
             return '';

@@ -192,7 +192,6 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
     {
         // import base information for quiz
         $quizData = [];
-        $quizData['type'] = $data->type;
         $quizData['title'] = $data->title;
         $quizData['description'] = $data->description;
         $quizData['creationDate'] = TIME_NOW;

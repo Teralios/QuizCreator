@@ -24,7 +24,7 @@ class QuizMostPlayedCacheBuilder extends AbstractCacheBuilder
      * @return array
      * @throws SystemException
      */
-    protected function rebuild(array $parameters)
+    protected function rebuild(array $parameters): array
     {
         $limit = QUIZ_PER_BOX;
 

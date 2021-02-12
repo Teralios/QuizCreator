@@ -6,7 +6,6 @@ namespace wcf\data\quiz;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\DatabaseObjectDecorator;
 use wcf\data\IPopoverAction;
-use wcf\data\IStorableObject;
 use wcf\data\IToggleAction;
 use wcf\data\quiz\game\Game;
 use wcf\data\quiz\game\GameEditor;
@@ -151,7 +150,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * @return array
      * @throws SystemException
      */
-    public function loadQuiz()
+    public function loadQuiz(): array
     {
         $data = $this->quiz->getData();
         $data['questionList'] = [];
@@ -189,7 +188,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * @return array
      * @throws SystemException|DatabaseQueryException|DatabaseQueryExecutionException
      */
-    public function finishGame()
+    public function finishGame(): array
     {
         // user data for update
         $userData = [];
@@ -240,10 +239,10 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
 
     /**
      * Imports a quiz by given a json string or json file
-     * @return IStorableObject
+     * @return Quiz
      * @throws SystemException
      */
-    public function import()
+    public function import(): Quiz
     {
         $data = Validator::getLastValidatedData();
 
@@ -292,9 +291,10 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
     /**
      * @inheritdoc
      * @throws SystemException
+     * @return string[]
      * @deprecated since 1.5.0
      */
-    public function getPopover()
+    public function getPopover(): array
     {
         WCF::getTPL()->assign('quiz', new ViewableQuiz($this->quiz));
 

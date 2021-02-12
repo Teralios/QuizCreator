@@ -155,6 +155,7 @@ class ViewableQuizList extends QuizList
 
         if (count($gameList)) {
             foreach ($gameList as $game) {
+                /** @var Game $game */
                 if (isset($this->objects[$game->quizID])) {
                     /** @scrutinizer ignore-call */$this->objects[$game->gameID]->played(true);
                 }

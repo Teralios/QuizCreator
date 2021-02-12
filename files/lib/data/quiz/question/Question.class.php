@@ -38,7 +38,7 @@ class Question extends DatabaseObject
      * @return string
      * @throws SystemException
      */
-    public function getExplanation(bool $parsed = true)
+    public function getExplanation(bool $parsed = true): string
     {
         return ($parsed) ? /** @scrutinizer ignore-call */SimpleMessageParser::getInstance()->parse($this->explanation) : $this->explanation;
     }
@@ -48,7 +48,7 @@ class Question extends DatabaseObject
      * @param string $option
      * @return string
      */
-    public function getOption(string $option)
+    public function getOption(string $option): string
     {
         $option = 'option' . mb_strtoupper($option);
 

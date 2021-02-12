@@ -61,6 +61,7 @@ class ViewableQuiz extends DatabaseObjectDecorator
 
     /**
      * @return ViewableMedia|null
+     * @throws SystemException
      */
     public function getMedia(): ?ViewableMedia
     {

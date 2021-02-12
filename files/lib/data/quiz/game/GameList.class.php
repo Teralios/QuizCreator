@@ -147,7 +147,7 @@ class GameList extends DatabaseObjectList
      * @return static
      * @throws SystemException
      */
-    public static function bestPlayers(int $quizID = 0) //: static
+    public static function bestPlayers(int $quizID = 0): self
     {
         $gameList = static::getBaseList($quizID);
         $gameList->sqlOrderBy = Game::getDatabaseTableAlias() . '.scorePercent DESC';
@@ -161,7 +161,7 @@ class GameList extends DatabaseObjectList
      * @return static
      * @throws SystemException
      */
-    public static function lastPlayers(int $quizID = 0) //: static
+    public static function lastPlayers(int $quizID = 0): self
     {
         $gameList = static::getBaseList($quizID);
         $gameList->sqlOrderBy = Game::getDatabaseTableAlias() . '.playedTime DESC';
@@ -174,7 +174,7 @@ class GameList extends DatabaseObjectList
      * @return static
      * @throws SystemException
      */
-    protected static function getBaseList(int $quizID = 0) //: static
+    protected static function getBaseList(int $quizID = 0): self
     {
         $gameList = new static();
 

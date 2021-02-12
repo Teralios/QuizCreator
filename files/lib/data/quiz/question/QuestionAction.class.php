@@ -51,6 +51,7 @@ class QuestionAction extends AbstractDatabaseObjectAction
         // read quiz id
         $quizIDs = [];
         foreach ($this->objects as $question) {
+            /** @var Question $question */
             $quizID = $question->quizID;
 
             if (isset($quizIDs[$quizID])) {

@@ -49,7 +49,7 @@ class GameAction extends AbstractDatabaseObjectAction
      * @return string
      * @throws SystemException
      */
-    public function showResult()
+    public function showResult(): string
     {
         $quiz = new Quiz($this->game->quizID);
         $questions = new QuestionList($quiz);

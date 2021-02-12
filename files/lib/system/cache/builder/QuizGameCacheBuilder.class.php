@@ -4,6 +4,7 @@ namespace wcf\system\cache\builder;
 
 // imports
 use wcf\data\quiz\game\GameList;
+use wcf\system\exception\SystemException;
 
 /**
  * Class        QuizMatchCacheBuilder
@@ -20,8 +21,9 @@ class QuizGameCacheBuilder extends AbstractCacheBuilder
 
     /**
      * @inheritdoc
+     * @throws SystemException
      */
-    protected function rebuild(array $parameters)
+    protected function rebuild(array $parameters): array
     {
         $context = $parameters['context'] ?? 'best';
         $quizID = $parameters['quizID'] ?? 0;

@@ -95,6 +95,7 @@ class QuestionEditor extends DatabaseObjectEditor
 
             $newPosition = 1;
             foreach ($questions as $question) {
+                /** @var Question $question */
                 $statement->execute([$newPosition, $question->questionID]);
                 ++$newPosition;
             }

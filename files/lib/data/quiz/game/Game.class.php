@@ -23,7 +23,7 @@ use wcf\util\StringUtil;
  *
  * @property-read int $userID
  * @property-read int $quizID
- * @property-read int $matchID
+ * @property-read int $gameID
  * @property-read int $playedTime
  * @property-read int $timeTotal
  * @property-read int $score
@@ -62,7 +62,7 @@ class Game extends DatabaseObject
     public function getPlayTime(bool $last = false): string
     {
         $time = ($last) ? $this->lastTimeTotal : $this->timeTotal;
-        $minutes = round($time / 60, 0);
+        $minutes = round($time / 60);
         $seconds = $time % 60;
 
         return $minutes . ':' . (($seconds < 10) ? '0' . $seconds : $seconds);
@@ -74,7 +74,7 @@ class Game extends DatabaseObject
      * @return array|mixed
      * @throws SystemException
      */
-    public function getQuestion(int $index = 0)
+    public function getQuestion(int $index = 0): array
     {
         if ($this->questions === null) {
             $this->parseResult();

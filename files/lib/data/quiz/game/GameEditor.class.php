@@ -73,7 +73,7 @@ class GameEditor extends DatabaseObjectEditor
      * @return static
      * @throws SystemException
      */
-    public static function createGameResult(Quiz $quiz, int $userID, int $score, int $time, array $result)
+    public static function createGameResult(Quiz $quiz, int $userID, int $score, int $time, array $result): self
     {
         $scorePercent = round(($score / $quiz->getMaxScore()), 2);
         $data = [

@@ -4,7 +4,6 @@ namespace wcf\data\quiz\goal;
 
 // imports
 use wcf\data\DatabaseOBject;
-use wcf\data\quiz\Quiz;
 use wcf\system\database\exception\DatabaseQueryException;
 use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\WCF;
@@ -46,6 +45,6 @@ class Goal extends DatabaseObject
         $statement->execute([$quizID, $points]);
         $row = $statement->fetchArray();
 
-        return ($row['goal'] > 0) ? true : false;
+        return $row['goal'] > 0;
     }
 }

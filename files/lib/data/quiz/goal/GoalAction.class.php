@@ -4,6 +4,8 @@ namespace wcf\data\quiz\goal;
 
 // imports
 use wcf\data\AbstractDatabaseObjectAction;
+use wcf\data\DatabaseObject;
+use wcf\data\quiz\question\Question;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizEditor;
 use wcf\system\database\exception\DatabaseQueryException;
@@ -29,11 +31,12 @@ class GoalAction extends AbstractDatabaseObjectAction
      * @inheritDoc
      * @throws SystemException
      */
-    public function create()
+    public function create(): DatabaseObject
     {
         $goal = parent::create();
 
         // increment question counter
+        /** @var Goal $goal */
         $quizID = $goal->quizID;
         $quizEditor = new QuizEditor(new Quiz($quizID));
         $quizEditor->incrementCounter(false);
@@ -52,6 +55,7 @@ class GoalAction extends AbstractDatabaseObjectAction
         // read quiz id
         $quizIDs = [];
         foreach ($this->objects as $question) {
+            /** @var Question $question */
             $quizID = $question->quizID;
 
             if (isset($quizIDs[$quizID])) {

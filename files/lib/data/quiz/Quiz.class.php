@@ -4,18 +4,15 @@ namespace wcf\data\quiz;
 
 // imports
 use wcf\data\DatabaseObject;
-use wcf\data\ILinkableObject;
 use wcf\data\IPopoverObject;
 use wcf\data\ITitledLinkObject;
 use wcf\data\media\ViewableMedia;
 use wcf\system\bbcode\SimpleMessageParser;
 use wcf\system\Exception\SystemException;
-use wcf\system\form\builder\field\IntegerFormField;
 use wcf\system\html\output\HtmlOutputProcessor;
 use wcf\system\request\IRouteController;
 use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
-use wcf\util\StringUtil;
 
 /**
  * Class QuizData
@@ -55,7 +52,7 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
     /**
      * @inheritDoc
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }

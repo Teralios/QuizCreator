@@ -63,7 +63,7 @@ class ViewableQuizList extends QuizList
         }
 
         // 1.5 code start
-        if ($categoryID === null || $categoryID == 0) {
+        if ($categoryID !== null || $categoryID != 0) {
             $this->getConditionBuilder()->add(
                 $this->getDatabaseTableAlias() . '.categoryID = ?',
                 [$categoryID]

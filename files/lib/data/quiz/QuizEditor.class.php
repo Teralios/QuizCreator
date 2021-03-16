@@ -185,16 +185,18 @@ class QuizEditor extends DatabaseObjectEditor implements IEditableCachedObject
      * @param ValidatedQuiz $data
      * @param int $languageID
      * @param bool $overrideLanguage
+     * @param ?int $categoryID
      * @return Quiz
      * @throws SystemException
      */
-    public static function importQuiz(ValidatedQuiz $data, int $languageID, bool $overrideLanguage = false): Quiz
+    public static function importQuiz(ValidatedQuiz $data, int $languageID, bool $overrideLanguage = false, ?int $categoryID = null): Quiz
     {
         // import base information for quiz
         $quizData = [];
         $quizData['title'] = $data->title;
         $quizData['description'] = $data->description;
         $quizData['creationDate'] = TIME_NOW;
+        $quizData['categoryID'] = $categoryID;
 
         // html input processor
         $htmlProcessor = new HtmlInputProcessor();

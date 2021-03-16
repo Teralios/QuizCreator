@@ -3,6 +3,8 @@
 namespace wcf\acp\form;
 
 // imports
+use wcf\data\category\CategoryNodeTree;
+use wcf\data\quiz\category\QuizCategory;
 use wcf\data\quiz\Quiz;
 use wcf\data\quiz\QuizAction;
 use wcf\form\AbstractFormBuilderForm;
@@ -14,6 +16,7 @@ use wcf\system\form\builder\field\dependency\ValueFormFieldDependency;
 use wcf\system\form\builder\field\language\ContentLanguageFormField;
 use wcf\system\form\builder\field\MultilineTextFormField;
 use wcf\system\form\builder\field\RadioButtonFormField;
+use wcf\system\form\builder\field\SingleSelectionFormField;
 use wcf\system\form\builder\field\UploadFormField;
 use wcf\system\form\builder\field\validation\QuizJsonFormFieldValidator;
 use wcf\system\request\LinkHandler;
@@ -42,14 +45,16 @@ class QuizImportForm extends AbstractFormBuilderForm
     {
         parent::createForm();
 
+        $categories = new CategoryNodeTree(QuizCategory::OBJECT_TYPE);
+
         // container
         $container = FormContainer::create('importQuiz');
         $container->appendChildren([
             RadioButtonFormField::create('type')
-                ->label('wcf.acp.quizCreator.import.type')
+                ->label('wcf.acp.quizCreator.import.source')
                 ->options([
-                    'file' => 'wcf.acp.quizCreator.import.type.file',
-                    'text' => 'wcf.acp.quizCreator.import.type.text'
+                    'file' => 'wcf.acp.quizCreator.import.source.file',
+                    'text' => 'wcf.acp.quizCreator.import.source.text'
                 ]),
             UploadformField::create('file')
                 ->label('wcf.acp.quizCreator.import.file')
@@ -61,6 +66,9 @@ class QuizImportForm extends AbstractFormBuilderForm
                 ->label('wcf.acp.quizCreator.import.text')
                 ->description('wcf.acp.quizCreator.import.text.description')
                 ->addValidator(QuizJsonFormFieldValidator::getFormFieldValidator('quizFile', false)),
+            SingleSelectionFormField::create('categoryID')
+                ->label('wcf.acp.quizCreator.quiz.category')
+                ->options($categories->getIterator()),
             ContentLanguageFormField::create('languageID')
                 ->required(),
             BooleanFormField::create('overrideLanguage')

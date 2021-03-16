@@ -46,8 +46,8 @@
                         <th class="columnTitle">{lang}wcf.global.title{/lang}</th>
                         {if $isMultiLingual}<th class="columnText">{lang}wcf.user.language{/lang}</th>{/if}
                         <th class="columnText">{lang}wcf.global.date{/lang}</th>
-                        <th class="columnText">{lang}wcf.acp.quizCreator.quiz.questions{/lang}</th>
-                        <th class="columnText">{lang}wcf.acp.quizCreator.quiz.goals{/lang}</th>
+                        <th class="columnText">{lang}wcf.acp.quizCreation.questions{/lang}</th>
+                        <th class="columnText">{lang}wcf.acp.quizCreator.goals{/lang}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,13 +66,13 @@
                                 <span class="icon icon16 fa-times jsDeleteButton jsTooltip pointer"
                                       title="{lang}wcf.global.button.delete{/lang}"
                                       data-object-id="{#$quiz->quizID}"
-                                      data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.quiz.delete.confirmMessage{/lang}">
+                                      data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.delete.confirmMessage.quiz{/lang}">
                                 </span>
 
                                 <span class="icon icon16 fa-user-times jsResetMatchesButton jsTooltip pointer"
-                                      title="{lang}wcf.acp.quizCreator.reset.matches{/lang}"
+                                      title="{lang}wcf.acp.quizCreator.quiz.reset{/lang}"
                                       data-object-id="{#$quiz->quizID}"
-                                      data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.reset.matches.confirm{/lang}">
+                                      data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.quiz.reset.confirmMessage{/lang}">
                                 </span>
 
                                 <a href="{link controller="QuizExport" id=$quiz->quizID}{/link}">
@@ -89,7 +89,7 @@
                                 <td class="columnText">
                                     {if !$quiz->getLanguageIcon()|empty}
                                         <img class="iconFlag jsTooltip"
-                                             title="{lang}wcf.acp.quizCreator.language.tooltip{/lang}"
+                                             title="{lang}wcf.acp.quizCreator.quiz.language{/lang}"
                                              src="{$quiz->getLanguageIcon()}">
                                     {/if}
                                 </td>

@@ -57,6 +57,15 @@
     {if $media !== null}
         <header>
             {@$media}
+            {if $media->caption}
+                <figcaption itemprop="description">
+                    {if $media->captionEnableHtml}
+                        {@$media->caption}
+                    {else}
+                        {$media->caption}
+                    {/if}
+                </figcaption>
+            {/if}
         </header>
     {/if}
     {if !$quiz->description|empty}

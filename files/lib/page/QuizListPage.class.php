@@ -3,9 +3,9 @@
 namespace wcf\page;
 
 // imports
-use wcf\data\category\Category;
 use wcf\data\category\CategoryNodeTree;
 use wcf\data\quiz\category\QuizCategory;
+use wcf\data\quiz\category\QuizCategoryNodeTree;
 use wcf\data\quiz\game\GameList;
 use wcf\data\quiz\ViewableQuizList;
 use wcf\system\cache\builder\QuizGameCacheBuilder;
@@ -96,15 +96,18 @@ class QuizListPage extends SortablePage
         }
 
         // 1.5 code start
-        if (isset($_REQUEST['categoryID'])) {
-            $this->categoryID = (int)$_REQUEST['categoryID'];
+        if (isset($_REQUEST['id'])) {
+            $this->categoryID = (int)$_REQUEST['id'];
             $this->category = /** @scrutinizer ignore-call */CategoryHandler::getInstance()->getCategory($this->categoryID);
+
             if (!$this->category->categoryID) {
                 throw new IllegalLinkException();
             }
+
+            $this->category = new QuizCategory($this->category);
         }
 
-        $this->categoryList = new CategoryNodeTree(QuizCategory::OBJECT_TYPE);
+        $this->categoryList = new QuizCategoryNodeTree(QuizCategory::OBJECT_TYPE);
     }
 
     /**
@@ -184,7 +187,7 @@ class QuizListPage extends SortablePage
             'showQuizMakerCopyright' => $this->showCopyright,
             // 1.5 code
             'categoryList' => $this->categoryList->getIterator(),
-            'category' => $this->category
+            'activeCategory' => $this->category
         ]);
     }
 }

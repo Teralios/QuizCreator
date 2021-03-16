@@ -19,6 +19,7 @@ use wcf\system\form\builder\field\TitleFormField;
 use wcf\system\form\builder\field\media\SingleMediaSelectionFormField;
 use wcf\system\form\builder\field\BooleanFormField;
 use wcf\system\form\builder\field\wysiwyg\WysiwygFormField;
+use wcf\system\option\AbstractCategoryMultiSelectOptionType;
 use wcf\system\request\LinkHandler;
 use wcf\util\HeaderUtil;
 
@@ -60,9 +61,6 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->required();
         }
 
-        // categories
-        $categories = new CategoryNodeTree(QuizCategory::OBJECT_TYPE);
-
         $container = FormContainer::create('quizCreatorGlobal');
         $container->appendChildren([
             TitleFormField::create('title')
@@ -71,8 +69,8 @@ class QuizAddForm extends AbstractFormBuilderForm
                 ->required(),
             // code 1.5.0 start
             SingleSelectionFormField::create('categoryID')
-                ->label('wcf.acp.quizCreator.quiz.categoryID')
-                ->options($categories->getIterator()),
+                ->label('wcf.acp.quizCreator.quiz.category')
+                ->options(QuizCategory::getOptions()),
             // code 1.5.0 end
             $descriptionField,
             TagFormField::create('tags')

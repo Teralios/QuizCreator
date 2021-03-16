@@ -82,13 +82,18 @@ define([], function () {
         _stop: function () {
             clearInterval(this._intervalID);
 
-            let element = this._element;
-            let callBack = this._callBack;
+            // variables
+            let element = this._element, callBack = this._callBack, effect = this._effect;
 
-            this._element = this._callBack = this._intervalID = null;
+            // reset variables
+            this._element = this._callBack = this._intervalID = this._effect = null;
+
+            if (effect === 'in') {
+                element.style.visibility = 'hidden';
+            }
 
             if (callBack && typeof callBack === 'function') {
-                callBack(element);
+                return callBack(element);
             }
         }
     }

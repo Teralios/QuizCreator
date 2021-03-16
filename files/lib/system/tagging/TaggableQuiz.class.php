@@ -21,7 +21,7 @@ class TaggableQuiz extends AbstractCombinedTaggable
      * @inheritdoc
      * @return string
      */
-    public function getTemplateName()
+    public function getTemplateName(): string
     {
         return '__taggedQuizList';
     }

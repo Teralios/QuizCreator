@@ -17,18 +17,30 @@
   - [ ] Implement php and template events
     - [ ] Implement support for jCoins
   - [ ] Overwork quizzes overview (wcf\page\QuizListPage, quizList.tpl)
-  - [ ] Overwork language - acp
+  - [x] Overwork language - acp
     - [x] General overwork
-    - [ ] Impelement in templates and language files.
-  - [ ] Use »js«-file - csp.
-  - [ ] Use Dialog for Game.
-  - [ ] Implements simple category system for quizzes.
+    - [x] Implement in templates and language files.
+  - [ ] Overwork js
+    - [ ] Use »js«-file - csp.
+    - [ ] New JS for game.
+      - [ ] Quiz data classes.
+      - [ ] Classes for game field sections.
+      - [ ] New game class.
+      - [ ] New result class.
+      - [ ] Show Explanation in Question class.
+      - [ ] ~~Use Dialog for Game.~~
+  - [x] Implements simple category system for quizzes.
   - [ ] Implement simple REST-API
     - [ ] Wait for TitusK package for GraphQL.
   - [x] Remove quiz type.
   - [x] New template for sidebar boxes - remove code duplication.
+  - [x] Implement caption for quiz image.
   - [ ] ???
 
 # 2.0.0
 ### 2.0.0 Beta 1
-  - [ ] Check if variable answers are possible.
+  - [ ] Question types?
+    - [ ] Check practice.
+    - [ ] Flexible answer options.
+    - [ ] Estimation questions.
+  - [ ] ???  

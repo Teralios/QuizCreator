@@ -247,6 +247,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
         $data = Validator::getLastValidatedData();
 
         $languageID = $this->parameters['data']['languageID'] ?? 0;
+        $categoryID = $this->parameters['data']['categoryID'] ?? null;
         $overrideLanguage = $this->parameters['data']['overrideLanguage'] ?? false;
 
         if ($data === null || !($data instanceof ValidatedQuiz)) {

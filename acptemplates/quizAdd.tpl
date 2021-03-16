@@ -31,8 +31,8 @@
         <li>
             <button class="jsResetMatchesButton"
                     data-object-id="{#$formObject->quizID}"
-                    data-confirm-message-html="{lang __encode=true quiz=$formObject}wcf.acp.quizCreator.reset.matches.confirm{/lang}">
-                <span class="icon icon16 fa-user-times"></span> <span>{lang}wcf.acp.quizCreator.reset.matches{/lang}</span>
+                    data-confirm-message-html="{lang __encode=true quiz=$formObject}wcf.acp.quizCreator.quiz.reset.confirmMessage{/lang}">
+                <span class="icon icon16 fa-user-times"></span> <span>{lang}wcf.acp.quizCreator.quiz.reset{/lang}</span>
             </button>
         </li>
     {/if}
@@ -49,10 +49,10 @@
                 <ul>
                     <li><a href="{@$__wcf->getAnchor('quizData')}">{lang}wcf.acp.quizCreator.quiz.data{/lang}</a></li>
                     {if $questionList|isset && $questionList|count > 0}
-                        <li><a href="{@$__wcf->getAnchor('questions')}">{lang}wcf.acp.quizCreator.question.list{/lang}</a></li>
+                        <li><a href="{@$__wcf->getAnchor('questions')}">{lang}wcf.acp.quizCreator.questions{/lang}</a></li>
                     {/if}
                     {if $formObject->goals > 0}
-                        <li><a href="{@$__wcf->getAnchor('goals')}">{lang}wcf.acp.quizCreator.goal.list{/lang}</a></li>
+                        <li><a href="{@$__wcf->getAnchor('goals')}">{lang}wcf.acp.quizCreator.goals{/lang}</a></li>
                     {/if}
                     {event name='tabMenuTabs'}
                 </ul>
@@ -72,7 +72,7 @@
                                 <tr>
                                     <th class="columnID columnQuestionID" colspan="2">{lang}wcf.global.objectID{/lang}</th>
                                     <th class="columnTitle">{lang}wcf.acp.quizCreator.question{/lang}</th>
-                                    <th class="columnText">{lang}wcf.acp.quizCreator.question.answer{/lang}</th>
+                                    <th class="columnText">{lang}wcf.acp.quizCreator.question.option.correct{/lang}</th>
                                     <th class="columnDigits">{lang}wcf.acp.quizCreator.question.position{/lang}</th>
                                 </tr>
                             </thead>
@@ -87,7 +87,7 @@
                                             <span class="icon icon16 fa-times jsDeleteButton jsTooltip pointer"
                                                   title="{lang}wcf.global.button.delete{/lang}"
                                                   data-object-id="{@$question->questionID}"
-                                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.question.delete.confirmMessage{/lang}">
+                                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.delete.confirmMessage.question{/lang}">
                                             </span>
                                         </td>
                                         <td class="columnID columnQuestionID">{#$question->questionID}</td>
@@ -126,7 +126,7 @@
                                             <span class="icon ico16 fa-times jsDeleteButton jsTooltip pointer"
                                                   title="{lang}wcf.global.button.delete{/lang}"
                                                   data-object-id="{@$goal->goalID}"
-                                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.goal.delete.confirmMessage{/lang}">
+                                                  data-confirm-message-html="{lang __encode=true}wcf.acp.quizCreator.delete.confirmMessage.goal{/lang}">
                                             </span>
                                         </td>
                                         <td class="columnID columnGoalID">{#$goal->goalID}</td>

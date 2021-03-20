@@ -10,6 +10,6 @@ class QuizCategoryNode extends CategoryNode
 {
     public function getLink(): string
     {
-        return LinkHandler::getInstance()->getLink('QuizList', ['object' => $this]);
+        return /** @scrutinizer ignore-type */LinkHandler::getInstance()->getLink('QuizList', ['object' => $this]);
     }
 }

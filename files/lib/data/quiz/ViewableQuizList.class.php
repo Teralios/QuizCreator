@@ -41,9 +41,9 @@ class ViewableQuizList extends QuizList
     protected $userStatus = false;
 
     /**
-     * @var ViewableMediaList
+     * @var ?ViewableMediaList
      */
-    protected $mediaList;
+    protected $mediaList = null;
 
     /**
      * ViewableQuizList constructor.
@@ -157,7 +157,7 @@ class ViewableQuizList extends QuizList
             foreach ($gameList as $game) {
                 /** @var Game $game */
                 if (isset($this->objects[$game->quizID])) {
-                    /** @scrutinizer ignore-call */$this->objects[$game->gameID]->played(true);
+                    /** @scrutinizer ignore-call */$this->objects[$game->gameID]->setPlayerStatus(true, $game->scorePercent);
                 }
             }
         }

@@ -68,7 +68,7 @@ class QuizImportForm extends AbstractFormBuilderForm
                 ->addValidator(QuizJsonFormFieldValidator::getFormFieldValidator('quizFile', false)),
             SingleSelectionFormField::create('categoryID')
                 ->label('wcf.acp.quizCreator.quiz.category')
-                ->options($categories->getIterator()),
+                ->options(/** @scrutinizer ignore-type */$categories->getIterator()),
             ContentLanguageFormField::create('languageID')
                 ->required(),
             BooleanFormField::create('overrideLanguage')

@@ -6,6 +6,7 @@ namespace wcf\data\quiz;
 use wcf\data\DatabaseObjectDecorator;
 use wcf\data\media\ViewableMedia;
 use wcf\system\cache\runtime\ViewableMediaRuntimeCache;
+use wcf\system\database\table\column\FloatDatabaseTableColumn;
 use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
 use wcf\util\StringUtil;
@@ -49,6 +50,12 @@ class ViewableQuiz extends DatabaseObjectDecorator
      * @var bool
      */
     protected $played = false;
+
+    /**
+     * @since 1.5.0
+     * @var float
+     */
+    protected $relativeScore = 0.00;
 
     /**
      * @param int $length
@@ -122,16 +129,32 @@ class ViewableQuiz extends DatabaseObjectDecorator
     }
 
     /**
-     * @param bool|null $played
-     * @return bool
-     * @since 1.5.0
+     * @param bool $played
+     * @param float $relativeScore
      */
-    public function played(?bool $played = null): bool
+    public function setPlayerStatus(bool $played, float $relativeScore): self
     {
-        if ($played !== null) {
-            $this->played = $played;
-        }
+        $this->played = $played;
+        $this->relativeScore = $relativeScore;
 
+        return $this;
+    }
+
+    /**
+     * @since 1.5.0
+     * @return bool
+     */
+    public function hasPlayed(): bool
+    {
         return $this->played;
+    }
+
+    /**
+     * @since 1.5.0
+     * @return float
+     */
+    public function getUserRelativeScore(): float
+    {
+        return $this->relativeScore;
     }
 }

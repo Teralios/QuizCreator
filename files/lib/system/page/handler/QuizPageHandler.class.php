@@ -80,7 +80,7 @@ class QuizPageHandler extends AbstractLookupPageHandler implements IOnlineLocati
             ];
         }
 
-        return $results;
+        return /** @scrutinizer ignore-type */$results;
     }
 
     /**

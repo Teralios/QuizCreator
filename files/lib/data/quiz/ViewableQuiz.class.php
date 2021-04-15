@@ -6,7 +6,6 @@ namespace wcf\data\quiz;
 use wcf\data\DatabaseObjectDecorator;
 use wcf\data\media\ViewableMedia;
 use wcf\system\cache\runtime\ViewableMediaRuntimeCache;
-use wcf\system\database\table\column\FloatDatabaseTableColumn;
 use wcf\system\exception\SystemException;
 use wcf\system\language\LanguageFactory;
 use wcf\util\StringUtil;

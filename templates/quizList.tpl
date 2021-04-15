@@ -55,7 +55,32 @@
 {/hascontent}
 
 {if $objects|count}
-    <b>TODO: New Quiz style.</b>
+    <div class="quizList">
+        {foreach from=$objects item="quiz"}
+            {assign var="media" value=$quiz->getMedia()}
+            <div class="quiz">
+                <a href="{$quiz->getLink()}">
+                    <div class="quizInner">
+                        <div class="quizBase">
+                            <div class="quizBaseInner">
+                                <div class="quizBaseInnerIcon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quizImage">
+                            {@$media->getThumbnailTag('small')}
+                        </div>
+                        <div class="quizTitle">
+                            {$quiz->title}
+                        </div>
+                        <div class="quizInfo">
+                            Text
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {/foreach}
+    </div>
 {else}
     <p class="info" role="status">{lang}wcf.global.noItems{/lang}</p>
 {/if}

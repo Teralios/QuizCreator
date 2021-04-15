@@ -1,4 +1,5 @@
 <?php
+
 namespace wcf\data\quiz\question;
 
 // imports

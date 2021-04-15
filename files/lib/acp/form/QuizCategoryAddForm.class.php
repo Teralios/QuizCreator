@@ -5,7 +5,6 @@ namespace wcf\acp\form;
 // imports
 use wcf\data\quiz\category\QuizCategory;
 
-
 /**
  * Class QuizCategoryAdd
  *

@@ -1,13 +1,5 @@
 <div class="box128">
-    <a href="{$quiz->getLink()}" class="jsTooltip" title="{$quiz->getTitle()} ({if $quiz->isActive == 0} ({lang}wcf.acp.quizCreator.quiz.notActive{/lang}){/if})">
-        {if $quiz->getMedia() !== null}
-            {@$quiz->getMedia()->getElementTag(128)}
-        {else}
-            <span class="icon icon128 {if $quiz->isActive == 0}fa-pencil{else}fa-trophy{/if}"></span>
-        {/if}
-    </a>
     <div class="quizPreview">
-        <header><h3>{anchor object=$quiz->getDecoratedObject()}</h3></header>
         <div class="htmlContent">
             {@$quiz->getPreview()}
         </div>

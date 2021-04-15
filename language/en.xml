@@ -87,6 +87,7 @@
 		<item name="wcf.quizCreator.stats.correct"><![CDATA[Correct]]></item>
 		<item name="wcf.quizCreator.stats.players"><![CDATA[Players]]></item>
 		<item name="wcf.quizCreator.stats.incorrect"><![CDATA[Incorrect]]></item>
+		<item name="wcf.quizCreator.stats.user.played"><![CDATA[TODO]]></item>
 	</category>
 	<category name="wcf.quizCreator.game">
 		<item name="wcf.quizCreator.game.start"><![CDATA[Start game]]></item>

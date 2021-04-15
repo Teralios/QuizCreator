@@ -293,7 +293,6 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * @inheritdoc
      * @throws SystemException
      * @return string[]
-     * @deprecated since 1.5.0
      */
     public function getPopover(): array
     {

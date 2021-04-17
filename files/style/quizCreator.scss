@@ -50,6 +50,7 @@ $quizListColor: #fff !default;
           content: "\f059";
           font-size: calc(var(--quizWidth) / 2);
           color: $quizListColor;
+          opacity: 0.7;
         }
       }
     }
@@ -82,10 +83,13 @@ $quizListColor: #fff !default;
       padding: 5px;
       border-radius: 5px 5px 0;
       background-color: transparentize($quizListBackgroundColor3, 0.4);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-size: $wcfFontSizeHeadline;
+
+      h3 {
+        font-size: $wcfFontSizeHeadline;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
 
     .quizInfo {
@@ -103,7 +107,9 @@ $quizListColor: #fff !default;
 
     &:hover {
       .quizTitle {
-        white-space: normal;
+        h3 {
+          white-space: normal;
+        }
       }
 
       .quizInfo {
@@ -111,9 +117,21 @@ $quizListColor: #fff !default;
       }
     }
   }
+
+  .quizNotActive
+  {
+    .quizBase {
+      z-index: 30;
+    }
+
+    .quizBaseInnerIcon:after {
+      content: "\f040" !important;
+    }
+  }
 }
 /* block-end: QuizList */
 
+/* block-start: PlayerList */
 .playerList {
   .place1 {
     color: gold;
@@ -138,7 +156,9 @@ $quizListColor: #fff !default;
     }
   }
 }
+/* block-end: PlayerList */
 
+/* block-start: GameResult(Dialog) */
 .questionList {
   .questionListTitle {
     font-size: $wcfFontSizeSection;
@@ -236,3 +256,4 @@ $quizListColor: #fff !default;
     }
   }
 }
+/* block-end: GameResult(Dialog) */

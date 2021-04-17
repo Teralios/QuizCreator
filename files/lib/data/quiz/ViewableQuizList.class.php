@@ -145,7 +145,7 @@ class ViewableQuizList extends QuizList
         $gameList = new GameList();
         $gameList->getConditionBuilder()->add(
             $gameList->getDatabaseTableAlias() . '.quizID IN (?)',
-            $this->getObjectIDs()
+            [$this->getObjectIDs()]
         );
         $gameList->getConditionBuilder()->add(
             $gameList->getDatabaseTableAlias() . '.userID = ?',

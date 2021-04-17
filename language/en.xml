@@ -53,6 +53,7 @@
 		<item name="wcf.quizCreator.box.players.last"><![CDATA[Last players]]></item>
 		<item name="wcf.quizCreator.box.user.result"><![CDATA[Your game result]]></item>
 		<item name="wcf.quizCreator.box.quiz.playedMost"><![CDATA[Most played quizzes]]></item>
+		<item name="wcf.quizCreator.box.categories"><![CDATA[Categories]]></item>
 	</category>
 	<category name="wcf.quizCreator.player">
 		<item name="wcf.quizCreator.player.show.all"><![CDATA[Show all players]]></item>

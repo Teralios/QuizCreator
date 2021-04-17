@@ -60,16 +60,18 @@
             {assign var="media" value=$quiz->getMedia()}
             <div class="quiz" data-object-id="{#$quiz->quizID}">
                 <a href="{$quiz->getLink()}">
-                    <div class="quizInner">
+                    <div class="quizInner{if !$quiz->isActive} quizNotActive{/if}">
                         <div class="quizBase">
                             <div class="quizBaseInner">
                                 <div class="quizBaseInnerIcon">
                                 </div>
                             </div>
                         </div>
-                        <div class="quizImage">
-                            {@$media->getThumbnailTag('small')}
-                        </div>
+                        {if $media}
+                            <div class="quizImage">
+                                {@$media->getThumbnailTag('small')}
+                            </div>
+                        {/if}
                         <div class="quizTitle">
                             <h3>{$quiz->getTitle()}</h3>
                         </div>

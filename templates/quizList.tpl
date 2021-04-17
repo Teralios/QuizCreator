@@ -55,7 +55,7 @@
 {/hascontent}
 
 {if $objects|count}
-    <div class="quizList">
+    <div class="section quizList">
         {foreach from=$objects item="quiz"}
             {assign var="media" value=$quiz->getMedia()}
             <div class="quiz" data-object-id="{#$quiz->quizID}">

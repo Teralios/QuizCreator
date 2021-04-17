@@ -58,12 +58,12 @@
     <div class="section quizList">
         {foreach from=$objects item="quiz"}
             {assign var="media" value=$quiz->getMedia()}
-            <div class="quiz" data-object-id="{#$quiz->quizID}">
+            <div class="quiz{if $quiz->isActive} isActive{else} notActive{/if}" data-object-id="{#$quiz->quizID}">
                 <a href="{$quiz->getLink()}">
                     <div class="quizInner{if !$quiz->isActive} quizNotActive{/if}">
                         <div class="quizBase">
                             <div class="quizBaseInner">
-                                <div class="quizBaseInnerIcon">
+                                <div class="quizBaseIcon">
                                 </div>
                             </div>
                         </div>

@@ -24,10 +24,10 @@ class QuizCategoriesBoxController extends AbstractBoxController
 
         if (iterator_count($categoryList)) {
             if (
-                RequestHandler::getInstance()->getActiveRequest() !== null
-                && RequestHandler::getInstance()->getActiveRequest()->getRequestObject() instanceof QuizListPage
+                /** @scrutinizer ignore-call */RequestHandler::getInstance()->getActiveRequest() !== null
+                && /** @scrutinizer ignore-call */RequestHandler::getInstance()->getActiveRequest()->getRequestObject() instanceof QuizListPage
             ) {
-                $activeCategory = RequestHandler::getInstance()->getActiveRequest()->getRequestObject()->category ?? null;
+                $activeCategory = /** @scrutinizer ignore-call */RequestHandler::getInstance()->getActiveRequest()->getRequestObject()->category ?? null;
             }
         }
 

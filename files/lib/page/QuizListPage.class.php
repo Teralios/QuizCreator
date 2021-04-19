@@ -53,16 +53,6 @@ class QuizListPage extends SortablePage
     public $languageID = 0;
 
     /**
-     * @var ?GameList
-     */
-    public $lastPlayers = null;
-
-    /**
-     * @var ?GameList
-     */
-    public $bestPlayers = null;
-
-    /**
      * @var ?ViewableQuizList
      */
     public $mostPlayed = null;
@@ -142,35 +132,6 @@ class QuizListPage extends SortablePage
 
     /**
      * @inheritDoc
-     * @throws SystemException
-     */
-    public function readData()
-    {
-        parent::readData();
-
-        if (QUIZ_LIST_BEST_PLAYERS) {
-            $this->bestPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
-                'context' => 'best',
-                'withQuiz' => true,
-                'withUser' => true,
-            ]);
-        }
-
-        if (QUIZ_LIST_LAST_PLAYERS) {
-            $this->lastPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
-                'context' => 'last',
-                'withQuiz' => true,
-                'withUser' => true,
-            ]);
-        }
-
-        if (QUIZ_LIST_MOST_PLAYED) {
-            $this->mostPlayed = /** @scrutinizer ignore-call */QuizMostPlayedCacheBuilder::getInstance()->getData();
-        }
-    }
-
-    /**
-     * @inheritDoc
      */
     public function assignVariables()
     {
@@ -179,8 +140,6 @@ class QuizListPage extends SortablePage
         WCF::getTPL()->assign([
             'validSortFields' => $this->validSortFields,
             'languageID' => $this->languageID,
-            'bestPlayers' => $this->bestPlayers,
-            'lastPlayers' => $this->lastPlayers,
             'mostPlayed' => $this->mostPlayed,
             'showQuizMakerCopyright' => $this->showCopyright,
         ]);

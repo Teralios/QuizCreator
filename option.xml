@@ -22,9 +22,6 @@
 			<category name="quizCreator.pages.list">
 				<parent>quizCreator.pages</parent>
 			</category>
-			<category name="quizCreator.pages.quiz">
-				<parent>quizCreator.pages</parent>
-			</category>
 			<category name="quizCreator.pages.players">
 				<parent>quizCreator.pages</parent>
 			</category>
@@ -37,21 +34,6 @@
 				<defaultvalue>1</defaultvalue>
 			</option>
 			<!-- pages.list -->
-			<option name="quiz_list_last_players">
-				<categoryname>quizCreator.pages.list</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
-			<option name="quiz_list_best_players">
-				<categoryname>quizCreator.pages.list</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
-			<option name="quiz_list_most_played">
-				<categoryname>quizCreator.pages.list</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
 			<option name="quiz_list_quizzes_per_page">
 				<categoryname>quizCreator.quiz.list</categoryname>
 				<optiontype>integer</optiontype>
@@ -59,16 +41,6 @@
 				<minvalue>1</minvalue>
 			</option>
 			<!-- pages.quiz -->
-			<option name="quiz_last_players">
-				<categoryname>quizCreator.pages.quiz</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
-			<option name="quiz_best_players">
-				<categoryname>quizCreator.pages.quiz</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
 			<!-- pages.player -->
 			<option name="quiz_players_per_page">
 				<categoryname>quizCreator.pages.players</categoryname>
@@ -105,4 +77,12 @@
 			</option>
 		</options>
 	</import>
+	<delete>
+		<optioncategory name="quizCreator.pages.quiz" />
+		<option name="quiz_list_last_players" />
+		<option name="quiz_list_best_players" />
+		<option name="quiz_list_most_played" />
+		<option name="quiz_last_players" />
+		<option name="quiz_best_players" />
+	</delete>
 </data>

@@ -38,16 +38,6 @@ class QuizPage extends AbstractPage
     public $showCopyright = true;
 
     /**
-     * @var null|GameList
-     */
-    public $bestPlayers = null;
-
-    /**
-     * @var null|GameList
-     */
-    public $lastPlayers = null;
-
-    /**
      * @var Tag[]
      */
     public $tags = [];
@@ -81,22 +71,6 @@ class QuizPage extends AbstractPage
     {
         parent::readData();
 
-        if (QUIZ_BEST_PLAYERS) {
-            $this->bestPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
-                'context' => 'best',
-                'quizID' => $this->quiz->quizID,
-                'withUser' => true,
-            ]);
-        }
-
-        if (QUIZ_LAST_PLAYERS) {
-            $this->lastPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
-                'context' => 'last',
-                'quizID' => $this->quiz->quizID,
-                'withUser' => true,
-            ]);
-        }
-
         if (MODULE_TAGGING) {
             $this->tags = /** @scrutinizer ignore-call */TagEngine::getInstance()->getObjectTags(Quiz::OBJECT_TYPE, $this->quiz->getObjectID());
         }
@@ -116,8 +90,6 @@ class QuizPage extends AbstractPage
             'quiz' => new ViewableQuiz($this->quiz),
             'tags' => $this->tags,
             'game' => $this->game,
-            'bestPlayers' => $this->bestPlayers,
-            'lastPlayers' => $this->lastPlayers,
             'activeTabMenuItem' => $this->activeTabMenuItem,
             'showQuizMakerCopyright' => $this->showCopyright
         ]);

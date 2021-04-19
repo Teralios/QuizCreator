@@ -16,10 +16,12 @@
     - [ ] Implement user options
   - [ ] Implement php and template events
     - [ ] Implement support for jCoins
-  - [ ] Overwork quizzes overview (wcf\page\QuizListPage, quizList.tpl)
+  - [x] Overwork quizzes overview (wcf\page\QuizListPage, quizList.tpl)
+  - [ ] Overwork tagged quiz list.
   - [x] Overwork language - acp
     - [x] General overwork
     - [x] Implement in templates and language files.
+  - [ ] Overwork quiz view.
   - [ ] Overwork js
     - [ ] Use »js«-file - csp.
     - [ ] New JS for game.
@@ -33,8 +35,12 @@
   - [ ] Implement simple REST-API
     - [ ] Wait for TitusK package for GraphQL.
   - [x] Remove quiz type.
-  - [x] New template for sidebar boxes - remove code duplication.
-  - [x] Implement caption for quiz image.
+  - [ ] Use box system for boxes.
+    - [x] Last players box.
+    - [x] The best players box.
+    - [x] Category box.
+    - [ ] "Your result" box.
+    - [ ] Most played box.
   - [ ] ???
 
 # 2.0.0

@@ -16,9 +16,11 @@ This file lists all changes like new features, improved functions and fixed bugs
  - Fix ``is_null`` in templates. Some admins/hoster thinks it is a good idea to put is_null to disabled functions. Why ever? [fix]
 
 ## 1.5.0 Beta 1
- - [improvement] Combine sidebar boxes of quiz.tpl and quizList.tpl in own template to remove duplicate code.
+ - [new] Categories for quizzes.
+ - [improvement] Use box syytem for boxes
  - [improvement] Use gender fair language.
  - [improvement] Users can see which quiz they played.
+ - [improvement] New tiled overview for quizzes. 
  - [remove] Remove quiz type.
 
 # Legend

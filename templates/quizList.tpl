@@ -53,7 +53,8 @@
                                 <span class="small">{@$quiz->creationDate|time}</span>
                             </div>
                             <div>
-                                <span class="jsTooltip" title="{lang}wcf.quizCreator.stats.players{/lang}"><span class="icon icon16 fa-users"></span> {if $quiz->playery > 0}{$quiz->players}{else}0{/if}</span>
+                                <span class="jsTooltip" title="{lang}wcf.quizCreator.stats.questions{/lang}"><span class="icon icon16 fa-question-circle-o"></span> {#$quiz->questions}</span>
+                                <span class="jsTooltip separatorLeft" title="{lang}wcf.quizCreator.stats.players{/lang}"><span class="icon icon16 fa-users"></span> {if $quiz->playery > 0}{$quiz->players}{else}0{/if}</span>
                                 {if !$quiz->languageID|empty}
                                     <span class="separatorLeft"><img class="iconFlag jsTooltip" title="{lang}wcf.quizCreator.quiz.language{/lang}" src="{$quiz->getLanguageIcon()}"></span>
                                 {/if}

@@ -28,7 +28,7 @@ class QuizLastPlayersBoxController extends AbstractBoxController
             if ($quiz !== null) {
                 $lastPlayers = /** @scrutinizer ignore-call */QuizGameCacheBuilder::getInstance()->getData([
                     'context' => 'last',
-                    'quizID' => $this->quiz->quizID,
+                    'quizID' => $quiz->quizID,
                     'withUser' => true,
                 ]);
             }
@@ -40,6 +40,6 @@ class QuizLastPlayersBoxController extends AbstractBoxController
             ]);
         }
 
-        $content = WCF::getTPL()->fetch('__quizBoxBestPlayers', 'wcf', ['lastPlayers' => $lastPlayers]);
+        $this->content = WCF::getTPL()->fetch('__quizBoxLastPlayers', 'wcf', ['lastPlayers' => $lastPlayers]);
     }
 }

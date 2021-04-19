@@ -60,5 +60,15 @@
             <definitionname>com.woltlab.wcf.boxController</definitionname>
             <classname>wcf\system\box\QuizCategoriesBoxController</classname>
         </type>
+        <type>
+            <name>de.teralios.quizCreator.lastPlayers</name>
+            <definitionname>com.woltlab.wcf.boxController</definitionname>
+            <classname>wcf\system\box\QuizLastPlayersBoxController</classname>
+        </type>
+        <type>
+            <name>de.teralios.quizCreator.bestPlayers</name>
+            <definitionname>com.woltlab.wcf.boxController</definitionname>
+            <classname>wcf\system\box\QuizBestPlayersBoxController</classname>
+        </type>
     </import>
 </data>

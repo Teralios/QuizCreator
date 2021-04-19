@@ -14,8 +14,6 @@
 		<item name="wcf.user.condition.quizMaxScore"><![CDATA[Erreichte relative Punktzahl (max. 10.000)]]></item>
 	</category>
 	<category name="wcf.quizCreator.box">
-		<item name="wcf.quizCreator.box.players.best"><![CDATA[Beste Spieler*innen]]></item>
-		<item name="wcf.quizCreator.box.players.last"><![CDATA[Letzte Spieler*innen]]></item>
 		<item name="wcf.quizCreator.box.user.result"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Dein{else}Ihr{/if} Ergebnis]]></item>
 		<item name="wcf.quizCreator.box.quiz.playedMost"><![CDATA[Meist gespielte Quizze]]></item>
 		<item name="wcf.quizCreator.box.categories"><![CDATA[Kategorien]]></item>
@@ -36,7 +34,7 @@
 		<item name="wcf.quizCreator.quiz.loading.error"><![CDATA[Fehler beim Laden]]></item>
 	</category>
 	<category name="wcf.quizCreator.stats">
-		<item name="wcf.quizCreator.stats.questions"><![CDATA[Frage]]></item>
+		<item name="wcf.quizCreator.stats.questions"><![CDATA[Fragen]]></item>
 		<item name="wcf.quizCreator.stats.playedQuizzes"><![CDATA[Spiele]]></item>
 		<item name="wcf.quizCreator.stats.questions.detail"><![CDATA[{plural value=$quiz->questions 0='keine Frage' 1='eine Frage' 2='zwei Fragen' 3='drei Fragen' other='# Fragen'}]]></item>
 		<item name="wcf.quizCreator.stats.played.detail"><![CDATA[{plural value=$quiz->played 0='keinmal' 1='einmal' 2='zweimal' other='# mal'} gespielt]]></item>

@@ -52,5 +52,13 @@
             <name>com.woltlab.wcf.article.category</name>
             <definitionname>com.woltlab.wcf.acl</definitionname>
         </type>-->
+
+        <!-- boxes -->
+        <!-- box controllers -->
+        <type>
+            <name>de.teralios.quizCreator.categories</name>
+            <definitionname>com.woltlab.wcf.boxController</definitionname>
+            <classname>wcf\system\box\QuizCategoriesBoxController</classname>
+        </type>
     </import>
 </data>

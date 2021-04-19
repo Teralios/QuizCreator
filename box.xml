@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/box.xsd">
+	<import>
+		<box identifier="de.teralios.quizCreator.box.categories">
+			<name language="de">Kategorien</name>
+			<name language="en">Categories</name>
+			<boxType>system</boxType>
+			<position>contentBottom</position>
+			<objectType>de.teralios.quizCreator.categories</objectType>
+			<position>sidebarRight</position>
+			<showHeader>1</showHeader>
+			<visibleEverywhere>0</visibleEverywhere>
+			<visibilityExceptions>
+				<page>de.teralios.quizCreator.QuizList</page>
+			</visibilityExceptions>
+			<content language="de">
+				<title>Kategorien</title>
+			</content>
+			<content language="en">
+				<title>Categories</title>
+			</content>
+		</box>
+	</import>
+</data>

@@ -106,8 +106,6 @@ class QuizListPage extends SortablePage
 
             $this->category = new QuizCategory($this->category);
         }
-
-        $this->categoryList = new QuizCategoryNodeTree(QuizCategory::OBJECT_TYPE);
     }
 
     /**
@@ -185,9 +183,6 @@ class QuizListPage extends SortablePage
             'lastPlayers' => $this->lastPlayers,
             'mostPlayed' => $this->mostPlayed,
             'showQuizMakerCopyright' => $this->showCopyright,
-            // 1.5 code
-            'categoryList' => $this->categoryList->getIterator(),
-            'activeCategory' => $this->category
         ]);
     }
 }

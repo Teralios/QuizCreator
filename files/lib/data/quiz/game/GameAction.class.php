@@ -61,6 +61,6 @@ class GameAction extends AbstractDatabaseObjectAction
             'questions' => $questions,
         ]);
 
-        return WCF::getTPL()->fetch('__quizUserResult');
+        return WCF::getTPL()->fetch('__quizDialogUser');
     }
 }

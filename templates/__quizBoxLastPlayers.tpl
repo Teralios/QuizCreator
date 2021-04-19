@@ -1,4 +1,3 @@
-
 {if $lastPlayers !== null && $lastPlayers|count > 0}
     <ul class="sidebarItemList">
         {foreach from=$lastPlayers item=player}

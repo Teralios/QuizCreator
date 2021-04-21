@@ -21,11 +21,12 @@ class QuizUserResultBoxController extends AbstractBoxController
             && /** @scrutinizer ignore-call */ RequestHandler::getInstance()->getActiveRequest()->getRequestObject() instanceof QuizPage
             && WCF::getUser()->userID
         ) {
-            $quiz = /** @scrutinizer ignore-call */
-                RequestHandler::getInstance()->getActiveRequest()->getRequestObject()->quiz ?? null;
-            $game = Game::getMatch($quiz, WCF::getUser()->userID);
+            $quiz = /** @scrutinizer ignore-call */RequestHandler::getInstance()->getActiveRequest()->getRequestObject()->quiz ?? null;
 
-            $this->content = WCF::getTPL()->fetch('__quizBoxUserResult', 'wcf', ['game' => $game]);
+            if ($quiz !== null) {
+                $game = Game::getMatch($quiz, WCF::getUser()->userID);
+                $this->content = WCF::getTPL()->fetch('__quizBoxUserResult', 'wcf', ['game' => $game]);
+            }
         }
     }
 }

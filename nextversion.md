@@ -4,7 +4,7 @@
   - [x] Fix issue with number formatting in language variable
   - [x] Overwork player result dialog
 
-# 1.5.0
+# 1.5.x
 ### 1.5.0 Beta 1
   - [ ] Implement more options for trophies
     - [ ] ``scoreMin50p``
@@ -17,7 +17,7 @@
   - [ ] Implement php and template events
     - [ ] Implement support for jCoins
   - [x] Overwork quizzes overview (wcf\page\QuizListPage, quizList.tpl)
-  - [ ] Overwork tagged quiz list.
+  - [x] Overwork tagged quiz list.
   - [x] Overwork language - acp
     - [x] General overwork
     - [x] Implement in templates and language files.
@@ -35,15 +35,15 @@
   - [ ] Implement simple REST-API
     - [ ] Wait for TitusK package for GraphQL.
   - [x] Remove quiz type.
-  - [ ] Use box system for boxes.
+  - [x] Use box system for boxes.
     - [x] Last players box.
     - [x] The best players box.
     - [x] Category box.
-    - [ ] "Your result" box.
-    - [ ] Most played box.
+    - [x] "Your result" box.
+    - [x] Most played box.
   - [ ] ???
 
-# 2.0.0
+# 2.0.x
 ### 2.0.0 Beta 1
   - [ ] Question types?
     - [ ] Check practice.

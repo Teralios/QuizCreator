@@ -13,11 +13,6 @@
 		<item name="wcf.user.condition.quizPlayedUnique"><![CDATA[Gewertete Quizze]]></item>
 		<item name="wcf.user.condition.quizMaxScore"><![CDATA[Erreichte relative Punktzahl (max. 10.000)]]></item>
 	</category>
-	<category name="wcf.quizCreator.box">
-		<item name="wcf.quizCreator.box.user.result"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Dein{else}Ihr{/if} Ergebnis]]></item>
-		<item name="wcf.quizCreator.box.quiz.playedMost"><![CDATA[Meist gespielte Quizze]]></item>
-		<item name="wcf.quizCreator.box.categories"><![CDATA[Kategorien]]></item>
-	</category>
 	<category name="wcf.quizCreator.player">
 		<item name="wcf.quizCreator.player.show.all"><![CDATA[Zeige alle Spieler*innen]]></item>
 		<item name="wcf.quizCreator.player.played.quiz"><![CDATA[Spielte „{anchor object=$quiz}“: {@$player->playedTime|time}]]></item>

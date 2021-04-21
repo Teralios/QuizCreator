@@ -19,6 +19,4 @@
     {if $activeQuiz !== null}
         <p class="small text-center"><a href="{link controller='QuizPlayerList' object=$quiz}{/link}">{lang}wcf.quizCreator.player.show.all{/lang}</a></p>
     {/if}
-{else}
-    <p>{lang}wcf.global.noItems{/lang}</p>
 {/if}

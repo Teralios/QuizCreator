@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/box.xsd">
 	<import>
+
+		<category name="wcf.quizCreator.box">
+			<item name="wcf.quizCreator.box.user.result"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Dein{else}Ihr{/if} Ergebnis]]></item>
+		</category>
+		<!-- QuizList boxes -->
 		<box identifier="de.teralios.quizCreator.box.categories">
 			<name language="de">Quizkategorien</name>
 			<name language="en">Quiz categories</name>
 			<boxType>system</boxType>
-			<objectType>de.teralios.quizCreator.categories</objectType>
+			<objectType>de.teralios.quizCreator.category</objectType>
 			<position>sidebarRight</position>
 			<showHeader>1</showHeader>
 			<visibleEverywhere>0</visibleEverywhere>
@@ -19,6 +24,48 @@
 				<title>Categories</title>
 			</content>
 		</box>
+
+		<!-- QuizPage Boxes -->
+		<box identifier="de.teralios.quizCreator.box.userResult">
+			<name language="de">Spielergebnis</name>
+			<name language="en">Game result</name>
+			<boxType>system</boxType>
+			<objectType>de.teralios.quizCreator.userResult</objectType>
+			<position>sidebarRight</position>
+			<showHeader>1</showHeader>
+			<visibleEverywhere>0</visibleEverywhere>
+			<visibilityExceptions>
+				<page>de.teralios.quizCreator.Quiz</page>
+			</visibilityExceptions>
+			<content language="de">
+				<title>Spielergebnis</title>
+			</content>
+			<content language="en">
+				<title>Game result</title>
+			</content>
+		</box>
+
+		<!-- Quiz Boxes -->
+		<box identifier="de.teralios.quizCreator.box.categories">
+			<name language="de">Quizkategorien</name>
+			<name language="en">Quiz categories</name>
+			<boxType>system</boxType>
+			<objectType>de.teralios.quizCreator.category</objectType>
+			<position>sidebarRight</position>
+			<showHeader>1</showHeader>
+			<visibleEverywhere>0</visibleEverywhere>
+			<visibilityExceptions>
+				<page>de.teralios.quizCreator.QuizList</page>
+			</visibilityExceptions>
+			<content language="de">
+				<title>Kategorien</title>
+			</content>
+			<content language="en">
+				<title>Categories</title>
+			</content>
+		</box>
+
+		<!-- QuizList & Quiz -->
 		<box identifier="de.teralios.quizCreator.box.bestPlayers">
 			<name language="de">Beste Spieler*innen</name>
 			<name language="en">Best players</name>

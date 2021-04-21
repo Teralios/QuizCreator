@@ -40,6 +40,8 @@ class QuizBestPlayersBoxController extends AbstractBoxController
             ]);
         }
 
-        $this->content = WCF::getTPL()->fetch('__quizBoxBestPlayers', 'wcf', ['bestPlayers' => $bestPlayers]);
+        if (count($bestPlayers)) {
+            $this->content = WCF::getTPL()->fetch('__quizBoxBestPlayers', 'wcf', ['bestPlayers' => $bestPlayers]);
+        }
     }
 }

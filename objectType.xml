@@ -48,15 +48,10 @@
             <definitionname>com.woltlab.wcf.category</definitionname>
             <classname>wcf\system\category\QuizCategoryType</classname>
         </type>
-       <!--<type>
-            <name>com.woltlab.wcf.article.category</name>
-            <definitionname>com.woltlab.wcf.acl</definitionname>
-        </type>-->
 
-        <!-- boxes -->
         <!-- box controllers -->
         <type>
-            <name>de.teralios.quizCreator.categories</name>
+            <name>de.teralios.quizCreator.category</name>
             <definitionname>com.woltlab.wcf.boxController</definitionname>
             <classname>wcf\system\box\QuizCategoriesBoxController</classname>
         </type>
@@ -69,6 +64,17 @@
             <name>de.teralios.quizCreator.bestPlayers</name>
             <definitionname>com.woltlab.wcf.boxController</definitionname>
             <classname>wcf\system\box\QuizBestPlayersBoxController</classname>
+        </type>
+        <type>
+            <name>de.teralios.quizCreator.mostPlayed</name>
+            <definitionname>com.woltlab.wcf.boxController</definitionname>
+            <classname>wcf\system\box\QuizMostPlayedBoxController</classname>
+        </type>
+
+        <type>
+            <name>de.teralios.quizCreator.userResult</name>
+            <definitionname>com.woltlab.wcf.boxController</definitionname>
+            <classname>wcf\system\box\QuizUserResultBoxController</classname>
         </type>
     </import>
 </data>

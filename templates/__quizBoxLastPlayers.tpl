@@ -16,6 +16,4 @@
             </li>
         {/foreach}
     </ul>
-{else}
-    <p>{lang}wcf.global.noItems{/lang}</p>
 {/if}

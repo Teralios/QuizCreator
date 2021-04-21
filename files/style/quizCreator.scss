@@ -10,7 +10,7 @@ $quizListColor: #fff !default;
 .quizList {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
 
   .quiz {
     flex-direction: column;

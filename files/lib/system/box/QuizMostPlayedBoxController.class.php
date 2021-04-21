@@ -8,10 +8,17 @@ use wcf\system\WCF;
 
 class QuizMostPlayedBoxController extends AbstractBoxController
 {
+    /**
+     * @inheritDoc
+     */
+    protected static $supportedPositions = ['footerBoxes', 'sidebarLeft', 'sidebarRight', 'contentTop', 'contentBottom', 'footer'];
+
     protected function loadContent()
     {
         $mostPlayed = /** @scrutinizer ignore-call */QuizMostPlayedCacheBuilder::getInstance()->getData();
 
-        $this->content = WCF::getTPL()->fetch('__quizBoxMostPlayed.tpl', 'WCF', ['mostPlayed' => $mostPlayed]);
+        if (count($mostPlayed)) {
+            $this->content = WCF::getTPL()->fetch('__quizBoxMostPlayed', 'wcf', ['mostPlayed' => $mostPlayed]);
+        }
     }
 }

@@ -8,9 +8,9 @@
                 <div class="sidebarItemTitle">
                     <h3>{user object=$user}</a></h3>
                     {if $bestBoxQuiz !== null}
-                        <small>{lang}wcf.quizCreator.stats.score.relative.quiz{/lang}</small>
+                        <small>{lang}wcf.quizCreator.stats.points.relative.quiz{/lang}</small>
                     {else}
-                        <small>{#$player->score} <b>{lang}wcf.quizCreator.stats.score{/lang}</b></small>
+                        <small>{#$player->score} <b>{lang}wcf.quizCreator.stats.points.average{/lang}</b></small>
                     {/if}
                 </div>
             </li>

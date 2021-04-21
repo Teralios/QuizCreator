@@ -30,15 +30,15 @@
 	</category>
 	<category name="wcf.quizCreator.stats">
 		<item name="wcf.quizCreator.stats.questions"><![CDATA[Fragen]]></item>
-		<item name="wcf.quizCreator.stats.playedQuizzes"><![CDATA[Spiele]]></item>
 		<item name="wcf.quizCreator.stats.questions.detail"><![CDATA[{plural value=$quiz->questions 0='keine Frage' 1='eine Frage' 2='zwei Fragen' 3='drei Fragen' other='# Fragen'}]]></item>
+		<item name="wcf.quizCreator.stats.played"><![CDATA[Spiele]]></item>
 		<item name="wcf.quizCreator.stats.played.detail"><![CDATA[{plural value=$quiz->played 0='keinmal' 1='einmal' 2='zweimal' other='# mal'} gespielt]]></item>
 		<item name="wcf.quizCreator.stats.time"><![CDATA[Zeit]]></item>
 		<item name="wcf.quizCreator.stats.points"><![CDATA[Punkte]]></item>
+		<item name="wcf.quizCreator.stats.points.relative"><![CDATA[{#($player->scorePercent * 100)} % der Punkte]]></item>
+		<item name="wcf.quizCreator.stats.points.relative.quiz"><![CDATA[{#($player->scorePercent * 100)} % der Punkte im Quiz „{anchor object=$quiz}“]]></item>
+		<item name="wcf.quizCreator.stats.points.average"><![CDATA[⌀ Punkte]]></item>
 		<item name="wcf.quizCreator.stats.score"><![CDATA[Punkte]]></item>
-		<item name="wcf.quizCreator.stats.score.relative"><![CDATA[{#($player->scorePercent * 100)} % der Punkte]]></item>
-		<item name="wcf.quizCreator.stats.score.relative.quiz"><![CDATA[{#($player->scorePercent * 100)} % der Punkte im Quiz „{anchor object=$quiz}“]]></item>
-		<item name="wcf.quizCreator.stats.score.average"><![CDATA[⌀ Punkte]]></item>
 		<item name="wcf.quizCreator.stats.time.minutes"><![CDATA[Minuten]]></item>
 		<item name="wcf.quizCreator.stats.time.seconds"><![CDATA[Sekunden]]></item>
 		<item name="wcf.quizCreator.stats.correct"><![CDATA[Richtig]]></item>
@@ -54,9 +54,6 @@
 		<item name="wcf.quizCreator.game.goal.none"><![CDATA[Knapp verpasst!]]></item>
 		<item name="wcf.quizCreator.game.goal.none.detail"><![CDATA[Leider hat es für ein „Goal“ nicht ganz gereicht.]]></item>
 		<item name="wcf.quizCreator.game.data.missing"><![CDATA[Das Quiz ist leider noch nicht ganz fertig.]]></item>
-	</category>
-	<category name="wcf.quizCreator.sort">
-		<item name="wcf.quizCreator.sort.creationDate"><![CDATA[Datum]]></item>
 	</category>
 	<category name="wcf.quizCreator.players">
 		<item name="wcf.quizCreator.players.page.title"><![CDATA[Spieler*innen]]></item>
@@ -132,11 +129,6 @@
 	<category name="wcf.acp.option">
 		<item name="wcf.acp.option.module_quiz_creator"><![CDATA[QuizCreator]]></item>
 		<item name="wcf.acp.option.category.quizCreator"><![CDATA[QuizCreator]]></item>
-		<item name="wcf.acp.option.quiz_last_players"><![CDATA[Zeige letzte Spieler*innen an]]></item>
-		<item name="wcf.acp.option.quiz_best_players"><![CDATA[Zeige beste Spieler*innen an]]></item>
-		<item name="wcf.acp.option.quiz_list_last_players"><![CDATA[Zeige letzte Spieler*innen an]]></item>
-		<item name="wcf.acp.option.quiz_list_best_players"><![CDATA[Zeige beste Spieler*innen]]></item>
-		<item name="wcf.acp.option.quiz_list_most_played"><![CDATA[Zeige meist gespielte Quizze]]></item>
 		<item name="wcf.acp.option.category.quizCreator.general"><![CDATA[Allgemein]]></item>
 		<item name="wcf.acp.option.category.quizCreator.pages"><![CDATA[Seiten]]></item>
 		<item name="wcf.acp.option.category.quizCreator.general.quiz"><![CDATA[Quiz]]></item>
@@ -145,9 +137,8 @@
 		<item name="wcf.acp.option.category.quizCreator.general.box"><![CDATA[Boxen]]></item>
 		<item name="wcf.acp.option.quiz_players_per_box"><![CDATA[Spieler*innen pro Box]]></item>
 		<item name="wcf.acp.option.quiz_per_box"><![CDATA[Quizze pro Box]]></item>
-		<item name="wcf.acp.option.category.quizCreator.pages.list"><![CDATA[Seite „Quizze“]]></item>
-		<item name="wcf.acp.option.category.quizCreator.pages.quiz"><![CDATA[Seite „Quiz“]]></item>
-		<item name="wcf.acp.option.category.quizCreator.pages.players"><![CDATA[Seite „Spieler*innen“]]></item>
 		<item name="wcf.acp.option.quiz_players_per_page"><![CDATA[Spieler*innen pro Seite]]></item>
+		<item name="wcf.acp.option.category.quizCreator.quiz.list"><![CDATA[Quizze (Seite)]]></item>
+		<item name="wcf.acp.option.category.quizCreator.quiz.page"><![CDATA[Quiz (Seite)]]></item>
 	</category>
 </language>

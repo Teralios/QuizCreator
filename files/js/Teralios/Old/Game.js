@@ -187,7 +187,7 @@ define(['StringUtil', 'Language', 'Teralios/QuizCreator/Result'], function (Stri
             this._headerContainer.appendChild(pointValueDiv);
 
             // game information footer
-            this._footerContainer.innerHTML = '<p><span class="score"></span> ' + Language.get('wcf.quizCreator.stats.score') + '</p>';
+            this._footerContainer.innerHTML = '<p><span class="score"></span> ' + Language.get('wcf.quizCreator.stats.points.average') + '</p>';
             this._scoreContainer = elBySel('.score', this._footerContainer);
 
             // build game content

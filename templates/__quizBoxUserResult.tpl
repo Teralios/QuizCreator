@@ -3,7 +3,7 @@
          <li>
              <h3>{lang}wcf.quizCreator.user.play.official{/lang}</h3>
              <dl class="plain dataList small">
-                 <dt><b>{lang}wcf.quizCreator.stats.score{/lang}</b></dt>
+                 <dt><b>{lang}wcf.quizCreator.stats.points.average{/lang}</b></dt>
                  <dd>{$game->score}</dd>
              </dl>
              <dl class="plain dataList small">
@@ -15,7 +15,7 @@
              <li>
                  <h3>{lang}wcf.quizCreator.user.play.last{/lang}</h3>
                  <dl class="plain dataList small">
-                     <dt><b>{lang}wcf.quizCreator.stats.score{/lang}</b></dt>
+                     <dt><b>{lang}wcf.quizCreator.stats.points.average{/lang}</b></dt>
                      <dd>{$game->lastScore}</dd>
                  </dl>
                  <dl class="plain dataList small">

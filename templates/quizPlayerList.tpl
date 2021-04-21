@@ -44,7 +44,7 @@
                         </li>
                         <li class="columnStats">
                             <dl class="plain statsDataList">
-                                <dt>{lang}wcf.quizCreator.stats.score{/lang}</dt>
+                                <dt>{lang}wcf.quizCreator.stats.points.average{/lang}</dt>
                                 <dd>{@$game->score|shortUnit}</dd>
                             </dl>
                             <dl class="plain statsDataList">

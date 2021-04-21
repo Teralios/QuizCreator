@@ -125,11 +125,11 @@ define(['Ajax', 'Language', 'StringUtil'], function (Ajax, Language, StringUtil)
          * @private
          */
         _renderScore: function (data) {
-            var scoreHtml = '<p class="player">' + this._score + ' ' + Language.get('wcf.quizCreator.stats.score') + '</p>';
+            var scoreHtml = '<p class="player">' + this._score + ' ' + Language.get('wcf.quizCreator.stats.points.average') + '</p>';
 
             if (data.players > 0) {
                 scoreHtml += '<div class="others">';
-                scoreHtml += '<p>⌀ ' + StringUtil.escapeHTML(data.averageScore) + ' ' + Language.get('wcf.quizCreator.stats.score') + '</p>';
+                scoreHtml += '<p>⌀ ' + StringUtil.escapeHTML(data.averageScore) + ' ' + Language.get('wcf.quizCreator.stats.points.average') + '</p>';
             }
 
             if (data.betterAs !== undefined && data.betterAs > 0) {

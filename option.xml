@@ -65,14 +65,12 @@
 				<categoryname>quizCreator.general.box</categoryname>
 				<optiontype>integer</optiontype>
 				<defaultvalue>10</defaultvalue>
-				<options>quiz_list_best_players,quiz_list_last_players,quiz_best_players,quiz_last_players</options>
 				<minvalue>1</minvalue>
 			</option>
 			<option name="quiz_per_box">
 				<categoryname>quizCreator.general.box</categoryname>
 				<optiontype>integer</optiontype>
 				<defaultvalue>10</defaultvalue>
-				<options>quiz_list_most_played</options>
 				<minvalue>1</minvalue>
 			</option>
 		</options>

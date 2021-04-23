@@ -1,11 +1,14 @@
 /* block-start: QuizList */
 // variables
-$imageWidth: $wcf_option_media_small_thumbnail_width;
-$imageHeight: $wcf_option_media_small_thumbnail_height;
-$quizListBackgroundColor1: #3A6D9C !default;
-$quizListBackgroundColor2: #24425F !default;
+$imageWidthList: $wcf_option_media_small_thumbnail_width;
+$imageHeightList: $wcf_option_media_small_thumbnail_height;
+$imageWidthQuiz: 802; // Large is to big, medium to small. And also add 2 px for borders
+$imageHeightQuiz: 600;
+$quizBackgroundColor1: #3A6D9C !default;
+$quizBackgroundColor2: #24425F !default;
 $quizListBackgroundColor3: #333 !default;
-$quizListColor: #fff !default;
+$quizIconColor: #fff !default;
+$quizOverlayColor: #fff !default;
 
 .quizList {
   display: flex;
@@ -49,12 +52,12 @@ $quizListColor: #fff !default;
 
   .quizInner {
     position: relative;
-    width: #{$imageWidth}px;
-    padding-top: #{$imageHeight}px;
-    background-image: linear-gradient(to bottom right, $quizListBackgroundColor1, $quizListBackgroundColor2);
+    width: #{$imageWidthList}px;
+    padding-top: #{$imageHeightList}px;
+    background-image: linear-gradient(to bottom right, $quizBackgroundColor1, $quizBackgroundColor2);
     border-radius: 5px;
     box-shadow: 2px 2px 2px transparentize(#000, 0.4);
-    transition: box-shadow 1s;
+    transition: box-shadow 500ms;
   }
 
   .quizBase, .quizTitle, .quizImage, .quizInfo {
@@ -69,10 +72,10 @@ $quizListColor: #fff !default;
   }
 
   .quizBaseIcon::after {
-    --quizWidth: #{$imageWidth}px;
+    --quizWidth: #{$imageWidthList}px;
     font-family: FontAwesome;
     font-size: calc(var(--quizWidth) / 2);
-    color: $quizListColor;
+    color: $quizIconColor;
   }
 
   .quizBase {
@@ -95,14 +98,13 @@ $quizListColor: #fff !default;
     }
   }
 
-  .icon, .quizTitle, .quizInfo {
-    color: $quizListColor;
+ .quizTitle, .quizInfo, .icon {
+    color: $quizOverlayColor;
   }
 
   .quizTitle, .quizInfo {
     z-index: 30;
     width: 100%;
-    overflow: hidden;
     padding: 5px;
     background-color: transparentize($quizListBackgroundColor3, 0.4);
   }
@@ -129,7 +131,7 @@ $quizListColor: #fff !default;
     justify-content: space-between;
     border-radius: 0 0 5px 5px;
     opacity: 0;
-    transition: opacity 1s;
+    transition: opacity 500ms;
 
     div:last-child {
       text-align:right;
@@ -139,6 +141,150 @@ $quizListColor: #fff !default;
 /* block-end: QuizList */
 
 /* block-start: Quiz */
+.quizContainer {
+  display: flex;
+  justify-content: space-around;
+
+  .quiz {
+    width: #{$imageWidthQuiz}px;
+    border-radius: 5px;
+    border: 1px solid $wcfContentContainerBorder;
+    background-color: $wcfContentContainerBackground;
+
+    &[class~=notActive] {
+      .headIcon::after {
+        content: "\f040";
+      }
+    }
+
+    &[class~=isActive] {
+      .headIcon::after {
+        content: "\f059";
+      }
+    }
+
+    .icon {
+      color: $quizOverlayColor;
+    }
+
+    .head {
+      border-radius: 5px 5px 0 0;
+      border: 0;
+      background-image: linear-gradient(to bottom right, $quizBackgroundColor1, $quizBackgroundColor2);
+
+      .headInner {
+        padding-top: #{$imageHeightQuiz}px;
+        position: relative;
+      }
+
+      .headImageContainer, .headIconContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      .headIconContainer {
+        z-index: 10;
+        flex-direction: column;
+
+        .headIconContainerInner {
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .headIcon::after {
+          font-family: FontAwesome;
+          font-size: 128px;
+          color: $quizIconColor;
+          opacity: 0.5;
+          transition: opacity 500ms;
+        }
+      }
+
+      .headImageContainer {
+        z-index: 20;
+        img {
+          border-radius: 5px 5px 0 0;
+          margin-top: 0 !important
+        }
+      }
+
+      .headImageCaptionContainer {
+        z-index: 50;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        right:0;
+        display: flex;
+        justify-content: center;
+
+        .imageCaption {
+          max-width: 75%;
+          padding: 10px;
+          border-radius: 5px 5px 0 0;
+          background-color: transparentize($quizListBackgroundColor3, 0.4);
+          font-size: $wcfFontSizeSmall;
+          color: $quizOverlayColor;
+          opacity: 0.3;
+          transition: opacity 500ms;
+        }
+      }
+
+      .headTitleContainer {
+        z-index: 50;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+        background-color: transparentize($quizListBackgroundColor3, 0.4);
+        color: $quizOverlayColor;
+
+        h1 {
+          font-size: $wcfFontSizeTitle;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .titleStats {
+          font-size: $wcfFontSizeSmall;
+          opacity: 0.3;
+          transition: opacity 500ms;
+
+          li {
+            margin-right: 10px;
+          }
+        }
+      }
+
+      &:hover {
+        .headIcon::after {
+          opacity: 1;
+        }
+
+        .imageCaption {
+          opacity: 1;
+        }
+
+        .titleStats {
+          opacity: 1;
+        }
+      }
+    }
+
+    .description {
+      padding: 10px;
+      border-top: 1px solid $wcfContentContainerBorder;
+      @extend .htmlContent;
+    }
+  }
+}
 /* block-end: Quiz */
 
 /* block-start: PlayerList */

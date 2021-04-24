@@ -44,6 +44,15 @@
             {@$quiz->getDescription()}
         </div>
         <div class="game"></div>
+        {if !$tags|empty}
+            <div class="tags">
+                <ul class="tagList">
+                    {foreach from=$tags item=tag}
+                        <li><a href="{link controller='Tagged' object=$tag}de.teralios.quizCreator.quiz{/link}" class="tag">{$tag}</a></li>
+                    {/foreach}
+                </ul>
+            </div>
+        {/if}
     </div>
 </div>
 

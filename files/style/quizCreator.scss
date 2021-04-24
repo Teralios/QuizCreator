@@ -279,9 +279,13 @@ $quizOverlayColor: #fff !default;
     }
 
     .description {
-      padding: 10px;
+      padding: 20px;
       border-top: 1px solid $wcfContentContainerBorder;
       @extend .htmlContent;
+    }
+
+    .tags {
+      padding: 20px;
     }
   }
 }

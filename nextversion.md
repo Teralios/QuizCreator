@@ -21,7 +21,7 @@
   - [x] Overwork language - acp
     - [x] General overwork
     - [x] Implement in templates and language files.
-  - [ ] Overwork quiz view.
+  - [x] Overwork quiz view.
   - [ ] Overwork js
     - [ ] Use »js«-file - csp.
     - [ ] New JS for game.

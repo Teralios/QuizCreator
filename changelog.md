@@ -17,10 +17,11 @@ This file lists all changes like new features, improved functions and fixed bugs
 
 ## 1.5.0 Beta 1
  - [new] Categories for quizzes.
- - [improvement] Use box syytem for boxes
+ - [improvement] Use box system for boxes
  - [improvement] Use gender fair language.
  - [improvement] Users can see which quiz they played.
- - [improvement] New tiled overview for quizzes. 
+ - [improvement] New tiled overview for quizzes.
+ - [improvement] New more unique detail view for quizzes.  
  - [remove] Remove quiz type.
 
 # Legend

@@ -117,7 +117,7 @@ $quizOverlayColor: #fff !default;
     background-color: transparentize($quizListBackgroundColor3, 0.4);
 
     h3 {
-      font-size: $wcfFontSizeHeadline;
+      @include wcfFontHeadline;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -227,7 +227,7 @@ $quizOverlayColor: #fff !default;
           padding: 10px;
           border-radius: 5px 5px 0 0;
           background-color: transparentize($quizListBackgroundColor3, 0.4);
-          font-size: $wcfFontSizeSmall;
+          @include wcfFontSmall();
           color: $quizOverlayColor;
           opacity: 0.3;
           transition: opacity 500ms;
@@ -246,14 +246,14 @@ $quizOverlayColor: #fff !default;
         color: $quizOverlayColor;
 
         h1 {
-          font-size: $wcfFontSizeTitle;
+          @include wcfFontTitle;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
         }
 
         .titleStats {
-          font-size: $wcfFontSizeSmall;
+          @include wcfFontSmall;
           opacity: 0.3;
           transition: opacity 500ms;
 

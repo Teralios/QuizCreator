@@ -14,11 +14,12 @@ build:
       tests:
         override:
           - php-scrutinizer-run --enable-security-analysis
-          - js-scrutinizer-run
+          - eslint-run "ts/**"
 filter:
   excluded_paths:
     - "*.build.js"
     - "*.min.js"
+    - "files/js/*"
   dependency_paths:
     - wcf/
     - teralios/

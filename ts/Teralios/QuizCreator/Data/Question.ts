@@ -1,4 +1,5 @@
-export class Question {
+class Question
+{
     public question: string;
     public options: object;
     public explanation: string;
@@ -22,3 +23,6 @@ export class Question {
         return givenAnswer == this.correct;
     }
 }
+
+
+export = Question;

@@ -9,7 +9,7 @@ build:
         - git clone https://github.com/WoltLab/WCF.git wcf/
         - git clone https://github.com/Teralios/de.teralios.validator.quiz.git teralios/
         - cd wcf/
-        - git checkout 5.3
+        - git checkout master
         - cd ..
       tests:
         override:

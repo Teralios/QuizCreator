@@ -22,3 +22,6 @@ vendor/*
 
 # office
 ~$*
+
+# wsc
+node_modules/*

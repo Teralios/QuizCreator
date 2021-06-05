@@ -1,10 +1,11 @@
-define(["require", "exports"], function (require, exports) {
+define(["require", "exports", "WoltLabSuite/Core/Ajax"], function (require, exports, Ajax_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     class Loader {
         constructor(htmlSelector) {
             this.quizSelector = htmlSelector;
             this.quizID = null;
+            this.findQuizID();
         }
         findQuizID() {
             let quizElement;
@@ -22,10 +23,13 @@ define(["require", "exports"], function (require, exports) {
                 }
             }
             if (this.quizID != null) {
+                Ajax_1.api(this);
             }
             else {
                 console.error('No quiz id found.');
             }
+        }
+        buildQuiz() {
         }
         _ajaxSetup() {
             return {
@@ -40,6 +44,8 @@ define(["require", "exports"], function (require, exports) {
             };
         }
         _ajaxSuccess(data, responseText, xhr, requestData) {
+            this.jsonData = JSON.parse(data.returnValues);
+            this.buildQuiz();
         }
     }
 });

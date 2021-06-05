@@ -1,18 +1,20 @@
-import {api} from 'WoltLabSuite/Core/Ajax';
 import {AjaxCallbackObject, RequestOptions, RequestData, ResponseData, DatabaseObjectActionResponse} from 'WoltLabSuite/Core/Ajax/Data';
-import Quiz from './Data/Quiz';
-import Question from './Data/Question';
+import {api} from 'WoltLabSuite/Core/Ajax';
+import {Question, Goal, Quiz} from './Data';
 
 class Loader implements AjaxCallbackObject
 {
     protected quizID: number | null;
     protected quiz: Quiz;
     protected quizSelector: string;
+    protected jsonData: JSON;
 
     public constructor(htmlSelector: string)
     {
         this.quizSelector = htmlSelector;
         this.quizID = null;
+
+        this.findQuizID();
     }
 
     protected findQuizID(): void
@@ -35,10 +37,15 @@ class Loader implements AjaxCallbackObject
         }
 
         if (this.quizID != null) {
-
+            api(this);
         } else {
             console.error('No quiz id found.');
         }
+    }
+
+    protected buildQuiz()
+    {
+
     }
 
     _ajaxSetup(): RequestOptions {
@@ -55,5 +62,7 @@ class Loader implements AjaxCallbackObject
     }
 
     _ajaxSuccess(data: ResponseData | DatabaseObjectActionResponse, responseText: string, xhr: XMLHttpRequest, requestData: RequestData): void {
+        this.jsonData = JSON.parse(data.returnValues);
+        this.buildQuiz();
     }
 }

@@ -17,9 +17,7 @@ build:
           - eslint-run "ts/**"
 filter:
   excluded_paths:
-    - "*.build.js"
-    - "*.min.js"
-    - "files/js/*"
+    - "*.js"
   dependency_paths:
     - wcf/
     - teralios/

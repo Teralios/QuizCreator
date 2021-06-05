@@ -112,17 +112,7 @@ class ViewableQuizList extends QuizList
 
         // read media IDs.
         if ($this->loadMedia === true) {
-            $mediaIDs = [];
-            foreach ($this->objects as $quiz) {
-                /** @var $quiz ViewableQuiz */
-                if ($quiz->mediaID) {
-                    $mediaIDs[] = $quiz->mediaID;
-                }
-            }
-
-            if (count($mediaIDs) > 0) {
-                $this->readMedia($mediaIDs);
-            }
+            $this->loadMedia();
         }
 
         // read statistic for quiz
@@ -133,6 +123,24 @@ class ViewableQuizList extends QuizList
         // load played status
         if (WCF::getUser()->userID && $this->userStatus) {
             $this->loadUserStatus();
+        }
+    }
+
+    /**
+     * @since 1.5.0
+     */
+    protected function loadMedia(): void
+    {
+        $mediaIDs = [];
+        foreach ($this->objects as $quiz) {
+            /** @var $quiz ViewableQuiz */
+            if ($quiz->mediaID) {
+                $mediaIDs[] = $quiz->mediaID;
+            }
+        }
+
+        if (count($mediaIDs) > 0) {
+            $this->readMedia($mediaIDs);
         }
     }
 

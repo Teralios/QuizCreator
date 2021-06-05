@@ -45,7 +45,6 @@ class Loader implements AjaxCallbackObject
 
     protected buildQuiz()
     {
-
     }
 
     _ajaxSetup(): RequestOptions {

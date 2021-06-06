@@ -16,8 +16,8 @@ define(["require", "exports", "./Loader", "WoltLabSuite/Core/Language"], functio
         }
         showError() {
             var _a, _b;
-            let icon = (_a = this.gameField.getElementsByClassName('icon')[0]) !== null && _a !== void 0 ? _a : null;
-            let information = (_b = this.gameField.getElementsByTagName('p')[0]) !== null && _b !== void 0 ? _b : null;
+            const icon = (_a = this.gameField.getElementsByClassName('icon')[0]) !== null && _a !== void 0 ? _a : null;
+            const information = (_b = this.gameField.getElementsByTagName('p')[0]) !== null && _b !== void 0 ? _b : null;
             if (icon !== null) {
                 this.gameField.removeChild(icon);
             }
@@ -27,7 +27,7 @@ define(["require", "exports", "./Loader", "WoltLabSuite/Core/Language"], functio
             }
         }
         findField() {
-            let gameField = document.querySelector(this.selector + ' .game');
+            const gameField = document.querySelector(this.selector + ' .game');
             if (gameField instanceof HTMLElement) {
                 this.gameField = gameField;
             }

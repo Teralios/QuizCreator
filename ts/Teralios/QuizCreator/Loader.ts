@@ -1,4 +1,4 @@
-import {AjaxCallbackObject, RequestOptions, RequestData, ResponseData, DatabaseObjectActionResponse} from 'WoltLabSuite/Core/Ajax/Data';
+import {AjaxCallbackObject, RequestOptions, ResponseData, DatabaseObjectActionResponse} from 'WoltLabSuite/Core/Ajax/Data';
 import {add as addLanguageItem} from 'WoltLabSuite/Core/Language';
 import {api} from 'WoltLabSuite/Core/Ajax';
 import {Question, Goal, Quiz} from './Data';
@@ -8,8 +8,8 @@ import {Question, Goal, Quiz} from './Data';
  */
 class QuizLoader implements AjaxCallbackObject
 {
-    protected quizID: number | null = null;
-    protected quizSelector: string = '';
+    protected quizID: number | null;
+    protected quizSelector: string;
     protected jsonData: JSON;
     protected callbackSuccess: (quiz) => void;
     protected callbackFailure: () => void;
@@ -35,9 +35,8 @@ class QuizLoader implements AjaxCallbackObject
      */
     protected findQuizID(): void
     {
-        let quizElement: HTMLElement | null;
         let quizID: string | null
-        quizElement = document.getElementById(this.quizSelector);
+        const quizElement = document.getElementById(this.quizSelector);
 
         if (quizElement == null) {
             console.error('Quiz with id ' + this.quizSelector + ' not found.');
@@ -63,7 +62,7 @@ class QuizLoader implements AjaxCallbackObject
      */
     protected buildQuiz(): void
     {
-        let quiz: Quiz = new Quiz();
+        const quiz: Quiz = new Quiz();
 
         if ('questionList' in this.jsonData && Array.isArray(this.jsonData['questionList'])) {
 
@@ -71,13 +70,13 @@ class QuizLoader implements AjaxCallbackObject
             const questionList: Array<any> = this.jsonData['questionList'];
             if (questionList.length > 0) {
                 questionList.forEach((data) => {
-                    const question: string = String(data.question) ?? '';
-                    const optionA: string = String(data.optionA) ?? '';
-                    const optionB: string = String(data.optionB) ?? '';
-                    const optionC: string = String(data.optionC) ?? '';
-                    const optionD: string = String(data.optionD) ?? '';
-                    const correctOption: string = String(data.answer) ?? '';
-                    const explanation: string = String(data.explanation);
+                    const question = String(data.question) ?? '';
+                    const optionA = String(data.optionA) ?? '';
+                    const optionB = String(data.optionB) ?? '';
+                    const optionC = String(data.optionC) ?? '';
+                    const optionD = String(data.optionD) ?? '';
+                    const correctOption = String(data.answer) ?? '';
+                    const explanation = String(data.explanation) ?? '';
 
                     if (
                         question != ''

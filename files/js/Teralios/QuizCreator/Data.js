@@ -7,10 +7,6 @@ define(["require", "exports"], function (require, exports) {
      */
     class Question {
         constructor(question, optionA, optionB, optionC, optionD, explanation, correctOption) {
-            this.question = '';
-            this.options = new Map();
-            this.explanation = '';
-            this.correct = '';
             this.question = question;
             this.options['A'] = optionA;
             this.options['B'] = optionB;
@@ -30,10 +26,6 @@ define(["require", "exports"], function (require, exports) {
      */
     class Goal {
         constructor(title, description, icon, minScore) {
-            this.title = '';
-            this.description = '';
-            this.icon = '';
-            this.minScore = 0;
             this.title = title;
             this.description = description;
             this.icon = icon;
@@ -49,10 +41,6 @@ define(["require", "exports"], function (require, exports) {
      */
     class Quiz {
         constructor() {
-            this.questions = [];
-            this.questionsCount = 0;
-            this.questionIndex = 0;
-            this.goals = [];
             this.questionsCount = 0;
             this.questionIndex = 0;
         }

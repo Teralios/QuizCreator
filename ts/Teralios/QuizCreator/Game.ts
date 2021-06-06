@@ -26,8 +26,8 @@ class Game
 
     public showError(): void
     {
-        let icon = this.gameField.getElementsByClassName('icon')[0] ?? null;
-        let information = this.gameField.getElementsByTagName('p')[0] ?? null;
+        const icon = this.gameField.getElementsByClassName('icon')[0] ?? null;
+        const information = this.gameField.getElementsByTagName('p')[0] ?? null;
 
         if (icon !== null) {
             this.gameField.removeChild(icon);
@@ -41,7 +41,7 @@ class Game
 
     protected findField(): void
     {
-        let gameField = document.querySelector(this.selector + ' .game');
+       const gameField = document.querySelector(this.selector + ' .game');
         if (gameField instanceof HTMLElement) {
             this.gameField = gameField;
         } else {
@@ -62,7 +62,7 @@ class Game
         this.loadData();
     }
 
-    protected loadData()
+    protected loadData(): void
     {
         new LanguageLoader('#js-QuizCreator-Language');
         new QuizLoader(this.selector, (quiz) => { this.startGame(quiz) }, () => { this.showError() });
@@ -70,7 +70,6 @@ class Game
 
     protected prepareField(): void
     {
-
     }
 }
 

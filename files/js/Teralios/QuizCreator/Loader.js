@@ -12,8 +12,6 @@ define(["require", "exports", "WoltLabSuite/Core/Language", "WoltLabSuite/Core/A
          * @param callbackSuccess      Callback function after quiz is loaded
          */
         constructor(idSelector, callbackSuccess, callbackFailure) {
-            this.quizID = null;
-            this.quizSelector = '';
             this.quizSelector = (idSelector.startsWith('#')) ? idSelector.substr(1) : idSelector;
             this.callbackSuccess = callbackSuccess;
             this.callbackFailure = callbackFailure;
@@ -25,9 +23,8 @@ define(["require", "exports", "WoltLabSuite/Core/Language", "WoltLabSuite/Core/A
          * @protected
          */
         findQuizID() {
-            let quizElement;
             let quizID;
-            quizElement = document.getElementById(this.quizSelector);
+            const quizElement = document.getElementById(this.quizSelector);
             if (quizElement == null) {
                 console.error('Quiz with id ' + this.quizSelector + ' not found.');
                 return;
@@ -50,20 +47,20 @@ define(["require", "exports", "WoltLabSuite/Core/Language", "WoltLabSuite/Core/A
          * @protected
          */
         buildQuiz() {
-            let quiz = new Data_1.Quiz();
+            const quiz = new Data_1.Quiz();
             if ('questionList' in this.jsonData && Array.isArray(this.jsonData['questionList'])) {
                 // add questions
                 const questionList = this.jsonData['questionList'];
                 if (questionList.length > 0) {
                     questionList.forEach((data) => {
-                        var _a, _b, _c, _d, _e, _f;
+                        var _a, _b, _c, _d, _e, _f, _g;
                         const question = (_a = String(data.question)) !== null && _a !== void 0 ? _a : '';
                         const optionA = (_b = String(data.optionA)) !== null && _b !== void 0 ? _b : '';
                         const optionB = (_c = String(data.optionB)) !== null && _c !== void 0 ? _c : '';
                         const optionC = (_d = String(data.optionC)) !== null && _d !== void 0 ? _d : '';
                         const optionD = (_e = String(data.optionD)) !== null && _e !== void 0 ? _e : '';
                         const correctOption = (_f = String(data.answer)) !== null && _f !== void 0 ? _f : '';
-                        const explanation = String(data.explanation);
+                        const explanation = (_g = String(data.explanation)) !== null && _g !== void 0 ? _g : '';
                         if (question != ''
                             && optionA != ''
                             && optionB != ''

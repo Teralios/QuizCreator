@@ -29,7 +29,7 @@ function buildButtonField(): HTMLElement
     buttonList.classList.add('optionButtons');
 
     buttons.forEach((button) => {
-        let li = document.createElement('li');
+        const li = document.createElement('li');
         li.appendChild(button);
         buttonList.appendChild(li);
     })
@@ -91,7 +91,7 @@ export class QuestionView {
         this.question = question;
 
         // update buttons
-        buttons.sort((a, b) => 0.5 - Math.random());
+        buttons.sort(() => 0.5 - Math.random());
         options.forEach((option, index) => {
             buttons[index].setAttribute('data-option', option.toLowerCase());
             buttons[index].textContent = this.question.options[option];

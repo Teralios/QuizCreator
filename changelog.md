@@ -21,7 +21,9 @@ This file lists all changes like new features, improved functions and fixed bugs
  - [improvement] Use gender fair language.
  - [improvement] Users can see which quiz they played.
  - [improvement] New tiled overview for quizzes.
- - [improvement] New more unique detail view for quizzes.  
+ - [improvement] New more unique detail view for quizzes.
+ - [improvement] Options shuffle for every question.
+ - [improvement] Show explanation after answer question.  
  - [remove] Remove quiz type.
 
 # Legend

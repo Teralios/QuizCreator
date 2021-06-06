@@ -45,7 +45,7 @@ class Goal
         this.minScore = minScore;
     }
 
-    public reached(score: number)
+    public reached(score: number): boolean
     {
         return (score >= this.minScore);
     }
@@ -67,13 +67,13 @@ class Quiz
         this.questionIndex = 0;
     }
 
-    public addQuestion(question: Question)
+    public addQuestion(question: Question): void
     {
         this.questions.push(question);
         ++this.questionsCount
     }
 
-    public addGoal(goal: Goal)
+    public addGoal(goal: Goal): void
     {
         this.goals.push(goal);
     }

@@ -42,28 +42,28 @@ class QuizListPage extends SortablePage
     /**
      * @var bool
      */
-    public bool $showCopyright = true;
+    public $showCopyright = true;
 
     /**
      * @var int
      */
-    public int $languageID = 0;
+    public $languageID = 0;
 
     /**
      * @var ?ViewableQuizList
      */
-    public ?ViewableQuizList $mostPlayed = null;
+    public $mostPlayed = null;
 
     /**
      * @var CategoryNodeTree
      * @since 1.5
      */
-    public CategoryNodeTree $categoryList;
+    public $categoryList;
 
     /**
      * @var ?Category
      */
-    public ?Category $category = null;
+    public $category = null;
 
     /**
      * @throws SystemException

@@ -1,9 +1,12 @@
+/**
+ * Default question class.
+ */
 class Question
 {
-    public question: string;
-    public options: object;
-    public explanation: string;
-    public correct: string;
+    public question: string = '';
+    public options: Map<string, string> = new Map();
+    public explanation: string = '';
+    public correct: string = '';
 
     public constructor (question: string, optionA: string, optionB: string, optionC: string, optionD: string, explanation: string, correctOption: string)
     {
@@ -24,12 +27,15 @@ class Question
     }
 }
 
+/**
+ * Default goal class.
+ */
 class Goal
 {
-    public title: string;
-    public description: string;
-    public icon: string;
-    public minScore: number;
+    public title: string = '';
+    public description: string = '';
+    public icon: string = '';
+    public minScore: number = 0;
 
     public constructor (title: string, description: string, icon: string, minScore: number)
     {
@@ -45,12 +51,15 @@ class Goal
     }
 }
 
+/**
+ * Default quiz class.
+ */
 class Quiz
 {
-    protected questions: Question[];
-    protected questionsCount: number;
-    protected questionIndex: number;
-    protected goals: Goal[];
+    protected questions: Question[] = [];
+    protected questionsCount: number = 0;
+    protected questionIndex: number = 0;
+    protected goals: Goal[] = [];
 
     public constructor()
     {

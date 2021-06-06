@@ -8,19 +8,17 @@ $quizOverlayColor: #fff !default;
 /* Display adjustments from smartphone to desktop */
 @include screen-lg {
   .quizList {
-    .quiz {
-      width: calc(50% - 10px);
-        &:hover {
-        .quizInfo {
-          opacity: 1;
-          transition: opacity 500ms;
-        }
-      }
-    }
-
     .quizInfo {
       opacity: 0;
+      transition: opacity 500ms;
     }
+
+    .quiz {
+      width: calc(50% - 10px);
+        &:hover .quizInfo {
+          opacity: 1;
+        }
+      }
   }
 
   .quizContainer {
@@ -113,7 +111,7 @@ $quizOverlayColor: #fff !default;
         opacity: 1;
       }
 
-      box-shadow: 2px 2px 4px transparentize($wcfSidebarLink, 0.4);
+      box-shadow: 2px 2px 2px transparentize($wcfSidebarLink, 0.8);
     }
   }
 
@@ -123,7 +121,7 @@ $quizOverlayColor: #fff !default;
     padding-top: 75%;
     background-image: linear-gradient(to bottom right, $quizBackgroundColor1, $quizBackgroundColor2);
     border-radius: 5px;
-    box-shadow: 2px 2px 2px transparentize(#000, 0.4);
+    box-shadow: 2px 2px 2px transparentize(#000, 0.8);
     transition: box-shadow 500ms;
   }
 
@@ -180,7 +178,7 @@ $quizOverlayColor: #fff !default;
   .quizTitle {
     top: 0;
     left: 0;
-    padding: 5px;
+    padding: 10px 5px;
     border-radius: 5px 5px 0;
     background-color: transparentize($quizListBackgroundColor3, 0.4);
 
@@ -352,6 +350,23 @@ $quizOverlayColor: #fff !default;
 
     .tags {
       padding: 20px;
+    }
+
+    // default game block in quiz overview
+    .game {
+      border-top: 1px solid $wcfContentContainerBorder;
+      border-bottom: 1px solid $wcfContentContainerBorder;
+      padding: 20px;
+    }
+
+    // status for game
+    .statusLoading {
+      text-align: center;
+
+      p {
+        margin-top: 10px;
+        @include wcfFontSection;
+      }
     }
   }
 }

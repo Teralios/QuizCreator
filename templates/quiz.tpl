@@ -7,7 +7,7 @@
 {* template *}
 {include file='header'}
 <div class="quizContainer">
-    <div class="quiz {if $quiz->isActive}isActive{else}notActive{/if}">
+    <div id="quiz" class="quiz {if $quiz->isActive}isActive{else}notActive{/if}" data-quiz-id="{#$quiz->quizID}">
         <div class="head">
             <div class="headInner">
                 <div class="headIconContainer">
@@ -55,5 +55,13 @@
         {/if}
     </div>
 </div>
+
+<script type="application/json" id="js-QuizCreator-Language">
+    {
+        "wcf.quizCreator.game": "{'test'|encodeJSON}"
+    }
+</script>
+
+{js application='wcf' file='QuizCreator'}
 
 {include file='footer'}

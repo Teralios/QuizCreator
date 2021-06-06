@@ -1,21 +1,5 @@
-# 1.0.x
-## 1.0.1
-  - [x] Fix html encoding errors in game field.
-  - [x] Fix issue with number formatting in language variable
-  - [x] Overwork player result dialog
-
 # 1.5.x
-### 1.5.0 Beta 1
-  - [ ] Implement more options for trophies
-    - [ ] ``scoreMin50p``
-      - [x] Database implementation
-      - [ ] Implement in game code
-    - [ ] ``scoreMin75p``
-      - [x] Database implementation
-      - [ ] Implement in game code
-    - [ ] Implement user options
-  - [ ] Implement php and template events
-    - [ ] Implement support for jCoins
+## 1.5.0 Beta 1
   - [x] Overwork quizzes overview (wcf\page\QuizListPage, quizList.tpl)
   - [x] Overwork tagged quiz list.
   - [x] Overwork language - acp
@@ -30,10 +14,7 @@
       - [ ] New game class.
       - [ ] New result class.
       - [ ] Show Explanation in Question class.
-      - [ ] ~~Use Dialog for Game.~~
   - [x] Implements simple category system for quizzes.
-  - [ ] Implement simple REST-API
-    - [ ] Wait for TitusK package for GraphQL.
   - [x] Remove quiz type.
   - [x] Use box system for boxes.
     - [x] Last players box.
@@ -41,12 +22,32 @@
     - [x] Category box.
     - [x] "Your result" box.
     - [x] Most played box.
+
+## 1.5.0 Beta 2
+  - [ ] Implement php and template events
+    - [ ] Implement support for jCoins
+  - [ ] Update from 1.0.0
+  - [ ] Implement more options for trophies
+    - [ ] ``scoreMin50p``
+      - [x] Database implementation
+      - [ ] Implement in game code
+    - [ ] ``scoreMin75p``
+      - [x] Database implementation
+      - [ ] Implement in game code
+    - [ ] Implement user options
   - [ ] ???
 
 # 2.0.x
-### 2.0.0 Beta 1
-  - [ ] Question types?
-    - [ ] Check practice.
-    - [ ] Flexible answer options.
-    - [ ] Estimation questions.
-  - [ ] ???  
+## 2.0.0 Beta 1
+  - [ ] Overwork ACP-Backend
+    - [ ] Use new object action javascript.
+    - [ ] New question ui
+      - [ ] Use JS dialog for add/edit question.
+      - [ ] Make question sortable.
+    - [ ] New goal ui
+     - [ ] Use JS dialog for add/edit goals.
+    - [ ] New quiz ui.
+  - [ ] Overwork question system
+    - [ ] n-Options for text questions?
+    - [ ] Guessing questions?
+    - [ ] Multiple choice?

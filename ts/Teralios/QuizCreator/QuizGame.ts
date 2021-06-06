@@ -1,8 +1,8 @@
-import {Quiz} from './Data';
-import {QuizLoader, LanguageLoader} from './Loader';
+import {Quiz} from './Data/Data';
+import {QuizLoader, LanguageLoader} from './Data/Loader';
 import {get as getLang} from 'WoltLabSuite/Core/Language';
 
-class Game
+class QuizGame
 {
     protected quiz: Quiz;
     protected gameField: HTMLElement;
@@ -67,10 +67,6 @@ class Game
         new LanguageLoader('#js-QuizCreator-Language');
         new QuizLoader(this.selector, (quiz) => { this.startGame(quiz) }, () => { this.showError() });
     }
-
-    protected prepareField(): void
-    {
-    }
 }
 
-export = Game;
+export = QuizGame;

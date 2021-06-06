@@ -1,23 +1,90 @@
-/* block-start: QuizList */
-// variables
-$imageWidthList: $wcf_option_media_small_thumbnail_width;
-$imageHeightList: $wcf_option_media_small_thumbnail_height;
-$imageWidthQuiz: 802; // Large is to big, medium to small. And also add 2 px for borders
-$imageHeightQuiz: 600;
+/* Variables for QuizCreator ui */
 $quizBackgroundColor1: #3A6D9C !default;
 $quizBackgroundColor2: #24425F !default;
 $quizListBackgroundColor3: #333 !default;
 $quizIconColor: #fff !default;
 $quizOverlayColor: #fff !default;
 
+/* Display adjustments from smartphone to desktop */
+@include screen-lg {
+  .quizList {
+    .quiz {
+      width: calc(50% - 10px);
+        &:hover {
+        .quizInfo {
+          opacity: 1;
+          transition: opacity 500ms;
+        }
+      }
+    }
+
+    .quizInfo {
+      opacity: 0;
+    }
+  }
+
+  .quizContainer {
+    .quiz {
+      width: 80%;
+    }
+  }
+}
+
+@include screen-xl {
+  .quizList {
+    .quiz {
+      width: calc(33% - 10px);
+    }
+  }
+
+  .quizContainer {
+    .quiz {
+      width: 80%;
+    }
+  }
+}
+
+@include screen-md-down {
+  .quizList {
+    .quiz {
+      width: calc(50% - 10px);
+    }
+  }
+
+  .quizContainer {
+    .quiz {
+      width: 80%;
+    }
+  }
+}
+
+@include screen-sm-down {
+  .quizList {
+    .quiz {
+      width: calc(100% - 10px);
+    }
+
+    .quizInfo {
+      opacity: 1;
+    }
+  }
+
+  .quizContainer {
+    .quiz {
+      width: 100%;
+    }
+  }
+}
+
+/* UI quiz overview */
 .quizList {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
   .quiz {
-    flex-direction: column;
     margin: 5px;
+    flex-direction: column;
 
     &[class~=isActive] {
       .quizBase {
@@ -52,8 +119,8 @@ $quizOverlayColor: #fff !default;
 
   .quizInner {
     position: relative;
-    width: #{$imageWidthList}px;
-    padding-top: #{$imageHeightList}px;
+    width: 100%;
+    padding-top: 75%;
     background-image: linear-gradient(to bottom right, $quizBackgroundColor1, $quizBackgroundColor2);
     border-radius: 5px;
     box-shadow: 2px 2px 2px transparentize(#000, 0.4);
@@ -72,9 +139,8 @@ $quizOverlayColor: #fff !default;
   }
 
   .quizBaseIcon::after {
-    --quizWidth: #{$imageWidthList}px;
     font-family: FontAwesome;
-    font-size: calc(var(--quizWidth) / 2);
+    font-size: 128px;
     color: $quizIconColor;
   }
 
@@ -94,6 +160,8 @@ $quizOverlayColor: #fff !default;
     text-align: center;
 
     img {
+      max-width: 100%;
+      max-height: 100%;
       border-radius: 5px;
     }
   }
@@ -130,23 +198,19 @@ $quizOverlayColor: #fff !default;
     display: flex;
     justify-content: space-between;
     border-radius: 0 0 5px 5px;
-    opacity: 0;
-    transition: opacity 500ms;
 
     div:last-child {
       text-align:right;
     }
   }
 }
-/* block-end: QuizList */
 
-/* block-start: Quiz */
+/* UI Quiz */
 .quizContainer {
   display: flex;
   justify-content: space-around;
 
   .quiz {
-    width: #{$imageWidthQuiz}px;
     border-radius: 5px;
     border: 1px solid $wcfContentContainerBorder;
     background-color: $wcfContentContainerBackground;
@@ -173,7 +237,8 @@ $quizOverlayColor: #fff !default;
       background-image: linear-gradient(to bottom right, $quizBackgroundColor1, $quizBackgroundColor2);
 
       .headInner {
-        padding-top: #{$imageHeightQuiz}px;
+        width: 100%;
+        padding-top: 75%;
         position: relative;
       }
 
@@ -209,7 +274,8 @@ $quizOverlayColor: #fff !default;
         z-index: 20;
         img {
           border-radius: 5px 5px 0 0;
-          margin-top: 0 !important
+          margin-top: 0 !important;
+          width: 100%;
         }
       }
 
@@ -289,9 +355,8 @@ $quizOverlayColor: #fff !default;
     }
   }
 }
-/* block-end: Quiz */
 
-/* block-start: PlayerList */
+/* UI PlayerList */
 .playerList {
   .place1 {
     color: gold;
@@ -316,9 +381,8 @@ $quizOverlayColor: #fff !default;
     }
   }
 }
-/* block-end: PlayerList */
 
-/* block-start: GameResult(Dialog) */
+/* UI Result Dialog */
 .questionList {
   .questionListTitle {
     font-size: $wcfFontSizeSection;
@@ -416,4 +480,3 @@ $quizOverlayColor: #fff !default;
     }
   }
 }
-/* block-end: GameResult(Dialog) */

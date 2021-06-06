@@ -11,7 +11,7 @@
                 </div>
                 {if $media}
                     <div class="quizImage">
-                        {@$media->getThumbnailTag('small')}
+                        {@$media} {* here normal image tag is better for display adjustments *}
                     </div>
                 {/if}
                 <div class="quizTitle">

@@ -28,7 +28,7 @@
                 </div>
                 {if $media !== null}
                     <div class="headImageContainer">
-                        {@$media->getElementTag(800)}
+                        {@$media} {* here normal image tag is better for display adjustments *}
                     </div>
                     {if $media->caption}
                         <div class="headImageCaptionContainer">

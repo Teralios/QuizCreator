@@ -4,12 +4,9 @@ namespace wcf\page;
 
 // imports
 use wcf\data\category\CategoryNodeTree;
+use wcf\data\category\Category;
 use wcf\data\quiz\category\QuizCategory;
-use wcf\data\quiz\category\QuizCategoryNodeTree;
-use wcf\data\quiz\game\GameList;
 use wcf\data\quiz\ViewableQuizList;
-use wcf\system\cache\builder\QuizGameCacheBuilder;
-use wcf\system\cache\builder\QuizMostPlayedCacheBuilder;
 use wcf\system\category\CategoryHandler;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\SystemException;
@@ -45,33 +42,28 @@ class QuizListPage extends SortablePage
     /**
      * @var bool
      */
-    public $showCopyright = true;
+    public bool $showCopyright = true;
 
     /**
      * @var int
      */
-    public $languageID = 0;
+    public int $languageID = 0;
 
     /**
      * @var ?ViewableQuizList
      */
-    public $mostPlayed = null;
+    public ?ViewableQuizList $mostPlayed = null;
 
     /**
      * @var CategoryNodeTree
      * @since 1.5
      */
-    public $categoryList;
+    public CategoryNodeTree $categoryList;
 
     /**
-     * @var ?QuizCategory
+     * @var ?Category
      */
-    public $category = null;
-
-    /**
-     * @var ?GameList
-     */
-    public $quizPlayed = null;
+    public ?Category $category = null;
 
     /**
      * @throws SystemException

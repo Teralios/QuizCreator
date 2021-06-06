@@ -1,13 +1,14 @@
 <?php
-define('MODULE_QUIZ_CREATOR', 1);
-define('QUIZ_LIST_LAST_PLAYERS', 1);
-define('QUIZ_LIST_BEST_PLAYERS', 1);
-define('QUIZ_LIST_MOST_PLAYED', 1);
-define('QUIZ_LIST_QUIZZES_PER_PAGE', 25);
-define('QUIZ_PLAYERS_PER_BOX', 10);
-define('QUIZ_PER_BOX', 10);
-define('QUIZ_LAST_PLAYERS', 1);
-define('QUIZ_BEST_PLAYERS', 1);
-define('QUIZ_DESCRIPTION_LENGTH', 2500);
-define('QUIZ_PLAYERS_PER_PAGE', 25);
-define('QUIZ_DESCRIPTION_HTML', 1);
+$value = (int) $_GET['int']; // only for Scrutinizer
+define('MODULE_QUIZ_CREATOR', $value);
+define('QUIZ_LIST_LAST_PLAYERS', $value);
+define('QUIZ_LIST_BEST_PLAYERS', $value);
+define('QUIZ_LIST_MOST_PLAYED', $value);
+define('QUIZ_LIST_QUIZZES_PER_PAGE', $value);
+define('QUIZ_PLAYERS_PER_BOX', $value);
+define('QUIZ_PER_BOX', $value);
+define('QUIZ_LAST_PLAYERS', $value);
+define('QUIZ_BEST_PLAYERS', $value);
+define('QUIZ_DESCRIPTION_LENGTH', $value);
+define('QUIZ_PLAYERS_PER_PAGE', $value);
+define('QUIZ_DESCRIPTION_HTML', $value);

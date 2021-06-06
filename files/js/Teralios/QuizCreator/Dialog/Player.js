@@ -6,14 +6,16 @@ define(["require", "exports", "tslib", "WoltLabSuite/Core/Ajax", "WoltLabSuite/C
     let _button;
     let gameID;
     let tpl;
-    let dialogTitle = Language.get('wcf.quizCreator.user.play.details.dialog.title');
+    const dialogTitle = Language.get('wcf.quizCreator.user.play.details.dialog.title');
     // player dialog object.
     const PlayerDialog = {
         // init player dialog.
         init() {
-            _button = document.getElementById('showUserResult');
-            if (_button !== null) {
+            const tmpButton = document.getElementById('showUserResult');
+            if (tmpButton !== null) {
+                _button = tmpButton;
                 gameID = _button.getAttribute('data-game-id');
+                this._loadData();
             }
         },
         // return template for dialog.
@@ -26,13 +28,12 @@ define(["require", "exports", "tslib", "WoltLabSuite/Core/Ajax", "WoltLabSuite/C
         },
         // builds button.
         _buildButton() {
-            if (_button !== null) {
-                _button.addEventListener('click', () => this.showDialog());
-            }
+            _button.addEventListener('click', () => { this.showDialog(); });
         },
         // put return value to tpl variable.
         _parseData(data) {
             tpl = data.returnValues;
+            this._buildButton();
         },
         // load data.
         _loadData() {
@@ -42,7 +43,7 @@ define(["require", "exports", "tslib", "WoltLabSuite/Core/Ajax", "WoltLabSuite/C
                     className: 'wcf\\data\\quiz\\game\\GameAction',
                     objectIDs: [gameID]
                 },
-                success: (data) => this._parseData(data)
+                success: (data) => { this._parseData(data); }
             });
         },
         // dialog information.

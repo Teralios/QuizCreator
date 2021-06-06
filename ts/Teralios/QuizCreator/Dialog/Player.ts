@@ -16,20 +16,22 @@ interface PlayerDialogObject extends DialogCallbackObject
 }
 
 // local variables for player dialog.
-let _button: HTMLElement | null;
+let _button: HTMLElement;
 let gameID: string | null;
 let tpl: string;
-let dialogTitle: string = Language.get('wcf.quizCreator.user.play.details.dialog.title');
+const dialogTitle: string = Language.get('wcf.quizCreator.user.play.details.dialog.title');
 
 // player dialog object.
 const PlayerDialog: PlayerDialogObject = {
     // init player dialog.
     init(): void
     {
-        _button = document.getElementById('showUserResult');
+        const tmpButton = document.getElementById('showUserResult');
 
-        if (_button !== null) {
+        if (tmpButton !== null) {
+            _button = tmpButton;
             gameID = _button.getAttribute('data-game-id');
+            this._loadData();
         }
     },
 
@@ -48,15 +50,14 @@ const PlayerDialog: PlayerDialogObject = {
     // builds button.
     _buildButton(): void
     {
-        if (_button !== null) {
-            _button.addEventListener('click', () => this.showDialog())
-        }
+        _button.addEventListener('click', () => { this.showDialog() })
     },
 
     // put return value to tpl variable.
     _parseData(data: ResponseData): void
     {
         tpl = data.returnValues;
+        this._buildButton();
     },
 
     // load data.
@@ -69,7 +70,7 @@ const PlayerDialog: PlayerDialogObject = {
                     className: 'wcf\\data\\quiz\\game\\GameAction',
                     objectIDs: [gameID]
                 },
-                success: (data) => this._parseData(data)
+                success: (data) => { this._parseData(data) }
             }
         )
     },

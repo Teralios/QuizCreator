@@ -1,6 +1,6 @@
-define(["require", "exports", "./Loader", "WoltLabSuite/Core/Language"], function (require, exports, Loader_1, Language_1) {
+define(["require", "exports", "./Data/Loader", "WoltLabSuite/Core/Language"], function (require, exports, Loader_1, Language_1) {
     "use strict";
-    class Game {
+    class QuizGame {
         constructor(selector) {
             if (selector.startsWith('#')) {
                 this.selector = selector;
@@ -50,8 +50,6 @@ define(["require", "exports", "./Loader", "WoltLabSuite/Core/Language"], functio
             new Loader_1.LanguageLoader('#js-QuizCreator-Language');
             new Loader_1.QuizLoader(this.selector, (quiz) => { this.startGame(quiz); }, () => { this.showError(); });
         }
-        prepareField() {
-        }
     }
-    return Game;
+    return QuizGame;
 });

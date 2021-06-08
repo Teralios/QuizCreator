@@ -45,7 +45,7 @@
         </div>
         <div class="game">
             <div class="gameField">
-                <div class="header">
+                {* <div class="header">
                     <div class="questionInfo">
                         <p>Frage <b>1</b> von <b>10</b></p>
                         <p>
@@ -66,13 +66,13 @@
                         <p>00:00</p>
                     </div>
                     <div class="score">0 <b>Punkte</b></div>
-                </div>
-                <div class="main shown">
-                    {*<div class="startView"><button>Start</button></div>
+                </div> *}
+                {* <div class="main show">
+                    <div class="startView"><button>Start</button></div>
                     <div class="intermissionView">
                         <p>Frage 1</p>
-                    </div> *}
-                    {* <div class="questionView">
+                    </div>
+                    <div class="questionView">
                         <p class="question">Testfrage - zur Demonstration ist sie kurz!</p>
                         <ul class="questionList">
                             <li><button>Antwort A</button></li>
@@ -80,12 +80,12 @@
                             <li><button disabled="disabled" class="incorrect">Antwort C</button></li>
                             <li><button>Antwort D</button></li>
                         </ul>
-                        <div class="next">
+                        <div class="next show">
                             <p>Erklärung, wird sichtbar, wenn die Frage geschafft wurde.</p>
                             <button>Nächste Frage</button>
                         </div>
-                    </div> *}
-                    {* <div class="resultView">
+                    </div>
+                    <div class="resultView">
                         <div class="goalInfo">
                             <p><span class="fa icon128 fa-rebel"></span></p>
                             <p>Jedi-Padawan</p>
@@ -96,8 +96,8 @@
                             <p>∅ 56 Punkte</p>
                             <p>Du hast mehr Punkte als 80% der Spieler erreicht.</p>
                         </div>
-                    </div> *}
-                </div>
+                    </div>
+                </div> *}
             </div>
         </div>
         {if !$tags|empty}
@@ -114,7 +114,15 @@
 
 <script type="application/json" id="js-QuizCreator-Language">
     {
-        "wcf.quizCreator.game": "{'test'|encodeJSON}"
+        "wcf.quizCreator.game.button.finish": "{jslang}wcf.quizCreator.game.button.finish{/jslang}", {* Spiel beenden *}
+        "wcf.quizCreator.game.button.next": "{jslang}wcf.quizCreator.game.button.next{/jslang}", {* nächste Frage *}
+        "wcf.quizCreator.game.button.start": "{jslang}wcf.quizCreator.game.button.start{/jslang}", {* Start *}
+        "wcf.quizCreator.game.header.question": "{jslang}wcf.quizCreator.game.header.question{/jslang}", {* Frage <b>{$questionIndex}</b> von <b>{$questions}</b> *}
+        "wcf.quizCreator.game.header.value": "{jslang}wcf.quizCreator.game.header.value{/jslang}", {* {$currentScore} <b>Punkte</b> *}
+        "wcf.quizCreator.game.result.average": "{jslang}wcf.quizCreator.game.result.average{/jslang}", {* ∅ {$averageScore} Punkte *}
+        "wcf.quizCreator.game.result.players.other": "{jslang}wcf.quizCreator.game.result.players.other{/jslang}", {* Du hast mehr Punkte als {$playerRelative} % der Spieler erreicht. *}
+        "wcf.quizCreator.game.result.players.none": "{jslang}wcf.quizCreator.game.result.players.none{/jslang}", {* Noch hat keiner das Spiel gespielt, du bist der erste! *}
+        "wcf.quizCreator.game.result.score": "{jslang}wcf.quizCreator.game.result.score{/jslang}", {* {$score} Punkte *}
     }
 </script>
 

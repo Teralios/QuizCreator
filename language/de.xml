@@ -45,16 +45,8 @@
 		<item name="wcf.quizCreator.stats.players"><![CDATA[Spieler]]></item>
 		<item name="wcf.quizCreator.stats.incorrect"><![CDATA[Falsch]]></item>
 	</category>
-	<category name="wcf.quizCreator.game">
-		<item name="wcf.quizCreator.game.start"><![CDATA[Spiel starten]]></item>
-		<item name="wcf.quizCreator.game.question.next"><![CDATA[Nächste Frage]]></item>
-		<item name="wcf.quizCreator.game.finish"><![CDATA[Spiel beenden]]></item>
-		<item name="wcf.quizCreator.game.result.asGood"><![CDATA[Alle anderen Spieler*innen sind mindestens so gut wie {if LANGUAGE_USE_INFORMAL_VARIANT}Du{else}Sie{/if}.]]></item>
-		<item name="wcf.quizCreator.game.result.betterAs"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du bist{else}Sie sind{/if} besser als {literal}{$percent}{/literal} % der Spieler*innen.]]></item>
-		<item name="wcf.quizCreator.game.goal.none"><![CDATA[Knapp verpasst!]]></item>
-		<item name="wcf.quizCreator.game.goal.none.detail"><![CDATA[Leider hat es für ein „Goal“ nicht ganz gereicht.]]></item>
-		<item name="wcf.quizCreator.game.data.missing"><![CDATA[Das Quiz ist leider noch nicht ganz fertig.]]></item>
-	</category>
+
+
 	<category name="wcf.quizCreator.players">
 		<item name="wcf.quizCreator.players.page.title"><![CDATA[Spieler*innen]]></item>
 		<item name="wcf.quizCreator.players.players"><![CDATA[Spieler*innen]]></item>

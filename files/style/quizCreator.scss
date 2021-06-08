@@ -1,11 +1,10 @@
 /* Variables for QuizCreator ui */
-$quizBackgroundColor1: #3A6D9C !default;
-$quizBackgroundColor2: #24425F !default;
-$quizListBackgroundColor3: #333 !default;
-$quizIconColor: #fff !default;
-$quizOverlayColor: #fff !default;
+// other colors
+$quizCorrectColor: $wcfStatusSuccessText !default;
+$quizIncorrectColor: $wcfStatusErrorText !default;
 
-/* Display adjustments from smartphone to desktop */
+/* quizList:start */
+// display adjustments
 @include screen-lg {
   .quizList {
     .quizInfo {
@@ -74,7 +73,16 @@ $quizOverlayColor: #fff !default;
   }
 }
 
-/* UI quiz overview */
+// tile colors
+$quizTileBackgroundColor1:  $wcfHeaderMenuBackground !default;
+$quizTileBackgroundColor2:  $wcfHeaderMenuLinkBackgroundActive !default;
+$quizTileInfoBackgroundColor: #333 !default;
+$quizTileShadowColor: #333 !default;
+$quizTileShadowHoverColor: $wcfContentLink !default;
+$quizTileInfoTextColor: $wcfHeaderMenuLink !default;
+$quizTileIconColor: $wcfHeaderMenuLink !default;
+
+// ui
 .quizList {
   display: flex;
   flex-wrap: wrap;
@@ -111,7 +119,7 @@ $quizOverlayColor: #fff !default;
         opacity: 1;
       }
 
-      box-shadow: 2px 2px 2px transparentize($wcfSidebarLink, 0.8);
+      box-shadow: 2px 2px 2px transparentize($quizTileShadowHoverColor, 0.7);
     }
   }
 
@@ -119,9 +127,9 @@ $quizOverlayColor: #fff !default;
     position: relative;
     width: 100%;
     padding-top: 75%;
-    background-image: linear-gradient(to bottom right, $quizBackgroundColor1, $quizBackgroundColor2);
+    background-image: linear-gradient(to bottom right, $quizTileBackgroundColor1, $quizTileBackgroundColor2);
     border-radius: 5px;
-    box-shadow: 2px 2px 2px transparentize(#000, 0.8);
+    box-shadow: 2px 2px 2px transparentize($quizTileShadowColor, 0.7);
     transition: box-shadow 500ms;
   }
 
@@ -139,7 +147,7 @@ $quizOverlayColor: #fff !default;
   .quizBaseIcon::after {
     font-family: FontAwesome;
     font-size: 128px;
-    color: $quizIconColor;
+    color: $quizTileIconColor;
   }
 
   .quizBase {
@@ -165,14 +173,14 @@ $quizOverlayColor: #fff !default;
   }
 
  .quizTitle, .quizInfo, .icon {
-    color: $quizOverlayColor;
+    color: $quizTileInfoTextColor;
   }
 
   .quizTitle, .quizInfo {
     z-index: 30;
     width: 100%;
     padding: 5px;
-    background-color: transparentize($quizListBackgroundColor3, 0.4);
+    background-color: transparentize($quizTileInfoBackgroundColor, 0.4);
   }
 
   .quizTitle {
@@ -180,7 +188,7 @@ $quizOverlayColor: #fff !default;
     left: 0;
     padding: 10px 5px;
     border-radius: 5px 5px 0;
-    background-color: transparentize($quizListBackgroundColor3, 0.4);
+    background-color: transparentize($quizTileInfoBackgroundColor, 0.4);
 
     h3 {
       @include wcfFontHeadline;
@@ -202,8 +210,11 @@ $quizOverlayColor: #fff !default;
     }
   }
 }
+/* quizList:end */
 
-/* UI Quiz */
+/* quiz:start */
+// colors are inherited from tiles.
+// ui
 .quizContainer {
   display: flex;
   justify-content: space-around;
@@ -226,13 +237,13 @@ $quizOverlayColor: #fff !default;
     }
 
     .icon {
-      color: $quizOverlayColor;
+      color: $quizTileIconColor;
     }
 
     .head {
       border-radius: 5px 5px 0 0;
       border: 0;
-      background-image: linear-gradient(to bottom right, $quizBackgroundColor1, $quizBackgroundColor2);
+      background-image: linear-gradient(to bottom right, $quizTileBackgroundColor1, $quizTileBackgroundColor2);
 
       .headInner {
         width: 100%;
@@ -262,7 +273,7 @@ $quizOverlayColor: #fff !default;
         .headIcon::after {
           font-family: FontAwesome;
           font-size: 128px;
-          color: $quizIconColor;
+          color: $quizTileIconColor;
           opacity: 0.5;
           transition: opacity 500ms;
         }
@@ -290,9 +301,9 @@ $quizOverlayColor: #fff !default;
           max-width: 75%;
           padding: 10px;
           border-radius: 5px 5px 0 0;
-          background-color: transparentize($quizListBackgroundColor3, 0.4);
-          @include wcfFontSmall();
-          color: $quizOverlayColor;
+          background-color: transparentize($quizTileInfoBackgroundColor, 0.4);
+          @include wcfFontSmall;
+          color: $quizTileInfoTextColor;
           opacity: 0.3;
           transition: opacity 500ms;
         }
@@ -306,8 +317,8 @@ $quizOverlayColor: #fff !default;
         width: 100%;
         padding: 10px;
         border-radius: 10px 10px 0 0;
-        background-color: transparentize($quizListBackgroundColor3, 0.4);
-        color: $quizOverlayColor;
+        background-color: transparentize($quizTileInfoBackgroundColor, 0.4);
+        color: $quizTileInfoTextColor;
 
         h1 {
           @include wcfFontTitle;
@@ -370,8 +381,10 @@ $quizOverlayColor: #fff !default;
     }
   }
 }
+/* quiz:end */
 
-/* Game animation */
+/* gameField:start */
+// animations
 @keyframes time-indicator {
   0% { transform: rotateY(0deg); }
   25% { transform: rotateY(90deg); }
@@ -380,17 +393,34 @@ $quizOverlayColor: #fff !default;
   100% { transform: rotateY(360deg); }
 }
 
-/* Game */
+// color variables
+$quizGameBorderColor: $quizTileBackgroundColor1 !default;
+$quizGameButtonIncorrectBackgroundColor: $quizIncorrectColor !default;
+$quizGameButtonCorrectBackgroundColor: $quizCorrectColor !default;
+$quizGameButtonTextColor: #fff;
+$timeState1Color: $wcfStatusSuccessText !default;
+$timeState2Color: #FF9900 !default;
+$timeState3Color: $wcfStatusErrorText;
+
+// ui
 .gameField {
   // field header
   .header {
     display: grid;
-    grid-template-columns: calc(33% - 10px) calc(33% - 10px) calc(33% - 10px);
+    grid-template-columns: 33% 34% 33%;
     align-items: center;
-    border-bottom: 2px solid $quizBackgroundColor2;
+    border-bottom: 2px solid $quizGameBorderColor;
     padding-bottom: 20px;
     opacity: 0;
     transition: opacity 1s;
+
+    .correct.fa {
+      color: $quizCorrectColor;
+    }
+
+    .incorrect.fa {
+      color: $quizIncorrectColor;
+    }
 
     // timer and animation for time.
     .timer {
@@ -411,19 +441,15 @@ $quizOverlayColor: #fff !default;
       }
 
       .s1 {
-        color: #009900;
-
-        .fa {
-          color: #009900;
-        }
+        color: $timeState1Color !important;
       }
 
       .s2 {
-        color: orange;
+        color: $timeState2Color !important;
+      }
 
-        .fa {
-          color: orange;
-        }
+      .s3 {
+        color: $timeState3Color !important;
       }
     }
 
@@ -472,13 +498,13 @@ $quizOverlayColor: #fff !default;
         }
 
         button.correct[disabled] {
-          background-color: #009900 !important;
-          color: #fff !important;
+          background-color: $quizGameButtonCorrectBackgroundColor !important;
+          color: $quizGameButtonTextColor !important;
         }
 
         button.incorrect[disabled] {
-          background-color: #990000 !important;
-          color: #fff !important;
+          background-color: $quizGameButtonIncorrectBackgroundColor !important;
+          color: $quizGameButtonTextColor !important;
         }
       }
 
@@ -496,14 +522,12 @@ $quizOverlayColor: #fff !default;
       display: block;
       text-align: center;
       width: 90%;
-      opacity: 0;
-      transition: opacity 1s;
 
       .goalInfo {
         margin-bottom: 20px;
         padding-bottom: 20px;
         border-bottom: 2px solid transparent;
-        border-image: (linear-gradient(to right, transparent, $quizBackgroundColor2, transparent)) 1 stretch;
+        border-image: (linear-gradient(to right, transparent, $quizGameBorderColor, transparent)) 1 stretch;
 
         p {
           @include wcfFontTitle;
@@ -535,10 +559,11 @@ $quizOverlayColor: #fff !default;
     }
   }
 
-  .shown {
-    opacity: 1;
+  .show {
+    opacity: 1 !important;
   }
 }
+/* gameField:end */
 
 /* UI PlayerList */
 .playerList {

@@ -2,8 +2,8 @@
 import {Question} from "../../../Data/Data";
 import {get as phrase} from "WoltLabSuite/Core/Language";
 
-export type CheckCallback = (option: string, callback: () => void) => void;
-export type NextCallback = () => void;
+export type CheckAnswerCallback = (option: string) => void;
+export type NextQuestionCallback = () => void;
 
 // buttons
 const button1 = document.createElement('button');
@@ -66,15 +66,15 @@ function buildNextField(): HTMLElement
 
 export class QuestionView {
     public viewContainer: HTMLElement;
-    protected checkCallback: CheckCallback;
-    protected nextCallback: NextCallback;
+    protected registerAnswer: CheckAnswerCallback;
+    protected goToNextQuestion: NextQuestionCallback;
     protected question: Question;
     protected selectedOption: string;
 
-    public constructor(checkCallback: CheckCallback, nextCallback: NextCallback)
+    public constructor(registerAnswer: CheckAnswerCallback, nextCallback: NextQuestionCallback)
     {
-        this.checkCallback = checkCallback;
-        this.nextCallback = nextCallback;
+        this.registerAnswer = registerAnswer;
+        this.goToNextQuestion = nextCallback;
 
         this.viewContainer = document.createElement('div');
         this.viewContainer.append(buildQuestionField(), buildButtonField(), buildExplanationField(), buildNextField());
@@ -86,7 +86,7 @@ export class QuestionView {
         return this.viewContainer;
     }
 
-    public prepareFor(question: Question, lastQuestion: boolean, callback: NextCallback): void
+    public prepareFor(question: Question, lastQuestion: boolean, callback: NextQuestionCallback): void
     {
         this.question = question;
 
@@ -99,7 +99,7 @@ export class QuestionView {
 
         if (lastQuestion) {
             nextButton.textContent = phrase('wcf.quizCreator.game.button.last');
-            this.nextCallback = callback;
+            this.goToNextQuestion = callback;
         }
     }
 
@@ -110,7 +110,8 @@ export class QuestionView {
         if (target !== null && target instanceof HTMLElement) {
             this.selectedOption = target.getAttribute('data-option') ?? '';
             this.selectedOption = this.selectedOption.toLowerCase();
-            this.checkCallback(this.selectedOption, () => this.updateAfterCheck())
+            this.registerAnswer(this.selectedOption);
+            this.updateAfterCheck();
         }
     }
 
@@ -124,7 +125,7 @@ export class QuestionView {
         explanation.classList.add('invisible')
 
         // execute callback for next question
-        this.nextCallback();
+        this.goToNextQuestion();
     }
 
     public updateAfterCheck(): void

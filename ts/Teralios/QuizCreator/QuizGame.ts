@@ -1,11 +1,12 @@
 import {Quiz} from './Data/Data';
 import {QuizLoader, LanguageLoader} from './Data/Loader';
 import {get as getLang} from 'WoltLabSuite/Core/Language';
+import {Game} from './Game/Game';
 
 class QuizGame
 {
     protected quiz: Quiz;
-    protected gameField: HTMLElement;
+    protected gameContainer: HTMLElement;
     protected selector: string;
 
     public constructor(selector: string) {
@@ -21,16 +22,23 @@ class QuizGame
     {
         this.quiz = quiz;
 
-        // @todo start working on game
+        // its not nice, other do not work well so replace
+        const oldContainer = this.gameContainer;
+        const newContainer = document.createElement('div');
+        newContainer.classList.add('game');
+        this.gameContainer = newContainer;
+        oldContainer.replaceWith(newContainer);
+
+        new Game(this.quiz, this.gameContainer);
     }
 
     public showError(): void
     {
-        const icon = this.gameField.getElementsByClassName('icon')[0] ?? null;
-        const information = this.gameField.getElementsByTagName('p')[0] ?? null;
+        const icon = this.gameContainer.getElementsByClassName('icon')[0] ?? null;
+        const information = this.gameContainer.getElementsByTagName('p')[0] ?? null;
 
         if (icon !== null) {
-            this.gameField.removeChild(icon);
+            this.gameContainer.removeChild(icon);
         }
 
         if (information !== null) {
@@ -43,20 +51,22 @@ class QuizGame
     {
        const gameField = document.querySelector(this.selector + ' .game');
         if (gameField instanceof HTMLElement) {
-            this.gameField = gameField;
+            this.gameContainer = gameField;
         } else {
             console.error('Can not found game field element.');
             return;
         }
 
         // add loading information to game field.
-        const spinner: HTMLElement = document.createElement('span');
-        const information: HTMLElement = document.createElement('p');
+        const loading = document.createElement('div');
+        const spinner = document.createElement('span');
+        const information = document.createElement('p');
         spinner.classList.add('icon', 'icon128', 'fa-spinner');
         information.innerText = getLang('wcf.quizCreator.game.status.loading');
-        this.gameField.classList.add('statusLoading');
-        this.gameField.appendChild(spinner);
-        this.gameField.appendChild(information);
+        loading.classList.add('statusLoading');
+        loading.append(spinner, information);
+        this.gameContainer.appendChild(loading);
+
 
         // load data
         this.loadData();

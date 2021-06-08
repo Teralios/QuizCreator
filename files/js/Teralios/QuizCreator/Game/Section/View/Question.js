@@ -45,9 +45,9 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
         return nextContainer;
     }
     class QuestionView {
-        constructor(checkCallback, nextCallback) {
-            this.checkCallback = checkCallback;
-            this.nextCallback = nextCallback;
+        constructor(registerAnswer, nextCallback) {
+            this.registerAnswer = registerAnswer;
+            this.goToNextQuestion = nextCallback;
             this.viewContainer = document.createElement('div');
             this.viewContainer.append(buildQuestionField(), buildButtonField(), buildExplanationField(), buildNextField());
             this.prepareButtons();
@@ -65,7 +65,7 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
             });
             if (lastQuestion) {
                 nextButton.textContent = Language_1.get('wcf.quizCreator.game.button.last');
-                this.nextCallback = callback;
+                this.goToNextQuestion = callback;
             }
         }
         checkAnswer(clickedButton) {
@@ -74,7 +74,8 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
             if (target !== null && target instanceof HTMLElement) {
                 this.selectedOption = (_a = target.getAttribute('data-option')) !== null && _a !== void 0 ? _a : '';
                 this.selectedOption = this.selectedOption.toLowerCase();
-                this.checkCallback(this.selectedOption, () => this.updateAfterCheck());
+                this.registerAnswer(this.selectedOption);
+                this.updateAfterCheck();
             }
         }
         nextQuestion() {
@@ -84,7 +85,7 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
             // explanation
             explanation.classList.add('invisible');
             // execute callback for next question
-            this.nextCallback();
+            this.goToNextQuestion();
         }
         updateAfterCheck() {
             // update and disable buttons

@@ -1,4 +1,4 @@
-define(["require", "exports", "./Data/Loader", "WoltLabSuite/Core/Language"], function (require, exports, Loader_1, Language_1) {
+define(["require", "exports", "./Data/Loader", "WoltLabSuite/Core/Language", "./Game/Game"], function (require, exports, Loader_1, Language_1, Game_1) {
     "use strict";
     class QuizGame {
         constructor(selector) {
@@ -12,14 +12,20 @@ define(["require", "exports", "./Data/Loader", "WoltLabSuite/Core/Language"], fu
         }
         startGame(quiz) {
             this.quiz = quiz;
-            // @todo start working on game
+            // its not nice, other do not work well so replace
+            const oldContainer = this.gameContainer;
+            const newContainer = document.createElement('div');
+            newContainer.classList.add('game');
+            this.gameContainer = newContainer;
+            oldContainer.replaceWith(newContainer);
+            new Game_1.Game(this.quiz, this.gameContainer);
         }
         showError() {
             var _a, _b;
-            const icon = (_a = this.gameField.getElementsByClassName('icon')[0]) !== null && _a !== void 0 ? _a : null;
-            const information = (_b = this.gameField.getElementsByTagName('p')[0]) !== null && _b !== void 0 ? _b : null;
+            const icon = (_a = this.gameContainer.getElementsByClassName('icon')[0]) !== null && _a !== void 0 ? _a : null;
+            const information = (_b = this.gameContainer.getElementsByTagName('p')[0]) !== null && _b !== void 0 ? _b : null;
             if (icon !== null) {
-                this.gameField.removeChild(icon);
+                this.gameContainer.removeChild(icon);
             }
             if (information !== null) {
                 information.textContent = Language_1.get('wcf.quizCreator.game.status.error');
@@ -29,20 +35,21 @@ define(["require", "exports", "./Data/Loader", "WoltLabSuite/Core/Language"], fu
         findField() {
             const gameField = document.querySelector(this.selector + ' .game');
             if (gameField instanceof HTMLElement) {
-                this.gameField = gameField;
+                this.gameContainer = gameField;
             }
             else {
                 console.error('Can not found game field element.');
                 return;
             }
             // add loading information to game field.
+            const loading = document.createElement('div');
             const spinner = document.createElement('span');
             const information = document.createElement('p');
             spinner.classList.add('icon', 'icon128', 'fa-spinner');
             information.innerText = Language_1.get('wcf.quizCreator.game.status.loading');
-            this.gameField.classList.add('statusLoading');
-            this.gameField.appendChild(spinner);
-            this.gameField.appendChild(information);
+            loading.classList.add('statusLoading');
+            loading.append(spinner, information);
+            this.gameContainer.appendChild(loading);
             // load data
             this.loadData();
         }

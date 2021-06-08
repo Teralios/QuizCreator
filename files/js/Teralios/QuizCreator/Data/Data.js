@@ -7,6 +7,7 @@ define(["require", "exports"], function (require, exports) {
      */
     class Question {
         constructor(question, optionA, optionB, optionC, optionD, explanation, correctOption) {
+            this.options = new Map();
             this.question = question;
             this.options['A'] = optionA;
             this.options['B'] = optionB;
@@ -41,6 +42,8 @@ define(["require", "exports"], function (require, exports) {
      */
     class Quiz {
         constructor() {
+            this.questions = [];
+            this.goals = [];
             this.questionsCount = 0;
             this.questionIndex = 0;
         }

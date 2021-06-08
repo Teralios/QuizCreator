@@ -10,6 +10,7 @@ class Question
 
     public constructor (question: string, optionA: string, optionB: string, optionC: string, optionD: string, explanation: string, correctOption: string)
     {
+        this.options = new Map();
         this.question = question;
         this.options['A'] = optionA;
         this.options['B'] = optionB;
@@ -57,12 +58,14 @@ class Goal
 class Quiz
 {
     protected questions: Question[];
-    protected questionsCount: number;
+    public questionsCount: number;
     protected questionIndex: number;
     protected goals: Goal[];
 
     public constructor()
     {
+        this.questions = [];
+        this.goals = [];
         this.questionsCount = 0;
         this.questionIndex = 0;
     }

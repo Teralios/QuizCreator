@@ -423,20 +423,21 @@ $timeState3Color: $wcfStatusErrorText;
     }
 
     // timer and animation for time.
-    .timer {
+    .stopwatch {
       text-align: center;
+      transition: color 500ms;
 
-      .timeDot {
+      .top {
+        @include wcfFontSmall;
+
         .fa {
-          color: #000;
-          transition: color 500ms;
           animation: time-indicator;
           animation-duration: 4s;
           animation-iteration-count: infinite;
         }
       }
 
-      .paused {
+      .paused .fa {
         animation-play-state: paused;
       }
 
@@ -560,7 +561,7 @@ $timeState3Color: $wcfStatusErrorText;
   }
 
   .show {
-    opacity: 1 !important;
+    opacity: 1;
   }
 }
 /* gameField:end */

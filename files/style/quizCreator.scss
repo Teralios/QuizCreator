@@ -371,6 +371,175 @@ $quizOverlayColor: #fff !default;
   }
 }
 
+/* Game animation */
+@keyframes time-indicator {
+  0% { transform: rotateY(0deg); }
+  25% { transform: rotateY(90deg); }
+  50% { transform: rotateY(180deg); }
+  75% { transform: rotateY(270deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+/* Game */
+.gameField {
+  // field header
+  .header {
+    display: grid;
+    grid-template-columns: calc(33% - 10px) calc(33% - 10px) calc(33% - 10px);
+    align-items: center;
+    border-bottom: 2px solid $quizBackgroundColor2;
+    padding-bottom: 20px;
+    opacity: 0;
+    transition: opacity 1s;
+
+    // timer and animation for time.
+    .timer {
+      text-align: center;
+
+      .timeDot {
+        .fa {
+          color: #000;
+          transition: color 500ms;
+          animation: time-indicator;
+          animation-duration: 4s;
+          animation-iteration-count: infinite;
+        }
+      }
+
+      .paused {
+        animation-play-state: paused;
+      }
+
+      .s1 {
+        color: #009900;
+
+        .fa {
+          color: #009900;
+        }
+      }
+
+      .s2 {
+        color: orange;
+
+        .fa {
+          color: orange;
+        }
+      }
+    }
+
+    // score
+    .score {
+      text-align: right;
+    }
+  }
+
+  // main and show
+  .main {
+    min-height: 500px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    opacity: 0;
+    transition: opacity 1s;
+
+    .startView {
+      align-items: center;
+    }
+
+    .intermissionView {
+      align-items: center;
+      text-align: center;
+      @include wcfFontTitle;
+    }
+
+    .questionView {
+      display: block;
+      text-align: center;
+      width: 90%;
+
+      p.question {
+        margin-bottom: 10px;
+        @include wcfFontHeadline;
+      }
+
+      ul {
+        margin: 20px 0;
+        padding: 0;
+
+        button {
+          margin: 5px;
+          width: 90%;
+        }
+
+        button.correct[disabled] {
+          background-color: #009900 !important;
+          color: #fff !important;
+        }
+
+        button.incorrect[disabled] {
+          background-color: #990000 !important;
+          color: #fff !important;
+        }
+      }
+
+      .next {
+        opacity: 0;
+        transition: opacity 500ms;
+        p {
+          margin-bottom: 10px;
+          @include wcfFontDefault;
+        }
+      }
+    }
+
+    .resultView {
+      display: block;
+      text-align: center;
+      width: 90%;
+      opacity: 0;
+      transition: opacity 1s;
+
+      .goalInfo {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid transparent;
+        border-image: (linear-gradient(to right, transparent, $quizBackgroundColor2, transparent)) 1 stretch;
+
+        p {
+          @include wcfFontTitle;
+
+          &:last-child {
+            margin-top: 5px;
+            @include wcfFontSmall;
+          }
+        }
+      }
+
+      .scoreInfo {
+        p {
+          margin: 20px;
+
+          &:first-child {
+            @include wcfFontTitle;
+          }
+
+          &:nth-child(2) {
+            @include wcfFontHeadline;
+          }
+
+          &:last-child {
+            @include wcfFontSmall;
+          }
+        }
+      }
+    }
+  }
+
+  .shown {
+    opacity: 1;
+  }
+}
+
 /* UI PlayerList */
 .playerList {
   .place1 {

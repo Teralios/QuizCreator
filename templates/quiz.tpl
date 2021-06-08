@@ -43,7 +43,63 @@
         <div class="description">
             {@$quiz->getDescription()}
         </div>
-        <div class="game"></div>
+        <div class="game">
+            <div class="gameField">
+                <div class="header">
+                    <div class="questionInfo">
+                        <p>Frage <b>1</b> von <b>10</b></p>
+                        <p>
+                            <span class="question fa icon16 fa-question-circle"></span>
+                            <span class="question fa icon16 fa-question-circle"></span>
+                            <span class="question fa icon16 fa-question-circle"></span>
+                            <span class="question fa icon16 fa-question-circle"></span>
+                            <span class="question fa icon16 fa-question-circle"></span>
+                            <span class="question fa icon16 fa-question-circle"></span>
+                            <span class="question fa icon16 fa-question-circle"></span>
+                            <span class="question fa icon16 fa-question-circle"></span>
+                            <span class="question fa icon16 fa-question-circle"></span>
+                            <span class="question fa icon16 fa-question-circle"></span>
+                        </p>
+                    </div>
+                    <div class="timer">
+                        <p class="timeDot s1 small"><span class="fa icon16 fa-circle"></span> +10</p>
+                        <p>00:00</p>
+                    </div>
+                    <div class="score">0 <b>Punkte</b></div>
+                </div>
+                <div class="main shown">
+                    {*<div class="startView"><button>Start</button></div>
+                    <div class="intermissionView">
+                        <p>Frage 1</p>
+                    </div> *}
+                    {* <div class="questionView">
+                        <p class="question">Testfrage - zur Demonstration ist sie kurz!</p>
+                        <ul class="questionList">
+                            <li><button>Antwort A</button></li>
+                            <li><button disabled="disabled" class="correct">Antwort B</button></li>
+                            <li><button disabled="disabled" class="incorrect">Antwort C</button></li>
+                            <li><button>Antwort D</button></li>
+                        </ul>
+                        <div class="next">
+                            <p>Erklärung, wird sichtbar, wenn die Frage geschafft wurde.</p>
+                            <button>Nächste Frage</button>
+                        </div>
+                    </div> *}
+                    {* <div class="resultView">
+                        <div class="goalInfo">
+                            <p><span class="fa icon128 fa-rebel"></span></p>
+                            <p>Jedi-Padawan</p>
+                            <p>Noch ein langen Weg du vor dir Hast.</p>
+                        </div>
+                        <div class="scoreInfo">
+                            <p>128 Punkte</p>
+                            <p>∅ 56 Punkte</p>
+                            <p>Du hast mehr Punkte als 80% der Spieler erreicht.</p>
+                        </div>
+                    </div> *}
+                </div>
+            </div>
+        </div>
         {if !$tags|empty}
             <div class="tags">
                 <ul class="tagList">
@@ -62,6 +118,6 @@
     }
 </script>
 
-{js application='wcf' file='QuizCreator'}
+{* {js application='wcf' file='QuizCreator'} *}
 
 {include file='footer'}

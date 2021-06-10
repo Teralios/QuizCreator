@@ -4,6 +4,7 @@ import {get as phrase} from "WoltLabSuite/Core/Language";
 
 export type CheckAnswerCallback = (option: string) => void;
 export type NextQuestionCallback = () => void;
+export type ShowQuestionCallback = () => void;
 
 // buttons
 const button1 = document.createElement('button');
@@ -86,7 +87,7 @@ export class QuestionView {
         return this.viewContainer;
     }
 
-    public prepareFor(question: Question, lastQuestion: boolean, callback: NextQuestionCallback): void
+    public prepareFor(question: Question, callback?: NextQuestionCallback): void
     {
         this.question = question;
 
@@ -97,7 +98,7 @@ export class QuestionView {
             buttons[index].textContent = this.question.options[option];
         });
 
-        if (lastQuestion) {
+        if (callback) {
             nextButton.textContent = phrase('wcf.quizCreator.game.button.last');
             this.goToNextQuestion = callback;
         }

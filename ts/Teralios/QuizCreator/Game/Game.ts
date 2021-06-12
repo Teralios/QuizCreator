@@ -36,7 +36,13 @@ export class Game {
     {
         // sections
         this.header = new Header(this.quiz.questionsCount);
-        this.main = new Main(() => { this.startWatch() }, (option: string) => this.registerAnswer(option), () => { this.setNextQuestion() }, () => { this.finishGame() });
+        this.main = new Main(
+            () => { this.startWatch() },
+            (option: string) => this.registerAnswer(option),
+            () => { this.setNextQuestion() },
+            () => { this.finishGame() },
+            () => { }
+        );
         DomUtil.hide(this.header.getView());
         DomUtil.hide(this.main.getView());
 
@@ -48,6 +54,8 @@ export class Game {
         // add sections
         this.container.append(this.header.getView());
         this.container.append(this.main.getView());
+        alert('test');
+        setTimeout(() => { this.main.showStartView() }, 1000); // css needs some time to render.
     }
 
     public registerAnswer(option: string): boolean

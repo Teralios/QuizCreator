@@ -1,6 +1,6 @@
 import {Quiz} from './Data/Data';
 import {QuizLoader, LanguageLoader} from './Data/Loader';
-import {get as getLang} from 'WoltLabSuite/Core/Language';
+import {get as phrase} from 'WoltLabSuite/Core/Language';
 import {Game} from './Game/Game';
 
 class QuizGame
@@ -42,7 +42,7 @@ class QuizGame
         }
 
         if (information !== null) {
-            information.textContent = getLang('wcf.quizCreator.game.status.error');
+            information.textContent = phrase('wcf.quizCreator.game.status.error');
             information.classList.add('error');
         }
     }
@@ -62,7 +62,7 @@ class QuizGame
         const spinner = document.createElement('span');
         const information = document.createElement('p');
         spinner.classList.add('icon', 'icon128', 'fa-spinner');
-        information.innerText = getLang('wcf.quizCreator.game.status.loading');
+        information.innerText = phrase('wcf.quizCreator.game.status.loading');
         loading.classList.add('statusLoading');
         loading.append(spinner, information);
         this.gameContainer.appendChild(loading);

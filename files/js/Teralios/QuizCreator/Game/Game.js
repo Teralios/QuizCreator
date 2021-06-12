@@ -22,7 +22,7 @@ define(["require", "exports", "tslib", "./Section/Header", "./Section/Main", "Wo
         init() {
             // sections
             this.header = new Header_1.Header(this.quiz.questionsCount);
-            this.main = new Main_1.Main(() => { this.startWatch(); }, (option) => this.registerAnswer(option), () => { this.setNextQuestion(); }, () => { this.finishGame(); });
+            this.main = new Main_1.Main(() => { this.startWatch(); }, (option) => this.registerAnswer(option), () => { this.setNextQuestion(); }, () => { this.finishGame(); }, () => { });
             Util_1.default.hide(this.header.getView());
             Util_1.default.hide(this.main.getView());
             // create game field.
@@ -32,6 +32,8 @@ define(["require", "exports", "tslib", "./Section/Header", "./Section/Main", "Wo
             // add sections
             this.container.append(this.header.getView());
             this.container.append(this.main.getView());
+            alert('test');
+            setTimeout(() => { this.main.showStartView(); }, 1000); // css needs some time to render.
         }
         registerAnswer(option) {
             // check answer - may b

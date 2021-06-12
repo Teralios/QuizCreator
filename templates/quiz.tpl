@@ -118,7 +118,7 @@
         "wcf.quizCreator.game.button.next": "{jslang}wcf.quizCreator.game.button.next{/jslang}", {* nächste Frage *}
         "wcf.quizCreator.game.button.start": "{jslang}wcf.quizCreator.game.button.start{/jslang}", {* Start *}
         "wcf.quizCreator.game.header.question.prefix": "{jslang}wcf.quizCreator.game.header.question.prefix{/jslang}", {* Frage *}
-        "wcf.quizCreator.game.header.question.suffix": "{jslang}wcf.quizCreator.game.header.question.prefix{/jslang}", {* von {$questions *}
+        "wcf.quizCreator.game.header.question.suffix": "{jslang}wcf.quizCreator.game.header.question.suffix{/jslang}", {* von {$questions *}
         "wcf.quizCreator.game.header.score": "{jslang}wcf.quizCreator.game.header.score{/jslang}", {* Punkte *}
         "wcf.quizCreator.game.header.value": "{jslang}wcf.quizCreator.game.header.value{/jslang}", {* {$currentScore} <b>Punkte</b> *}
         "wcf.quizCreator.game.result.average": "{jslang}wcf.quizCreator.game.result.average{/jslang}", {* ∅ {$averageScore} Punkte *}

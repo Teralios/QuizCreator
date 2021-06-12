@@ -1,7 +1,8 @@
-define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, exports, Language_1) {
+define(["require", "exports", "tslib", "WoltLabSuite/Core/Dom/Util", "WoltLabSuite/Core/Language"], function (require, exports, tslib_1, Util_1, Language_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.QuestionView = void 0;
+    Util_1 = tslib_1.__importDefault(Util_1);
     // buttons
     const button1 = document.createElement('button');
     const button2 = document.createElement('button');
@@ -49,6 +50,8 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
             this.registerAnswer = registerAnswer;
             this.goToNextQuestion = nextCallback;
             this.viewContainer = document.createElement('div');
+            this.viewContainer.classList.add('questionView');
+            Util_1.default.hide(this.viewContainer);
             this.viewContainer.append(buildQuestionField(), buildButtonField(), buildExplanationField(), buildNextField());
             this.prepareButtons();
         }

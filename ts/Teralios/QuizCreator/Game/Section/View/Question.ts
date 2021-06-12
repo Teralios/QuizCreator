@@ -1,5 +1,6 @@
 // imports
 import {Question} from "../../../Data/Data";
+import DomUtil from "WoltLabSuite/Core/Dom/Util";
 import {get as phrase} from "WoltLabSuite/Core/Language";
 
 export type CheckAnswerCallback = (option: string) => boolean;
@@ -78,6 +79,9 @@ export class QuestionView {
         this.goToNextQuestion = nextCallback;
 
         this.viewContainer = document.createElement('div');
+        this.viewContainer.classList.add('questionView');
+        DomUtil.hide(this.viewContainer);
+
         this.viewContainer.append(buildQuestionField(), buildButtonField(), buildExplanationField(), buildNextField());
         this.prepareButtons();
     }

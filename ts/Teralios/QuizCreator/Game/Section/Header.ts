@@ -100,6 +100,12 @@ export class Header {
         question.textContent = String(questionIndex);
     }
 
+    public updateQuestionIndicator(no: number, isCorrect: boolean): void
+    {
+        no = no - 1;
+        questionMakers[no].classList.add((isCorrect) ? 'correct' : 'inCorrect');
+    }
+
     public updateScore(newScore: number): void
     {
         score.textContent = String(newScore);

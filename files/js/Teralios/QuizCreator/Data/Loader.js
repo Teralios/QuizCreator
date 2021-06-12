@@ -51,6 +51,7 @@ define(["require", "exports", "WoltLabSuite/Core/Language", "WoltLabSuite/Core/A
             if ('questionList' in this.jsonData && Array.isArray(this.jsonData['questionList'])) {
                 // add questions
                 const questionList = this.jsonData['questionList'];
+                let no = 1;
                 if (questionList.length > 0) {
                     questionList.forEach((data) => {
                         var _a, _b, _c, _d, _e, _f, _g;
@@ -67,7 +68,8 @@ define(["require", "exports", "WoltLabSuite/Core/Language", "WoltLabSuite/Core/A
                             && optionC != ''
                             && optionD != ''
                             && correctOption != '') {
-                            quiz.addQuestion(new Data_1.Question(question, optionA, optionB, optionC, optionD, explanation, correctOption));
+                            quiz.addQuestion(new Data_1.Question(question, optionA, optionB, optionC, optionD, explanation, correctOption, no));
+                            ++no;
                         }
                     });
                 }

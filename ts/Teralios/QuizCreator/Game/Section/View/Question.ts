@@ -2,7 +2,7 @@
 import {Question} from "../../../Data/Data";
 import {get as phrase} from "WoltLabSuite/Core/Language";
 
-export type CheckAnswerCallback = (option: string) => void;
+export type CheckAnswerCallback = (option: string) => boolean;
 export type NextQuestionCallback = () => void;
 export type ShowQuestionCallback = () => void;
 
@@ -111,8 +111,7 @@ export class QuestionView {
         if (target !== null && target instanceof HTMLElement) {
             this.selectedOption = target.getAttribute('data-option') ?? '';
             this.selectedOption = this.selectedOption.toLowerCase();
-            this.registerAnswer(this.selectedOption);
-            this.updateAfterCheck();
+            this.updateField(this.registerAnswer(this.selectedOption));
         }
     }
 
@@ -129,14 +128,14 @@ export class QuestionView {
         this.goToNextQuestion();
     }
 
-    public updateAfterCheck(): void
+    public updateField(isCorrect: boolean): void
     {
         // update and disable buttons
         buttons.forEach((button) => {
             let option = button.getAttribute('data-option') ?? '';
             option = option.toLowerCase();
 
-            if (this.question.checkAnswer(option)) {
+            if (isCorrect) {
                 button.classList.add('correct');
             } else {
                 if (option == this.selectedOption) {

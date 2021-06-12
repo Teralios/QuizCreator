@@ -6,7 +6,7 @@ define(["require", "exports"], function (require, exports) {
      * Default question class.
      */
     class Question {
-        constructor(question, optionA, optionB, optionC, optionD, explanation, correctOption) {
+        constructor(question, optionA, optionB, optionC, optionD, explanation, correctOption, no) {
             this.options = new Map();
             this.question = question;
             this.options['A'] = optionA;
@@ -15,6 +15,7 @@ define(["require", "exports"], function (require, exports) {
             this.options['D'] = optionD;
             this.explanation = explanation;
             this.correct = correctOption.toLowerCase();
+            this.no = no;
         }
         checkAnswer(givenAnswer) {
             givenAnswer = givenAnswer.toLowerCase();
@@ -59,6 +60,9 @@ define(["require", "exports"], function (require, exports) {
                 return null;
             }
             return this.questions[this.questionIndex];
+        }
+        getQuestionNo() {
+            return this.questionIndex + 1;
         }
         nextQuestion() {
             ++this.questionIndex;

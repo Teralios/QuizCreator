@@ -55,7 +55,7 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
         getView() {
             return this.viewContainer;
         }
-        prepareFor(question, lastQuestion, callback) {
+        prepareFor(question, callback) {
             this.question = question;
             // update buttons
             buttons.sort(() => 0.5 - Math.random());
@@ -63,7 +63,7 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
                 buttons[index].setAttribute('data-option', option.toLowerCase());
                 buttons[index].textContent = this.question.options[option];
             });
-            if (lastQuestion) {
+            if (callback) {
                 nextButton.textContent = Language_1.get('wcf.quizCreator.game.button.last');
                 this.goToNextQuestion = callback;
             }
@@ -74,8 +74,7 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
             if (target !== null && target instanceof HTMLElement) {
                 this.selectedOption = (_a = target.getAttribute('data-option')) !== null && _a !== void 0 ? _a : '';
                 this.selectedOption = this.selectedOption.toLowerCase();
-                this.registerAnswer(this.selectedOption);
-                this.updateAfterCheck();
+                this.updateField(this.registerAnswer(this.selectedOption));
             }
         }
         nextQuestion() {
@@ -87,13 +86,13 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
             // execute callback for next question
             this.goToNextQuestion();
         }
-        updateAfterCheck() {
+        updateField(isCorrect) {
             // update and disable buttons
             buttons.forEach((button) => {
                 var _a;
                 let option = (_a = button.getAttribute('data-option')) !== null && _a !== void 0 ? _a : '';
                 option = option.toLowerCase();
-                if (this.question.checkAnswer(option)) {
+                if (isCorrect) {
                     button.classList.add('correct');
                 }
                 else {

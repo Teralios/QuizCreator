@@ -36,7 +36,7 @@ export class Game {
     {
         // sections
         this.header = new Header(this.quiz.questionsCount);
-        this.main = new Main();
+        this.main = new Main(() => { this.startWatch() }, (option: string) => this.registerAnswer(option), () => { this.setNextQuestion() }, () => { this.finishGame() });
         DomUtil.hide(this.header.getView());
         DomUtil.hide(this.main.getView());
 
@@ -50,13 +50,24 @@ export class Game {
         this.container.append(this.main.getView());
     }
 
-    public registerAnswer(option: string): void
+    public registerAnswer(option: string): boolean
     {
-        // stop watch and new score
-        this.score += this.value;
+        // check answer - may b
+        const returnValue = this.currentQuestion.checkAnswer(option)
+        if (returnValue) {
+            this.score += this.value;
+        }
         this.quizSeconds += this.seconds;
 
-        // update headers
+        // stop watch and
+        this.header.stopAnimation();
+        if (this.watchID) {
+            clearInterval(this.watchID);
+        }
+
+        // update header
+        this.header.updateScore(this.score);
+        this.header.updateQuestionIndicator(this.currentQuestion.no, returnValue);
 
         // get current data
         const result = new Map();
@@ -67,6 +78,8 @@ export class Game {
         // reset counters
         this.seconds = 0;
         this.value = status1Value;
+
+        return returnValue;
     }
 
     public startWatch(): void
@@ -76,8 +89,23 @@ export class Game {
         this.header.updateValue(this.value);
         this.header.updateTime(this.seconds);
         this.header.updateStatus('s1');
+        this.header.startAnimation();
 
         this.watchID = setInterval(() => { this.clockTick() }, 1000);
+    }
+
+    public setNextQuestion(): void
+    {
+        const question = this.quiz.getQuestion();
+
+        if (question != null) {
+            this.main.nextQuestion(question, this.quiz.nextQuestion());
+        }
+    }
+
+    public finishGame(): void
+    {
+
     }
 
     public clockTick(): void

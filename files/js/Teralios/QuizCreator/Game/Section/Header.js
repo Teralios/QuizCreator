@@ -66,6 +66,10 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
         updateQuestion(questionIndex) {
             question.textContent = String(questionIndex);
         }
+        updateQuestionIndicator(no, isCorrect) {
+            no = no - 1;
+            questionMakers[no].classList.add((isCorrect) ? 'correct' : 'inCorrect');
+        }
         updateScore(newScore) {
             score.textContent = String(newScore);
         }

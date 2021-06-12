@@ -68,6 +68,7 @@ class QuizLoader implements AjaxCallbackObject
 
             // add questions
             const questionList: Array<any> = this.jsonData['questionList'];
+            let no = 1;
             if (questionList.length > 0) {
                 questionList.forEach((data) => {
                     const question = String(data.question) ?? '';
@@ -93,8 +94,10 @@ class QuizLoader implements AjaxCallbackObject
                             optionC,
                             optionD,
                             explanation,
-                            correctOption
+                            correctOption,
+                            no
                         ));
+                        ++no;
                     }
                 })
             }

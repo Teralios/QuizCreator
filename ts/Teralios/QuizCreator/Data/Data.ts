@@ -7,8 +7,9 @@ class Question
     public options: Map<string, string>;
     public explanation: string;
     public correct: string;
+    public no: number
 
-    public constructor (question: string, optionA: string, optionB: string, optionC: string, optionD: string, explanation: string, correctOption: string)
+    public constructor (question: string, optionA: string, optionB: string, optionC: string, optionD: string, explanation: string, correctOption: string, no: number)
     {
         this.options = new Map();
         this.question = question;
@@ -18,6 +19,7 @@ class Question
         this.options['D'] = optionD;
         this.explanation = explanation;
         this.correct = correctOption.toLowerCase();
+        this.no = no;
     }
 
     public checkAnswer(givenAnswer: string): boolean
@@ -88,6 +90,11 @@ class Quiz
         }
 
         return this.questions[this.questionIndex];
+    }
+
+    public getQuestionNo(): number
+    {
+        return this.questionIndex + 1;
     }
 
     public nextQuestion(): boolean

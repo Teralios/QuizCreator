@@ -35,7 +35,7 @@ export class Main
         this._initGeneral();
     }
 
-    public nextQuestion(question: Question, questionNumber: number, isLast?: boolean)
+    public nextQuestion(question: Question, isLast?: boolean)
     {
         if (isLast) {
             this.questionView.prepareFor(question, this.finishGameCallback);

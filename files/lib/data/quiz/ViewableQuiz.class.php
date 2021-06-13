@@ -113,10 +113,10 @@ class ViewableQuiz extends DatabaseObjectDecorator
             return '';
         }
 
-        if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguage($this->languageID))
-        {
+        if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguage($this->languageID)) {
             return /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguage($this->languageID)->getIconPath();
         }
+
         return '';
     }
 

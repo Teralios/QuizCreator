@@ -41,13 +41,7 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
 
     // const
     public const MAX_VALUE_QUESTION = 10;
-    public const FUN_VALUE_QUESTION = 1;
     public const OBJECT_TYPE = 'de.teralios.quizCreator.quiz';
-
-    /**
-     * @var ViewableMedia
-     */
-    public $mediaObject = null;
 
     /**
      * @inheritDoc
@@ -80,18 +74,13 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
      */
     public function getDescription(): string
     {
-        if (QUIZ_DESCRIPTION_HTML == 1) {
+        if (QUIZ_DESCRIPTION_HTML === 1) {
             $processor = new HtmlOutputProcessor();
-            $processor->process($this->description, Quiz::OBJECT_TYPE, $this->quizID);
+            $processor->process($this->description, self::OBJECT_TYPE, $this->quizID);
             return $processor->getHtml();
         }
 
         return SimpleMessageParser::getInstance()->parse($this->description);
-    }
-
-    public function getRawDescription(): string
-    {
-        return $this->description;
     }
 
     /**
@@ -116,10 +105,10 @@ class Quiz extends DatabaseObject implements IRouteController, ITitledLinkObject
     public function canSee(): bool
     {
         if ($this->isActive) {
-            return (WCF::getSession()->getPermission('user.quiz.canView')) ? true : false;
+            return (bool) WCF::getSession()->getPermission('user.quiz.canView');
         }
 
-        return (WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) ? true : false;
+        return (bool) WCF::getSession()->getPermission('admin.content.quizCreator.canManage');
     }
 
     /**

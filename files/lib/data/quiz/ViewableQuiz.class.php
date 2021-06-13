@@ -42,7 +42,7 @@ class ViewableQuiz extends DatabaseObjectDecorator
     /**
      * @var ViewableMedia
      */
-    protected $mediaObject = null;
+    protected $mediaObject;
 
     /**
      * @since 1.5.0
@@ -113,7 +113,11 @@ class ViewableQuiz extends DatabaseObjectDecorator
             return '';
         }
 
-        return /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguage($this->languageID)->getIconPath();
+        if (/** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguage($this->languageID))
+        {
+            return /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguage($this->languageID)->getIconPath();
+        }
+        return '';
     }
 
     /**
@@ -130,6 +134,7 @@ class ViewableQuiz extends DatabaseObjectDecorator
     /**
      * @param bool $played
      * @param float $relativeScore
+     * @return self
      */
     public function setPlayerStatus(bool $played, float $relativeScore): self
     {

@@ -27,7 +27,7 @@ class QuizPlayerListPage extends MultipleLinkPage
     /**
      * @var GameList
      */
-    public $objectList = null;
+    public $objectList;
 
     /**
      * @var bool
@@ -38,7 +38,7 @@ class QuizPlayerListPage extends MultipleLinkPage
      * @inheritdoc
      * @throws IllegalLinkException|PermissionDeniedException|SystemException
      */
-    public function readParameters()
+    public function readParameters(): void
     {
         parent::readParameters();
 
@@ -50,7 +50,7 @@ class QuizPlayerListPage extends MultipleLinkPage
      * @inheritdoc
      * @throws SystemException
      */
-    public function initObjectList()
+    public function initObjectList(): void
     {
         parent::initObjectList();
 
@@ -66,14 +66,13 @@ class QuizPlayerListPage extends MultipleLinkPage
     /**
      * @inheritdoc
      */
-    public function assignVariables()
+    public function assignVariables(): void
     {
         parent::assignVariables();
 
         $this->assignQuizData();
         WCF::getTPL()->assign([
             'placementStart' => (1 + ($this->itemsPerPage * ($this->pageNo - 1))),
-            'showQuizMakerCopyright' => true,
             'showQuizMakerCopyright' => $this->showCopyright,
         ]);
     }

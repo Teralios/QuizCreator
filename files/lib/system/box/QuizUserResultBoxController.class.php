@@ -7,6 +7,16 @@ use wcf\page\QuizPage;
 use wcf\system\request\RequestHandler;
 use wcf\system\WCF;
 
+/**
+ * Class QuizUserResultBoxController
+ *
+ * @package   de.teralios.quizCreator
+ * @subpackage wcf\system\box
+ * @author    Teralios
+ * @copyright ©2019 - 2021 Teralios.de
+ * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ * @since 1.5.0
+ */
 class QuizUserResultBoxController extends AbstractBoxController
 {
     /**
@@ -14,7 +24,12 @@ class QuizUserResultBoxController extends AbstractBoxController
      */
     protected static $supportedPositions = ['footerBoxes', 'sidebarLeft', 'sidebarRight', 'contentTop', 'contentBottom', 'footer'];
 
-    public function loadContent()
+    /**
+     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
+     * @throws \wcf\system\exception\SystemException
+     */
+    public function loadContent(): void
     {
         if (
             /** @scrutinizer ignore-call */ RequestHandler::getInstance()->getActiveRequest() !== null

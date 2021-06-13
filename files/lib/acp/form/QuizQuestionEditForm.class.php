@@ -19,13 +19,12 @@ use wcf\system\exception\IllegalLinkException;
 class QuizQuestionEditForm extends QuizQuestionAddForm
 {
     // inherit vars
-    public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.list';
     public $formAction = 'edit';
 
     /**
      * @inheritDoc
      */
-    public function readParameters()
+    public function readParameters(): void
     {
         AbstractFormBuilderForm::readParameters();
 

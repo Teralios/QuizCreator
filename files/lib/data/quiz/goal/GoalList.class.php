@@ -44,7 +44,7 @@ class GoalList extends DatabaseObjectList
      * Build standard condition.
      * @throws SystemException
      */
-    protected function defaultCommand()
+    protected function defaultCommand(): void
     {
         $this->getConditionBuilder()->add('quizID = ?', [$this->quiz->quizID]);
 

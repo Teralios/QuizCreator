@@ -4,6 +4,16 @@ namespace wcf\system\category;
 
 use wcf\system\WCF;
 
+/**
+ * Class QuizCategoryType
+ *
+ * @package   de.teralios.quizCreator
+ * @subpackage wcf\system\category
+ * @author    Teralios
+ * @copyright ©2019 - 2021 Teralios.de
+ * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ * @since 1.5.0
+ */
 class QuizCategoryType extends AbstractCategoryType
 {
     public $langVarPrefix = 'wcf.quizCreator.category';

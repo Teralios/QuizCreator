@@ -27,7 +27,7 @@ class BaseQuizForm extends AbstractFormBuilderForm
      * @inheritDoc
      * @throws IllegalLinkException
      */
-    public function readParameters()
+    public function readParameters(): void
     {
         parent::readParameters();
 
@@ -44,7 +44,7 @@ class BaseQuizForm extends AbstractFormBuilderForm
     /**
      * @inheritDoc
      */
-    public function assignVariables()
+    public function assignVariables(): void
     {
         parent::assignVariables();
 

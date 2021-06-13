@@ -34,7 +34,7 @@ class GameAction extends AbstractDatabaseObjectAction
      * Validate show result.
      * @throws PermissionDeniedException|UserInputException
      */
-    public function validateShowResult()
+    public function validateShowResult(): void
     {
         WCF::getSession()->checkPermissions($this->permissionsShowResult);
 

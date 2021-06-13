@@ -31,7 +31,7 @@ class QuizGoalAddForm extends BaseQuizForm
     /**
      * @inheritDoc
      */
-    public function createForm()
+    public function createForm(): void
     {
         parent::createForm();
         $quizID = $this->quizObject->quizID;

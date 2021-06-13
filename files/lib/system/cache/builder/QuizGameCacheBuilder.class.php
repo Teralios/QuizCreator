@@ -31,13 +31,10 @@ class QuizGameCacheBuilder extends AbstractCacheBuilder
         $withUser = $parameters['withUser'] ?? false;
         $limit = QUIZ_PLAYERS_PER_BOX;
 
-        $list = null;
-        switch ($context) {
-            case 'last':
-                $list = GameList::lastPlayers($quizID);
-                break;
-            default:
-                $list = GameList::bestPlayers($quizID);
+        if ($context === 'last') {
+            $list = GameList::lastPlayers($quizID);
+        } else {
+            $list = GameList::bestPlayers($quizID);
         }
 
         if ($withQuiz) {

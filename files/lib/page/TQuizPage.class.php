@@ -37,7 +37,7 @@ trait TQuizPage
      * Base implementation for readParameters for quiz pages.
      * @throws IllegalLinkException|PermissionDeniedException
      */
-    public function readQuizParameters()
+    public function readQuizParameters(): void
     {
         $this->quizID = $_REQUEST['id'] ?? 0;
 
@@ -54,7 +54,7 @@ trait TQuizPage
     /**
      * Set quiz data and tags.
      */
-    public function assignQuizData()
+    public function assignQuizData(): void
     {
         WCF::getTPL()->assign([
             'quiz' => $this->quiz,
@@ -64,7 +64,7 @@ trait TQuizPage
     /**
      * @throws SystemException
      */
-    public function setQuizParentLocation()
+    public function setQuizParentLocation(): void
     {
         /** @scrutinizer ignore-call */PageLocationManager::getInstance()->addParentLocation(
             'de.teralios.quizCreator.Quiz',

@@ -4,12 +4,8 @@ define(["require", "exports", "tslib", "./View/General", "./View/Question", "Wol
     exports.Main = exports.setEffectBasics = void 0;
     Util_1 = tslib_1.__importDefault(Util_1);
     let effectDuration = 1000;
-    let effectClassIn = 'show';
-    let effectClassOut = ''; // work with opacity, but we never now to use this here.
-    function setEffectBasics(duration, inClass, outClass) {
+    function setEffectBasics(duration) {
         effectDuration = duration * 1000;
-        effectClassIn = inClass;
-        effectClassOut = outClass;
     }
     exports.setEffectBasics = setEffectBasics;
     class Main {

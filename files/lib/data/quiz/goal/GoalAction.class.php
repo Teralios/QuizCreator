@@ -59,7 +59,7 @@ class GoalAction extends AbstractDatabaseObjectAction
             $quizID = $question->quizID;
 
             if (isset($quizIDs[$quizID])) {
-                $quizIDs[$quizID] += 1;
+                $quizIDs[$quizID]++;
             } else {
                 $quizIDs[$quizID] = 1;
             }

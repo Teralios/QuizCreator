@@ -22,18 +22,17 @@ class QuizEditForm extends QuizAddForm
 {
     // inherit vars
     public $activeMenuItem = 'wcf.acp.menu.link.quizCreator.list';
-    public $neededPermissions = ['admin.content.quizCreator.canManage'];
     public $formAction = 'edit';
 
     /**
      * @var QuestionList
      */
-    public $questionList = null;
+    public $questionList;
 
     /**
      * @var GoalList
      */
-    public $goalList = null;
+    public $goalList;
 
     /**
      * @var bool

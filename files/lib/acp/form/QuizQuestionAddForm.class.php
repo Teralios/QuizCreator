@@ -29,7 +29,7 @@ class QuizQuestionAddForm extends BaseQuizForm
     /**
      * @inheritDoc
      */
-    public function createForm()
+    public function createForm(): void
     {
         parent::createForm();
 
@@ -80,7 +80,7 @@ class QuizQuestionAddForm extends BaseQuizForm
         // reload quiz object
         $this->quizObject = new Quiz($this->quizObject->quizID);
         $showOrderValue = $this->quizObject->questions;
-        $maxShowOrder = $showOrderValue + (($this->formAction == 'create' && $this->quizObject->questions > 0) ? 1 : 0);
+        $maxShowOrder = $showOrderValue + (($this->formAction === 'create' && $this->quizObject->questions > 0) ? 1 : 0);
 
         for ($i = 2; $i <= $maxShowOrder; $i++) { // start here with 2.
             $orderOptions[$i - 1] = $i;

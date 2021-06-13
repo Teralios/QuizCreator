@@ -25,7 +25,7 @@ class QuizListPage extends MultipleLinkPage
     /**
      * @var ViewableQuizList
      */
-    public $objectList = null;
+    public $objectList;
 
     /**
      * @inheritDoc

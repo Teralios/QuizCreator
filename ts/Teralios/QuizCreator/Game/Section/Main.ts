@@ -4,14 +4,10 @@ import {ShowQuestionCallback, NextQuestionCallback, CheckAnswerCallback, Questio
 import DomUtil from "WoltLabSuite/Core/Dom/Util";
 
 let effectDuration = 1000;
-let effectClassIn = 'show';
-let effectClassOut = ''; // work with opacity, but we never now to use this here.
 
-export function setEffectBasics(duration: number, inClass: string, outClass: string):void
+export function setEffectBasics(duration: number):void
 {
     effectDuration = duration * 1000;
-    effectClassIn = inClass;
-    effectClassOut = outClass;
 }
 
 export class Main
@@ -37,7 +33,7 @@ export class Main
         this._initGeneral();
     }
 
-    public nextQuestion(question: Question, isLast?: boolean)
+    public nextQuestion(question: Question, isLast?: boolean): void
     {
         // remove show / fadeout effect
         if (this.container.classList.contains('show')) {
@@ -85,7 +81,8 @@ export class Main
         }, effectDuration);
     }
 
-    public showStartView() {
+    public showStartView(): void
+    {
         this.currentView = this.generalView.getStartView();
         DomUtil.show(this.currentView);
         this.container.classList.add('show');

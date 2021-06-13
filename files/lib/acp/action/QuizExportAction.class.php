@@ -17,11 +17,11 @@ use wcf\system\WCF;
 /**
  * Class QuizExportAction
  *
- * @package    de.teralios.quizCreator
+ * @package   de.teralios.quizCreator
  * @subpackage wcf\acp\action
- * @author     Karsten (Teralios) Achterrath
- * @copyright  ©2020 Teralios.de
- * @license    GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ * @author    Teralios
+ * @copyright ©2019 - 2021 Teralios.de
+ * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
 class QuizExportAction extends AbstractAction
 {
@@ -39,11 +39,11 @@ class QuizExportAction extends AbstractAction
      * @inheritDoc
      * @throws IllegalLinkException|PermissionDeniedException
      */
-    public function readParameters()
+    public function readParameters(): void
     {
         parent::readParameters();
 
-        if (!WCF::getSession()->getPermission('admin.content.quizCreator.canManage')) {
+        if (WCF::getSession()->getPermission('admin.content.quizCreator.canManage') === false) {
             throw new PermissionDeniedException();
         }
 
@@ -59,7 +59,7 @@ class QuizExportAction extends AbstractAction
      * @inheritDoc
      * @throws SystemException
      */
-    public function execute()
+    public function execute(): void
     {
         // quiz data
         $data = $this->quiz->getData();
@@ -67,7 +67,7 @@ class QuizExportAction extends AbstractAction
         // language
         if ($data['languageID'] !== null) {
             $language = /** @scrutinizer ignore-call */LanguageFactory::getInstance()->getLanguage($data['languageID']);
-            $data['languageCode'] = $language->getFixedLanguageCode();
+            $data['languageCode'] = ($language !== null) ? $language->getFixedLanguageCode() : '';
         }
 
         // remove unneeded data

@@ -49,7 +49,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
     /**
      * @var Quiz
      */
-    protected $quiz = null;
+    protected $quiz;
 
     /**
      * @inheritDoc
@@ -85,7 +85,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * @inheritdoc
      * @throws SystemException
      */
-    public function update()
+    public function update(): void
     {
         // description
         $this->parameters['data']['description'] = $this->parameters['description_htmlInputProcessor']->getHtml();
@@ -110,7 +110,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * @inheritDoc
      * @throws PermissionDeniedException
      */
-    public function validateToggle()
+    public function validateToggle(): void
     {
         WCF::getSession()->checkPermissions($this->permissionsToggle);
     }
@@ -118,7 +118,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
     /**
      * @inheritDoc
      */
-    public function toggle()
+    public function toggle(): void
     {
         if (empty($this->objects)) {
             $this->readObjects();
@@ -134,7 +134,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * Validate loadData method.
      * @throws UserInputException|PermissionDeniedException
      */
-    public function validateLoadQuiz()
+    public function validateLoadQuiz(): void
     {
         // check permission
         WCF::getSession()->checkPermissions($this->permissionsLoadQuiz);
@@ -177,7 +177,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * Validate finish game.
      * @throws UserInputException|PermissionDeniedException
      */
-    public function validateFinishGame()
+    public function validateFinishGame(): void
     {
         $this->validateLoadQuiz();
         WCF::getSession()->checkPermissions($this->permissionFinishGame);
@@ -204,7 +204,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
 
         // check user
         if ($this->quiz->isActive) {
-            if ($userID != 0) {
+            if ($userID !== 0) {
                 if (!Game::hasPlayed($this->quiz, $userID)) {
                     $game = GameEditor::createGameResult($this->quiz, $userID, $score, $time, $result);
                     $userData = $game->getUserData(WCF::getUser(), true);
@@ -232,7 +232,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * Validates import action.
      * @throws PermissionDeniedException
      */
-    public function validateImport()
+    public function validateImport(): void
     {
         $this->validateCreate();
     }
@@ -261,7 +261,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * Check permissions for reset matches.
      * @throws PermissionDeniedException
      */
-    public function validateResetGames()
+    public function validateResetGames(): void
     {
         WCF::getSession()->checkPermissions($this->permissionsResetGames);
     }
@@ -270,7 +270,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * Execute reset matches action.
      * @throws DatabaseQueryException|DatabaseQueryExecutionException|SystemException
      */
-    public function resetGames()
+    public function resetGames(): void
     {
         GameEditor::deleteForQuizzes($this->objectIDs);
         GameEditor::resetCache();
@@ -280,7 +280,7 @@ class QuizAction extends AbstractDatabaseObjectAction implements IToggleAction, 
      * @inheritdoc
      * @throws PermissionDeniedException|UserInputException
      */
-    public function validateGetPopover()
+    public function validateGetPopover(): void
     {
         WCF::getSession()->checkPermissions($this->permissionsPopover);
 

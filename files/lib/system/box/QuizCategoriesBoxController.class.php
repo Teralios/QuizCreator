@@ -9,6 +9,16 @@ use wcf\page\QuizListPage;
 use wcf\system\request\RequestHandler;
 use wcf\system\WCF;
 
+/**
+ * Class QuizCategoriesBoxController
+ *
+ * @package   de.teralios.quizCreator
+ * @subpackage wcf\system\box
+ * @author    Teralios
+ * @copyright ©2019 - 2021 Teralios.de
+ * @license   GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.txt>
+ * @since 1.5.0
+ */
 class QuizCategoriesBoxController extends AbstractBoxController
 {
     /**
@@ -16,7 +26,10 @@ class QuizCategoriesBoxController extends AbstractBoxController
      */
     protected static $supportedPositions = ['footerBoxes', 'sidebarLeft', 'sidebarRight', 'contentTop', 'contentBottom', 'footer'];
 
-    protected function loadContent()
+    /**
+     * @throws \wcf\system\exception\SystemException
+     */
+    protected function loadContent(): void
     {
         $categoryList = new QuizCategoryNodeTree(QuizCategory::OBJECT_TYPE);
         $categoryList = $categoryList->getIterator();

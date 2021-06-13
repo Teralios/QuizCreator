@@ -56,7 +56,7 @@ class QuizPage extends AbstractPage
      * @inheritdoc
      * @throws IllegalLinkException|PermissionDeniedException
      */
-    public function readParameters()
+    public function readParameters(): void
     {
         parent::readParameters();
 
@@ -67,7 +67,7 @@ class QuizPage extends AbstractPage
      * @inheritDoc
      * @throws SystemException
      */
-    public function readData()
+    public function readData(): void
     {
         parent::readData();
 
@@ -82,7 +82,7 @@ class QuizPage extends AbstractPage
      * @inheritDoc
      * @throws SystemException
      */
-    public function assignVariables()
+    public function assignVariables(): void
     {
         parent::assignVariables();
 

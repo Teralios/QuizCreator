@@ -43,7 +43,7 @@ class ViewableQuizList extends QuizList
     /**
      * @var ?ViewableMediaList
      */
-    protected $mediaList = null;
+    protected $mediaList;
 
     /**
      * ViewableQuizList constructor.
@@ -63,7 +63,7 @@ class ViewableQuizList extends QuizList
         }
 
         // 1.5 code start
-        if ($categoryID !== null || $categoryID != 0) {
+        if ($categoryID !== null || $categoryID !== 0) {
             $this->getConditionBuilder()->add(
                 $this->getDatabaseTableAlias() . '.categoryID = ?',
                 [$categoryID]
@@ -106,7 +106,7 @@ class ViewableQuizList extends QuizList
      * @inheritDoc
      * @throws DatabaseQueryExecutionException|SystemException
      */
-    public function readObjects()
+    public function readObjects(): void
     {
         parent::readObjects();
 
@@ -121,12 +121,13 @@ class ViewableQuizList extends QuizList
         }
 
         // load played status
-        if (WCF::getUser()->userID && $this->userStatus) {
+        if ($this->userStatus && WCF::getUser()->userID) {
             $this->loadUserStatus();
         }
     }
 
     /**
+     * @throws SystemException
      * @since 1.5.0
      */
     protected function loadMedia(): void

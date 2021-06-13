@@ -41,7 +41,7 @@ class QuizAddForm extends AbstractFormBuilderForm
     /**
      * @inheritDoc
      */
-    public function createForm()
+    public function createForm(): void
     {
         parent::createForm();
 
@@ -83,7 +83,7 @@ class QuizAddForm extends AbstractFormBuilderForm
             BooleanFormField::create('isActive')
                 ->label('wcf.acp.quizCreator.quiz.isActive')
                 ->value(0)
-                ->available($this->formAction == 'edit')
+                ->available($this->formAction === 'edit')
         ]);
 
         $this->form->appendChild($container);
@@ -93,11 +93,11 @@ class QuizAddForm extends AbstractFormBuilderForm
      * @inheritDoc
      * @throws SystemException
      */
-    public function saved()
+    public function saved(): void
     {
         parent::saved();
 
-        if ($this->formAction == 'create') {
+        if ($this->formAction === 'create') {
             $quiz = $this->objectAction->getReturnValues()['returnValues'];
             if ($quiz instanceof Quiz) {
                 HeaderUtil::redirect(/** @scrutinizer ignore-call */LinkHandler::getInstance()->getLink(

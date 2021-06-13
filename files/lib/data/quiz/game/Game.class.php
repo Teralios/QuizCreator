@@ -40,19 +40,19 @@ class Game extends DatabaseObject
     protected static $databaseTableIndexName = 'gameID';
 
     /**
-     * @var UserProfile|null
+     * @var UserProfile
      */
-    protected $user = null;
+    protected $user;
 
     /**
-     * @var Quiz|null
+     * @var Quiz
      */
-    protected $quiz = null;
+    protected $quiz;
 
     /**
      * @var array
      */
-    protected $questions = null;
+    protected $questions;
 
     /**
      * Returns needed time for quiz as second.
@@ -80,14 +80,14 @@ class Game extends DatabaseObject
             $this->parseResult();
         }
 
-        return (isset($this->questions[$index])) ? $this->questions[$index] : [];
+        return $this->questions[$index] ?? [];
     }
 
     /**
      * Sets user profile.
      * @param UserProfile $user
      */
-    public function setUser(UserProfile $user)
+    public function setUser(UserProfile $user): void
     {
         $this->user = $user;
     }
@@ -105,7 +105,7 @@ class Game extends DatabaseObject
      * Set quiz.
      * @param Quiz $quiz
      */
-    public function setQuiz(Quiz $quiz)
+    public function setQuiz(Quiz $quiz): void
     {
         $this->quiz = $quiz;
     }
@@ -123,7 +123,7 @@ class Game extends DatabaseObject
      * Parse official game result.
      * @throws SystemException
      */
-    protected function parseResult()
+    protected function parseResult(): void
     {
         $questions = JSON::decode($this->result);
         $i = 1;

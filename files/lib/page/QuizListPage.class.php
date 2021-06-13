@@ -32,12 +32,12 @@ class QuizListPage extends SortablePage
     public $neededPermissions = ['user.quiz.canView'];
     public $neededModules = ['MODULE_QUIZ_CREATOR'];
     public $defaultSortOrder = 'DESC';
-    public $categoryID = null;
+    public $categoryID;
 
     /**
      * @var ViewableQuizList
      */
-    public $objectList = null;
+    public $objectList;
 
     /**
      * @var bool
@@ -52,7 +52,7 @@ class QuizListPage extends SortablePage
     /**
      * @var ?ViewableQuizList
      */
-    public $mostPlayed = null;
+    public $mostPlayed;
 
     /**
      * @var CategoryNodeTree
@@ -63,7 +63,7 @@ class QuizListPage extends SortablePage
     /**
      * @var ?Category
      */
-    public $category = null;
+    public $category;
 
     /**
      * @throws SystemException
@@ -94,7 +94,7 @@ class QuizListPage extends SortablePage
      * @inheritDoc
      * @throws SystemException
      */
-    public function initObjectList()
+    public function initObjectList(): void
     {
         parent::initObjectList();
         $this->objectList->withMedia();
@@ -125,7 +125,7 @@ class QuizListPage extends SortablePage
     /**
      * @inheritDoc
      */
-    public function assignVariables()
+    public function assignVariables(): void
     {
         parent::assignVariables();
 

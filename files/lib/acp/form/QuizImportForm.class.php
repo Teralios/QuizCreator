@@ -41,7 +41,7 @@ class QuizImportForm extends AbstractFormBuilderForm
     /**
      * @inheritDoc
      */
-    public function createForm()
+    public function createForm(): void
     {
         parent::createForm();
 
@@ -99,7 +99,7 @@ class QuizImportForm extends AbstractFormBuilderForm
      * @inheritDoc
      * @throws SystemException
      */
-    public function saved()
+    public function saved(): void
     {
         $quiz = $this->objectAction->getReturnValues()['returnValues'];
         if ($quiz instanceof Quiz) {

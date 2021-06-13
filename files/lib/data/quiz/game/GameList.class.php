@@ -39,14 +39,14 @@ class GameList extends DatabaseObjectList
     protected $quizIDs = [];
 
     /**
-     * @var UserProfileList|null
+     * @var UserProfileList
      */
-    protected $userList = null;
+    protected $userList;
 
     /**
-     * @var QuizList|null
+     * @var QuizList
      */
-    protected $quizList = null;
+    protected $quizList;
 
     /**
      * @return $this
@@ -71,7 +71,7 @@ class GameList extends DatabaseObjectList
     /**
      * @inheritDoc
      */
-    public function readObjects()
+    public function readObjects(): void
     {
         parent::readObjects();
 
@@ -93,7 +93,7 @@ class GameList extends DatabaseObjectList
     /**
      * Prepare read for quizzes and users.
      */
-    protected function prepareRead()
+    protected function prepareRead(): void
     {
         /** @var Game $object */
         foreach ($this->objects as $object) {
@@ -105,7 +105,7 @@ class GameList extends DatabaseObjectList
     /**
      * Read users.
      */
-    protected function readUsers()
+    protected function readUsers(): void
     {
         $this->userList = new UserProfileList();
         $this->userList->setObjectIDs($this->userIDs);
@@ -115,7 +115,7 @@ class GameList extends DatabaseObjectList
     /**
      * Read quizzes.
      */
-    protected function readQuiz()
+    protected function readQuiz(): void
     {
         $this->quizList = new QuizList();
         $this->quizList->setObjectIDs($this->quizIDs);
@@ -125,7 +125,7 @@ class GameList extends DatabaseObjectList
     /**
      * Added additional data do game.
      */
-    protected function setAdditionalData()
+    protected function setAdditionalData(): void
     {
         $users = ($this->userList !== null) ? $this->userList->getObjects() : [];
         $quizzes = ($this->quizList !== null) ? $this->quizList->getObjects() : [];

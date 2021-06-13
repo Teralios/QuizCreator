@@ -4,5 +4,10 @@
 	<arg name="extensions" value="php" />
 	<arg value="p"/>
 	<arg name="basepath" value="."/>
-	<rule ref="./debug/ruleset.xml"/>
+	<rule ref="PSR12"/>
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property phpcs-only="true" name="lineLimit" value="160"/>
+		</properties>
+	</rule>
 </ruleset>

@@ -35,9 +35,9 @@ class QuestionEditor extends DatabaseObjectEditor
      * @param array $parameters
      * @throws DatabaseQueryException
      */
-    public function update(array $parameters = [])
+    public function update(array $parameters = []): void
     {
-        if ($this->position != $parameters['position']) {
+        if ($this->position !== (int) $parameters['position']) {
             $this->updatePositions((int) $parameters['position']);
         }
 
@@ -61,7 +61,7 @@ class QuestionEditor extends DatabaseObjectEditor
      * @param int $position
      * @throws DatabaseQueryException
      */
-    public static function updatePositionsBeforeCreate(int $quizID, int $position)
+    public static function updatePositionsBeforeCreate(int $quizID, int $position): void
     {
         $sql = 'UPDATE  ' . self::getDatabaseTableName() . '
                 SET     position = position + 1
@@ -77,7 +77,7 @@ class QuestionEditor extends DatabaseObjectEditor
      * @throws DatabaseQueryException
      * @throws SystemException
      */
-    public static function updatePositionAfterDelete(int $quizID)
+    public static function updatePositionAfterDelete(int $quizID): void
     {
         $sql = 'SELECT      questionID, position
                 FROM        ' . static::getDatabaseTableName() . '
@@ -107,7 +107,7 @@ class QuestionEditor extends DatabaseObjectEditor
      * @param int $newPosition
      * @throws DatabaseQueryException
      */
-    protected function updatePositions(int $newPosition)
+    protected function updatePositions(int $newPosition): void
     {
         if ($newPosition > $this->position) {
             $sql = 'UPDATE ' . static::getDatabaseTableName() . '

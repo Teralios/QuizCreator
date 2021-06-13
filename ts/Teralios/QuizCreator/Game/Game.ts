@@ -41,7 +41,7 @@ export class Game {
             (option: string) => this.registerAnswer(option),
             () => { this.setNextQuestion() },
             () => { this.finishGame() },
-            () => { }
+            () => { this.setNextQuestion() }
         );
         DomUtil.hide(this.header.getView());
         DomUtil.hide(this.main.getView());
@@ -111,9 +111,8 @@ export class Game {
         }
     }
 
-    public finishGame(): void
-    {
-
+    public finishGame(): void {
+        return;
     }
 
     public clockTick(): void

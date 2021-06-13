@@ -41,16 +41,16 @@ class ViewableQuizList extends QuizList
     protected $userStatus = false;
 
     /**
-     * @var ?ViewableMediaList
+     * @var ViewableMediaList
      */
     protected $mediaList;
 
     /**
      * ViewableQuizList constructor.
      * @throws SystemException
-     * @param ?int $categoryID
+     * @param int $categoryID
      */
-    public function __construct(?int $categoryID = null)
+    public function __construct(int $categoryID = null)
     {
         parent::__construct();
 
@@ -63,7 +63,7 @@ class ViewableQuizList extends QuizList
         }
 
         // 1.5 code start
-        if ($categoryID !== null || $categoryID !== 0) {
+        if ($categoryID !== null) {
             $this->getConditionBuilder()->add(
                 $this->getDatabaseTableAlias() . '.categoryID = ?',
                 [$categoryID]

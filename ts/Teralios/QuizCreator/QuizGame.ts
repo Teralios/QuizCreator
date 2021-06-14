@@ -2,7 +2,7 @@ import {Quiz} from './Data/Data';
 import {QuizLoader, LanguageLoader} from './Data/Loader';
 import {get as phrase} from 'WoltLabSuite/Core/Language';
 import {Game} from './Game/Game';
-import * from 'WoltLabSuite/Core/Core'
+
 class QuizGame
 {
     protected quiz: Quiz;
@@ -66,7 +66,6 @@ class QuizGame
         loading.classList.add('statusLoading');
         loading.append(spinner, information);
         this.gameContainer.appendChild(loading);
-
 
         // load data
         this.loadData();

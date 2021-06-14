@@ -54,7 +54,6 @@ export class Game {
         // add sections
         this.container.append(this.header.getView());
         this.container.append(this.main.getView());
-        alert('test');
         setTimeout(() => { this.main.showStartView() }, 1000); // css needs some time to render.
     }
 

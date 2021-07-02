@@ -77,7 +77,7 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
             var _a;
             const stopWatch = (_a = this.container.getElementsByClassName('stopwatch')[0]) !== null && _a !== void 0 ? _a : null;
             stopWatch.classList.remove('s1', 's2', 's3');
-            stopWatch.classList.add('s1');
+            stopWatch.classList.add(newClass);
         }
         updateValue(newValue) {
             value.textContent = String(newValue);

@@ -67,7 +67,6 @@ class QuizGame
         loading.append(spinner, information);
         this.gameContainer.appendChild(loading);
 
-
         // load data
         this.loadData();
     }

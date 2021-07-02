@@ -115,7 +115,7 @@ export class Header {
     {
         const stopWatch = this.container.getElementsByClassName('stopwatch')[0] ?? null;
         stopWatch.classList.remove('s1', 's2', 's3');
-        stopWatch.classList.add('s1');
+        stopWatch.classList.add(newClass);
     }
 
     public updateValue(newValue: number): void

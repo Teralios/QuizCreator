@@ -41,7 +41,7 @@ export class Game {
             (option: string) => this.registerAnswer(option),
             () => { this.setNextQuestion() },
             () => { this.finishGame() },
-            () => { }
+            () => { this.setNextQuestion() }
         );
         DomUtil.hide(this.header.getView());
         DomUtil.hide(this.main.getView());
@@ -54,7 +54,6 @@ export class Game {
         // add sections
         this.container.append(this.header.getView());
         this.container.append(this.main.getView());
-        alert('test');
         setTimeout(() => { this.main.showStartView() }, 1000); // css needs some time to render.
     }
 
@@ -111,9 +110,8 @@ export class Game {
         }
     }
 
-    public finishGame(): void
-    {
-
+    public finishGame(): void {
+        return;
     }
 
     public clockTick(): void

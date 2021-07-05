@@ -37,7 +37,7 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
     }
     function buildStopwatch() {
         const container = document.createElement('div');
-        container.classList.add('stopwatch');
+        container.classList.add('clock');
         // top line
         const top = document.createElement('p');
         top.classList.add('top', 'paused');
@@ -68,14 +68,14 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
         }
         updateQuestionIndicator(no, isCorrect) {
             no = no - 1;
-            questionMakers[no].classList.add((isCorrect) ? 'correct' : 'inCorrect');
+            questionMakers[no].classList.add((isCorrect) ? 'correct' : 'incorrect');
         }
         updateScore(newScore) {
             score.textContent = String(newScore);
         }
         updateStatus(newClass) {
             var _a;
-            const stopWatch = (_a = this.container.getElementsByClassName('stopwatch')[0]) !== null && _a !== void 0 ? _a : null;
+            const stopWatch = (_a = this.container.getElementsByClassName('clock')[0]) !== null && _a !== void 0 ? _a : null;
             stopWatch.classList.remove('s1', 's2', 's3');
             stopWatch.classList.add(newClass);
         }
@@ -86,7 +86,7 @@ define(["require", "exports", "WoltLabSuite/Core/Language"], function (require, 
             const minute = Math.floor(seconds / 60);
             const second = seconds % 60;
             const dot = ((seconds % 2) == 0) ? ':' : ' ';
-            clock.textContent = String(minute) + dot + String(second);
+            clock.textContent = String(minute) + dot + ((second < 10) ? '0' : '') + String(second);
         }
         stopAnimation() {
             const top = this.getStopwatchTop();

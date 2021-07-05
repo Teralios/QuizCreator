@@ -423,7 +423,7 @@ $timeState3Color: $wcfStatusErrorText;
     }
 
     // timer and animation for time.
-    .stopwatch {
+    .clock {
       text-align: center;
       transition: color 500ms;
 
@@ -440,20 +440,31 @@ $timeState3Color: $wcfStatusErrorText;
       .paused .fa {
         animation-play-state: paused;
       }
+    }
 
-      .s1 {
+    .s1 {
+      color: $timeState1Color !important;
+
+      .fa {
         color: $timeState1Color !important;
-      }
-
-      .s2 {
-        color: $timeState2Color !important;
-      }
-
-      .s3 {
-        color: $timeState3Color !important;
       }
     }
 
+    .s2 {
+      color: $timeState2Color !important;
+
+      .fa {
+        color: $timeState2Color !important;
+      }
+    }
+
+    .s3 {
+      color: $timeState3Color !important;
+
+      .fa {
+        color: $timeState3Color !important;
+      }
+    }
     // score
     .score {
       text-align: right;
@@ -508,6 +519,10 @@ $timeState3Color: $wcfStatusErrorText;
           color: $quizGameButtonTextColor !important;
         }
       }
+      .explanation {
+        opacity: 0;
+        transition: opactiy 500ms;
+      }
 
       .next {
         opacity: 0;
@@ -516,6 +531,10 @@ $timeState3Color: $wcfStatusErrorText;
           margin-bottom: 10px;
           @include wcfFontDefault;
         }
+      }
+
+      .show {
+        opacity: 1;
       }
     }
 

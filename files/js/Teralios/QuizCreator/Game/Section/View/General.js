@@ -18,7 +18,7 @@ define(["require", "exports", "tslib", "WoltLabSuite/Core/Dom/Util", "WoltLabSui
         const container = document.createElement('div');
         container.classList.add('startView');
         container.appendChild(startButton);
-        startButton.textContent = Language_1.get('wcf.quizCreator.game.button.star');
+        startButton.textContent = Language_1.get('wcf.quizCreator.game.button.start');
         Util_1.default.hide(container);
         return container;
     }

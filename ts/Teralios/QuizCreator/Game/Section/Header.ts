@@ -55,7 +55,7 @@ function buildQuestionInfo(questions: number): HTMLElement
 function buildStopwatch(): HTMLElement
 {
     const container = document.createElement('div');
-    container.classList.add('stopwatch');
+    container.classList.add('clock');
 
     // top line
     const top = document.createElement('p');
@@ -103,7 +103,7 @@ export class Header {
     public updateQuestionIndicator(no: number, isCorrect: boolean): void
     {
         no = no - 1;
-        questionMakers[no].classList.add((isCorrect) ? 'correct' : 'inCorrect');
+        questionMakers[no].classList.add((isCorrect) ? 'correct' : 'incorrect');
     }
 
     public updateScore(newScore: number): void
@@ -113,7 +113,7 @@ export class Header {
 
     public updateStatus(newClass: string): void
     {
-        const stopWatch = this.container.getElementsByClassName('stopwatch')[0] ?? null;
+        const stopWatch = this.container.getElementsByClassName('clock')[0] ?? null;
         stopWatch.classList.remove('s1', 's2', 's3');
         stopWatch.classList.add(newClass);
     }
@@ -129,7 +129,7 @@ export class Header {
         const second = seconds % 60;
         const dot = ((seconds % 2) == 0) ? ':' : ' ';
 
-        clock.textContent = String(minute) + dot + String(second);
+        clock.textContent = String(minute) + dot + ((second < 10) ? '0' : '') + String(second);
     }
 
     public stopAnimation(): void

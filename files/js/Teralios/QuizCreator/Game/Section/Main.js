@@ -9,32 +9,39 @@ define(["require", "exports", "tslib", "./View/General", "./View/Question", "Wol
     }
     exports.setEffectBasics = setEffectBasics;
     class Main {
-        constructor(showQuestionCallback, checkAnswerCallback, nextQuestionCallback, finishGameCallback, startCallback) {
+        constructor(showQuestionCallback, checkAnswerCallback, nextQuestionCallback, finishGameCallback, startCallback, header, resetClock) {
             this.showQuestionCallback = showQuestionCallback;
             this.checkAnswerCallback = checkAnswerCallback;
             this.nextQuestionCallback = nextQuestionCallback;
             this.finishGameCallback = finishGameCallback;
             this.startGameCallback = startCallback;
+            this.resetClock = resetClock;
+            this.header = header;
             this._initGeneral();
         }
-        nextQuestion(question, isLast) {
+        nextQuestion(question, notLast) {
             // remove show / fadeout effect
             if (this.container.classList.contains('show')) {
                 this.container.classList.remove('show');
             }
-            if (isLast) {
-                this.questionView.prepareFor(question, this.finishGameCallback);
-            }
-            else {
-                this.questionView.prepareFor(question);
-            }
-            setTimeout(() => { this.intermission(); }, effectDuration);
+            // remove show from header
+            this.header.getView().classList.remove('show');
+            setTimeout(() => {
+                this.intermission();
+                if (!notLast) {
+                    this.questionView.prepareFor(question, this.finishGameCallback);
+                }
+                else {
+                    this.questionView.prepareFor(question);
+                }
+            }, effectDuration);
         }
         intermission() {
             Util_1.default.hide(this.currentView);
             this.currentView = this.generalView.getIntermissionView();
             Util_1.default.show(this.currentView);
             this.container.classList.add('show');
+            this.resetClock();
             setTimeout(() => {
                 this.showNext();
             }, 2000 + effectDuration);
@@ -45,6 +52,7 @@ define(["require", "exports", "tslib", "./View/General", "./View/Question", "Wol
                 Util_1.default.hide(this.currentView);
                 this.currentView = this.questionView.getView();
                 Util_1.default.show(this.currentView);
+                this.header.getView().classList.add('show');
                 this.container.classList.add('show');
                 this.finalizeNext();
             }, effectDuration);

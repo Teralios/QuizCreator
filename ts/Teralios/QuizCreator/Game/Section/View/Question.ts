@@ -50,8 +50,8 @@ function buildQuestionField(): HTMLElement
 
 function buildExplanationField(): HTMLElement
 {
+    explanation.classList.add('explanation');
     const explanationContainer = document.createElement('div');
-    explanationContainer.classList.add('explanation', 'invisible');
     explanationContainer.appendChild(explanation);
 
     return explanationContainer;
@@ -60,6 +60,7 @@ function buildExplanationField(): HTMLElement
 function buildNextField(): HTMLElement
 {
     nextButton.textContent = phrase('wcf.quizCreator.game.button.next');
+    nextButton.classList.add('next');
     const nextContainer = document.createElement('div');
     nextContainer.appendChild(nextButton);
 
@@ -91,15 +92,18 @@ export class QuestionView {
         return this.viewContainer;
     }
 
-    public prepareFor(question: Question, callback?: NextQuestionCallback): void
+    public prepareFor(newQuestion: Question, callback?: NextQuestionCallback): void
     {
-        this.question = question;
+        this.question = newQuestion;
+        question.textContent = this.question.question;
 
         // update buttons
         buttons.sort(() => 0.5 - Math.random());
         options.forEach((option, index) => {
             buttons[index].setAttribute('data-option', option.toLowerCase());
             buttons[index].textContent = this.question.options[option];
+            buttons[index].classList.remove('correct', 'incorrect');
+            buttons[index].disabled = false;
         });
 
         if (callback) {
@@ -123,10 +127,10 @@ export class QuestionView {
     {
         // next button
         nextButton.disabled = true;
-        nextButton.classList.add('invisible');
+        nextButton.classList.remove('show');
 
         // explanation
-        explanation.classList.add('invisible')
+        explanation.classList.remove('show')
 
         // execute callback for next question
         this.goToNextQuestion();
@@ -139,7 +143,7 @@ export class QuestionView {
             let option = button.getAttribute('data-option') ?? '';
             option = option.toLowerCase();
 
-            if (isCorrect) {
+            if (isCorrect && option == this.selectedOption) {
                 button.classList.add('correct');
             } else {
                 if (option == this.selectedOption) {
@@ -152,11 +156,11 @@ export class QuestionView {
 
         // explanation
         explanation.textContent = this.question.explanation;
-        explanation.classList.remove('invisible');
+        explanation.classList.add('show');
 
         // next buttons
         nextButton.disabled = false;
-        nextButton.classList.remove('invisible');
+        nextButton.classList.add('show');
     }
 
     protected prepareButtons(): void

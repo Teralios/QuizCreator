@@ -37,24 +37,30 @@ export class Game {
         // sections
         this.header = new Header(this.quiz.questionsCount);
         this.main = new Main(
-            () => { this.startWatch() },
+            () => { this.startClock() },
             (option: string) => this.registerAnswer(option),
             () => { this.setNextQuestion() },
             () => { this.finishGame() },
-            () => { this.setNextQuestion() }
+            () => { this.setNextQuestion() },
+            this.header,
+            () => { this.resetClock() }
         );
-        DomUtil.hide(this.header.getView());
-        DomUtil.hide(this.main.getView());
 
         // create game field.
         const field = document.createElement('div');
         field.classList.add('gameField');
         this.container.appendChild(field);
+        this.container = field;
 
         // add sections
         this.container.append(this.header.getView());
         this.container.append(this.main.getView());
-        setTimeout(() => { this.main.showStartView() }, 1000); // css needs some time to render.
+        setTimeout(
+            () => {
+                this.main.showStartView();
+                },
+            1000
+        ); // css needs some time to render.
     }
 
     public registerAnswer(option: string): boolean
@@ -89,15 +95,18 @@ export class Game {
         return returnValue;
     }
 
-    public startWatch(): void
+    public resetClock(): void
     {
-        this.seconds = 0; // redundant but better ;)
         this.value = status1Value; // i know i know.
         this.header.updateValue(this.value);
         this.header.updateTime(this.seconds);
         this.header.updateStatus('s1');
-        this.header.startAnimation();
+    }
 
+    public startClock(): void
+    {
+        this.resetClock();
+        this.header.startAnimation();
         this.watchID = setInterval(() => { this.clockTick() }, 1000);
     }
 
@@ -107,6 +116,7 @@ export class Game {
 
         if (question != null) {
             this.main.nextQuestion(question, this.quiz.nextQuestion());
+            this.currentQuestion = question;
         }
     }
 

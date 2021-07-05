@@ -23,7 +23,7 @@ function buildStartView(): HTMLElement
     const container = document.createElement('div');
     container.classList.add('startView');
     container.appendChild(startButton);
-    startButton.textContent = phrase('wcf.quizCreator.game.button.star');
+    startButton.textContent = phrase('wcf.quizCreator.game.button.start');
     DomUtil.hide(container);
 
     return container;

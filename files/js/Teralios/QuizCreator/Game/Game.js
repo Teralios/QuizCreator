@@ -1,8 +1,7 @@
-define(["require", "exports", "tslib", "./Section/Header", "./Section/Main", "WoltLabSuite/Core/Dom/Util"], function (require, exports, tslib_1, Header_1, Main_1, Util_1) {
+define(["require", "exports", "./Section/Header", "./Section/Main"], function (require, exports, Header_1, Main_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Game = void 0;
-    Util_1 = tslib_1.__importDefault(Util_1);
     const status1Seconds = 5;
     const status2Seconds = 15;
     const status1Value = 10;
@@ -22,17 +21,18 @@ define(["require", "exports", "tslib", "./Section/Header", "./Section/Main", "Wo
         init() {
             // sections
             this.header = new Header_1.Header(this.quiz.questionsCount);
-            this.main = new Main_1.Main(() => { this.startWatch(); }, (option) => this.registerAnswer(option), () => { this.setNextQuestion(); }, () => { this.finishGame(); }, () => { this.setNextQuestion(); });
-            Util_1.default.hide(this.header.getView());
-            Util_1.default.hide(this.main.getView());
+            this.main = new Main_1.Main(() => { this.startClock(); }, (option) => this.registerAnswer(option), () => { this.setNextQuestion(); }, () => { this.finishGame(); }, () => { this.setNextQuestion(); }, this.header, () => { this.resetClock(); });
             // create game field.
             const field = document.createElement('div');
             field.classList.add('gameField');
             this.container.appendChild(field);
+            this.container = field;
             // add sections
             this.container.append(this.header.getView());
             this.container.append(this.main.getView());
-            setTimeout(() => { this.main.showStartView(); }, 1000); // css needs some time to render.
+            setTimeout(() => {
+                this.main.showStartView();
+            }, 1000); // css needs some time to render.
         }
         registerAnswer(option) {
             // check answer - may b
@@ -59,12 +59,14 @@ define(["require", "exports", "tslib", "./Section/Header", "./Section/Main", "Wo
             this.value = status1Value;
             return returnValue;
         }
-        startWatch() {
-            this.seconds = 0; // redundant but better ;)
+        resetClock() {
             this.value = status1Value; // i know i know.
             this.header.updateValue(this.value);
             this.header.updateTime(this.seconds);
             this.header.updateStatus('s1');
+        }
+        startClock() {
+            this.resetClock();
             this.header.startAnimation();
             this.watchID = setInterval(() => { this.clockTick(); }, 1000);
         }
@@ -72,6 +74,7 @@ define(["require", "exports", "tslib", "./Section/Header", "./Section/Main", "Wo
             const question = this.quiz.getQuestion();
             if (question != null) {
                 this.main.nextQuestion(question, this.quiz.nextQuestion());
+                this.currentQuestion = question;
             }
         }
         finishGame() {

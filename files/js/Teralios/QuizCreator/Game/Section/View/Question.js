@@ -34,13 +34,14 @@ define(["require", "exports", "tslib", "WoltLabSuite/Core/Dom/Util", "WoltLabSui
         return questionContainer;
     }
     function buildExplanationField() {
+        explanation.classList.add('explanation');
         const explanationContainer = document.createElement('div');
-        explanationContainer.classList.add('explanation', 'invisible');
         explanationContainer.appendChild(explanation);
         return explanationContainer;
     }
     function buildNextField() {
         nextButton.textContent = Language_1.get('wcf.quizCreator.game.button.next');
+        nextButton.classList.add('next');
         const nextContainer = document.createElement('div');
         nextContainer.appendChild(nextButton);
         return nextContainer;
@@ -58,13 +59,16 @@ define(["require", "exports", "tslib", "WoltLabSuite/Core/Dom/Util", "WoltLabSui
         getView() {
             return this.viewContainer;
         }
-        prepareFor(question, callback) {
-            this.question = question;
+        prepareFor(newQuestion, callback) {
+            this.question = newQuestion;
+            question.textContent = this.question.question;
             // update buttons
             buttons.sort(() => 0.5 - Math.random());
             options.forEach((option, index) => {
                 buttons[index].setAttribute('data-option', option.toLowerCase());
                 buttons[index].textContent = this.question.options[option];
+                buttons[index].classList.remove('correct', 'incorrect');
+                buttons[index].disabled = false;
             });
             if (callback) {
                 nextButton.textContent = Language_1.get('wcf.quizCreator.game.button.last');
@@ -83,9 +87,9 @@ define(["require", "exports", "tslib", "WoltLabSuite/Core/Dom/Util", "WoltLabSui
         nextQuestion() {
             // next button
             nextButton.disabled = true;
-            nextButton.classList.add('invisible');
+            nextButton.classList.remove('show');
             // explanation
-            explanation.classList.add('invisible');
+            explanation.classList.remove('show');
             // execute callback for next question
             this.goToNextQuestion();
         }
@@ -95,7 +99,7 @@ define(["require", "exports", "tslib", "WoltLabSuite/Core/Dom/Util", "WoltLabSui
                 var _a;
                 let option = (_a = button.getAttribute('data-option')) !== null && _a !== void 0 ? _a : '';
                 option = option.toLowerCase();
-                if (isCorrect) {
+                if (isCorrect && option == this.selectedOption) {
                     button.classList.add('correct');
                 }
                 else {
@@ -107,10 +111,10 @@ define(["require", "exports", "tslib", "WoltLabSuite/Core/Dom/Util", "WoltLabSui
             });
             // explanation
             explanation.textContent = this.question.explanation;
-            explanation.classList.remove('invisible');
+            explanation.classList.add('show');
             // next buttons
             nextButton.disabled = false;
-            nextButton.classList.remove('invisible');
+            nextButton.classList.add('show');
         }
         prepareButtons() {
             buttons.forEach((button) => {

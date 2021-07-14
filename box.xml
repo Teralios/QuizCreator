@@ -28,7 +28,7 @@
 		<!-- QuizPage Boxes -->
 		<box identifier="de.teralios.quizCreator.box.userResult">
 			<name language="de">Spielergebnis</name>
-			<name language="en">Game result</name>
+			<name language="en">Logic result</name>
 			<boxType>system</boxType>
 			<objectType>de.teralios.quizCreator.userResult</objectType>
 			<position>sidebarRight</position>
@@ -41,7 +41,7 @@
 				<title>Spielergebnis</title>
 			</content>
 			<content language="en">
-				<title>Game result</title>
+				<title>Logic result</title>
 			</content>
 		</box>
 

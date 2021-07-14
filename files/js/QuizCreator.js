@@ -1,3 +1,3 @@
-require(['Teralios/QuizCreator/QuizGame'], function (QuizGame) {
-    new QuizGame('#quiz');
+require(['Teralios/QuizCreator/Game/Game'], function (Game) {
+    new Game('#quiz');
 })

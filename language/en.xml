@@ -24,7 +24,7 @@
 		<item name="wcf.quizCreator.user.play.official"><![CDATA[Rated game]]></item>
 		<item name="wcf.quizCreator.user.play.last"><![CDATA[Last game]]></item>
 		<item name="wcf.quizCreator.user.play.show.details"><![CDATA[Show details]]></item>
-		<item name="wcf.quizCreator.user.play.details.dialog.title"><![CDATA[Game details]]></item>
+		<item name="wcf.quizCreator.user.play.details.dialog.title"><![CDATA[Logic details]]></item>
 	</category>
 	<category name="wcf.quizCreator.quiz">
 		<item name="wcf.quizCreator.quiz.question"><![CDATA[Question]]></item>

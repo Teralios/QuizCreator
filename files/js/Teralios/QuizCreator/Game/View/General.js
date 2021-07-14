@@ -1,8 +1,8 @@
 define(["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Game = void 0;
-    class Game {
+    exports.General = void 0;
+    class General {
     }
-    exports.Game = Game;
+    exports.General = General;
 });

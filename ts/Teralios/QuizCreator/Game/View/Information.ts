@@ -1,3 +1,12 @@
+/**
+ * Provides helper functions to work with DOM nodes.
+ *
+ * @author      Karsten (Teralios) Achterrath
+ * @copyright   2021 teralios.de
+ * @license     GNU General Public License <https://opensource.org/licenses/GPL-3.0>
+ * @module      Teralios/QuizCreator/Game/Container/Header
+ */
+
 // imports
 import {get as phrase} from 'WoltLabSuite/Core/Language';
 

@@ -400,7 +400,7 @@ $quizGameButtonCorrectBackgroundColor: $quizCorrectColor !default;
 $quizGameButtonTextColor: #fff;
 $timeState1Color: $wcfStatusSuccessText !default;
 $timeState2Color: #FF9900 !default;
-$timeState3Color: $wcfStatusErrorText;
+$timeState3Color: $wcfStatusErrorText !default;
 
 // ui
 .gameField {
@@ -427,7 +427,7 @@ $timeState3Color: $wcfStatusErrorText;
       text-align: center;
       transition: color 500ms;
 
-      .top {
+      p:first-child {
         @include wcfFontSmall;
 
         .fa {
@@ -435,10 +435,10 @@ $timeState3Color: $wcfStatusErrorText;
           animation-duration: 4s;
           animation-iteration-count: infinite;
         }
-      }
 
-      .paused .fa {
-        animation-play-state: paused;
+        .paused {
+          animation-play-state: paused;
+        }
       }
     }
 

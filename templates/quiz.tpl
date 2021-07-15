@@ -61,7 +61,7 @@
                             <span class="question fa icon16 fa-question-circle"></span>
                         </p>
                     </div>
-                    <div class="stopwatch">
+                    <div class="stopclock">
                         <p class="top"><span class="fa icon16 fa-circle"></span> +10</p>
                         <p>00:00</p>
                     </div>
@@ -118,9 +118,8 @@
         "wcf.quizCreator.game.button.next": "{jslang}wcf.quizCreator.game.button.next{/jslang}", {* nächste Frage *}
         "wcf.quizCreator.game.button.start": "{jslang}wcf.quizCreator.game.button.start{/jslang}", {* Start *}
         "wcf.quizCreator.game.header.question.prefix": "{jslang}wcf.quizCreator.game.header.question.prefix{/jslang}", {* Frage *}
-        "wcf.quizCreator.game.header.question.suffix": "{jslang}wcf.quizCreator.game.header.question.suffix{/jslang}", {* von {$questions *}
+        "wcf.quizCreator.game.header.question.suffix": "{jslang}wcf.quizCreator.game.header.question.suffix{/jslang}", {* von *}
         "wcf.quizCreator.game.header.score": "{jslang}wcf.quizCreator.game.header.score{/jslang}", {* Punkte *}
-        "wcf.quizCreator.game.header.value": "{jslang}wcf.quizCreator.game.header.value{/jslang}", {* {$currentScore} <b>Punkte</b> *}
         "wcf.quizCreator.game.result.average": "{jslang}wcf.quizCreator.game.result.average{/jslang}", {* ∅ {$averageScore} Punkte *}
         "wcf.quizCreator.game.result.players.other": "{jslang}wcf.quizCreator.game.result.players.other{/jslang}", {* Du hast mehr Punkte als {$playerRelative} % der Spieler erreicht. *}
         "wcf.quizCreator.game.result.players.none": "{jslang}wcf.quizCreator.game.result.players.none{/jslang}", {* Noch hat keiner das Spiel gespielt, du bist der erste! *}
